@@ -24,7 +24,6 @@ void KZ::misc::RegisterCommands()
 	KZJumpstatsService::RegisterCommands();
 	KZHUDService::RegisterCommands();
 	KZLanguageService::RegisterCommands();
-	KZ::style::RegisterCommands();
 }
 
 void KZ::misc::OnClientActive(CPlayerSlot slot)
