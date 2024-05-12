@@ -318,7 +318,6 @@ void KZClassicModeService::OnProcessMovement()
 {
 	this->didTPM = false;
 	this->CheckVelocityQuantization();
-	this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
 	this->InterpolateViewAngles();
 	this->UpdateAngleHistory();
@@ -426,15 +425,6 @@ void KZClassicModeService::RestoreInterpolatedViewAngles()
 void KZClassicModeService::RemoveCrouchJumpBind()
 {
 	this->forcedUnduck = false;
-
-	bool onGround = this->player->GetPawn()->m_fFlags & FL_ONGROUND;
-	bool justJumped = !this->player->GetMoveServices()->m_bOldJumpPressed && this->player->IsButtonPressed(IN_JUMP);
-
-	if (onGround && !this->oldDuckPressed && justJumped)
-	{
-		this->player->GetMoveServices()->m_nButtons()->m_pButtonStates[0] &= ~IN_DUCK;
-		this->forcedUnduck = true;
-	}
 }
 
 void KZClassicModeService::ReduceDuckSlowdown()
