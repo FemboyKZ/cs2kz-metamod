@@ -127,7 +127,6 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 	KZ::mode::DisableReplicatedModeCvars();
 
 	KZOptionService::InitOptions();
-	KZTipService::InitTips();
 	return true;
 }
 

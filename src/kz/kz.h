@@ -148,15 +148,6 @@ public:
 	KZTimerService *timerService {};
 	KZTipService *tipService {};
 
-	void EnableGodMode();
-
-	// Leg stuff
-	void ToggleHideLegs();
-
-	bool HidingLegs()
-	{
-		return this->hideLegs;
-	}
 
 	void UpdatePlayerModelAlpha();
 	// Triggerfix stuff
@@ -225,6 +216,5 @@ namespace KZ
 	{
 		void RegisterCommands();
 		void OnClientActive(CPlayerSlot slot);
-		void JoinTeam(KZPlayer *player, int newTeam, bool restorePos = true);
 	} // namespace misc
 };    // namespace KZ

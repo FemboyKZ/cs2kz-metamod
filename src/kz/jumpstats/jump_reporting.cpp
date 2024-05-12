@@ -24,10 +24,6 @@ void KZJumpstatsService::PrintJumpToChat(KZPlayer *target, Jump *jump)
 	const char *language = target->languageService->GetLanguage();
 	DistanceTier color = jump->GetJumpPlayer()->modeService->GetDistanceTier(jump->GetJumpType(), jump->GetDistance());
 	const char *jumpColor = distanceTierColors[color];
-	if (V_stricmp(jump->GetJumpPlayer()->styleService->GetStyleShortName(), "NRM"))
-	{
-		jumpColor = distanceTierColors[DistanceTier_Meh];
-	}
 
 	f32 flooredDist = floor(jump->GetDistance() * 10) / 10;
 
@@ -155,10 +151,6 @@ void KZJumpstatsService::PrintJumpToConsole(KZPlayer *target, Jump *jump)
 
 void KZJumpstatsService::BroadcastJumpToChat(Jump *jump)
 {
-	if (V_stricmp(jump->GetJumpPlayer()->styleService->GetStyleShortName(), "NRM") || !(jump->GetOffset() > -JS_EPSILON && jump->IsValid()))
-	{
-		return;
-	}
 
 	DistanceTier tier = jump->GetJumpPlayer()->modeService->GetDistanceTier(jump->GetJumpType(), jump->GetDistance());
 	const char *jumpColor = distanceTierColors[tier];
