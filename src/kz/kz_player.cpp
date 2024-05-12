@@ -108,8 +108,6 @@ void KZPlayer::OnProcessMovement()
 	this->jumpstatsService->OnProcessMovement();
 	this->checkpointService->TpHoldPlayerStill();
 	this->noclipService->HandleMoveCollision();
-	this->EnableGodMode();
-	this->UpdatePlayerModelAlpha();
 }
 
 void KZPlayer::OnProcessMovementPost()
@@ -441,19 +439,6 @@ void KZPlayer::OnTeleport(const Vector *origin, const QAngle *angles, const Vect
 	this->timerService->OnTeleport(origin, angles, velocity);
 }
 
-void KZPlayer::EnableGodMode()
-{
-	CCSPlayerPawn *pawn = this->GetPawn();
-	if (!pawn)
-	{
-		return;
-	}
-	if (pawn->m_bTakesDamage())
-	{
-		pawn->m_bTakesDamage(false);
-	}
-}
-
 void KZPlayer::StartZoneStartTouch()
 {
 	this->checkpointService->ResetCheckpoints();
@@ -493,10 +478,6 @@ void KZPlayer::UpdatePlayerModelAlpha()
 	}
 }
 
-void KZPlayer::ToggleHideLegs()
-{
-	this->hideLegs = !this->hideLegs;
-}
 
 void KZPlayer::PlayErrorSound()
 {
