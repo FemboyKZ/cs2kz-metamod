@@ -1,0 +1,89 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
+
+jobs:
+  build-linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Fetch tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Make build directory
+        run: mkdir ./build
+
+      - name: Update version header
+        run: |
+          echo "#define VERSION_STRING \"${{ inputs.version }}\"" > ./src/version.h
+
+      - name: Build and run Docker image
+        run: |
+          docker build . --file Dockerfile --tag cs2kz-linux-builder
+          docker run -v ./build:/app/build -v ./.git:/app/.git cs2kz-linux-builder
+
+      - name: Archive build
+        uses: actions/upload-artifact@v3
+        with:
+          name: cs2kz-linux
+          path: ./build/package
+
+  build-windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Fetch tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install pip
+        shell: cmd
+        run: curl https://bootstrap.pypa.io/pip/3.6/get-pip.py | python
+
+      - name: Clone AMBuild
+        uses: actions/checkout@v3
+        with:
+          repository: alliedmodders/ambuild
+          path: ./ambuild
+
+      - name: Install AMBuild
+        run: python -m pip install ./ambuild
+
+      - name: Make build directory
+        run: mkdir ./build
+
+      - name: Configure AMBuild
+        working-directory: build
+        run: python3 ../configure.py
+
+      - name: Update version header
+        shell: bash
+        run: |
+          echo "#define VERSION_STRING \"${{ inputs.version }}\"" > ./src/version.h
+
+      - name: Run AMBuild
+        working-directory: build
+        run: ambuild
+
+      - name: Archive build
+        uses: actions/upload-artifact@v3
+        with:
+          name: cs2kz-windows
+          path: ./build/package
