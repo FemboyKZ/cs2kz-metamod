@@ -147,18 +147,14 @@ void KZHUDService::TogglePanel()
 
 void KZHUDService::OnTimerStopped(f64 currentTimeWhenTimerStopped)
 {
-	this->timerStoppedTime = g_pKZUtils->GetServerGlobals()->curtime;
-	this->currentTimeWhenTimerStopped = currentTimeWhenTimerStopped;
 }
 
 void KZHUDServiceTimerEventListener::OnTimerStopped(KZPlayer *player)
 {
-	player->hudService->OnTimerStopped(player->timerService->GetTime());
 }
 
 void KZHUDServiceTimerEventListener::OnTimerEndPost(KZPlayer *player, const char *courseName, f32 time, u32 teleportsUsed)
 {
-	player->hudService->OnTimerStopped(time);
 }
 
 internal SCMD_CALLBACK(Command_KzPanel)
