@@ -201,8 +201,3 @@ internal SCMD_CALLBACK(Command_KzStyle)
 	styleManager.SwitchToStyle(player, args->Arg(1));
 	return MRES_SUPERCEDE;
 }
-
-void KZ::style::RegisterCommands()
-{
-	scmd::RegisterCmd("kz_style", Command_KzStyle);
-}
