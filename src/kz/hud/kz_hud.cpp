@@ -102,7 +102,7 @@ void KZHUDService::DrawPanels(KZPlayer *target)
 	char buffer[1024];
 	buffer[0] = 0;
 	std::string keyText = this->GetKeyText(language);
-	std::string checkpointText = this->GetCheckpointText(language);
+	std::string speedText = this->GetSpeedText(language);
 
 	// clang-format off
 	std::string centerText = KZLanguageService::PrepareMessage(language, "HUD - Center Text", 
