@@ -114,7 +114,6 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 	KZ::mode::InitModeManager();
 	KZ::style::InitStyleManager();
 	KZSpecService::Init();
-	KZHUDService::Init();
 	KZLanguageService::Init();
 	KZ::misc::RegisterCommands();
 	if (!KZ::mode::InitModeCvars())

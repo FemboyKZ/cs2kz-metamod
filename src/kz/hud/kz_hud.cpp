@@ -11,19 +11,6 @@
 #include "tier0/memdbgon.h"
 
 #define HUD_ON_GROUND_THRESHOLD 0.07f
-internal KZHUDServiceTimerEventListener timerEventListener;
-
-void KZHUDService::Init()
-{
-	KZTimerService::RegisterEventListener(&timerEventListener);
-}
-
-void KZHUDService::Reset()
-{
-	this->showPanel = true;
-	this->timerStoppedTime = {};
-	this->currentTimeWhenTimerStopped = {};
-}
 
 std::string KZHUDService::GetSpeedText(const char *language)
 {
@@ -55,43 +42,6 @@ std::string KZHUDService::GetKeyText(const char *language)
 	// clang-format on
 }
 
-std::string KZHUDService::GetCheckpointText(const char *language)
-{
-	// clang-format off
-
-	return KZLanguageService::PrepareMessage(language, "HUD - Checkpoint Text",
-		this->player->checkpointService->GetCurrentCpIndex(),
-		this->player->checkpointService->GetCheckpointCount(),
-		this->player->checkpointService->GetTeleportCount()
-	);
-
-	// clang-format on
-}
-
-std::string KZHUDService::GetTimerText(const char *language)
-{
-	if (this->player->timerService->GetTimerRunning() || this->ShouldShowTimerAfterStop())
-	{
-		char timeText[128];
-
-		// clang-format off
-
-		f64 time = this->player->timerService->GetTimerRunning()
-			? player->timerService->GetTime()
-			: this->currentTimeWhenTimerStopped;
-
-
-		KZTimerService::FormatTime(time, timeText, sizeof(timeText));
-		return KZLanguageService::PrepareMessage(language, "HUD - Timer Text",
-			timeText,
-			player->timerService->GetTimerRunning() ? "" : KZLanguageService::PrepareMessage(language, "HUD - Stopped Text").c_str(),
-			player->timerService->GetPaused() ? KZLanguageService::PrepareMessage(language, "HUD - Paused Text").c_str() : ""
-		);
-		// clang-format on
-	}
-	return std::string("");
-}
-
 void KZHUDService::DrawPanels(KZPlayer *target)
 {
 	if (!this->IsShowingPanel())
@@ -102,8 +52,6 @@ void KZHUDService::DrawPanels(KZPlayer *target)
 	char buffer[1024];
 	buffer[0] = 0;
 	std::string keyText = this->GetKeyText(language);
-	std::string checkpointText = this->GetCheckpointText(language);
-	std::string timerText = this->GetTimerText(language);
 	std::string speedText = this->GetSpeedText(language);
 
 	// clang-format off
@@ -143,18 +91,6 @@ void KZHUDService::TogglePanel()
 		utils::PrintAlert(this->player->GetController(), "");
 		utils::PrintCentre(this->player->GetController(), "");
 	}
-}
-
-void KZHUDService::OnTimerStopped(f64 currentTimeWhenTimerStopped)
-{
-}
-
-void KZHUDServiceTimerEventListener::OnTimerStopped(KZPlayer *player)
-{
-}
-
-void KZHUDServiceTimerEventListener::OnTimerEndPost(KZPlayer *player, const char *courseName, f32 time, u32 teleportsUsed)
-{
 }
 
 internal SCMD_CALLBACK(Command_KzPanel)
