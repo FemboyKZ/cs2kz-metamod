@@ -65,8 +65,6 @@ void UnlockConVars()
 		pCvar->flags &= ~g_iFlagsToRemove;
 		iUnhiddenConVars++;
 	} while (pCvar);
-
-	Message("Removed hidden flags from %d convars\n", iUnhiddenConVars);
 }
 
 void UnlockConCommands()
@@ -93,8 +91,6 @@ void UnlockConCommands()
 		pConCommand->RemoveFlags(g_iFlagsToRemove);
 		iUnhiddenConCommands++;
 	} while (pConCommand && pConCommand != pInvalidCommand);
-
-	Message("Removed hidden flags from %d commands\n", iUnhiddenConCommands);
 }
 
 KZPlugin g_KZPlugin;
