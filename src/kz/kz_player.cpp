@@ -41,6 +41,7 @@ void KZPlayer::Init()
 	this->specService = new KZSpecService(this);
 	this->timerService = new KZTimerService(this);
 	this->optionService = new KZOptionService(this);
+	this->tipService = new KZTipService(this);
 	KZ::mode::InitModeService(this);
 	KZ::style::InitStyleService(this);
 }
