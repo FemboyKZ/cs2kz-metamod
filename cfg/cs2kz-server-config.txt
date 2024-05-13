@@ -3,7 +3,7 @@
 	"defaultMode"			"Pre"
 	"defaultStyle"			"Autobhop"
 	"defaultLanguage"		"en"
-	"tipInterval"			"999999"
+	"tipInterval"			"75"
 	"defaultJSBroadcastMinTier"	"4"
 	"defaultJSSoundMinTier"		"4"
 	"chatPrefix"			"{magenta}FKZ {grey}|{default}"

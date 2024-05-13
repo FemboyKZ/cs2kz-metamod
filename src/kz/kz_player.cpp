@@ -30,6 +30,7 @@ void KZPlayer::Init()
 	delete this->specService;
 	delete this->timerService;
 	delete this->noclipService;
+	delete this->tipService;
 
 	this->checkpointService = new KZCheckpointService(this);
 	this->jumpstatsService = new KZJumpstatsService(this);
@@ -40,6 +41,7 @@ void KZPlayer::Init()
 	this->specService = new KZSpecService(this);
 	this->timerService = new KZTimerService(this);
 	this->optionService = new KZOptionService(this);
+	this->tipService = new KZTipService(this);
 	KZ::mode::InitModeService(this);
 	KZ::style::InitStyleService(this);
 }
@@ -59,6 +61,7 @@ void KZPlayer::Reset()
 	this->timerService->Reset();
 	this->modeService->Reset();
 	this->optionService->Reset();
+	this->tipService->Reset();
 
 	g_pKZModeManager->SwitchToMode(this, KZOptionService::GetOptionStr("defaultMode", KZ_DEFAULT_MODE), true, true);
 	g_pKZStyleManager->SwitchToStyle(this, KZOptionService::GetOptionStr("defaultStyle", KZ_DEFAULT_STYLE), true, true);
