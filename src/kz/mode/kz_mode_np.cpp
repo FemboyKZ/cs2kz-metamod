@@ -186,7 +186,7 @@ DistanceTier KZNoPreModeService::GetDistanceTier(JumpType jumpType, f32 distance
 
 META_RES KZNoPreModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
-		maxSpeed = MIN(maxSpeed, 250.0f);
+		maxSpeed = SPEED_NORMAL;
 		return MRES_SUPERCEDE;
 }
 
