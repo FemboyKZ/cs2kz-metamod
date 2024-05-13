@@ -202,7 +202,3 @@ internal SCMD_CALLBACK(Command_KzStyle)
 	return MRES_SUPERCEDE;
 }
 
-void KZ::style::RegisterCommands()
-{
-	scmd::RegisterCmd("kz_style", Command_KzStyle);
-}
