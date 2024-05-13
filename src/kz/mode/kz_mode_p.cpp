@@ -422,11 +422,6 @@ void KZPreModeService::RestoreInterpolatedViewAngles()
 	}
 }
 
-void KZPreModeService::RemoveCrouchJumpBind()
-{
-	this->forcedUnduck = false;
-}
-
 void KZPreModeService::ReduceDuckSlowdown()
 {
 	if (!this->player->GetMoveServices()->m_bDucking && this->player->GetMoveServices()->m_flDuckSpeed < DUCK_SPEED_NORMAL - EPSILON)

@@ -186,8 +186,8 @@ DistanceTier KZNoPreModeService::GetDistanceTier(JumpType jumpType, f32 distance
 
 META_RES KZNoPreModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
-		maxSpeed = MIN(maxSpeed, 250.0f);
-		return MRES_SUPERCEDE;
+	maxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	return MRES_SUPERCEDE;
 }
 
 const char **KZNoPreModeService::GetModeConVarValues()
@@ -422,11 +422,6 @@ void KZNoPreModeService::RestoreInterpolatedViewAngles()
 	}
 }
 
-void KZNoPreModeService::RemoveCrouchJumpBind()
-{
-	this->forcedUnduck = false;
-}
-
 void KZNoPreModeService::ReduceDuckSlowdown()
 {
 	if (!this->player->GetMoveServices()->m_bDucking && this->player->GetMoveServices()->m_flDuckSpeed < DUCK_SPEED_NORMAL - EPSILON)
@@ -439,6 +434,164 @@ void KZNoPreModeService::ReduceDuckSlowdown()
 	}
 }
 
+void KZNoPreModeService::UpdateAngleHistory()
+{
+	CMoveData *mv = this->player->currentMoveData;
+	u32 oldEntries = 0;
+	FOR_EACH_VEC(this->angleHistory, i)
+	{
+		if (this->angleHistory[i].when + PS_TURN_RATE_WINDOW < g_pKZUtils->GetGlobals()->curtime)
+		{
+			oldEntries++;
+			continue;
+		}
+		break;
+	}
+	this->angleHistory.RemoveMultipleFromHead(oldEntries);
+	if ((this->player->GetPawn()->m_fFlags & FL_ONGROUND) == 0)
+	{
+		return;
+	}
+
+	AngleHistory *angHist = this->angleHistory.AddToTailGetPtr();
+	angHist->when = g_pKZUtils->GetGlobals()->curtime;
+	angHist->duration = g_pKZUtils->GetGlobals()->frametime;
+
+	// Not turning if velocity is null.
+	if (mv->m_vecVelocity.Length2D() == 0)
+	{
+		angHist->rate = 0;
+		return;
+	}
+
+	// Copying from WalkMove
+	Vector forward, right, up;
+	AngleVectors(mv->m_vecViewAngles, &forward, &right, &up);
+
+	f32 fmove = mv->m_flForwardMove;
+	f32 smove = -mv->m_flSideMove;
+
+	if (forward[2] != 0)
+	{
+		forward[2] = 0;
+		VectorNormalize(forward);
+	}
+
+	if (right[2] != 0)
+	{
+		right[2] = 0;
+		VectorNormalize(right);
+	}
+
+	Vector wishdir;
+	for (int i = 0; i < 2; i++)
+	{
+		wishdir[i] = forward[i] * fmove + right[i] * smove;
+	}
+	wishdir[2] = 0;
+
+	VectorNormalize(wishdir);
+
+	if (wishdir.Length() == 0)
+	{
+		angHist->rate = 0;
+		return;
+	}
+
+	Vector velocity = mv->m_vecVelocity;
+	velocity[2] = 0;
+	VectorNormalize(velocity);
+	QAngle accelAngle;
+	QAngle velAngle;
+	VectorAngles(wishdir, accelAngle);
+	VectorAngles(velocity, velAngle);
+	accelAngle.y = g_pKZUtils->NormalizeDeg(accelAngle.y);
+	velAngle.y = g_pKZUtils->NormalizeDeg(velAngle.y);
+	angHist->rate = g_pKZUtils->GetAngleDifference(velAngle.y, accelAngle.y, 180.0, true);
+}
+
+void KZNoPreModeService::CalcPrestrafe()
+{
+	f32 totalDuration = 0;
+	f32 sumWeightedAngles = 0;
+	FOR_EACH_VEC(this->angleHistory, i)
+	{
+		sumWeightedAngles += this->angleHistory[i].rate * this->angleHistory[i].duration;
+		totalDuration += this->angleHistory[i].duration;
+	}
+	f32 averageRate;
+	if (totalDuration == 0)
+	{
+		averageRate = 0;
+	}
+	else
+	{
+		averageRate = sumWeightedAngles / totalDuration;
+	}
+
+	f32 rewardRate = Clamp(fabs(averageRate) / PS_MAX_REWARD_RATE, 0.0f, 1.0f) * g_pKZUtils->GetGlobals()->frametime;
+	f32 punishRate = 0.0f;
+	if (this->player->landingTime + PS_LANDING_GRACE_PERIOD < g_pKZUtils->GetGlobals()->curtime)
+	{
+		punishRate = g_pKZUtils->GetGlobals()->frametime * PS_DECREMENT_RATIO;
+	}
+
+	if (this->player->GetPawn()->m_fFlags & FL_ONGROUND)
+	{
+		// Prevent instant full pre from crouched prestrafe.
+		Vector velocity;
+		this->player->GetVelocity(&velocity);
+
+		f32 currentPreRatio;
+		if (velocity.Length2D() <= 0.0f)
+		{
+			currentPreRatio = 0.0f;
+		}
+		else
+		{
+			currentPreRatio = pow(this->bonusSpeed / PS_SPEED_MAX * SPEED_NORMAL / velocity.Length2D(), 1 / PS_RATIO_TO_SPEED) * PS_MAX_PS_TIME;
+		}
+
+		this->leftPreRatio = MIN(this->leftPreRatio, currentPreRatio);
+		this->rightPreRatio = MIN(this->rightPreRatio, currentPreRatio);
+
+		this->leftPreRatio += averageRate > PS_MIN_REWARD_RATE ? rewardRate : -punishRate;
+		this->rightPreRatio += averageRate < -PS_MIN_REWARD_RATE ? rewardRate : -punishRate;
+		this->leftPreRatio = Clamp(leftPreRatio, 0.0f, PS_MAX_PS_TIME);
+		this->rightPreRatio = Clamp(rightPreRatio, 0.0f, PS_MAX_PS_TIME);
+		this->bonusSpeed = this->GetPrestrafeGain() / SPEED_NORMAL * velocity.Length2D();
+	}
+	else
+	{
+		rewardRate = g_pKZUtils->GetGlobals()->frametime;
+		// Raise both left and right pre to the same value as the player is in the air.
+		if (this->leftPreRatio < this->rightPreRatio)
+		{
+			this->leftPreRatio = Clamp(this->leftPreRatio + rewardRate, 0.0f, rightPreRatio);
+		}
+		else
+		{
+			this->rightPreRatio = Clamp(this->rightPreRatio + rewardRate, 0.0f, leftPreRatio);
+		}
+	}
+}
+
+f32 KZNoPreModeService::GetPrestrafeGain()
+{
+	return PS_SPEED_MAX * pow(MAX(this->leftPreRatio, this->rightPreRatio) / PS_MAX_PS_TIME, PS_RATIO_TO_SPEED);
+}
+
+void KZNoPreModeService::CheckVelocityQuantization()
+{
+	if (this->postProcessMovementZSpeed > this->player->currentMoveData->m_vecVelocity.z
+		&& this->postProcessMovementZSpeed - this->player->currentMoveData->m_vecVelocity.z < 0.03125f
+		// Colliding with a flat floor can result in a velocity of +0.0078125u/s, and this breaks ladders.
+		// The quantization accidentally fixed this bug...
+		&& fabs(this->player->currentMoveData->m_vecVelocity.z) > 0.03125f)
+	{
+		this->player->currentMoveData->m_vecVelocity.z = this->postProcessMovementZSpeed;
+	}
+}
 
 // ORIGINAL AUTHORS : Mev & Blacky
 // URL: https://forums.alliedmods.net/showthread.php?p=2322788
