@@ -1,10 +1,10 @@
 "ServerCfg"
 {
-	"defaultMode"			"Classic"
-	"defaultStyle"			"Normal"
+	"defaultMode"			"Pre"
+	"defaultStyle"			"Autobhop"
 	"defaultLanguage"		"en"
-	"tipInterval"			"75"
+	"tipInterval"			"999999"
 	"defaultJSBroadcastMinTier"	"4"
 	"defaultJSSoundMinTier"		"4"
-	"chatPrefix"			"{lime}KZ {grey}|{default}"
+	"chatPrefix"			"{magenta}FKZ {grey}|{default}"
 }
