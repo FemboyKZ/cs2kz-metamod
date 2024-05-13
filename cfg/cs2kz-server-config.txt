@@ -6,5 +6,5 @@
 	"tipInterval"			"75"
 	"defaultJSBroadcastMinTier"	"4"
 	"defaultJSSoundMinTier"		"4"
-	"chatPrefix"			"{magenta}FKZ {grey}|{default}"
+	"chatPrefix"			"{orchid}FKZ {grey}|{default}"
 }
