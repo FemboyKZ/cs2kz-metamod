@@ -178,4 +178,6 @@ namespace KZ::style
 	void InitStyleService(KZPlayer *player);
 	void InitStyleManager();
 	void LoadStylePlugins();
+
+	void RegisterCommands();
 }; // namespace KZ::style

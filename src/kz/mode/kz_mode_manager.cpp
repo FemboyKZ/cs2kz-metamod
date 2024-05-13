@@ -300,3 +300,8 @@ internal SCMD_CALLBACK(Command_KzModeShort)
 	}
 	return MRES_SUPERCEDE;
 }
+
+void KZ::mode::RegisterCommands()
+{
+	scmd::RegisterCmd("kz_mode", Command_KzMode);
+}

@@ -240,4 +240,6 @@ namespace KZ::mode
 	void DisableReplicatedModeCvars();
 	void EnableReplicatedModeCvars();
 
+	void RegisterCommands();
+
 }; // namespace KZ::mode
