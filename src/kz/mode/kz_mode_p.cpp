@@ -1,19 +1,19 @@
 #include "cs_usercmd.pb.h"
-#include "kz_mode_ckz.h"
+#include "kz_mode_p.h"
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
 #include "version.h"
 
-KZClassicModePlugin g_KZClassicModePlugin;
+KZPreModePlugin g_KZPreModePlugin;
 
 CGameConfig *g_pGameConfig = NULL;
 KZUtils *g_pKZUtils = NULL;
 KZModeManager *g_pModeManager = NULL;
-ModeServiceFactory g_ModeFactory = [](KZPlayer *player) -> KZModeService * { return new KZClassicModeService(player); };
-PLUGIN_EXPOSE(KZClassicModePlugin, g_KZClassicModePlugin);
+ModeServiceFactory g_ModeFactory = [](KZPlayer *player) -> KZModeService * { return new KZPreModeService(player); };
+PLUGIN_EXPOSE(KZPreModePlugin, g_KZPreModePlugin);
 
-bool KZClassicModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
+bool KZPreModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
 {
 	PLUGIN_SAVEVARS();
 	// Load mode
@@ -52,19 +52,19 @@ bool KZClassicModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t m
 	return true;
 }
 
-bool KZClassicModePlugin::Unload(char *error, size_t maxlen)
+bool KZPreModePlugin::Unload(char *error, size_t maxlen)
 {
 	g_pModeManager->UnregisterMode(MODE_NAME);
 	return true;
 }
 
-bool KZClassicModePlugin::Pause(char *error, size_t maxlen)
+bool KZPreModePlugin::Pause(char *error, size_t maxlen)
 {
 	g_pModeManager->UnregisterMode(MODE_NAME);
 	return true;
 }
 
-bool KZClassicModePlugin::Unpause(char *error, size_t maxlen)
+bool KZPreModePlugin::Unpause(char *error, size_t maxlen)
 {
 	if (!g_pModeManager->RegisterMode(g_PLID, MODE_NAME_SHORT, MODE_NAME, g_ModeFactory))
 	{
@@ -73,44 +73,44 @@ bool KZClassicModePlugin::Unpause(char *error, size_t maxlen)
 	return true;
 }
 
-const char *KZClassicModePlugin::GetLicense()
+const char *KZPreModePlugin::GetLicense()
 {
 	return "GPLv3";
 }
 
-const char *KZClassicModePlugin::GetVersion()
+const char *KZPreModePlugin::GetVersion()
 {
 	return VERSION_STRING;
 }
 
-const char *KZClassicModePlugin::GetDate()
+const char *KZPreModePlugin::GetDate()
 {
 	return __DATE__;
 }
 
-const char *KZClassicModePlugin::GetLogTag()
+const char *KZPreModePlugin::GetLogTag()
 {
-	return "KZ-Mode-Classic";
+	return "KZ-Mode-Pre";
 }
 
-const char *KZClassicModePlugin::GetAuthor()
+const char *KZPreModePlugin::GetAuthor()
 {
-	return "zer0.k";
+	return "zer0.k - (Dots mod :3)";
 }
 
-const char *KZClassicModePlugin::GetDescription()
+const char *KZPreModePlugin::GetDescription()
 {
-	return "Classic mode plugin for CS2KZ";
+	return "Pre mode plugin for CS2KZ";
 }
 
-const char *KZClassicModePlugin::GetName()
+const char *KZPreModePlugin::GetName()
 {
-	return "CS2KZ-Mode-Classic";
+	return "CS2KZ-Mode-Pre";
 }
 
-const char *KZClassicModePlugin::GetURL()
+const char *KZPreModePlugin::GetURL()
 {
-	return "https://github.com/KZGlobalTeam/cs2kz-metamod";
+	return "https://github.com/jvnipers/cs2kz-metamod";
 }
 
 CGameEntitySystem *GameEntitySystem()
@@ -122,7 +122,7 @@ CGameEntitySystem *GameEntitySystem()
 	Actual mode stuff.
 */
 
-void KZClassicModeService::Reset()
+void KZPreModeService::Reset()
 {
 	this->revertJumpTweak = {};
 	this->preJumpZSpeed = {};
@@ -150,22 +150,22 @@ void KZClassicModeService::Reset()
 	this->tpmTriggerFixOrigins.RemoveAll();
 }
 
-const char *KZClassicModeService::GetModeName()
+const char *KZPreModeService::GetModeName()
 {
 	return MODE_NAME;
 }
 
-const char *KZClassicModeService::GetModeShortName()
+const char *KZPreModeService::GetModeShortName()
 {
 	return MODE_NAME_SHORT;
 }
 
-bool KZClassicModeService::EnableWaterFix()
+bool KZPreModeService::EnableWaterFix()
 {
 	return this->player->IsButtonPressed(IN_JUMP);
 }
 
-DistanceTier KZClassicModeService::GetDistanceTier(JumpType jumpType, f32 distance)
+DistanceTier KZPreModeService::GetDistanceTier(JumpType jumpType, f32 distance)
 {
 	// No tiers given for 'Invalid' jumps.
 	if (jumpType == JumpType_Invalid || jumpType == JumpType_FullInvalid || jumpType == JumpType_Fall || jumpType == JumpType_Other
@@ -184,19 +184,19 @@ DistanceTier KZClassicModeService::GetDistanceTier(JumpType jumpType, f32 distan
 	return tier;
 }
 
-META_RES KZClassicModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
+META_RES KZPreModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
 	maxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
 	return MRES_SUPERCEDE;
 }
 
-const char **KZClassicModeService::GetModeConVarValues()
+const char **KZPreModeService::GetModeConVarValues()
 {
 	return modeCvarValues;
 }
 
 // Attempt to replicate 128t jump height.
-void KZClassicModeService::OnJump()
+void KZPreModeService::OnJump()
 {
 	Vector velocity;
 	this->player->GetVelocity(&velocity);
@@ -212,7 +212,7 @@ void KZClassicModeService::OnJump()
 	}
 }
 
-void KZClassicModeService::OnJumpPost()
+void KZPreModeService::OnJumpPost()
 {
 	// If we didn't jump, we revert the jump height tweak.
 	Vector velocity;
@@ -225,7 +225,7 @@ void KZClassicModeService::OnJumpPost()
 	this->revertJumpTweak = false;
 }
 
-void KZClassicModeService::OnStopTouchGround()
+void KZPreModeService::OnStopTouchGround()
 {
 	Vector velocity;
 	this->player->GetVelocity(&velocity);
@@ -263,7 +263,7 @@ void KZClassicModeService::OnStopTouchGround()
 	}
 }
 
-void KZClassicModeService::OnStartTouchGround()
+void KZPreModeService::OnStartTouchGround()
 {
 	this->SlopeFix();
 	bbox_t bounds;
@@ -273,17 +273,17 @@ void KZClassicModeService::OnStartTouchGround()
 	this->player->TouchTriggersAlongPath(this->player->landingOrigin, ground, bounds);
 }
 
-void KZClassicModeService::OnPhysicsSimulate()
+void KZPreModeService::OnPhysicsSimulate()
 {
 	this->InsertSubtickTiming(g_pKZUtils->GetServerGlobals()->tickcount * ENGINE_FIXED_TICK_INTERVAL - 0.5 * ENGINE_FIXED_TICK_INTERVAL);
 }
 
-void KZClassicModeService::OnPhysicsSimulatePost()
+void KZPreModeService::OnPhysicsSimulatePost()
 {
 	this->InsertSubtickTiming(g_pKZUtils->GetServerGlobals()->tickcount * ENGINE_FIXED_TICK_INTERVAL + 0.5 * ENGINE_FIXED_TICK_INTERVAL);
 }
 
-void KZClassicModeService::OnProcessUsercmds(void *cmds, int numcmds)
+void KZPreModeService::OnProcessUsercmds(void *cmds, int numcmds)
 {
 	for (i32 i = 0; i < numcmds; i++)
 	{
@@ -314,7 +314,7 @@ void KZClassicModeService::OnProcessUsercmds(void *cmds, int numcmds)
 	}
 }
 
-void KZClassicModeService::OnProcessMovement()
+void KZPreModeService::OnProcessMovement()
 {
 	this->didTPM = false;
 	this->CheckVelocityQuantization();
@@ -324,7 +324,7 @@ void KZClassicModeService::OnProcessMovement()
 	this->CalcPrestrafe();
 }
 
-void KZClassicModeService::OnProcessMovementPost()
+void KZPreModeService::OnProcessMovementPost()
 {
 	this->player->UpdateTriggerTouchList();
 	this->RestoreInterpolatedViewAngles();
@@ -338,7 +338,7 @@ void KZClassicModeService::OnProcessMovementPost()
 	}
 }
 
-void KZClassicModeService::InsertSubtickTiming(float time)
+void KZPreModeService::InsertSubtickTiming(float time)
 {
 	CCSPlayer_MovementServices *moveServices = this->player->GetMoveServices();
 	if (!moveServices
@@ -381,7 +381,7 @@ void KZClassicModeService::InsertSubtickTiming(float time)
 	}
 }
 
-void KZClassicModeService::InterpolateViewAngles()
+void KZPreModeService::InterpolateViewAngles()
 {
 	// Second half of the movement, no change.
 	CGlobalVars *globals = g_pKZUtils->GetGlobals();
@@ -412,7 +412,7 @@ void KZClassicModeService::InterpolateViewAngles()
 	player->currentMoveData->m_vecViewAngles = newAngles;
 }
 
-void KZClassicModeService::RestoreInterpolatedViewAngles()
+void KZPreModeService::RestoreInterpolatedViewAngles()
 {
 	player->currentMoveData->m_vecViewAngles = player->moveDataPre.m_vecViewAngles;
 	if (g_pKZUtils->GetGlobals()->frametime > 0.0f)
@@ -422,12 +422,12 @@ void KZClassicModeService::RestoreInterpolatedViewAngles()
 	}
 }
 
-void KZClassicModeService::RemoveCrouchJumpBind()
+void KZPreModeService::RemoveCrouchJumpBind()
 {
 	this->forcedUnduck = false;
 }
 
-void KZClassicModeService::ReduceDuckSlowdown()
+void KZPreModeService::ReduceDuckSlowdown()
 {
 	if (!this->player->GetMoveServices()->m_bDucking && this->player->GetMoveServices()->m_flDuckSpeed < DUCK_SPEED_NORMAL - EPSILON)
 	{
@@ -439,7 +439,7 @@ void KZClassicModeService::ReduceDuckSlowdown()
 	}
 }
 
-void KZClassicModeService::UpdateAngleHistory()
+void KZPreModeService::UpdateAngleHistory()
 {
 	CMoveData *mv = this->player->currentMoveData;
 	u32 oldEntries = 0;
@@ -515,7 +515,7 @@ void KZClassicModeService::UpdateAngleHistory()
 	angHist->rate = g_pKZUtils->GetAngleDifference(velAngle.y, accelAngle.y, 180.0, true);
 }
 
-void KZClassicModeService::CalcPrestrafe()
+void KZPreModeService::CalcPrestrafe()
 {
 	f32 totalDuration = 0;
 	f32 sumWeightedAngles = 0;
@@ -581,12 +581,12 @@ void KZClassicModeService::CalcPrestrafe()
 	}
 }
 
-f32 KZClassicModeService::GetPrestrafeGain()
+f32 KZPreModeService::GetPrestrafeGain()
 {
 	return PS_SPEED_MAX * pow(MAX(this->leftPreRatio, this->rightPreRatio) / PS_MAX_PS_TIME, PS_RATIO_TO_SPEED);
 }
 
-void KZClassicModeService::CheckVelocityQuantization()
+void KZPreModeService::CheckVelocityQuantization()
 {
 	if (this->postProcessMovementZSpeed > this->player->currentMoveData->m_vecVelocity.z
 		&& this->postProcessMovementZSpeed - this->player->currentMoveData->m_vecVelocity.z < 0.03125f
@@ -600,7 +600,7 @@ void KZClassicModeService::CheckVelocityQuantization()
 
 // ORIGINAL AUTHORS : Mev & Blacky
 // URL: https://forums.alliedmods.net/showthread.php?p=2322788
-void KZClassicModeService::SlopeFix()
+void KZPreModeService::SlopeFix()
 {
 	CTraceFilterPlayerMovementCS filter;
 	g_pKZUtils->InitPlayerMovementTraceFilter(filter, this->player->GetPawn(),
@@ -718,7 +718,7 @@ internal bool IsValidMovementTrace(trace_t_s2 &tr, bbox_t bounds, CTraceFilterPl
 	return true;
 }
 
-void KZClassicModeService::OnTryPlayerMove(Vector *pFirstDest, trace_t_s2 *pFirstTrace)
+void KZPreModeService::OnTryPlayerMove(Vector *pFirstDest, trace_t_s2 *pFirstTrace)
 {
 	this->tpmTriggerFixOrigins.RemoveAll();
 	this->overrideTPM = false;
@@ -951,7 +951,7 @@ void KZClassicModeService::OnTryPlayerMove(Vector *pFirstDest, trace_t_s2 *pFirs
 	this->tpmVelocity = velocity;
 }
 
-void KZClassicModeService::OnTryPlayerMovePost(Vector *pFirstDest, trace_t_s2 *pFirstTrace)
+void KZPreModeService::OnTryPlayerMovePost(Vector *pFirstDest, trace_t_s2 *pFirstTrace)
 {
 	Vector velocity;
 	this->player->GetVelocity(&velocity);
@@ -978,7 +978,7 @@ void KZClassicModeService::OnTryPlayerMovePost(Vector *pFirstDest, trace_t_s2 *p
 	}
 }
 
-void KZClassicModeService::OnCategorizePosition(bool bStayOnGround)
+void KZPreModeService::OnCategorizePosition(bool bStayOnGround)
 {
 	// Already on the ground?
 	// If we are already colliding on a standable valid plane, we don't want to do the check.
@@ -1031,22 +1031,22 @@ void KZClassicModeService::OnCategorizePosition(bool bStayOnGround)
 	}
 }
 
-void KZClassicModeService::OnDuckPost()
+void KZPreModeService::OnDuckPost()
 {
 	this->player->UpdateTriggerTouchList();
 }
 
-void KZClassicModeService::OnAirMove()
+void KZPreModeService::OnAirMove()
 {
 	this->airMoving = true;
 }
 
-void KZClassicModeService::OnAirMovePost()
+void KZPreModeService::OnAirMovePost()
 {
 	this->airMoving = false;
 }
 
-void KZClassicModeService::OnTeleport(const Vector *newPosition, const QAngle *newAngles, const Vector *newVelocity)
+void KZPreModeService::OnTeleport(const Vector *newPosition, const QAngle *newAngles, const Vector *newVelocity)
 {
 	if (!this->player->processingMovement)
 	{
@@ -1064,7 +1064,7 @@ void KZClassicModeService::OnTeleport(const Vector *newPosition, const QAngle *n
 }
 
 // Only touch timer triggers on half ticks.
-bool KZClassicModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
+bool KZPreModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
 {
 	if (!trigger->IsEndZone() && !trigger->IsStartZone())
 	{
@@ -1079,7 +1079,7 @@ bool KZClassicModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
 	return false;
 }
 
-bool KZClassicModeService::OnTriggerTouch(CBaseTrigger *trigger)
+bool KZPreModeService::OnTriggerTouch(CBaseTrigger *trigger)
 {
 	if (!trigger->IsEndZone() && !trigger->IsStartZone())
 	{
@@ -1093,7 +1093,7 @@ bool KZClassicModeService::OnTriggerTouch(CBaseTrigger *trigger)
 	return false;
 }
 
-bool KZClassicModeService::OnTriggerEndTouch(CBaseTrigger *trigger)
+bool KZPreModeService::OnTriggerEndTouch(CBaseTrigger *trigger)
 {
 	if (!trigger->IsStartZone())
 	{
