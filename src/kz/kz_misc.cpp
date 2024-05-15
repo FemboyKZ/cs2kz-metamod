@@ -63,8 +63,6 @@ void KZ::misc::RegisterCommands()
 	scmd::RegisterCmd("kz_hidelegs", Command_KzHidelegs);
 	scmd::RegisterCmd("kz_hideweapon", Command_KzHideWeapon);
 	scmd::RegisterCmd("jointeam", Command_JoinTeam, true);
-	KZ::mode::RegisterCommands();
-	KZ::style::RegisterCommands();
 }
 
 void KZ::misc::OnClientActive(CPlayerSlot slot)
