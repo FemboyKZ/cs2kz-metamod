@@ -3,7 +3,8 @@ FKZ - HNS Version of cs2kz-metamod
 !nopre
 !pre
 
-disabled timer, checkpoint, noclip and quiet stuff
+disabled timer, checkpoints, noclip and !hide, modified tips
+
 
 
 WIP, not ready for release 
