@@ -1,0 +1,27 @@
+"Phrases"
+{
+	"Tip - css_server"
+	{
+		"en"	"{grey}Use {default}/server {grey}to see the current server's info"
+	}
+	"Tip - css_rtv"
+	{
+		"en"	"{grey}Use {default}/rtv {grey}to start a vote for the next map"
+	}
+	"Tip - css_nominate"
+	{
+		"en"	"{grey}Use {default}/nominate <map name>{grey}to nominate a map for the next vote"
+	}
+	"Tip - :3"
+	{
+		"en"	"{grey}:3"
+	}
+	"Tip - discord"
+	{
+		"en"	"{grey}Join {default}Discord.gg/{orchid}FKZ{grey}!"
+	}
+	"Tip - website"
+	{
+		"en"	"{grey}Check out our website {orchid}Femboy.kz{grey}!"
+	}
+}
