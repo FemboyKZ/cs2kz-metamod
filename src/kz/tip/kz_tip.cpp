@@ -45,7 +45,7 @@ void KZTipService::LoadTips()
 		{
 			char fullPath[1024];
 			g_SMAPI->PathFormat(fullPath, sizeof(fullPath), "%s/addons/cs2kz/translations/%s", g_SMAPI->GetBaseDir(), fileName);
-			if (V_strstr(fileName, "cs2kz-tips-"))
+			if (V_strstr(fileName, "cs2kz-tips-fkz-"))
 			{
 				if (!pTipKeyValues->LoadFromFile(g_pFullFileSystem, fullPath, nullptr))
 				{

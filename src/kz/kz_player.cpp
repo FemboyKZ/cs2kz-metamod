@@ -108,6 +108,7 @@ void KZPlayer::OnProcessMovement()
 	this->jumpstatsService->OnProcessMovement();
 	this->checkpointService->TpHoldPlayerStill();
 	this->noclipService->HandleMoveCollision();
+	this->UpdatePlayerModelAlpha();
 }
 
 void KZPlayer::OnProcessMovementPost()
@@ -478,6 +479,10 @@ void KZPlayer::UpdatePlayerModelAlpha()
 	}
 }
 
+void KZPlayer::ToggleHideLegs()
+{
+	this->hideLegs = !this->hideLegs;
+}
 
 void KZPlayer::PlayErrorSound()
 {

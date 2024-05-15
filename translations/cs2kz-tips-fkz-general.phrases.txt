@@ -1,0 +1,49 @@
+"Phrases"
+{
+	"Tip - kz_help"
+	{
+		"en"	"{grey}Use {default}/help {grey}to see all available KZ commands."
+		"chi"	"{grey}使用 {default}/help {grey}查看全部指令."
+		"pl"	"{grey}Użyj {default}/help {grey}żeby zobaczyć wszystkie dostępne komendy."
+		"fi"	"{grey}Käytä {default}/help {grey}komentoa nähdäksesi kaikki mahdolliset KZ komennot."
+	}
+	"Tip - kz_mode"
+	{
+		"en"	"{grey}You can switch to a mode by typing its abbreviation. For example, type {default}/pre{grey} to switch to the {purple}Pre {grey}mode or {default}/nopre {grey}to switch to the {purple}NoPre {grey}mode."
+	}
+	"Tip - stretch"
+	{
+		"en"	"{grey}Look after yourself. Take regular breaks to stretch and stay hydrated."
+		"chi"	"{grey}照顾好自己，定期休息，伸展身体，保持水分充足."
+		"pl"	"{grey}Dbaj o siebie. Pamiętaj o regularnych przerwach i nawodnieniu."
+		"fi"	"{grey}Pidä itsestäsi huolta. Pidä taukoja säännöllisesti venytelläksesi ja juo vettä."
+	}
+	"Tip - kz_tips"
+	{
+		"en"	"{grey}Don't need tips like this showing up in chat? You can toggle them with {default}/tips{grey}."
+		"chi"	"{grey}不需要这些提示? 可以使用 {default}/tips{grey} 切换开关."
+		"pl"	"{grey}Nie potrzebujesz wskazówek na czacie? Możesz je wyłączyć używając {default}/tips{grey}."
+		"fi"	"{grey}Etkö tarvitse vihejeitä kuten tämä chatissasi? Voit muuttaa niiden asetusta {default}/tips{grey} komennolla."
+	}
+	"Tip - bugs"
+	{
+		"en"	"{grey}Report issues related to CS2KZ on our GitHub: {default}https://github.com/KZGlobalTeam/cs2kz-metamod/issues{grey}"
+		"chi"	"{grey}遇到问题可以访问CS2KZ的仓库: {default}https://github.com/KZGlobalTeam/cs2kz-metamod/issues{grey} 进行反馈"
+		"pl"	"{grey}Wszystkie problemy związane z CS2KZ zgłoś na GitHubie: {default}https://github.com/KZGlobalTeam/cs2kz-metamod/issues{grey}"
+		"fi"	"{grey}Reportoi ongelmia CS2KZ liittyen meidän GitHub sivuilla: {default}https://github.com/KZGlobalTeam/cs2kz-metamod/issues{grey}"
+	}
+	"Tip - kz_jssound"
+	{
+		"en"	"{grey}You can control which jumpstats play a sound using {default}/jssound{grey}."
+		"chi"	"{grey}你可以使用 {default}/jssound{grey} 来控制声音播报等级."
+		"pl"	"{grey}Możesz kontrolować dźwięki jumpstatów poprzez {default}/jssound{grey}."
+		"fi"	"{grey}Voit valita mitkä jumpstatit soittavat äänieffektin käyttämällä {default}/jssound{grey} komentoa."
+	}
+	"Tip - kz_jsbroadcast"
+	{
+		"en"	"{grey}Use {default}/jsbroadcast {grey}to change which jumpstats by other players get printed to you."
+		"chi"	"{grey}使用 {default}/jsbroadcast {grey}可以控制你的跳跃提示播报等级."
+		"pl"	"{grey}Użyj {default}/jsbroadcast {grey}aby kontrolować jakie jumpstaty innych graczy są nadawane do ciebie."
+		"fi"	"{grey}Käytä {default}/jsbroadcast {grey}komentoa vaihtaaksesi mitkä muiden pelaajien saamat jumpstatit printataan sinulle."
+	}
+}
