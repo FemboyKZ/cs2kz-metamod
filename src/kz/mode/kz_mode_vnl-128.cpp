@@ -1,5 +1,5 @@
 #include "cs_usercmd.pb.h"
-#include "kz_mode_vnl-128.h"
+#include "kz_mode_ckz.h"
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
@@ -337,7 +337,7 @@ void KZVanilla128ModeService::OnProcessMovement()
 		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
 	}
 	this->CheckVelocityQuantization();
-	//this->RemoveCrouchJumpBind();
+	this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
 	this->InterpolateViewAngles();
 	this->UpdateAngleHistory();
