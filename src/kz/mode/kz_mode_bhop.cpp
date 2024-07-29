@@ -1,5 +1,5 @@
 #include "cs_usercmd.pb.h"
-#include "kz_mode_ckz.h"
+#include "kz_mode_bhop.h"
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
