@@ -320,7 +320,7 @@ void KZVanilla128ModeService::OnProcessMovement()
 {
 	this->didTPM = false;
 	this->CheckVelocityQuantization();
-	this->RemoveCrouchJumpBind();
+	//this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
 	this->InterpolateViewAngles();
 	this->UpdateAngleHistory();
