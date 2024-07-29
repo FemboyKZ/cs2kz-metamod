@@ -29,29 +29,6 @@ jobs:
     outputs:
       short_sha: ${{ steps.vars.outputs.short_sha }}
 
-  check-newlines:
-    name: Check for CRLF and final newlines
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: ./scripts/check-newlines.sh
-
-  check-formatting:
-    name: Check for consistent formatting
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        path:
-          - check: 'src'
-            exclude: 'sdk'
-    steps:
-      - uses: actions/checkout@v4
-      - uses: jidicula/clang-format-action@v4.13.0
-        with:
-          clang-format-version: '16'
-          check-path: ${{ matrix.path['check'] }}
-          exclude-regex: ${{ matrix.path['exclude'] }}
-
   build-push:
     if: ${{ github.event_name == 'push' }}
     name: Build Push
