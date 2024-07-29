@@ -13,11 +13,11 @@
 #define KZ_WORKSHOP_ADDONS_ID            "3171124941"
 #define KZ_WORKSHOP_ADDONS_SNDEVENT_FILE "soundevents/soundevents_kz.vsndevts"
 
-#define KZ_DEFAULT_CHAT_PREFIX  "{lime}KZ {grey}|{default}"
+#define KZ_DEFAULT_CHAT_PREFIX  "{orchid}FKZ {grey}|{default}"
 #define KZ_DEFAULT_TIP_INTERVAL 75.0
 #define KZ_DEFAULT_LANGUAGE     "en"
 #define KZ_DEFAULT_STYLE        "Normal"
-#define KZ_DEFAULT_MODE         "Classic"
+#define KZ_DEFAULT_MODE         "Vanilla"
 
 #define KZ_RECENT_TELEPORT_THRESHOLD 0.05f
 
