@@ -5,7 +5,7 @@ constexpr char mysql_styles_create[] = R"(
         ID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT, 
         Name VARCHAR(16) NOT NULL UNIQUE, 
         ShortName VARCHAR(16) NOT NULL UNIQUE, 
-        CONSTRAINT PK_Styles PRIMARY KEY (ID)))
+        CONSTRAINT PK_Styles PRIMARY KEY (ID))
 )";
 
 constexpr char sqlite_styles_create[] = R"(
@@ -21,7 +21,7 @@ constexpr char sqlite_styles_insert[] = R"(
 )";
 
 constexpr char mysql_styles_insert[] = R"(
-    INSERT OR IGNORE INTO Styles (Name, ShortName) VALUES ('%s', '%s')
+    INSERT IGNORE INTO Styles (Name, ShortName) VALUES ('%s', '%s')
 )";
 
 constexpr char sql_styles_findid[] = R"(
