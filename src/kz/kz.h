@@ -61,6 +61,8 @@ public:
 	virtual void OnPhysicsSimulatePost() override;
 	virtual void OnProcessUsercmds(void *, int) override;
 	virtual void OnProcessUsercmdsPost(void *, int) override;
+	virtual void OnSetupMove(CSGOUserCmdPB *) override;
+	virtual void OnSetupMovePost(CSGOUserCmdPB *) override;
 	virtual void OnProcessMovement() override;
 	virtual void OnProcessMovementPost() override;
 	virtual void OnPlayerMove() override;
@@ -201,10 +203,10 @@ public:
 	virtual void Reset() {}
 };
 
-class CKZPlayerManager : public CMovementPlayerManager
+class KZPlayerManager : public MovementPlayerManager
 {
 public:
-	CKZPlayerManager()
+	KZPlayerManager()
 	{
 		for (int i = 0; i < MAXPLAYERS + 1; i++)
 		{
@@ -228,7 +230,7 @@ public:
 	}
 };
 
-extern CKZPlayerManager *g_pKZPlayerManager;
+extern KZPlayerManager *g_pKZPlayerManager;
 
 namespace KZ
 {
