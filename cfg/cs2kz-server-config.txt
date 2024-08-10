@@ -1,6 +1,6 @@
 "ServerCfg"
 {
-	"defaultMode"				"Classic"
+	"defaultMode"				"Vanilla"
 	"defaultStyle"				"Normal"
 	"defaultLanguage"			"en"
 	"tipInterval"				"75"
@@ -9,7 +9,7 @@
 	"defaultShowJS"				"true"
 	"autoDemoRecording"			"false"
 	
-	"chatPrefix"				"{lime}KZ {grey}|{default}"
+	"chatPrefix"				"{orchid}FKZ {grey}|{default}"
 	"overridePlayerChat"		"true"
 	"db"
 	{
