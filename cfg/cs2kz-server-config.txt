@@ -1,6 +1,6 @@
 "ServerCfg"
 {
-	"defaultMode"				"Classic"
+	"defaultMode"				"Vanilla"
 	"defaultStyle"				"Normal"
 	"defaultLanguage"			"en"
 	"tipInterval"				"75"
@@ -8,7 +8,7 @@
 	"defaultJSSoundMinTier"		"4"
 	"defaultShowJS"				"true"
 
-	"chatPrefix"				"{lime}KZ {grey}|{default}"
+	"chatPrefix"				"{orchid}FKZ {grey}|{default}"
 	"db"
 	{
 		"driver"	"sqlite"
