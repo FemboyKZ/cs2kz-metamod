@@ -61,9 +61,6 @@ public:
 	static void Cleanup();
 	static bool IsReady();
 
-	static void RegisterCommands();
-	static void RegisterPBCommand();
-
 private:
 	static KZ::Database::DatabaseType databaseType;
 	static ISQLConnection *databaseConnection;
@@ -119,7 +116,8 @@ public:
 	static void FindFirstCourseByMapName(CUtlString mapName, TransactionSuccessCallbackFunc onSuccess, TransactionFailureCallbackFunc onFailure);
 
 	// Client/Player
-	static void SetupClient(KZPlayer *player);
+	void SetupClient();
+	void SavePrefs(CUtlString prefs);
 	bool isCheater {};
 
 private:
@@ -147,4 +145,6 @@ public:
 						TransactionFailureCallbackFunc onFailure);
 	static void QueryPBRankless(u64 steamID64, CUtlString mapName, CUtlString courseName, u32 modeID, u64 styleIDFlags,
 								TransactionSuccessCallbackFunc onSuccess, TransactionFailureCallbackFunc onFailure);
+	static void QueryRecords(CUtlString mapName, CUtlString courseName, u32 modeID, TransactionSuccessCallbackFunc onSuccess,
+							 TransactionFailureCallbackFunc onFailure);
 };

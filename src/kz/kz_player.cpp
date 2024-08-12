@@ -60,27 +60,32 @@ void KZPlayer::Reset()
 	MovementPlayer::Reset();
 	this->hideLegs = false;
 
-	// TODO: reset every service.
-	this->checkpointService->Reset();
-	this->noclipService->Reset();
-	this->quietService->Reset();
+	// Reset services that should not persist across player sessions.
 	this->languageService->Reset();
-	this->jumpstatsService->Reset();
-	this->hudService->Reset();
-	this->timerService->Reset();
 	this->tipService->Reset();
 	this->modeService->Reset();
-	this->specService->Reset();
 	this->optionService->Reset();
 
 	g_pKZModeManager->SwitchToMode(this, KZOptionService::GetOptionStr("defaultMode", KZ_DEFAULT_MODE), true, true);
 	g_pKZStyleManager->ClearStyles(this, true);
 }
 
+void KZPlayer::OnPlayerActive()
+{
+	// Reset services that should not persist across map changes.
+	this->checkpointService->Reset();
+	this->noclipService->Reset();
+	this->quietService->Reset();
+	this->jumpstatsService->Reset();
+	this->hudService->Reset();
+	this->timerService->Reset();
+	this->specService->Reset();
+}
+
 void KZPlayer::OnAuthorized()
 {
 	MovementPlayer::OnAuthorized();
-	KZDatabaseService::SetupClient(this);
+	this->databaseService->SetupClient();
 }
 
 META_RES KZPlayer::GetPlayerMaxSpeed(f32 &maxSpeed)

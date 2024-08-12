@@ -11,6 +11,7 @@
 #include "ctimer.h"
 #include "kz/kz.h"
 #include "kz/jumpstats/kz_jumpstats.h"
+#include "kz/option/kz_option.h"
 #include "kz/quiet/kz_quiet.h"
 #include "kz/timer/kz_timer.h"
 #include "kz/db/kz_db.h"
@@ -599,6 +600,7 @@ static_function void Hook_GameFrame(bool simulating, bool bFirstTick, bool bLast
 	}
 	KZ::timer::CheckAnnounceQueue();
 	KZ::timer::CheckPBRequests();
+	KZ::timer::CheckRecordRequests();
 	RETURN_META(MRES_IGNORED);
 }
 
@@ -666,6 +668,7 @@ static_function void Hook_ClientDisconnect(CPlayerSlot slot, ENetworkDisconnecti
 		Warning("WARNING: Player pawn for slot %i not found!\n", slot.Get());
 	}
 	player->timerService->OnClientDisconnect();
+	player->optionService->OnClientDisconnect();
 	RETURN_META(MRES_IGNORED);
 }
 
