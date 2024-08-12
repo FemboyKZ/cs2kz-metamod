@@ -9,6 +9,7 @@
 	"defaultShowJS"				"true"
 
 	"chatPrefix"				"{orchid}FKZ {grey}|{default}"
+	"overridePlayerChat"		"true"
 	"db"
 	{
 		"driver"	"sqlite"
