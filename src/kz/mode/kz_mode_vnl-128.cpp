@@ -197,6 +197,8 @@ DistanceTier KZVanilla128ModeService::GetDistanceTier(JumpType jumpType, f32 dis
 
 META_RES KZVanilla128ModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
+	this->originalMaxSpeed = maxSpeed;
+	this->tweakedMaxSpeed = MIN(maxSpeed, 250.0f);
 	maxSpeed = MIN(maxSpeed, 250.0f);
 	return MRES_SUPERCEDE;
 }
