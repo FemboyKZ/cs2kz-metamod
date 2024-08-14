@@ -3,6 +3,9 @@
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
+
+#include "sdk/entity/cbasetrigger.h"
+
 #include "version.h"
 
 KZClassicBindModePlugin g_KZClassicBindModePlugin;
@@ -148,6 +151,14 @@ void KZClassicBindModeService::Reset()
 
 	this->airMoving = {};
 	this->tpmTriggerFixOrigins.RemoveAll();
+}
+
+void KZClassicBindModeService::Cleanup()
+{
+	if (this->player->GetPlayerPawn() && this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+	}
 }
 
 const char *KZClassicBindModeService::GetModeName()
@@ -317,6 +328,10 @@ void KZClassicBindModeService::OnProcessUsercmds(void *cmds, int numcmds)
 void KZClassicBindModeService::OnProcessMovement()
 {
 	this->didTPM = false;
+	if (this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+	}
 	this->CheckVelocityQuantization();
 	//this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
@@ -337,6 +352,11 @@ void KZClassicBindModeService::OnProcessMovementPost()
 	if (!this->didTPM)
 	{
 		this->lastValidPlane = vec3_origin;
+	}
+	f32 velMod = this->originalMaxSpeed >= 0 ? this->tweakedMaxSpeed / this->originalMaxSpeed : 1.0f;
+	if (this->player->GetPlayerPawn()->m_flVelocityModifier() != velMod)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(velMod);
 	}
 }
 
