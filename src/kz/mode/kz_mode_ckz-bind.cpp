@@ -197,7 +197,9 @@ DistanceTier KZClassicBindModeService::GetDistanceTier(JumpType jumpType, f32 di
 
 META_RES KZClassicBindModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
-	maxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	this->originalMaxSpeed = maxSpeed;
+	this->tweakedMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	maxSpeed = tweakedMaxSpeed;
 	return MRES_SUPERCEDE;
 }
 

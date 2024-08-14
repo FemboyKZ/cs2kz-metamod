@@ -197,7 +197,9 @@ DistanceTier KZBhopModeService::GetDistanceTier(JumpType jumpType, f32 distance)
 
 META_RES KZBhopModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
-	maxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	this->originalMaxSpeed = maxSpeed;
+	this->tweakedMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	maxSpeed = tweakedMaxSpeed;
 	return MRES_SUPERCEDE;
 }
 
