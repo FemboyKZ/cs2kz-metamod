@@ -3,6 +3,9 @@
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
+
+#include "sdk/entity/cbasetrigger.h"
+
 #include "version.h"
 
 KZBhopModePlugin g_KZBhopModePlugin;
@@ -148,6 +151,14 @@ void KZBhopModeService::Reset()
 
 	this->airMoving = {};
 	this->tpmTriggerFixOrigins.RemoveAll();
+}
+
+void KZBhopModeService::Cleanup()
+{
+	if (this->player->GetPlayerPawn() && this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+	}
 }
 
 const char *KZBhopModeService::GetModeName()
@@ -319,6 +330,10 @@ void KZBhopModeService::OnProcessUsercmds(void *cmds, int numcmds)
 void KZBhopModeService::OnProcessMovement()
 {
 	this->didTPM = false;
+	if (this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+	}
 	this->CheckVelocityQuantization();
 	//this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
@@ -339,6 +354,11 @@ void KZBhopModeService::OnProcessMovementPost()
 	if (!this->didTPM)
 	{
 		this->lastValidPlane = vec3_origin;
+	}
+	f32 velMod = this->originalMaxSpeed >= 0 ? this->tweakedMaxSpeed / this->originalMaxSpeed : 1.0f;
+	if (this->player->GetPlayerPawn()->m_flVelocityModifier() != velMod)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(velMod);
 	}
 }
 

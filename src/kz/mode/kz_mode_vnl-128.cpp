@@ -3,6 +3,9 @@
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
+
+#include "sdk/entity/cbasetrigger.h"
+
 #include "version.h"
 
 KZVanilla128ModePlugin g_KZVanilla128ModePlugin;
@@ -148,6 +151,14 @@ void KZVanilla128ModeService::Reset()
 
 	this->airMoving = {};
 	this->tpmTriggerFixOrigins.RemoveAll();
+}
+
+void KZVanilla128ModeService::Cleanup()
+{
+	if (this->player->GetPlayerPawn() && this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+	}
 }
 
 const char *KZVanilla128ModeService::GetModeName()
@@ -319,6 +330,10 @@ void KZVanilla128ModeService::OnProcessUsercmds(void *cmds, int numcmds)
 void KZVanilla128ModeService::OnProcessMovement()
 {
 	this->didTPM = false;
+	if (this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+	}
 	this->CheckVelocityQuantization();
 	//this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
@@ -339,6 +354,11 @@ void KZVanilla128ModeService::OnProcessMovementPost()
 	if (!this->didTPM)
 	{
 		this->lastValidPlane = vec3_origin;
+	}
+	f32 velMod = this->originalMaxSpeed >= 0 ? this->tweakedMaxSpeed / this->originalMaxSpeed : 1.0f;
+	if (this->player->GetPlayerPawn()->m_flVelocityModifier() != velMod)
+	{
+		this->player->GetPlayerPawn()->m_flVelocityModifier(velMod);
 	}
 }
 
