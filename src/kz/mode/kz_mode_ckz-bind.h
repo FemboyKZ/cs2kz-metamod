@@ -92,7 +92,6 @@ class KZClassicBindModeService : public KZModeService
 		"64.0",      // sv_step_move_vel_min
 		"0",         // sv_timebetweenducks
 		"0.7",       // sv_walkable_normal
-		"64.0",      // sv_step_move_vel_min
 		"10",        // sv_wateraccelerate
 		"1",         // sv_waterfriction
 		"0.9"        // sv_water_slow_amount
