@@ -46,15 +46,15 @@ void KZ::quiet::OnCheckTransmit(CCheckTransmitInfo **pInfo, int infoCount)
 		{
 			if (targetPlayerPawn == pawn)
 			{
-				// Hide weapon stuff.
-				if (targetPlayer->quietService->ShouldHideWeapon())
+				for (u32 j = 0; j < 3; j++)
 				{
-					for (u32 j = 0; j < 3; j++)
+					if (!pawn->m_pViewModelServices->m_hViewModel[j].IsValid())
 					{
-						if (!pawn->m_pViewModelServices->m_hViewModel[j].IsValid())
-						{
-							continue;
-						}
+						continue;
+					}
+					// Hide weapon stuff.
+					if (targetPlayer->quietService->ShouldHideWeapon(j))
+					{
 						pTransmitInfo->m_pTransmitEdict->Clear(pawn->m_pViewModelServices->m_hViewModel[j].GetEntryIndex());
 					}
 				}
@@ -168,7 +168,7 @@ void KZ::quiet::OnPostEvent(INetworkMessageInternal *pEvent, const CNetMessage *
 			if (g_pKZPlayerManager->ToPlayer(i)->quietService->ShouldHide()
 				&& g_pKZPlayerManager->ToPlayer(i)->quietService->ShouldHideIndex(playerIndex))
 			{
-				*(uint64 *)clients &= ~(i + 1);
+				*(uint64 *)clients &= ~i;
 			}
 		}
 	}
@@ -179,7 +179,7 @@ void KZ::quiet::OnPostEvent(INetworkMessageInternal *pEvent, const CNetMessage *
 		{
 			if (g_pKZPlayerManager->ToPlayer(i)->quietService->ShouldHide())
 			{
-				*(uint64 *)clients &= ~(i + 1);
+				*(uint64 *)clients &= ~i;
 			}
 		}
 	}
