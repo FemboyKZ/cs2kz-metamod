@@ -119,6 +119,7 @@ void KZ::misc::OnServerActivate()
 	{
 		cvTweaked = true;
 		auto cvarHandle = g_pCVar->FindConVar("sv_infinite_ammo");
+		/*
 		if (cvarHandle.IsValid())
 		{
 			g_pCVar->GetConVar(cvarHandle)->flags &= ~FCVAR_CHEAT;
@@ -127,6 +128,7 @@ void KZ::misc::OnServerActivate()
 		{
 			META_CONPRINTF("Warning: sv_infinite_ammo is not found!\n");
 		}
+		*/
 		cvarHandle = g_pCVar->FindConVar("bot_stop");
 		if (cvarHandle.IsValid())
 		{
@@ -145,17 +147,17 @@ void KZ::misc::OnServerActivate()
 void KZ::misc::RegisterCommands()
 {
 	scmd::RegisterCmd("kz_hidelegs", Command_KzHidelegs);
-	scmd::RegisterCmd("kz_hide", Command_KzHide);
-	scmd::RegisterCmd("kz_restart", Command_KzRestart);
-	scmd::RegisterCmd("kz_r", Command_KzRestart);
-	scmd::RegisterCmd("kz_hideweapon", Command_KzHideWeapon);
+	//scmd::RegisterCmd("kz_hide", Command_KzHide);
+	//scmd::RegisterCmd("kz_restart", Command_KzRestart);
+	//scmd::RegisterCmd("kz_r", Command_KzRestart);
+	//scmd::RegisterCmd("kz_hideweapon", Command_KzHideWeapon);
 	scmd::RegisterCmd("jointeam", Command_JoinTeam, true);
 	// TODO: Fullupdate spectators on spec_mode/spec_next/spec_player/spec_prev
-	KZGotoService::RegisterCommands();
-	KZCheckpointService::RegisterCommands();
+	//KZGotoService::RegisterCommands();
+	//KZCheckpointService::RegisterCommands();
 	KZJumpstatsService::RegisterCommands();
-	KZTimerService::RegisterCommands();
-	KZNoclipService::RegisterCommands();
+	//KZTimerService::RegisterCommands();
+	//KZNoclipService::RegisterCommands();
 	KZHUDService::RegisterCommands();
 	KZLanguageService::RegisterCommands();
 	KZ::mode::RegisterCommands();

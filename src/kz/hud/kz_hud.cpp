@@ -125,11 +125,11 @@ void KZHUDService::DrawPanels(KZPlayer *target)
 
 	// clang-format off
 	std::string centerText = KZLanguageService::PrepareMessageWithLang(language, "HUD - Center Text", 
-		keyText.c_str(), checkpointText.c_str(), timerText.c_str(), speedText.c_str());
+		keyText.c_str(), "", "", speedText.c_str());
 	std::string alertText = KZLanguageService::PrepareMessageWithLang(language, "HUD - Alert Text", 
-		keyText.c_str(), checkpointText.c_str(), timerText.c_str(), speedText.c_str());
+		keyText.c_str(), "", "", speedText.c_str());
 	std::string htmlText = KZLanguageService::PrepareMessageWithLang(language, "HUD - Html Center Text",
-		keyText.c_str(), checkpointText.c_str(), timerText.c_str(), speedText.c_str());
+		keyText.c_str(), "", "", speedText.c_str());
 
 	// clang-format on
 

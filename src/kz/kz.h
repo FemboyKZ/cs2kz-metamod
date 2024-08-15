@@ -16,8 +16,8 @@
 #define KZ_DEFAULT_CHAT_PREFIX  "{orchid}FKZ {grey}|{default}"
 #define KZ_DEFAULT_TIP_INTERVAL 75.0
 #define KZ_DEFAULT_LANGUAGE     "en"
-#define KZ_DEFAULT_STYLE        "Normal"
-#define KZ_DEFAULT_MODE         "Vanilla"
+#define KZ_DEFAULT_STYLE        "Autobhop"
+#define KZ_DEFAULT_MODE         "Pre"
 
 #define KZ_RECENT_TELEPORT_THRESHOLD 0.05f
 

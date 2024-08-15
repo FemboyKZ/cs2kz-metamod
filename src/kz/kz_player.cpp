@@ -169,7 +169,7 @@ void KZPlayer::OnProcessMovement()
 	this->jumpstatsService->OnProcessMovement();
 	this->checkpointService->TpHoldPlayerStill();
 	this->noclipService->HandleMoveCollision();
-	this->EnableGodMode();
+	//this->EnableGodMode();
 	this->UpdatePlayerModelAlpha();
 }
 
