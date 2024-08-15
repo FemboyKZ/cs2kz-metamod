@@ -1,7 +1,7 @@
 "ServerCfg"
 {
-	"defaultMode"				"Vanilla"
-	"defaultStyle"				"Normal"
+	"defaultMode"				"NoPre"
+	"defaultStyle"				"Autobhop"
 	"defaultLanguage"			"en"
 	"tipInterval"				"75"
 	"defaultJSBroadcastMinTier"	"4"

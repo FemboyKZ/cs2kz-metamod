@@ -12,14 +12,17 @@
 	}
 	"Tip - kz_mode"
 	{
-		"en"	"{grey}You can switch to a mode by typing its abbreviation. For example, type {default}/ckz{grey} to switch to the {purple}Classic {grey}mode or {default}/vnl {grey}to switch to the {purple}Vanilla {grey}mode."
+		"en"	"{grey}You can switch to a mode by typing its abbreviation. For example, type {default}/nopre{grey} to switch to the {purple}NoPre {grey}mode or {default}/pre {grey}to switch to the {purple}Full Pre {grey}mode."
+		/*
 		"chi"	"{grey}你可以输入缩写进行切换模式. 例如：输入 {default}/ckz{grey} 可以切换到 {purple}经典 {grey}模式 或者 {default}/vnl {grey}切换到 {purple}官匹 {grey}模式等."
 		"pl"	"{grey}Możesz przełączać się między trybami używając skrótów. Na przykład, użyj {default}/ckz{grey} aby zmienić tryb na {purple}Klasyczny {grey} lub {default}/vnl {grey}aby zmienić tryb na {purple}Vanilla {grey}mode."
 		"fi"	"{grey}Voit vaihtaa moodia kirjoittamalla sen lyhennyksen. Esimerkiksi, voit kirjoittaa {default}/ckz{grey} chattiin vaihtaaksesi {purple}Classic {grey}moodiin tai {default}/vnl {grey}vaihtaaksesi {purple}Vanilla {grey}moodiin."
 		"sv"	"{grey}Du kan byta till en annan KZ mode genom att använda förkortningen. Skriv t.ex. {default}/ckz{grey} för att byta till {purple}Classic {grey}mode eller {default}/vnl {grey}för att byta till {purple}Vanilla {grey}mode."
 		"ua"	"{grey}Ви можете змінити KZ режим написавши його абревіатуру. Наприклад, напишіть в чат {default}/ckz{grey} щоб переключитися на {purple}Classic {grey}режим або {default}/vnl {grey}аби переключитися на {purple}Vanilla {grey}режим."
 		"tr"	"{grey}Kısaltmasını kullanarak aktif modu değiştirebilirsin. Örnek olarak {default}/ckz{grey} yazarsan {purple}Classic  {grey}moda veya {default}/vnl {grey}yazarsan {purple}Vanilla {grey}moduna geçebilirsin."
+		*/
 	}
+	/*
 	"Tip - kz_restart"
 	{
 		"en"	"{grey}You can teleport back to your start position using {default}/restart{grey}."
@@ -40,6 +43,7 @@
 		"ua"	"{grey}Ви можете написати в чат{default}/setstartpos {grey}та {default}/clearstartpos {grey}щоб керувати своєю стартовою позицією."
 		"tr"	"{grey}{default}/setstartpos {grey} ve {default}/clearstartpos {grey}kullanarak başlangıç noktanı kontrol edebilirsin."
 	}
+	*/
 	"Tip - stretch"
 	{
 		"en"	"{grey}Look after yourself. Take regular breaks to stretch and stay hydrated."
@@ -60,6 +64,7 @@
 		"ua"	"{grey}Якщо ви не хочете бачити такі поради в чаті, то вимкніть їх написавши {default}/tips{grey}."
 		"tr"	"{grey}Sohbetteki önerilerin çıkmasını istemiyorsan veya ihtiyacın yoksa bu komutla kapatabilirsin {default}/tips{grey}."
 	}
+	/*
 	"Tip - bind"
 	{
 		"en"	"{grey}You can bind commands to keys for easy access, for example: {default}bind {purple}<key1> {default}\"kz_cp\"; bind {purple}<key2> {default}\"kz_tp\"."
@@ -90,6 +95,7 @@
 		"ua"	"{grey}Телепортуйтеся до наступного чекпоінту написавши {default}/nextcp{grey}."
 		"tr"	"{grey}Sonraki kontrol noktasına ışınlanmak için {default}/nextcp{grey}."
 	}
+	*/
 	"Tip - bugs"
 	{
 		"en"	"{grey}Report issues related to CS2KZ on our GitHub: {default}https://github.com/KZGlobalTeam/cs2kz-metamod/issues{grey}"

@@ -3,8 +3,8 @@
 #include "kz_mode.h"
 #include "sdk/datatypes.h"
 
-#define MODE_NAME_SHORT "CKZB"
-#define MODE_NAME       "Classic-Bind"
+#define MODE_NAME_SHORT "PRE"
+#define MODE_NAME       "Full-Pre"
 // Rampbug fix related
 #define MAX_BUMPS                   4
 #define RAMP_PIERCE_DISTANCE        0.1f
@@ -34,7 +34,7 @@
 #define DUCK_SPEED_NORMAL  8.0f
 #define DUCK_SPEED_MINIMUM 6.0234375f // Equal to if you just ducked/unducked for the first time in a while
 
-class KZClassicBindModePlugin : public ISmmPlugin, public IMetamodListener
+class KZPreModePlugin : public ISmmPlugin, public IMetamodListener
 {
 public:
 	bool Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late);
@@ -53,7 +53,7 @@ public:
 	const char *GetLogTag();
 };
 
-class KZClassicBindModeService : public KZModeService
+class KZPreModeService : public KZModeService
 {
 	using KZModeService::KZModeService;
 

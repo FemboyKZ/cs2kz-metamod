@@ -3,8 +3,8 @@
 #include "kz_mode.h"
 #include "sdk/datatypes.h"
 
-#define MODE_NAME_SHORT "CKZB"
-#define MODE_NAME       "Classic-Bind"
+#define MODE_NAME_SHORT "PRE"
+#define MODE_NAME       "Full-Pre"
 // Rampbug fix related
 #define MAX_BUMPS                   4
 #define RAMP_PIERCE_DISTANCE        0.1f
@@ -34,7 +34,7 @@
 #define DUCK_SPEED_NORMAL  8.0f
 #define DUCK_SPEED_MINIMUM 6.0234375f // Equal to if you just ducked/unducked for the first time in a while
 
-class KZClassicBindModePlugin : public ISmmPlugin, public IMetamodListener
+class KZNoPreModePlugin : public ISmmPlugin, public IMetamodListener
 {
 public:
 	bool Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late);
@@ -53,12 +53,12 @@ public:
 	const char *GetLogTag();
 };
 
-class KZClassicBindModeService : public KZModeService
+class KZNoPreModeService : public KZModeService
 {
 	using KZModeService::KZModeService;
 
 	f32 distanceTiers[JUMPTYPE_COUNT - 3][DISTANCETIER_COUNT] = {
-		{217.0f, 265.0f, 270.0f, 275.0f, 280.0f, 285.0f}, // LJ
+		{217.0f, 250.0f, 255.0f, 260.0f, 265.0f, 270.0f}, // LJ
 		{217.0f, 275.0f, 280.0f, 285.0f, 290.0f, 295.0f}, // BH
 		{217.0f, 275.0f, 280.0f, 285.0f, 290.0f, 295.0f}, // MBH
 		{217.0f, 275.0f, 280.0f, 285.0f, 290.0f, 295.0f}, // WJ

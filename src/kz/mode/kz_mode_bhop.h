@@ -75,7 +75,7 @@ class KZBhopModeService : public KZModeService
 		"30",        // sv_air_max_wishspeed
 		"false",     // sv_autobunnyhopping
 		"true",      // sv_enablebunnyhopping
-		"4",         // sv_friction
+		"4",       	 // sv_friction
 		"800",       // sv_gravity
 		"302.0",     // sv_jump_impulse
 		"0.0078125", // sv_jump_spam_penalty_time
