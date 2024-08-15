@@ -10,7 +10,7 @@
 	"autoDemoRecording"			"false"
 	
 	"chatPrefix"				"{orchid}FKZ {grey}|{default}"
-	"overridePlayerChat"		"true"
+	"overridePlayerChat"		"false"
 	"db"
 	{
 		"driver"	"sqlite"
