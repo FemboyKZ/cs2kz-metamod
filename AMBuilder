@@ -148,140 +148,72 @@ for sdk_target in MMSPlugin.sdk_targets:
 
   binary.custom = [builder.tools.Protoc(protoc = sdk_target.protoc, sources = PROTOS)]
 
-	# CKZ_Mode binaries
-  ckz_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-ckz", sdk)
+	# Pre_Mode binaries
+  pre_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-pre", sdk)
 
-  if ckz_mode_binary.compiler.family == 'gcc' or ckz_mode_binary.compiler.family == 'clang':
-    ckz_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
+  if pre_mode_binary.compiler.family == 'gcc' or pre_mode_binary.compiler.family == 'clang':
+    pre_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
 
-  if ckz_mode_binary.compiler.family == 'clang':
-    ckz_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
+  if pre_mode_binary.compiler.family == 'clang':
+    pre_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
 
-  ckz_mode_binary.compiler.cxxincludes += CXXINCLUDES
+  pre_mode_binary.compiler.cxxincludes += CXXINCLUDES
 
-  if ckz_mode_binary.compiler.target.platform == 'linux':
-    ckz_mode_binary.compiler.postlink += [
+  if pre_mode_binary.compiler.target.platform == 'linux':
+    pre_mode_binary.compiler.postlink += [
       os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
     ] 
-    ckz_mode_binary.sources += [
+    pre_mode_binary.sources += [
       'src/utils/plat_linux.cpp'
       ]
-  elif ckz_mode_binary.compiler.target.platform == 'windows':
-    ckz_mode_binary.compiler.postlink += [
+  elif pre_mode_binary.compiler.target.platform == 'windows':
+    pre_mode_binary.compiler.postlink += [
       os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
     ]
-    ckz_mode_binary.sources += [
+    pre_mode_binary.sources += [
       'src/utils/plat_win.cpp'
       ]
 
-  ckz_mode_binary.sources += [
+  pre_mode_binary.sources += [
     os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
     os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
     os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
     os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_ckz.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_pre.cpp'),
   ]
 
-	# CKZ_Bind_Mode binaries
-  ckz_bind_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-ckz-bind", sdk)
+	# NoPre_Mode binaries
+  nopre_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-nopre", sdk)
 
-  if ckz_bind_mode_binary.compiler.family == 'gcc' or ckz_bind_mode_binary.compiler.family == 'clang':
-    ckz_bind_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
+  if nopre_mode_binary.compiler.family == 'gcc' or nopre_mode_binary.compiler.family == 'clang':
+    nopre_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
 
-  if ckz_bind_mode_binary.compiler.family == 'clang':
-    ckz_bind_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
+  if nopre_mode_binary.compiler.family == 'clang':
+    nopre_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
 
-  ckz_bind_mode_binary.compiler.cxxincludes += CXXINCLUDES
+  nopre_mode_binary.compiler.cxxincludes += CXXINCLUDES
 
-  if ckz_bind_mode_binary.compiler.target.platform == 'linux':
-    ckz_bind_mode_binary.compiler.postlink += [
+  if nopre_mode_binary.compiler.target.platform == 'linux':
+    nopre_mode_binary.compiler.postlink += [
       os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
     ] 
-    ckz_bind_mode_binary.sources += [
+    nopre_mode_binary.sources += [
       'src/utils/plat_linux.cpp'
       ]
-  elif ckz_bind_mode_binary.compiler.target.platform == 'windows':
-    ckz_bind_mode_binary.compiler.postlink += [
+  elif nopre_mode_binary.compiler.target.platform == 'windows':
+    nopre_mode_binary.compiler.postlink += [
       os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
     ]
-    ckz_bind_mode_binary.sources += [
+    nopre_mode_binary.sources += [
       'src/utils/plat_win.cpp'
       ]
 
-  ckz_bind_mode_binary.sources += [
+  nopre_mode_binary.sources += [
     os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
     os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
     os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
     os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_ckz-bind.cpp'),
-  ]
-
-	# BHOP_Mode binaries
-  bhop_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-bhop", sdk)
-
-  if bhop_mode_binary.compiler.family == 'gcc' or bhop_mode_binary.compiler.family == 'clang':
-    bhop_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
-
-  if bhop_mode_binary.compiler.family == 'clang':
-    bhop_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
-
-  bhop_mode_binary.compiler.cxxincludes += CXXINCLUDES
-
-  if bhop_mode_binary.compiler.target.platform == 'linux':
-    bhop_mode_binary.compiler.postlink += [
-      os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
-    ] 
-    bhop_mode_binary.sources += [
-      'src/utils/plat_linux.cpp'
-      ]
-  elif bhop_mode_binary.compiler.target.platform == 'windows':
-    bhop_mode_binary.compiler.postlink += [
-      os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
-    ]
-    bhop_mode_binary.sources += [
-      'src/utils/plat_win.cpp'
-      ]
-
-  bhop_mode_binary.sources += [
-    os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
-    os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_bhop.cpp'),
-  ]
-
-	# VNL_128_Mode binaries
-  vnl_128_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-vnl-128", sdk)
-
-  if vnl_128_mode_binary.compiler.family == 'gcc' or vnl_128_mode_binary.compiler.family == 'clang':
-    vnl_128_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
-
-  if vnl_128_mode_binary.compiler.family == 'clang':
-    vnl_128_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
-
-  vnl_128_mode_binary.compiler.cxxincludes += CXXINCLUDES
-
-  if vnl_128_mode_binary.compiler.target.platform == 'linux':
-    vnl_128_mode_binary.compiler.postlink += [
-      os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
-    ] 
-    vnl_128_mode_binary.sources += [
-      'src/utils/plat_linux.cpp'
-      ]
-  elif vnl_128_mode_binary.compiler.target.platform == 'windows':
-    vnl_128_mode_binary.compiler.postlink += [
-      os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
-    ]
-    vnl_128_mode_binary.sources += [
-      'src/utils/plat_win.cpp'
-      ]
-
-  vnl_128_mode_binary.sources += [
-    os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
-    os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_vnl-128.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_nopre.cpp'),
   ]
   
   # Style binaries
@@ -325,34 +257,26 @@ for sdk_target in MMSPlugin.sdk_targets:
   ]
 
   binary.custom = [protoc_builder]
-  bhop_mode_binary.custom = [protoc_builder]
-  ckz_mode_binary.custom = [protoc_builder]
-  ckz_bind_mode_binary.custom = [protoc_builder]
-  vnl_128_mode_binary.custom = [protoc_builder]
+  nopre_mode_binary.custom = [protoc_builder]
+  pre_mode_binary.custom = [protoc_builder]
   style_binary.custom = [protoc_builder]
 
   nodes = builder.Add(binary)
-  bhop_mode_nodes = builder.Add(bhop_mode_binary)
-  ckz_mode_nodes = builder.Add(ckz_mode_binary)
-  ckz_bind_mode_nodes = builder.Add(ckz_bind_mode_binary)
-  vnl_128_mode_nodes = builder.Add(vnl_128_mode_binary)
+  nopre_mode_nodes = builder.Add(nopre_mode_binary)
+  pre_mode_nodes = builder.Add(pre_mode_binary)
   style_nodes = builder.Add(style_binary)
 
   # If we are generating a VS project, make sure to add the modes in, and the build folder for linter.
   if builder.options.generator == 'vs':
-    binary.sources += bhop_mode_binary.sources
-    binary.sources += ckz_mode_binary.sources
-    binary.sources += ckz_bind_mode_binary.sources
-    binary.sources += vnl_128_mode_binary.sources
+    binary.sources += nopre_mode_binary.sources
+    binary.sources += pre_mode_binary.sources
     binary.sources += style_binary.sources
     binary.compiler.cxxincludes += [os.path.join(builder.buildPath, MMSPlugin.plugin_name, f'{binary.compiler.target.platform}-{cxx.target.arch}')]
 
 
   MMSPlugin.binaries += [nodes]
-  MMSPlugin.mode_binaries += [bhop_mode_nodes]
-  MMSPlugin.mode_binaries += [ckz_mode_nodes]
-  MMSPlugin.mode_binaries += [ckz_bind_mode_nodes]
-  MMSPlugin.mode_binaries += [vnl_128_mode_nodes]
+  MMSPlugin.mode_binaries += [nopre_mode_nodes]
+  MMSPlugin.mode_binaries += [pre_mode_nodes]
   MMSPlugin.style_binaries += [style_nodes]
 
 # vim: filetype=python expandtab shiftwidth=2 tabstop=8 textwidth=99
