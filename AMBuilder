@@ -216,40 +216,6 @@ for sdk_target in MMSPlugin.sdk_targets:
     os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_ckz-bind.cpp'),
   ]
 
-	# BHOP_Mode binaries
-  bhop_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-bhop", sdk)
-
-  if bhop_mode_binary.compiler.family == 'gcc' or bhop_mode_binary.compiler.family == 'clang':
-    bhop_mode_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
-
-  if bhop_mode_binary.compiler.family == 'clang':
-    bhop_mode_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
-
-  bhop_mode_binary.compiler.cxxincludes += CXXINCLUDES
-
-  if bhop_mode_binary.compiler.target.platform == 'linux':
-    bhop_mode_binary.compiler.postlink += [
-      os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
-    ] 
-    bhop_mode_binary.sources += [
-      'src/utils/plat_linux.cpp'
-      ]
-  elif bhop_mode_binary.compiler.target.platform == 'windows':
-    bhop_mode_binary.compiler.postlink += [
-      os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
-    ]
-    bhop_mode_binary.sources += [
-      'src/utils/plat_win.cpp'
-      ]
-
-  bhop_mode_binary.sources += [
-    os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
-    os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
-    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_bhop.cpp'),
-  ]
-
 	# VNL_128_Mode binaries
   vnl_128_mode_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.plugin_name}-mode-vnl-128", sdk)
 
@@ -325,14 +291,12 @@ for sdk_target in MMSPlugin.sdk_targets:
   ]
 
   binary.custom = [protoc_builder]
-  bhop_mode_binary.custom = [protoc_builder]
   ckz_mode_binary.custom = [protoc_builder]
   ckz_bind_mode_binary.custom = [protoc_builder]
   vnl_128_mode_binary.custom = [protoc_builder]
   style_binary.custom = [protoc_builder]
 
   nodes = builder.Add(binary)
-  bhop_mode_nodes = builder.Add(bhop_mode_binary)
   ckz_mode_nodes = builder.Add(ckz_mode_binary)
   ckz_bind_mode_nodes = builder.Add(ckz_bind_mode_binary)
   vnl_128_mode_nodes = builder.Add(vnl_128_mode_binary)
@@ -340,7 +304,6 @@ for sdk_target in MMSPlugin.sdk_targets:
 
   # If we are generating a VS project, make sure to add the modes in, and the build folder for linter.
   if builder.options.generator == 'vs':
-    binary.sources += bhop_mode_binary.sources
     binary.sources += ckz_mode_binary.sources
     binary.sources += ckz_bind_mode_binary.sources
     binary.sources += vnl_128_mode_binary.sources
@@ -349,7 +312,6 @@ for sdk_target in MMSPlugin.sdk_targets:
 
 
   MMSPlugin.binaries += [nodes]
-  MMSPlugin.mode_binaries += [bhop_mode_nodes]
   MMSPlugin.mode_binaries += [ckz_mode_nodes]
   MMSPlugin.mode_binaries += [ckz_bind_mode_nodes]
   MMSPlugin.mode_binaries += [vnl_128_mode_nodes]
