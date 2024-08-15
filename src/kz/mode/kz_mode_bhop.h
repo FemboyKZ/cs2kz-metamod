@@ -71,11 +71,11 @@ class KZBhopModeService : public KZModeService
 		"false",     // slope_drop_enable
 		"6.5",       // sv_accelerate
 		"false",     // sv_accelerate_use_weapon_speed
-		"1000",       // sv_airaccelerate
+		"1000",      // sv_airaccelerate
 		"30",        // sv_air_max_wishspeed
 		"false",     // sv_autobunnyhopping
 		"true",      // sv_enablebunnyhopping
-		"4",       // sv_friction
+		"4",         // sv_friction
 		"800",       // sv_gravity
 		"302.0",     // sv_jump_impulse
 		"0.0078125", // sv_jump_spam_penalty_time
@@ -83,12 +83,13 @@ class KZBhopModeService : public KZModeService
 		"1",         // sv_ladder_dampen
 		"1",         // sv_ladder_scale_speed
 		"320",       // sv_maxspeed
-		"99999",      // sv_maxvelocity
+		"99999",     // sv_maxvelocity
 		"0",         // sv_staminajumpcost
 		"0",         // sv_staminalandcost
 		"0",         // sv_staminamax
 		"9999",      // sv_staminarecoveryrate
 		"0.7",       // sv_standable_normal
+		"64.0",      // sv_step_move_vel_min
 		"0",         // sv_timebetweenducks
 		"0.7",       // sv_walkable_normal
 		"10",        // sv_wateraccelerate
