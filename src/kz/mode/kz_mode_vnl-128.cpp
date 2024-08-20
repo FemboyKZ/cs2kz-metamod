@@ -3,7 +3,7 @@
 #include "utils/addresses.h"
 #include "utils/interfaces.h"
 #include "utils/gameconfig.h"
-
+#include "sdk/usercmd.h"
 #include "sdk/entity/cbasetrigger.h"
 
 #include "version.h"
@@ -199,7 +199,7 @@ META_RES KZVanilla128ModeService::GetPlayerMaxSpeed(f32 &maxSpeed)
 {
 	this->originalMaxSpeed = maxSpeed;
 	this->tweakedMaxSpeed = MIN(maxSpeed, 250.0f);
-	maxSpeed = MIN(maxSpeed, 250.0f);
+	maxSpeed = tweakedMaxSpeed;
 	return MRES_SUPERCEDE;
 }
 
@@ -298,34 +298,28 @@ void KZVanilla128ModeService::OnPhysicsSimulatePost()
 	this->InsertSubtickTiming(g_pKZUtils->GetServerGlobals()->tickcount * ENGINE_FIXED_TICK_INTERVAL + 0.5 * ENGINE_FIXED_TICK_INTERVAL);
 }
 
-void KZVanilla128ModeService::OnProcessUsercmds(void *cmds, int numcmds)
+void KZVanilla128ModeService::OnSetupMove(CUserCmd *pb)
 {
-	for (i32 i = 0; i < numcmds; i++)
+	for (i32 j = 0; j < pb->mutable_base()->subtick_moves_size(); j++)
 	{
-		auto address = reinterpret_cast<char *>(cmds) + i * (sizeof(CSGOUserCmdPB) + g_pGameConfig->GetOffset("UsercmdOffset"));
-		CSGOUserCmdPB *usercmdsPtr = reinterpret_cast<CSGOUserCmdPB *>(address);
-		for (i32 j = 0; j < usercmdsPtr->mutable_base()->subtick_moves_size(); j++)
+		CSubtickMoveStep *subtickMove = pb->mutable_base()->mutable_subtick_moves(j);
+		float when = subtickMove->when();
+		if (subtickMove->button() == IN_JUMP)
 		{
-			CSubtickMoveStep *subtickMove = usercmdsPtr->mutable_base()->mutable_subtick_moves(j);
-			float when = subtickMove->when();
-			// Iffy logic that doesn't care about commands with multiple cmds...
-			if (subtickMove->button() == IN_JUMP)
+			f32 inputTime = (g_pKZUtils->GetGlobals()->tickcount + when - 1) * ENGINE_FIXED_TICK_INTERVAL;
+			if (when != 0)
 			{
-				f32 inputTime = (g_pKZUtils->GetGlobals()->tickcount + when - 1) * ENGINE_FIXED_TICK_INTERVAL;
-				if (when != 0)
+				if (subtickMove->pressed() && inputTime - this->lastJumpReleaseTime > 0.5 * ENGINE_FIXED_TICK_INTERVAL)
 				{
-					if (subtickMove->pressed() && inputTime - this->lastJumpReleaseTime > 0.5 * ENGINE_FIXED_TICK_INTERVAL)
-					{
-						this->player->GetMoveServices()->m_bOldJumpPressed = false;
-					}
-					if (!subtickMove->pressed())
-					{
-						this->lastJumpReleaseTime = (g_pKZUtils->GetGlobals()->tickcount + when - 1) * ENGINE_FIXED_TICK_INTERVAL;
-					}
+					this->player->GetMoveServices()->m_bOldJumpPressed = false;
+				}
+				if (!subtickMove->pressed())
+				{
+					this->lastJumpReleaseTime = (g_pKZUtils->GetGlobals()->tickcount + when - 1) * ENGINE_FIXED_TICK_INTERVAL;
 				}
 			}
-			subtickMove->set_when(when >= 0.5 ? 0.5 : 0);
 		}
+		subtickMove->set_when(when >= 0.5 ? 0.5 : 0);
 	}
 }
 
