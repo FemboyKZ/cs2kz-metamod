@@ -72,6 +72,7 @@ public:
 	static void RegisterCommands();
 	static void RegisterPBCommand();
 	static void RegisterRecordCommands();
+	static void RegisterCourseTopCommands();
 	static bool RegisterEventListener(KZTimerServiceEventListener *eventListener);
 	static bool UnregisterEventListener(KZTimerServiceEventListener *eventListener);
 
@@ -92,6 +93,13 @@ public:
 
 	static void FormatTime(f64 time, char *output, u32 length, bool precise = true);
 
+	static CUtlString FormatTime(f64 time, bool precise = true)
+	{
+		char temp[32];
+		FormatTime(time, temp, sizeof(temp), precise);
+		return CUtlString(temp);
+	}
+
 	static void FormatDiffTime(f64 time, char *output, u32 length, bool precise = true)
 	{
 		char temp[32];
@@ -105,6 +113,13 @@ public:
 			FormatTime(-time, temp, sizeof(temp));
 			V_snprintf(output, length, "-%s", temp);
 		}
+	}
+
+	static CUtlString FormatDiffTime(f64 time, bool precise = true)
+	{
+		char temp[32];
+		FormatDiffTime(time, temp, sizeof(temp), precise);
+		return CUtlString(temp);
 	}
 
 	void SetTime(f64 time)
@@ -292,5 +307,8 @@ namespace KZ
 
 		// Record requests
 		void CheckRecordRequests();
+
+		// CourseTop requests
+		void CheckCourseTopRequests();
 	} // namespace timer
 } // namespace KZ

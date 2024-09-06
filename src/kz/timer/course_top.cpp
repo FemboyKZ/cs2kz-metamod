@@ -3,43 +3,42 @@
 #include "kz/mode/kz_mode.h"
 #include "kz/style/kz_style.h"
 #include "kz/timer/kz_timer.h"
-#include "utils/argparse.h"
 #include "utils/simplecmds.h"
+#include "utils/argparse.h"
 #include "iserver.h"
 
 #include "vendor/sql_mm/src/public/sql_mm.h"
 
-static_global const char *paramKeys[] = {"c", "course", "mode", "map"};
+static_global const char *paramKeys[] = {"c", "course", "mode", "map", "o", "offset", "l", "limit"};
 
-struct RecordData
+// Worst case scenario: "#123453 123:45:64.752 123456 TPs 01234567890123456789012345678912 <76561197972581267>"
+struct RunStats
 {
-	bool hasRecord {};
-	CUtlString holder;
-	f32 runTime {};
-	u32 teleportsUsed {};
-
-	bool hasRecordPro {};
-	CUtlString holderPro;
-	f32 runTimePro {};
+	u64 rank;
+	u64 steamid64;
+	CUtlString name;
+	u64 teleportsUsed;
+	f64 time;
 };
 
-#define WR_WAIT_THRESHOLD 3.0f
-
-/*
-	Every time the player calls !wr/!sr, a request struct is created and stored in a vector.
-	The request queries all the information required in order to make a request to the database,
-	waits for responses from local and global database, and print a coherent result message to the player.
-*/
-// TODO: Error messages
-struct RecordRequest
+struct CourseTopData
 {
-	RecordRequest() : userID(0) {}
+	CUtlVector<RunStats> overallData;
+	CUtlVector<RunStats> proData;
+};
 
-	RecordRequest(u64 uid, KZPlayer *callingPlayer, CUtlString mapName, CUtlString courseName, CUtlString modeName, bool serverOnly)
+#define CTOP_WAIT_THRESHOLD 3.0f
+
+struct CourseTopRequest
+{
+	CourseTopRequest() : userID(0) {}
+
+	CourseTopRequest(u64 uid, KZPlayer *callingPlayer, CUtlString mapName, CUtlString courseName, CUtlString modeName, u64 offset, bool queryLocal,
+					 bool queryGlobal)
 		: uid(uid), userID(callingPlayer->GetClient()->GetUserID()), mapName(mapName), courseName(courseName), modeName(modeName)
 	{
 		timestamp = g_pKZUtils->GetServerGlobals()->realtime;
-		localRequestState = KZDatabaseService::IsReady() ? LocalRequestState::ENABLED : LocalRequestState::DISABLED;
+		localRequestState = queryLocal && KZDatabaseService::IsReady() ? LocalRequestState::ENABLED : LocalRequestState::DISABLED;
 	}
 
 	// Global identifier and timestamp for timeout
@@ -75,7 +74,7 @@ struct RecordRequest
 
 	} localDBRequestParams;
 
-	RecordData srData, wrData;
+	CourseTopData srData, wrData;
 
 	/*
 		Get the player's mode for querying:
@@ -97,7 +96,7 @@ struct RecordRequest
 	// Execute queries to get pb in the local db.
 	void ExecuteLocalRequest();
 
-	void UpdateSRData(RecordData data)
+	void UpdateSRData(CourseTopData data)
 	{
 		srData = data;
 		if (localRequestState == LocalRequestState::RUNNING)
@@ -110,7 +109,7 @@ struct RecordRequest
 	// TODO: Implement this for global!
 	bool IsValid()
 	{
-		bool timedOut = g_pKZUtils->GetServerGlobals()->realtime - timestamp > WR_WAIT_THRESHOLD;
+		bool timedOut = g_pKZUtils->GetServerGlobals()->realtime - timestamp > CTOP_WAIT_THRESHOLD;
 		return timedOut || localRequestState >= LocalRequestState::ENABLED;
 	}
 
@@ -118,7 +117,7 @@ struct RecordRequest
 	{
 		bool localReady = (localRequestState == LocalRequestState::FINISHED || localRequestState <= LocalRequestState::DISABLED);
 		bool globalReady = true;
-		bool timedOut = g_pKZUtils->GetServerGlobals()->realtime - timestamp > WR_WAIT_THRESHOLD;
+		bool timedOut = g_pKZUtils->GetServerGlobals()->realtime - timestamp > CTOP_WAIT_THRESHOLD;
 		return timedOut || (localReady && globalReady);
 	}
 
@@ -182,31 +181,33 @@ struct RecordRequest
 
 static_global struct
 {
-	CUtlVector<RecordRequest> recordRequests;
-	u32 pbReqCount = 0;
+	CUtlVector<CourseTopRequest> CourseTopRequests;
+	u32 ctopReqCount = 0;
 
-	void AddRequest(KZPlayer *callingPlayer, CUtlString mapName, CUtlString courseName, CUtlString modeName, bool serverOnly)
+	void AddRequest(KZPlayer *callingPlayer, CUtlString mapName, CUtlString courseName, CUtlString modeName, u64 offset, bool queryLocal,
+					bool queryGlobal)
 	{
-		RecordRequest *req = recordRequests.AddToTailGetPtr();
-		*req = RecordRequest(pbReqCount, callingPlayer, mapName, courseName, modeName, serverOnly);
+		CourseTopRequest *req = CourseTopRequests.AddToTailGetPtr();
+		*req = CourseTopRequest(ctopReqCount, callingPlayer, mapName, courseName, modeName, offset, queryLocal, queryGlobal);
 		req->SetupCourse(callingPlayer);
 		req->SetupMode(callingPlayer);
-		pbReqCount++;
+		ctopReqCount++;
 	}
 
 	template<typename... Args>
 	void InvalidLocal(u64 uid, CUtlString reason = "", Args &&...args)
 	{
-		FOR_EACH_VEC(recordRequests, i)
+		FOR_EACH_VEC(CourseTopRequests, i)
 		{
-			if (recordRequests[i].uid == uid)
+			if (CourseTopRequests[i].uid == uid)
 			{
-				recordRequests[i].localRequestState = RecordRequest::LocalRequestState::FAILED;
+				CourseTopRequests[i].localRequestState = CourseTopRequest::LocalRequestState::FAILED;
 				// TODO: check for global.
-				KZPlayer *player = g_pKZPlayerManager->ToPlayer(recordRequests[i].userID);
+				KZPlayer *player = g_pKZPlayerManager->ToPlayer(CourseTopRequests[i].userID);
 				if (player && player->IsInGame())
 				{
-					player->languageService->PrintChat(true, false, reason.IsEmpty() ? "Record Request - Failed (Generic)" : reason.Get(), args...);
+					player->languageService->PrintChat(true, false, reason.IsEmpty() ? "Course Top Request - Failed (Generic)" : reason.Get(),
+													   args...);
 				}
 				return;
 			}
@@ -215,24 +216,24 @@ static_global struct
 
 	void UpdateCourseName(u64 uid, CUtlString name)
 	{
-		FOR_EACH_VEC(recordRequests, i)
+		FOR_EACH_VEC(CourseTopRequests, i)
 		{
-			if (recordRequests[i].uid == uid)
+			if (CourseTopRequests[i].uid == uid)
 			{
-				recordRequests[i].courseName = name;
-				recordRequests[i].hasValidCourseName = true;
+				CourseTopRequests[i].courseName = name;
+				CourseTopRequests[i].hasValidCourseName = true;
 				return;
 			}
 		}
 	}
 
-	void UpdateSRData(u64 uid, RecordData data)
+	void UpdateSRData(u64 uid, CourseTopData data)
 	{
-		FOR_EACH_VEC(recordRequests, i)
+		FOR_EACH_VEC(CourseTopRequests, i)
 		{
-			if (recordRequests[i].uid == uid)
+			if (CourseTopRequests[i].uid == uid)
 			{
-				recordRequests[i].UpdateSRData(data);
+				CourseTopRequests[i].UpdateSRData(data);
 				return;
 			}
 		}
@@ -240,30 +241,30 @@ static_global struct
 
 	void CheckRequests()
 	{
-		FOR_EACH_VEC(recordRequests, i)
+		FOR_EACH_VEC(CourseTopRequests, i)
 		{
-			if (recordRequests[i].ShouldQueryLocal())
+			if (CourseTopRequests[i].ShouldQueryLocal())
 			{
-				recordRequests[i].ExecuteLocalRequest();
+				CourseTopRequests[i].ExecuteLocalRequest();
 			}
-			if (recordRequests[i].ShouldReply())
+			if (CourseTopRequests[i].ShouldReply())
 			{
-				recordRequests[i].Reply();
-				recordRequests.Remove(i);
+				CourseTopRequests[i].Reply();
+				CourseTopRequests.Remove(i);
 				i--;
 				continue;
 			}
-			if (!recordRequests[i].IsValid())
+			if (!CourseTopRequests[i].IsValid())
 			{
-				recordRequests.Remove(i);
+				CourseTopRequests.Remove(i);
 				i--;
 				continue;
 			}
 		}
 	}
-} recReqQueueManager;
+} ctopReqQueueManager;
 
-void RecordRequest::SetupMode(KZPlayer *callingPlayer)
+void CourseTopRequest::SetupMode(KZPlayer *callingPlayer)
 {
 	if (this->localRequestState <= LocalRequestState::DISABLED)
 	{
@@ -275,7 +276,7 @@ void RecordRequest::SetupMode(KZPlayer *callingPlayer)
 
 	if (modeInfo.databaseID < 0)
 	{
-		recReqQueueManager.InvalidLocal(this->uid);
+		ctopReqQueueManager.InvalidLocal(this->uid);
 		return;
 	}
 
@@ -286,7 +287,7 @@ void RecordRequest::SetupMode(KZPlayer *callingPlayer)
 	this->localDBRequestParams.modeID = modeInfo.databaseID;
 }
 
-void RecordRequest::SetupCourse(KZPlayer *callingPlayer)
+void CourseTopRequest::SetupCourse(KZPlayer *callingPlayer)
 {
 	if (this->localRequestState <= LocalRequestState::DISABLED)
 	{
@@ -297,7 +298,7 @@ void RecordRequest::SetupCourse(KZPlayer *callingPlayer)
 	CUtlString currentMap = g_pKZUtils->GetCurrentMapName(&gotCurrentMap);
 	if (!gotCurrentMap) // Shouldn't happen.
 	{
-		recReqQueueManager.InvalidLocal(this->uid);
+		ctopReqQueueManager.InvalidLocal(this->uid);
 		return;
 	}
 
@@ -324,7 +325,7 @@ void RecordRequest::SetupCourse(KZPlayer *callingPlayer)
 				KZ::timer::CourseInfo info;
 				if (!KZ::timer::GetFirstCourseInformation(info))
 				{
-					recReqQueueManager.InvalidLocal(this->uid, "Record Request - Invalid Course Name", course);
+					ctopReqQueueManager.InvalidLocal(this->uid, "Record Request - Invalid Course Name", course);
 					return;
 				}
 				courseName = info.courseName;
@@ -339,15 +340,15 @@ void RecordRequest::SetupCourse(KZPlayer *callingPlayer)
 				ISQLResult *result = queries[0]->GetResultSet();
 				if (result->GetRowCount() > 0 && result->FetchRow())
 				{
-					recReqQueueManager.UpdateCourseName(uid, result->GetString(0));
+					ctopReqQueueManager.UpdateCourseName(uid, result->GetString(0));
 				}
 				else
 				{
-					recReqQueueManager.InvalidLocal(uid);
+					ctopReqQueueManager.InvalidLocal(uid);
 				}
 			};
 
-			auto onQueryFailure = [uid](std::string, int) { recReqQueueManager.InvalidLocal(uid); };
+			auto onQueryFailure = [uid](std::string, int) { ctopReqQueueManager.InvalidLocal(uid); };
 			KZDatabaseService::FindFirstCourseByMapName(mapName, onQuerySuccess, onQueryFailure);
 		}
 	}
@@ -358,13 +359,13 @@ void RecordRequest::SetupCourse(KZPlayer *callingPlayer)
 	}
 }
 
-void RecordRequest::ExecuteLocalRequest()
+void CourseTopRequest::ExecuteLocalRequest()
 {
 	// No player to respond to, don't bother.
 	KZPlayer *callingPlayer = g_pKZPlayerManager->ToPlayer(userID);
 	if (!callingPlayer)
 	{
-		recReqQueueManager.InvalidLocal(this->uid);
+		ctopReqQueueManager.InvalidLocal(this->uid);
 		return;
 	}
 
@@ -374,7 +375,7 @@ void RecordRequest::ExecuteLocalRequest()
 
 	auto onQuerySuccess = [uid](std::vector<ISQLQuery *> queries)
 	{
-		RecordData data {};
+		CourseTopData data {};
 		ISQLResult *result = queries[0]->GetResultSet();
 		if (result && result->GetRowCount() > 0)
 		{
@@ -395,23 +396,23 @@ void RecordRequest::ExecuteLocalRequest()
 				data.runTimePro = result->GetFloat(3);
 			}
 		}
-		recReqQueueManager.UpdateSRData(uid, data);
+		ctopReqQueueManager.UpdateSRData(uid, data);
 	};
 
-	auto onQueryFailure = [uid](std::string, int) { recReqQueueManager.InvalidLocal(uid); };
+	auto onQueryFailure = [uid](std::string, int) { ctopReqQueueManager.InvalidLocal(uid); };
 
 	KZDatabaseService::QueryRecords(mapName, courseName, localDBRequestParams.modeID, onQuerySuccess, onQueryFailure);
 }
 
-void QueryRecords(CCSPlayerController *controller, const CCommand *args, bool serverOnly = false)
+void QueryCourseTop(CCSPlayerController *controller, const CCommand *args, bool queryLocal = true, bool queryGlobal = true)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
 	KeyValues3 params;
 
 	if (!utils::ParseArgsToKV3(args->ArgS(), params, paramKeys, sizeof(paramKeys) / sizeof(paramKeys[0])))
 	{
-		player->languageService->PrintChat(true, false, "WR/SR Command Usage");
-		player->languageService->PrintConsole(false, false, "WR/SR Command Usage - Console");
+		player->languageService->PrintChat(true, false, "Course Top Command Usage");
+		player->languageService->PrintConsole(false, false, "Course Top Command Usage - Console");
 		return;
 	}
 
@@ -420,6 +421,7 @@ void QueryRecords(CCSPlayerController *controller, const CCommand *args, bool se
 	CUtlString mapName;
 	CUtlString courseName;
 	CUtlString modeName;
+	u64 offset;
 
 	if (kv = params.FindMember("map"))
 	{
@@ -433,30 +435,47 @@ void QueryRecords(CCSPlayerController *controller, const CCommand *args, bool se
 	{
 		modeName = kv->GetString();
 	}
+	if ((kv = params.FindMember("offset")) || (kv = params.FindMember("o")))
+	{
+		offset = atoll(kv->GetString());
+	}
 
-	recReqQueueManager.AddRequest(player, mapName, courseName, modeName, serverOnly);
+	ctopReqQueueManager.AddRequest(player, mapName, courseName, modeName, offset, queryLocal, queryGlobal);
 	return;
 }
 
-SCMD_CALLBACK(CommandKZWR)
+SCMD_CALLBACK(CommandKZCourseTop)
 {
-	QueryRecords(controller, args);
+	QueryCourseTop(controller, args);
 	return MRES_SUPERCEDE;
 }
 
-SCMD_CALLBACK(CommandKZSR)
+SCMD_CALLBACK(CommandKZGlobalCourseTop)
 {
-	QueryRecords(controller, args, true);
+	QueryCourseTop(controller, args);
 	return MRES_SUPERCEDE;
 }
 
-void KZ::timer::CheckRecordRequests()
+SCMD_CALLBACK(CommandKZServerCourseTop)
 {
-	recReqQueueManager.CheckRequests();
+	QueryCourseTop(controller, args);
+	return MRES_SUPERCEDE;
 }
 
-void KZTimerService::RegisterRecordCommands()
+void KZ::timer::CheckCourseTopRequests()
 {
-	scmd::RegisterCmd("kz_wr", CommandKZWR);
-	scmd::RegisterCmd("kz_sr", CommandKZSR);
+	ctopReqQueueManager.CheckRequests();
+}
+
+void KZTimerService::RegisterCourseTopCommands()
+{
+	scmd::RegisterCmd("kz_ctop", CommandKZCourseTop);
+	scmd::RegisterCmd("kz_coursetop", CommandKZCourseTop);
+	scmd::RegisterCmd("kz_maptop", CommandKZCourseTop);
+	scmd::RegisterCmd("kz_gctop", CommandKZGlobalCourseTop);
+	scmd::RegisterCmd("kz_gcoursetop", CommandKZGlobalCourseTop);
+	scmd::RegisterCmd("kz_gmaptop", CommandKZGlobalCourseTop);
+	scmd::RegisterCmd("kz_sctop", CommandKZServerCourseTop);
+	scmd::RegisterCmd("kz_scoursetop", CommandKZServerCourseTop);
+	scmd::RegisterCmd("kz_smaptop", CommandKZServerCourseTop);
 }
