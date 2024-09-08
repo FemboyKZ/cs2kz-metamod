@@ -1,4 +1,5 @@
 #include "cs_usercmd.pb.h"
+#include "cs2kz.h"
 #include "movement.h"
 #include "utils/detours.h"
 #include "utils/gameconfig.h"
@@ -42,6 +43,7 @@ MovementPlayerManager *playerManager = static_cast<MovementPlayerManager *>(g_pP
 
 void FASTCALL movement::Detour_PhysicsSimulate(CCSPlayerController *controller)
 {
+	g_KZPlugin.simulatingPhysics = true;
 	MovementPlayer *player = playerManager->ToPlayer(controller);
 	if (controller->m_bIsHLTV)
 	{
@@ -50,6 +52,7 @@ void FASTCALL movement::Detour_PhysicsSimulate(CCSPlayerController *controller)
 	player->OnPhysicsSimulate();
 	PhysicsSimulate(controller);
 	player->OnPhysicsSimulatePost();
+	g_KZPlugin.simulatingPhysics = false;
 }
 
 f32 FASTCALL movement::Detour_GetMaxSpeed(CCSPlayerPawn *pawn)
