@@ -298,7 +298,7 @@ void KZBhopModeService::OnPhysicsSimulatePost()
 	this->InsertSubtickTiming(g_pKZUtils->GetServerGlobals()->tickcount * ENGINE_FIXED_TICK_INTERVAL + 0.5 * ENGINE_FIXED_TICK_INTERVAL);
 }
 
-void KZBhopModeService::OnSetupMove(CUserCmd *pb)
+void KZBhopModeService::OnSetupMove(PlayerCommand *pb)
 {
 	for (i32 j = 0; j < pb->mutable_base()->subtick_moves_size(); j++)
 	{
