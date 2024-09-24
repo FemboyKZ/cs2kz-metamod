@@ -25,7 +25,7 @@
 	"defaultShowJS"				"true"
 	
 	// Enable this to automatically record a one minute long demo of players when someone hits a wrecker jumpstat.
-	"autoDemoRecording"			"false"
+	"autoDemoRecording"			"true"
 	
 	// Default chat prefix.
 	"chatPrefix"				"{lime}KZ {grey}|{default}"
