@@ -298,11 +298,11 @@ void KZVanilla128ModeService::OnPhysicsSimulatePost()
 	this->InsertSubtickTiming(g_pKZUtils->GetServerGlobals()->tickcount * ENGINE_FIXED_TICK_INTERVAL + 0.5 * ENGINE_FIXED_TICK_INTERVAL);
 }
 
-void KZVanilla128ModeService::OnSetupMove(PlayerCommand *pb)
+void KZVanilla128ModeService::OnSetupMove(PlayerCommand *pc)
 {
-	for (i32 j = 0; j < pb->mutable_base()->subtick_moves_size(); j++)
+	for (i32 j = 0; j < pc->mutable_base()->subtick_moves_size(); j++)
 	{
-		CSubtickMoveStep *subtickMove = pb->mutable_base()->mutable_subtick_moves(j);
+		CSubtickMoveStep *subtickMove = pc->mutable_base()->mutable_subtick_moves(j);
 		float when = subtickMove->when();
 		if (subtickMove->button() == IN_JUMP)
 		{
