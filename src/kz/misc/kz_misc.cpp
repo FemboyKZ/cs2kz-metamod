@@ -15,6 +15,7 @@
 #include "kz/option/kz_option.h"
 #include "kz/spec/kz_spec.h"
 #include "kz/goto/kz_goto.h"
+#include "kz/telemetry/kz_telemetry.h"
 #include "kz/timer/kz_timer.h"
 #include "kz/tip/kz_tip.h"
 
@@ -81,7 +82,7 @@ static_function SCMD_CALLBACK(Command_KzRestart)
 	}
 	else
 	{
-		controller->Respawn();
+		KZ::misc::JoinTeam(player, CS_TEAM_CT, false);
 	}
 	if (player->checkpointService->HasCustomStartPosition())
 	{
@@ -107,7 +108,7 @@ static_function SCMD_CALLBACK(Command_KzHideWeapon)
 
 static_function SCMD_CALLBACK(Command_JoinTeam)
 {
-	KZ::misc::JoinTeam(g_pKZPlayerManager->ToPlayer(controller), atoi(args->Arg(1)), false);
+	KZ::misc::JoinTeam(g_pKZPlayerManager->ToPlayer(controller), atoi(args->Arg(1)), true);
 	return MRES_SUPERCEDE;
 }
 
@@ -175,6 +176,7 @@ void KZ::misc::RegisterCommands()
 	KZNoclipService::RegisterCommands();
 	KZHUDService::RegisterCommands();
 	KZLanguageService::RegisterCommands();
+	KZTelemetryService::RegisterCommands();
 	KZ::mode::RegisterCommands();
 	KZ::style::RegisterCommands();
 }
@@ -320,6 +322,7 @@ void KZ::misc::OnRoundStart()
 	if (gameRules)
 	{
 		gameRules->m_bGameRestart(true);
+		gameRules->m_iRoundWinStatus(1);
 		// Make sure that the round time is synchronized with the global time.
 		gameRules->m_fRoundStartTime().m_Value(0.0f);
 		gameRules->m_flGameStartTime().m_Value(0.0f);

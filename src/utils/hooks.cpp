@@ -14,6 +14,7 @@
 #include "kz/option/kz_option.h"
 #include "kz/quiet/kz_quiet.h"
 #include "kz/timer/kz_timer.h"
+#include "kz/telemetry/kz_telemetry.h"
 #include "kz/db/kz_db.h"
 #include "utils/utils.h"
 #include "entityclass.h"
@@ -123,10 +124,13 @@ SH_DECL_HOOK0(CNetworkGameServerBase, ActivateServer, SH_NOATTRIB, false, bool);
 static_function bool Hook_ActivateServer();
 
 static_global int clientConnectHook {};
+static_global int clientConnectPostHook {};
 SH_DECL_HOOK8(CNetworkGameServerBase, ConnectClient, SH_NOATTRIB, false, CServerSideClientBase *, const char *, ns_address *, int,
 			  CCLCMsg_SplitPlayerConnect_t *, const char *, const byte *, int, bool);
 static_function CServerSideClientBase *Hook_ConnectClient(const char *, ns_address *, int, CCLCMsg_SplitPlayerConnect_t *, const char *, const byte *,
 														  int, bool);
+static_function CServerSideClientBase *Hook_ConnectClientPost(const char *, ns_address *, int, CCLCMsg_SplitPlayerConnect_t *, const char *,
+															  const byte *, int, bool);
 
 // IGameSystem
 static_global int serverGamePostSimulateHook {};
@@ -187,6 +191,13 @@ void hooks::Initialize()
 		SH_STATIC(Hook_ConnectClient), 
 		false
 	);
+	clientConnectPostHook = SH_ADD_DVPHOOK(
+		CNetworkGameServerBase, 
+		ConnectClient,
+		(CNetworkGameServerBase *)modules::engine->FindVirtualTable("CNetworkGameServer"),
+		SH_STATIC(Hook_ConnectClientPost), 
+		true
+	);
 	serverGamePostSimulateHook = SH_ADD_DVPHOOK(
 		IGameSystem, 
 		ServerGamePostSimulate, 
@@ -234,6 +245,7 @@ void hooks::Cleanup()
 	SH_REMOVE_HOOK_ID(activateServerHook);
 
 	SH_REMOVE_HOOK_ID(clientConnectHook);
+	SH_REMOVE_HOOK_ID(clientConnectPostHook);
 
 	SH_REMOVE_HOOK_ID(changeTeamHook);
 
@@ -622,6 +634,7 @@ static_function void Hook_GameFrame(bool simulating, bool bFirstTick, bool bLast
 	KZ::timer::CheckRecordRequests();
 	KZ::timer::CheckCourseTopRequests();
 	KZ::misc::EnforceTimeLimit();
+	KZTelemetryService::ActiveCheck();
 	RETURN_META(MRES_IGNORED);
 }
 
@@ -678,7 +691,6 @@ static_function void Hook_ClientActive(CPlayerSlot slot, bool bLoadGame, const c
 static_function void Hook_ClientDisconnect(CPlayerSlot slot, ENetworkDisconnectionReason reason, const char *pszName, uint64 xuid,
 										   const char *pszNetworkID)
 {
-	g_pKZPlayerManager->OnClientDisconnect(slot, reason, pszName, xuid, pszNetworkID);
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(slot);
 	// Immediately remove the player off the list. We don't need to keep them around.
 	if (player->GetController())
@@ -695,6 +707,7 @@ static_function void Hook_ClientDisconnect(CPlayerSlot slot, ENetworkDisconnecti
 	}
 	player->timerService->OnClientDisconnect();
 	player->optionService->OnClientDisconnect();
+	g_pKZPlayerManager->OnClientDisconnect(slot, reason, pszName, xuid, pszNetworkID);
 	RETURN_META(MRES_IGNORED);
 }
 
@@ -819,11 +832,21 @@ static_function bool Hook_ActivateServer()
 	RETURN_META_VALUE(MRES_IGNORED, 1);
 }
 
+// CNetworkGameServerBase
+
 static_function CServerSideClientBase *Hook_ConnectClient(const char *pszName, ns_address *pAddr, int socket,
 														  CCLCMsg_SplitPlayerConnect_t *pSplitPlayer, const char *pszChallenge,
 														  const byte *pAuthTicket, int nAuthTicketLength, bool bIsLowViolence)
 {
 	g_pKZPlayerManager->OnConnectClient(pszName, pAddr, socket, pSplitPlayer, pszChallenge, pAuthTicket, nAuthTicketLength, bIsLowViolence);
+	RETURN_META_VALUE(MRES_IGNORED, 0);
+}
+
+static_function CServerSideClientBase *Hook_ConnectClientPost(const char *pszName, ns_address *pAddr, int socket,
+															  CCLCMsg_SplitPlayerConnect_t *pSplitPlayer, const char *pszChallenge,
+															  const byte *pAuthTicket, int nAuthTicketLength, bool bIsLowViolence)
+{
+	g_pKZPlayerManager->OnConnectClientPost(pszName, pAddr, socket, pSplitPlayer, pszChallenge, pAuthTicket, nAuthTicketLength, bIsLowViolence);
 	RETURN_META_VALUE(MRES_IGNORED, 0);
 }
 

@@ -84,11 +84,14 @@ void PlayerManager::OnClientConnect(CPlayerSlot slot, const char *pszName, uint6
 {
 }
 
+void PlayerManager::OnConnectClientPost(const char *pszName, ns_address *pAddr, int socket, CCLCMsg_SplitPlayerConnect_t *pSplitPlayer,
+										const char *pszChallenge, const byte *pAuthTicket, int nAuthTicketLength, bool bIsLowViolence)
+{
+}
+
 void PlayerManager::OnClientConnected(CPlayerSlot slot, const char *pszName, uint64 xuid, const char *pszNetworkID, const char *pszAddress,
 									  bool bFakePlayer)
 {
-	this->ToPlayer(slot)->Reset();
-	this->ToPlayer(slot)->SetUnauthenticatedSteamID(xuid);
 }
 
 void PlayerManager::OnClientFullyConnect(CPlayerSlot slot) {}
@@ -97,12 +100,14 @@ void PlayerManager::OnClientPutInServer(CPlayerSlot slot, char const *pszName, i
 
 void PlayerManager::OnClientActive(CPlayerSlot slot, bool bLoadGame, const char *pszName, uint64 xuid)
 {
+	this->ToPlayer(slot)->SetUnauthenticatedSteamID(xuid);
 	this->ToPlayer(slot)->OnPlayerActive();
 }
 
 void PlayerManager::OnClientDisconnect(CPlayerSlot slot, ENetworkDisconnectionReason reason, const char *pszName, uint64 xuid,
 									   const char *pszNetworkID)
 {
+	this->ToPlayer(slot)->Reset();
 }
 
 void PlayerManager::OnClientVoice(CPlayerSlot slot) {}
