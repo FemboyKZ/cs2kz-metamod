@@ -7,7 +7,7 @@
 	"defaultStyles"				""
 	
 	// How long should a map run for before it must be reloaded in minutes (maximum 24 hours)
-	"defaultTimeLimit"			"60.0"
+	"defaultTimeLimit"			"600.0"
 	
 	// Default language to be used if client does not set a language/language is not supported
 	"defaultLanguage"			"en"
