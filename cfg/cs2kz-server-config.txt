@@ -1,7 +1,7 @@
 "ServerCfg"
 {
 	// Default mode for players.
-	"defaultMode"				"Classic"
+	"defaultMode"				"Vanilla"
 	
 	// Default style for players.
 	"defaultStyles"				""
@@ -28,10 +28,10 @@
 	"autoDemoRecording"			"true"
 	
 	// Default chat prefix.
-	"chatPrefix"				"{lime}KZ {grey}|{default}"
+	"chatPrefix"				"{orchid}FKZ {grey}|{default}"
 	
 	// Whether we override chat processing or not.
-	"overridePlayerChat"		"true"
+	"overridePlayerChat"		"false"
 	
 	// Local database configurations.
 	"db"
