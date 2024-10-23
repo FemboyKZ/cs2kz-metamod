@@ -67,7 +67,7 @@ class KZVanilla128ModeService : public KZModeService
 		{215.0f, 255.0f, 265.0f, 270.0f, 273.0f, 275.0f}, // JB
 	};
 
-	const char *modeCvarValues[KZ::mode::numCvar] = {
+	static inline const char *modeCvarValues[] = {
 		"true",          // slope_drop_enable
 		"5.5",           // sv_accelerate
 		"true",          // sv_accelerate_use_weapon_speed
@@ -96,6 +96,7 @@ class KZVanilla128ModeService : public KZModeService
 		"1",             // sv_waterfriction
 		"0.9"            // sv_water_slow_amount
 	};
+	static_assert(Q_ARRAYSIZE(modeCvarValues) == MODECVAR_COUNT, "Array modeCvarValues length is not the same as MODECVAR_COUNT!");
 
 	bool revertJumpTweak {};
 	f32 preJumpZSpeed {};

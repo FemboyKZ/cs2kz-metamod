@@ -67,7 +67,7 @@ class KZBhopModeService : public KZModeService
 		{217.0f, 99995.0f, 99996.0f, 99997.0f, 99998.0f, 99999.0f}, // JB
 	};
 
-	const char *modeCvarValues[KZ::mode::numCvar] = {
+	static inline const char *modeCvarValues[] = {
 		"false",  // slope_drop_enable
 		"6.5",    // sv_accelerate
 		"false",  // sv_accelerate_use_weapon_speed
@@ -96,6 +96,7 @@ class KZBhopModeService : public KZModeService
 		"1",      // sv_waterfriction
 		"0.9"     // sv_water_slow_amount
 	};
+	static_assert(Q_ARRAYSIZE(modeCvarValues) == MODECVAR_COUNT, "Array modeCvarValues length is not the same as MODECVAR_COUNT!");
 
 	bool revertJumpTweak {};
 	f32 preJumpZSpeed {};

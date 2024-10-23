@@ -14,6 +14,7 @@ CGameConfig *g_pGameConfig = NULL;
 KZUtils *g_pKZUtils = NULL;
 KZModeManager *g_pModeManager = NULL;
 ModeServiceFactory g_ModeFactory = [](KZPlayer *player) -> KZModeService * { return new KZVanilla128ModeService(player); };
+MappingInterface *g_pMappingApi = NULL;
 PLUGIN_EXPOSE(KZVanilla128ModePlugin, g_KZVanilla128ModePlugin);
 
 bool KZVanilla128ModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
@@ -31,6 +32,12 @@ bool KZVanilla128ModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_
 	if (success == META_IFACE_FAILED)
 	{
 		V_snprintf(error, maxlen, "Failed to find %s interface", KZ_UTILS_INTERFACE);
+		return false;
+	}
+	g_pMappingApi = (MappingInterface *)g_SMAPI->MetaFactory(KZ_MAPPING_INTERFACE, &success, 0);
+	if (success == META_IFACE_FAILED)
+	{
+		V_snprintf(error, maxlen, "Failed to find %s interface", KZ_MAPPING_INTERFACE);
 		return false;
 	}
 	modules::Initialize();
@@ -1098,7 +1105,7 @@ void KZVanilla128ModeService::OnTeleport(const Vector *newPosition, const QAngle
 // Only touch timer triggers on half ticks.
 bool KZVanilla128ModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
 {
-	if (!trigger->IsEndZone() && !trigger->IsStartZone())
+	if (!g_pMappingApi->IsTriggerATimerZone(trigger))
 	{
 		return true;
 	}
@@ -1113,7 +1120,7 @@ bool KZVanilla128ModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
 
 bool KZVanilla128ModeService::OnTriggerTouch(CBaseTrigger *trigger)
 {
-	if (!trigger->IsEndZone() && !trigger->IsStartZone())
+	if (!g_pMappingApi->IsTriggerATimerZone(trigger))
 	{
 		return true;
 	}
@@ -1127,7 +1134,7 @@ bool KZVanilla128ModeService::OnTriggerTouch(CBaseTrigger *trigger)
 
 bool KZVanilla128ModeService::OnTriggerEndTouch(CBaseTrigger *trigger)
 {
-	if (!trigger->IsStartZone())
+	if (!g_pMappingApi->IsTriggerATimerZone(trigger))
 	{
 		return true;
 	}

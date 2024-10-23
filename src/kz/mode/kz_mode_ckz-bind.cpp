@@ -14,6 +14,7 @@ CGameConfig *g_pGameConfig = NULL;
 KZUtils *g_pKZUtils = NULL;
 KZModeManager *g_pModeManager = NULL;
 ModeServiceFactory g_ModeFactory = [](KZPlayer *player) -> KZModeService * { return new KZClassicBindModeService(player); };
+MappingInterface *g_pMappingApi = NULL;
 PLUGIN_EXPOSE(KZClassicBindModePlugin, g_KZClassicBindModePlugin);
 
 bool KZClassicBindModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
@@ -31,6 +32,12 @@ bool KZClassicBindModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size
 	if (success == META_IFACE_FAILED)
 	{
 		V_snprintf(error, maxlen, "Failed to find %s interface", KZ_UTILS_INTERFACE);
+		return false;
+	}
+	g_pMappingApi = (MappingInterface *)g_SMAPI->MetaFactory(KZ_MAPPING_INTERFACE, &success, 0);
+	if (success == META_IFACE_FAILED)
+	{
+		V_snprintf(error, maxlen, "Failed to find %s interface", KZ_MAPPING_INTERFACE);
 		return false;
 	}
 	modules::Initialize();
@@ -1096,7 +1103,7 @@ void KZClassicBindModeService::OnTeleport(const Vector *newPosition, const QAngl
 // Only touch timer triggers on half ticks.
 bool KZClassicBindModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
 {
-	if (!trigger->IsEndZone() && !trigger->IsStartZone())
+	if (!g_pMappingApi->IsTriggerATimerZone(trigger))
 	{
 		return true;
 	}
@@ -1111,7 +1118,7 @@ bool KZClassicBindModeService::OnTriggerStartTouch(CBaseTrigger *trigger)
 
 bool KZClassicBindModeService::OnTriggerTouch(CBaseTrigger *trigger)
 {
-	if (!trigger->IsEndZone() && !trigger->IsStartZone())
+	if (!g_pMappingApi->IsTriggerATimerZone(trigger))
 	{
 		return true;
 	}
@@ -1125,7 +1132,7 @@ bool KZClassicBindModeService::OnTriggerTouch(CBaseTrigger *trigger)
 
 bool KZClassicBindModeService::OnTriggerEndTouch(CBaseTrigger *trigger)
 {
-	if (!trigger->IsStartZone())
+	if (!g_pMappingApi->IsTriggerATimerZone(trigger))
 	{
 		return true;
 	}
