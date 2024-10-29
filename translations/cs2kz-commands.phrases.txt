@@ -530,6 +530,10 @@
 		"es"		"Reiniciar."
 		"de"		"Neustart."
 	}
+	"Command Description - kz_end"
+	{
+		"en"		"Teleport to the end."
+	}
 	"Command Description - kz_hideweapon"
 	{
 		"en"		"Hide weapon viewmodel."
@@ -638,7 +642,7 @@
 	{
 		"en"		"Retrieve server records."
 		"chi"		"查询服务器记录."
-		"pl"		"Uzyskaj rekordy serwera.
+		"pl"		"Uzyskaj rekordy serwera."
 		"ru"		"Показать рекорд сервера."
 		"fi"		"Hae palvelimen ennätykset."
 		"sv"		"Hämta server rekord."
@@ -693,7 +697,7 @@
 		"tr"		"Haritadaki en iyi global süreyi göster."
 		"ua"		"Показати світовий топ проходжень курсу на мапі."
 		"it"		"Mostra la classifica globale di una mappa."
-    	"es"		"Mostrar mejores tiempos globales del curso de un mapa."
+		"es"		"Mostrar mejores tiempos globales del curso de un mapa."
 		"de"		"Globale Top-Zeiten der Strecken einer Map abrufen."
 	}
 	"Command Description - kz_gcoursetop"
@@ -705,7 +709,7 @@
 		"tr"		"Haritadaki en iyi global süreyi göster."
 		"ua"		"Показати світовий топ проходжень курсу на мапі."
 		"it"		"Mostra la classifica globale di una mappa."
-    	"es"		"Mostrar mejores tiempos globales del curso de un mapa."
+		"es"		"Mostrar mejores tiempos globales del curso de un mapa."
 		"de"		"Globale Top-Zeiten der Strecken einer Map abrufen."
 	}
 	"Command Description - kz_gmaptop"
@@ -717,7 +721,7 @@
 		"tr"		"Haritadaki en iyi global süreyi göster."
 		"ua"		"Показати світовий топ проходжень курсу на мапі."
 		"it"		"Mostra la classifica globale di una mappa."
-    	"es"		"Mostrar mejores tiempos globales del curso de un mapa."
+		"es"		"Mostrar mejores tiempos globales del curso de un mapa."
 		"de"		"Globale Top-Zeiten der Strecken einer Map abrufen."
 	}
 	"Command Description - kz_sctop"
@@ -729,7 +733,7 @@
 		"tr"		"Haritadaki en iyi sunucu süresini göster."
 		"ua"		"Показати топ сервера проходжень курсу на мапі."
 		"it"		"Mostra la classifica del server di una mappa."
-    	"es"		"Mostrar mejores tiempos del servidor del curso de un mapa."
+		"es"		"Mostrar mejores tiempos del servidor del curso de un mapa."
 		"de"		"Top-Zeiten der Strecken eines Servers für eine Map abrufen."
 	}
 	"Command Description - kz_scoursetop"
@@ -741,7 +745,7 @@
 		"tr"		"Haritadaki en iyi sunucu süresini göster."
 		"ua"		"Показати топ сервера проходжень курсу на мапі."
 		"it"		"Mostra la classifica del server di una mappa."
-    	"es"		"Mostrar mejores tiempos del servidor del curso de un mapa."
+		"es"		"Mostrar mejores tiempos del servidor del curso de un mapa."
 		"de"		"Top-Zeiten der Strecken eines Servers für eine Map abrufen."
 	}
 	"Command Description - kz_smaptop"
@@ -753,7 +757,7 @@
 		"tr"		"Haritadaki en iyi sunucu süresini göster."
 		"ua"		"Показати топ сервера проходжень курсу на мапі."
 		"it"		"Mostra la classifica del server di una mappa."
-    	"es"		"Mostrar mejores tiempos del servidor del curso de un mapa."
+		"es"		"Mostrar mejores tiempos del servidor del curso de un mapa."
 		"de"		"Top-Zeiten der Strecken eines Servers für eine Map abrufen."
 	}
 	"Command Description - kz_comparelevel"
@@ -765,11 +769,17 @@
 	"Command Description - kz_playercheck"
 	{
 		"en"		"Check the status of the specified player (default to self)."
+		"sv"		"Kolla status av en specifik spelare (förinställt på dig själv)."
 		"ua"		"Перевірити статус вибраного гравця (за замовчуванням себе)."
 	}
 	"Command Description - kz_pc"
 	{
 		"en"		"Check the status of the specified player (default to self)."
+		"sv"		"Kolla status av en specifik spelare (förinställt på dig själv)."
 		"ua"		"Перевірити статус вибраного гравця (за замовчуванням себе)."
+	}
+	"Command Description - kz_course"
+	{
+		"en"		"Display the current course and the list of all courses in the map."
 	}
 }
