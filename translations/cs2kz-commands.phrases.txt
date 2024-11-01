@@ -533,14 +533,17 @@
 	"Command Description - kz_lj"
 	{
 		"en"		"Teleport to the jumpstat area."
+		"ua"		"Телепортуватися до зони тренування стрибків."
 	}
 	"Command Description - kz_ljarea"
 	{
 		"en"		"Teleport to the jumpstat area."
+		"ua"		"Телепортуватися до зони тренування стрибків."
 	}
 	"Command Description - kz_jsarea"
 	{
 		"en"		"Teleport to the jumpstat area."
+		"ua"		"Телепортуватися до зони тренування стрибків."
 	}
 	"Command Description - kz_end"
 	{
@@ -785,17 +788,20 @@
 		"en"		"Check the status of the specified player (default to self)."
 		"sv"		"Kolla status av en specifik spelare (förinställt på dig själv)."
 		"ua"		"Перевірити статус вибраного гравця (за замовчуванням себе)."
+		"tr"		"Belirli bir oyuncunun statüsünü kontrol et (varsayılan kendin)."
 	}
 	"Command Description - kz_pc"
 	{
 		"en"		"Check the status of the specified player (default to self)."
 		"sv"		"Kolla status av en specifik spelare (förinställt på dig själv)."
 		"ua"		"Перевірити статус вибраного гравця (за замовчуванням себе)."
+		"tr"		"Belirli bir oyuncunun statüsünü kontrol et (varsayılan kendin)."
 	}
 	"Command Description - kz_course"
 	{
 		"en"		"Display the current course and the list of all courses in the map."
 		"sv"		"Visa tillfälliga banan och lista alla tillgängliga banor på kartan."
 		"ua"		"Показати поточний курс, а також список всіх доступних курсів на мапі."
+		"tr"		"Şuanki rotayı ve haritadaki tüm rotaları göster."
 	}
 }
