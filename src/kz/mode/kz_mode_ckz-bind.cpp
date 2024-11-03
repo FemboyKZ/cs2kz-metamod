@@ -13,8 +13,8 @@ KZClassicBindModePlugin g_KZClassicBindModePlugin;
 CGameConfig *g_pGameConfig = NULL;
 KZUtils *g_pKZUtils = NULL;
 KZModeManager *g_pModeManager = NULL;
-ModeServiceFactory g_ModeFactory = [](KZPlayer *player) -> KZModeService * { return new KZClassicBindModeService(player); };
 MappingInterface *g_pMappingApi = NULL;
+ModeServiceFactory g_ModeFactory = [](KZPlayer *player) -> KZModeService * { return new KZClassicBindModeService(player); };
 PLUGIN_EXPOSE(KZClassicBindModePlugin, g_KZClassicBindModePlugin);
 
 bool KZClassicBindModePlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool late)
@@ -134,9 +134,6 @@ CGameEntitySystem *GameEntitySystem()
 
 void KZClassicBindModeService::Reset()
 {
-	this->revertJumpTweak = {};
-	this->preJumpZSpeed = {};
-	this->tweakedJumpZSpeed = {};
 	this->hasValidDesiredViewAngle = {};
 	this->lastValidDesiredViewAngle = vec3_angle;
 	this->lastJumpReleaseTime = {};
@@ -215,44 +212,11 @@ const char **KZClassicBindModeService::GetModeConVarValues()
 	return modeCvarValues;
 }
 
-// Attempt to replicate 128t jump height.
-void KZClassicBindModeService::OnJump()
-{
-	Vector velocity;
-	this->player->GetVelocity(&velocity);
-	this->preJumpZSpeed = velocity.z;
-	// Emulate the 128t vertical velocity before jumping
-	if (this->player->GetPlayerPawn()->m_fFlags & FL_ONGROUND && this->player->GetPlayerPawn()->m_hGroundEntity().IsValid()
-		&& (this->preJumpZSpeed < 0.0f || !this->player->duckBugged))
-	{
-		velocity.z += 0.25 * this->player->GetPlayerPawn()->m_flGravityScale() * 800 * ENGINE_FIXED_TICK_INTERVAL;
-		this->player->SetVelocity(velocity);
-		this->tweakedJumpZSpeed = velocity.z;
-		this->revertJumpTweak = true;
-	}
-}
-
-void KZClassicBindModeService::OnJumpPost()
-{
-	// If we didn't jump, we revert the jump height tweak.
-	Vector velocity;
-	this->player->GetVelocity(&velocity);
-	if (this->revertJumpTweak && velocity.z == this->tweakedJumpZSpeed)
-	{
-		velocity.z = this->preJumpZSpeed;
-		this->player->SetVelocity(velocity);
-	}
-	this->revertJumpTweak = false;
-}
-
 void KZClassicBindModeService::OnStopTouchGround()
 {
 	Vector velocity;
 	this->player->GetVelocity(&velocity);
 	f32 speed = velocity.Length2D();
-
-	// If we are actually taking off, we don't need to revert the change anymore.
-	this->revertJumpTweak = false;
 
 	f32 timeOnGround = this->player->takeoffTime - this->player->landingTime;
 	// Perf
@@ -697,10 +661,8 @@ static_function void ClipVelocity(Vector &in, Vector &normal, Vector &out)
 {
 	f32 backoff = -((in.x * normal.x) + ((normal.z * in.z) + (in.y * normal.y))) * 1;
 	backoff = fmaxf(backoff, 0.0) + 0.03125;
-	for (int i = 0; i < 3; i++)
-	{
-		out = normal * backoff + in;
-	}
+
+	out = normal * backoff + in;
 }
 
 static_function bool IsValidMovementTrace(trace_t &tr, bbox_t bounds, CTraceFilterPlayerMovementCS *filter)
@@ -768,6 +730,7 @@ void KZClassicBindModeService::OnTryPlayerMove(Vector *pFirstDest, trace_t *pFir
 		return;
 	}
 	Vector primalVelocity = velocity;
+
 	bool validPlane {};
 
 	f32 allFraction {};
@@ -906,7 +869,7 @@ void KZClassicBindModeService::OnTryPlayerMove(Vector *pFirstDest, trace_t *pFir
 			potentiallyStuck = pm.m_flFraction == 0.0f;
 		}
 
-		if (pm.m_flFraction * velocity.Length() > 0.03125f)
+		if (pm.m_flFraction * velocity.Length() > 0.03125f || pm.m_flFraction > 0.03125f)
 		{
 			allFraction += pm.m_flFraction;
 			start = pm.m_vEndPos;
@@ -988,7 +951,7 @@ void KZClassicBindModeService::OnTryPlayerMovePost(Vector *pFirstDest, trace_t *
 	bool velocityHeavilyModified =
 		this->tpmVelocity.Normalized().Dot(velocity.Normalized()) < RAMP_BUG_THRESHOLD
 		|| (this->tpmVelocity.Length() > 50.0f && velocity.Length() / this->tpmVelocity.Length() < RAMP_BUG_VELOCITY_THRESHOLD);
-	if (this->overrideTPM && velocityHeavilyModified)
+	if (this->overrideTPM && velocityHeavilyModified && this->tpmOrigin != vec3_invalid && this->tpmVelocity != vec3_invalid)
 	{
 		this->player->SetOrigin(this->tpmOrigin);
 		this->player->SetVelocity(this->tpmVelocity);

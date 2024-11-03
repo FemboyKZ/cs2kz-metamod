@@ -58,12 +58,12 @@ class KZBhopModeService : public KZModeService
 	using KZModeService::KZModeService;
 
 	f32 distanceTiers[JUMPTYPE_COUNT - 3][DISTANCETIER_COUNT] = {
-		{217.0f, 265.0f, 270.0f, 275.0f, 280.0f, 285.0f}, // LJ
+		{217.0f, 265.0f, 270.0f, 275.0f, 280.0f, 285.0f}, 			// LJ
 		{217.0f, 99995.0f, 99996.0f, 99997.0f, 99998.0f, 99999.0f}, // BH
 		{217.0f, 99995.0f, 99996.0f, 99997.0f, 99998.0f, 99999.0f}, // MBH
 		{217.0f, 99995.0f, 99996.0f, 99997.0f, 99998.0f, 99999.0f}, // WJ
-		{120.0f, 180.0f, 185.0f, 190.0f, 195.0f, 200.0f}, // LAJ
-		{217.0f, 260.0f, 265.0f, 270.0f, 275.0f, 280.0f}, // LAH
+		{120.0f, 180.0f, 185.0f, 190.0f, 195.0f, 200.0f}, 			// LAJ
+		{217.0f, 260.0f, 265.0f, 270.0f, 275.0f, 280.0f}, 			// LAH
 		{217.0f, 99995.0f, 99996.0f, 99997.0f, 99998.0f, 99999.0f}, // JB
 	};
 
@@ -99,9 +99,6 @@ class KZBhopModeService : public KZModeService
 	};
 	static_assert(Q_ARRAYSIZE(modeCvarValues) == MODECVAR_COUNT, "Array modeCvarValues length is not the same as MODECVAR_COUNT!");
 
-	bool revertJumpTweak {};
-	f32 preJumpZSpeed {};
-	f32 tweakedJumpZSpeed {};
 	bool hasValidDesiredViewAngle {};
 	QAngle lastValidDesiredViewAngle;
 	f32 lastJumpReleaseTime {};
@@ -127,9 +124,9 @@ class KZBhopModeService : public KZModeService
 
 	bool didTPM {};
 	bool overrideTPM {};
-	Vector tpmVelocity;
-	Vector tpmOrigin;
-	Vector lastValidPlane;
+	Vector tpmVelocity = vec3_invalid;
+	Vector tpmOrigin = vec3_invalid;
+	Vector lastValidPlane = vec3_origin;
 
 	// Keep track of TryPlayerMove path for triggerfixing.
 	bool airMoving {};
@@ -156,8 +153,6 @@ public:
 	virtual void OnDuckPost() override;
 	virtual void OnAirMove() override;
 	virtual void OnAirMovePost() override;
-	virtual void OnJump() override;
-	virtual void OnJumpPost() override;
 	virtual void OnStartTouchGround() override;
 	virtual void OnStopTouchGround() override;
 	virtual void OnTryPlayerMove(Vector *pFirstDest, trace_t *pFirstTrace) override;

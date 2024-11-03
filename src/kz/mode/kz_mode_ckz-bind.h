@@ -99,9 +99,6 @@ class KZClassicBindModeService : public KZModeService
 	};
 	static_assert(Q_ARRAYSIZE(modeCvarValues) == MODECVAR_COUNT, "Array modeCvarValues length is not the same as MODECVAR_COUNT!");
 
-	bool revertJumpTweak {};
-	f32 preJumpZSpeed {};
-	f32 tweakedJumpZSpeed {};
 	bool hasValidDesiredViewAngle {};
 	QAngle lastValidDesiredViewAngle;
 	f32 lastJumpReleaseTime {};
@@ -127,9 +124,9 @@ class KZClassicBindModeService : public KZModeService
 
 	bool didTPM {};
 	bool overrideTPM {};
-	Vector tpmVelocity;
-	Vector tpmOrigin;
-	Vector lastValidPlane;
+	Vector tpmVelocity = vec3_invalid;
+	Vector tpmOrigin = vec3_invalid;
+	Vector lastValidPlane = vec3_origin;
 
 	// Keep track of TryPlayerMove path for triggerfixing.
 	bool airMoving {};
@@ -156,8 +153,6 @@ public:
 	virtual void OnDuckPost() override;
 	virtual void OnAirMove() override;
 	virtual void OnAirMovePost() override;
-	virtual void OnJump() override;
-	virtual void OnJumpPost() override;
 	virtual void OnStartTouchGround() override;
 	virtual void OnStopTouchGround() override;
 	virtual void OnTryPlayerMove(Vector *pFirstDest, trace_t *pFirstTrace) override;
