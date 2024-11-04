@@ -109,19 +109,18 @@ std::string KZHUDService::GetTimerText(const char *language)
 	return std::string("");
 }
 
-void KZHUDService::DrawPanels(KZPlayer *target)
+void KZHUDService::DrawPanels(KZPlayer *player, KZPlayer *target)
 {
-	if (!this->IsShowingPanel())
+	if (!target->hudService->IsShowingPanel())
 	{
 		return;
 	}
 	const char *language = target->languageService->GetLanguage();
-	char buffer[1024];
-	buffer[0] = 0;
-	std::string keyText = this->GetKeyText(language);
-	std::string checkpointText = this->GetCheckpointText(language);
-	std::string timerText = this->GetTimerText(language);
-	std::string speedText = this->GetSpeedText(language);
+
+	std::string keyText = player->hudService->GetKeyText(language);
+	std::string checkpointText = player->hudService->GetCheckpointText(language);
+	std::string timerText = player->hudService->GetTimerText(language);
+	std::string speedText = player->hudService->GetSpeedText(language);
 
 	// clang-format off
 	std::string centerText = KZLanguageService::PrepareMessageWithLang(language, "HUD - Center Text", 
@@ -140,15 +139,15 @@ void KZHUDService::DrawPanels(KZPlayer *target)
 	// Remove trailing newlines just in case a line is empty.
 	if (!centerText.empty())
 	{
-		target->PrintCentre(false, true, centerText.c_str());
+		target->PrintCentre(false, false, centerText.c_str());
 	}
 	if (!alertText.empty())
 	{
-		target->PrintAlert(false, true, alertText.c_str());
+		target->PrintAlert(false, false, alertText.c_str());
 	}
 	if (!htmlText.empty())
 	{
-		target->PrintHTMLCentre(false, true, htmlText.c_str());
+		target->PrintHTMLCentre(false, false, htmlText.c_str());
 	}
 }
 
