@@ -1034,11 +1034,23 @@ void KZBhopModeService::OnDuckPost()
 void KZBhopModeService::OnAirMove()
 {
 	this->airMoving = true;
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
 }
 
 void KZBhopModeService::OnAirMovePost()
 {
 	this->airMoving = false;
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+}
+
+void KZBhopModeService::OnWaterMove()
+{
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
+}
+
+void KZBhopModeService::OnWaterMovePost()
+{
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
 }
 
 void KZBhopModeService::OnTeleport(const Vector *newPosition, const QAngle *newAngles, const Vector *newVelocity)

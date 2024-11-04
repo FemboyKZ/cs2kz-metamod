@@ -1034,11 +1034,23 @@ void KZVanilla128ModeService::OnDuckPost()
 void KZVanilla128ModeService::OnAirMove()
 {
 	this->airMoving = true;
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
 }
 
 void KZVanilla128ModeService::OnAirMovePost()
 {
 	this->airMoving = false;
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+}
+
+void KZVanilla128ModeService::OnWaterMove()
+{
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
+}
+
+void KZVanilla128ModeService::OnWaterMovePost()
+{
+	this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
 }
 
 void KZVanilla128ModeService::OnTeleport(const Vector *newPosition, const QAngle *newAngles, const Vector *newVelocity)
