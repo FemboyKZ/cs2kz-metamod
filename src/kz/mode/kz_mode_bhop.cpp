@@ -943,6 +943,8 @@ void KZBhopModeService::OnTryPlayerMove(Vector *pFirstDest, trace_t *pFirstTrace
 				Vector dir;
 				f32 d;
 				CrossProduct(planes[0], planes[1], dir);
+				// Yes, that's right, you need to do this twice because running it once won't ensure that this will be fully normalized.
+				dir.NormalizeInPlace();
 				dir.NormalizeInPlace();
 				d = dir.Dot(velocity);
 				VectorScale(dir, d, velocity);
