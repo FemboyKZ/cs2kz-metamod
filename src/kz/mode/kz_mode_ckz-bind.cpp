@@ -541,9 +541,8 @@ void KZClassicBindModeService::CalcPrestrafe()
 		punishRate = g_pKZUtils->GetGlobals()->frametime * PS_DECREMENT_RATIO;
 	}
 
-	if (this->player->GetPlayerPawn()->m_fFlags & FL_ONGROUND && this->player->oldWalkMoved)
+	if (this->player->GetPlayerPawn()->m_fFlags & FL_ONGROUND)
 	{
-#ifdef NO_CROUCH_PRE
 		// Prevent instant full pre from crouched prestrafe.
 		Vector velocity;
 		this->player->GetVelocity(&velocity);
@@ -560,15 +559,12 @@ void KZClassicBindModeService::CalcPrestrafe()
 		this->leftPreRatio = MIN(this->leftPreRatio, currentPreRatio);
 		this->rightPreRatio = MIN(this->rightPreRatio, currentPreRatio);
 
-#endif
-
 		this->leftPreRatio += averageRate > PS_MIN_REWARD_RATE ? rewardRate : -punishRate;
 		this->rightPreRatio += averageRate < -PS_MIN_REWARD_RATE ? rewardRate : -punishRate;
 		this->leftPreRatio = Clamp(leftPreRatio, 0.0f, PS_MAX_PS_TIME);
 		this->rightPreRatio = Clamp(rightPreRatio, 0.0f, PS_MAX_PS_TIME);
-#ifdef NO_CROUCH_PRE
+
 		this->bonusSpeed = this->GetPrestrafeGain() / SPEED_NORMAL * velocity.Length2D();
-#endif
 	}
 	else
 	{
