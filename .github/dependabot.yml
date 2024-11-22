@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "fkz"
+    schedule:
+      interval: "monthly"
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    target-branch: "fkz"
+    allow:
+      - dependency-name: "hl2sdk-cs2"
+      - dependency-name: "metamod-source"
+      - dependency-name: "vendor/MultiAddonManager"
+      - dependency-name: "vendor/ClientCvarValue"
+      - dependency-name: "vendor/sql_mm"
+    schedule:
+      interval: "daily"
