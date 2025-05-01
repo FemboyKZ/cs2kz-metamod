@@ -39,4 +39,5 @@ public:
 
 	virtual void Init() override;
 	virtual void Cleanup() override;
+	virtual void OnProcessMovement() override;
 };
