@@ -128,3 +128,9 @@ void KZLowGravityStyleService::Cleanup()
 {
 	this->player->GetPlayerPawn()->m_flGravityScale(1);
 }
+
+void KZLowGravityStyleService::OnProcessMovement()
+{
+	this->player->GetPlayerPawn()->m_flGravityScale(0.5);
+}
+
