@@ -305,12 +305,12 @@ for sdk_target in MMSPlugin.sdk_targets:
   if builder.options.generator == 'vs':
     binary.sources += mode_binary.sources
     binary.sources += style_abh_binary.sources
-	  binary.sources += style_lwg_binary.sources
+    binary.sources += style_lwg_binary.sources
     binary.compiler.cxxincludes += [os.path.join(builder.buildPath, MMSPlugin.plugin_name, f'{binary.compiler.target.platform}-{cxx.target.arch}')]
 
 
   MMSPlugin.binaries += [nodes]
   MMSPlugin.mode_binaries += [mode_nodes]
-  MMSPlugin.style_binaries += [style__abh_nodes, style_lwg_nodes]
+  MMSPlugin.style_binaries += [style_abh_nodes, style_lwg_nodes]
 
 # vim: filetype=python expandtab shiftwidth=2 tabstop=8 textwidth=99
