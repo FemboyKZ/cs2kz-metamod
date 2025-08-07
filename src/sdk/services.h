@@ -7,6 +7,7 @@ class CBasePlayerPawn;
 #include "utils/schema.h"
 #include "entity/cbaseplayerpawn.h"
 #include "cinbuttonstate.h"
+#include "datatypes.h"
 
 class CPlayerPawnComponent
 {
@@ -20,18 +21,19 @@ public:
 	uint8 __pad0030[0x6];    // 0x0
 };
 
-class CCSPlayer_ViewModelServices : public CPlayerPawnComponent
+class CPlayer_WeaponServices : public CPlayerPawnComponent
 {
 public:
-	DECLARE_SCHEMA_CLASS(CCSPlayer_ViewModelServices)
-	SCHEMA_FIELD_POINTER(CHandle<CBaseModelEntity>, m_hViewModel);
+	DECLARE_SCHEMA_CLASS(CPlayer_WeaponServices)
+	SCHEMA_FIELD(CHandle<CBaseModelEntity>, m_hActiveWeapon)
 };
 
 class CPlayer_ObserverServices : public CPlayerPawnComponent
 {
 public:
 	DECLARE_SCHEMA_CLASS(CPlayer_ObserverServices)
-	SCHEMA_FIELD(uint8_t, m_iObserverMode)
+	SCHEMA_FIELD(ObserverMode_t, m_iObserverMode)
+	SCHEMA_FIELD(ObserverMode_t, m_iObserverLastMode)
 	SCHEMA_FIELD(CHandle<CBaseEntity>, m_hObserverTarget)
 };
 
@@ -83,6 +85,8 @@ public:
 	SCHEMA_FIELD(float, m_flDuckSpeed)
 	SCHEMA_FIELD(float, m_flDuckAmount)
 	SCHEMA_FIELD(float, m_flStamina)
+	SCHEMA_FIELD(bool, m_bDuckOverride)
+	SCHEMA_FIELD(float, m_flLastDuckTime)
 };
 
 class CCSPlayer_WaterServices : public CPlayerPawnComponent

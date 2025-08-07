@@ -6,6 +6,7 @@
 #include "mappingapi/kz_mappingapi.h"
 #include "circularbuffer.h"
 
+// TODO: If we want to enable player collision, we need to unhardcode this.
 #define KZ_COLLISION_GROUP_STANDARD  COLLISION_GROUP_DEBRIS
 #define KZ_COLLISION_GROUP_NOTRIGGER LAST_SHARED_COLLISION_GROUP
 
@@ -26,6 +27,7 @@
 
 class KZPlayer;
 class KZAnticheatService;
+class KZBeamService;
 class KZCheckpointService;
 class KZDatabaseService;
 class KZGlobalService;
@@ -59,12 +61,10 @@ public:
 	// General events
 	virtual void Init() override;
 	virtual void Reset() override;
-	virtual void OnPlayerConnect() override;
+	virtual void OnPlayerConnect(u64 steamID64) override;
 	virtual void OnPlayerActive() override;
 	virtual void OnPlayerFullyConnect() override;
 	virtual void OnAuthorized() override;
-
-	virtual META_RES GetPlayerMaxSpeed(f32 &maxSpeed) override;
 
 	virtual void OnPhysicsSimulate() override;
 	virtual void OnPhysicsSimulatePost() override;
@@ -107,8 +107,8 @@ public:
 	virtual void OnFrictionPost() override;
 	virtual void OnWalkMove() override;
 	virtual void OnWalkMovePost() override;
-	virtual void OnTryPlayerMove(Vector *, trace_t *) override;
-	virtual void OnTryPlayerMovePost(Vector *, trace_t *) override;
+	virtual void OnTryPlayerMove(Vector *, trace_t *, bool *) override;
+	virtual void OnTryPlayerMovePost(Vector *, trace_t *, bool *) override;
 	virtual void OnCategorizePosition(bool) override;
 	virtual void OnCategorizePositionPost(bool) override;
 	virtual void OnFinishGravity() override;
@@ -139,6 +139,7 @@ private:
 
 public:
 	KZAnticheatService *anticheatService {};
+	KZBeamService *beamService {};
 	KZCheckpointService *checkpointService {};
 	KZDatabaseService *databaseService {};
 	KZGlobalService *globalService {};
@@ -173,7 +174,7 @@ public:
 
 	void UpdatePlayerModelAlpha();
 	// Teleport checking, used for multiple services
-	virtual bool JustTeleported();
+	virtual bool JustTeleported(f32 threshold = KZ_RECENT_TELEPORT_THRESHOLD);
 	// Triggerfix stuff
 
 	// Hit all triggers from start to end with the specified bounds,
@@ -255,5 +256,6 @@ namespace KZ
 		void InitTimeLimit();
 		void EnforceTimeLimit();
 		void UnrestrictTimeLimit();
+		void OnPhysicsGameSystemFrameBoundary(void *pThis);
 	} // namespace misc
 }; // namespace KZ

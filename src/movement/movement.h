@@ -44,7 +44,6 @@ namespace movement
 	void InitDetours();
 
 	void FASTCALL Detour_PhysicsSimulate(CCSPlayerController *);
-	f32 FASTCALL Detour_GetMaxSpeed(CCSPlayerPawn *);
 	void FASTCALL Detour_SetupMove(CCSPlayer_MovementServices *, PlayerCommand *, CMoveData *);
 	i32 FASTCALL Detour_ProcessUsercmds(CCSPlayerController *, void *, int, bool, float);
 	void FASTCALL Detour_ProcessMovement(CCSPlayer_MovementServices *, CMoveData *);
@@ -64,7 +63,7 @@ namespace movement
 	void FASTCALL Detour_AirMove(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_Friction(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_WalkMove(CCSPlayer_MovementServices *, CMoveData *);
-	void FASTCALL Detour_TryPlayerMove(CCSPlayer_MovementServices *, CMoveData *, Vector *, trace_t *);
+	void FASTCALL Detour_TryPlayerMove(CCSPlayer_MovementServices *, CMoveData *, Vector *, trace_t *, bool *);
 	void FASTCALL Detour_CategorizePosition(CCSPlayer_MovementServices *, CMoveData *, bool);
 	void FASTCALL Detour_CheckFalling(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_PostPlayerMove(CCSPlayer_MovementServices *, CMoveData *);
@@ -82,10 +81,13 @@ public:
 	// This doesn't work during movement processing!
 	virtual void Teleport(const Vector *origin, const QAngle *angles, const Vector *velocity);
 
+	virtual void GetEyeOrigin(Vector *origin);
 	virtual void GetOrigin(Vector *origin);
 	virtual void SetOrigin(const Vector &origin);
 	virtual void GetVelocity(Vector *velocity);
 	virtual void SetVelocity(const Vector &velocity);
+	virtual void GetBaseVelocity(Vector *velocity);
+	virtual void SetBaseVelocity(const Vector &velocity);
 	virtual void GetAngles(QAngle *angles);
 	// It is not recommended use this to change the angle inside movement processing, it might not work!
 	virtual void SetAngles(const QAngle &angles);
@@ -95,12 +97,11 @@ public:
 	virtual TurnState GetTurning();
 
 	virtual bool IsButtonPressed(InputBitMask_t button, bool onlyDown = false);
+	virtual bool IsButtonNewlyPressed(InputBitMask_t button);
 
 	virtual void RegisterTakeoff(bool jumped, bool fromLadder = false, Vector *overrideOrigin = nullptr);
 	virtual void RegisterLanding(const Vector &landingVelocity, bool distbugFix = true);
 	virtual f32 GetGroundPosition();
-
-	virtual META_RES GetPlayerMaxSpeed(f32 &maxSpeed);
 
 	// Movement hooks
 	virtual void OnPhysicsSimulate();
@@ -182,9 +183,9 @@ public:
 
 	virtual void OnWalkMovePost() {}
 
-	virtual void OnTryPlayerMove(Vector *, trace_t *) {}
+	virtual void OnTryPlayerMove(Vector *, trace_t *, bool *) {}
 
-	virtual void OnTryPlayerMovePost(Vector *, trace_t *) {}
+	virtual void OnTryPlayerMovePost(Vector *, trace_t *, bool *) {}
 
 	virtual void OnCategorizePosition(bool) {}
 

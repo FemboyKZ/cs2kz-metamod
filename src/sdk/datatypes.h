@@ -7,7 +7,6 @@
 #pragma clang diagnostic pop
 #endif
 #include "ehandle.h"
-#include "gametrace.h"
 
 class CCSPlayerPawn;
 class CCSPlayerController;
@@ -18,7 +17,7 @@ struct TransmitInfo
 	CBitVec<16384> *m_pTransmitEdict;
 };
 
-enum ObserverMode_t : uint8_t
+enum ObserverMode_t : uint32
 {
 	OBS_MODE_NONE = 0x0,
 	OBS_MODE_FIXED = 0x1,
@@ -39,7 +38,7 @@ enum MsgDest : int32_t
 	HUD_PRINTALERT = 6
 };
 
-enum InputBitMask_t : uint64_t
+enum InputBitMask_t : uint64
 {
 	IN_NONE = 0x0,
 	IN_ALL = 0xffffffffffffffff,
@@ -74,6 +73,7 @@ struct SndOpEventGuid_t
 
 	SoundEventGuid_t m_nGuid;
 	uint32 m_hStackHash;
+	uint32 unknown[3];
 };
 
 // used with EmitSound_t
@@ -150,10 +150,6 @@ struct touchlist_t
 {
 	Vector deltavelocity;
 	trace_t trace;
-};
-
-class CTraceFilterPlayerMovementCS : public CTraceFilter
-{
 };
 
 struct SubtickMove

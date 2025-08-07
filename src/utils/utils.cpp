@@ -69,16 +69,18 @@ bool utils::Initialize(ISmmAPI *ismm, char *error, size_t maxlen)
 	}
 
 	RESOLVE_SIG(g_pGameConfig, "TracePlayerBBox", TracePlayerBBox_t, TracePlayerBBox);
-	RESOLVE_SIG(g_pGameConfig, "InitGameTrace", InitGameTrace_t, InitGameTrace);
-	RESOLVE_SIG(g_pGameConfig, "InitPlayerMovementTraceFilter", InitPlayerMovementTraceFilter_t, InitPlayerMovementTraceFilter);
 	RESOLVE_SIG(g_pGameConfig, "GetLegacyGameEventListener", GetLegacyGameEventListener_t, GetLegacyGameEventListener);
 	RESOLVE_SIG(g_pGameConfig, "SnapViewAngles", SnapViewAngles_t, SnapViewAngles);
 	RESOLVE_SIG(g_pGameConfig, "EmitSound", EmitSoundFunc_t, EmitSound);
 	RESOLVE_SIG(g_pGameConfig, "CCSPlayerController_SwitchTeam", SwitchTeam_t, SwitchTeam);
 	RESOLVE_SIG(g_pGameConfig, "CBasePlayerController_SetPawn", SetPawn_t, SetPawn);
+	RESOLVE_SIG(g_pGameConfig, "CreateEntityByName", CreateEntityByName_t, CreateEntityByName);
+	RESOLVE_SIG(g_pGameConfig, "DispatchSpawn", DispatchSpawn_t, DispatchSpawn);
+	RESOLVE_SIG(g_pGameConfig, "RemoveEntity", RemoveEntity_t, RemoveEntity);
+	RESOLVE_SIG(g_pGameConfig, "DebugDrawMesh", DebugDrawMesh_t, DebugDrawMesh);
 
-	g_pKZUtils = new KZUtils(TracePlayerBBox, InitGameTrace, InitPlayerMovementTraceFilter, GetLegacyGameEventListener, SnapViewAngles, EmitSound,
-							 SwitchTeam, SetPawn);
+	g_pKZUtils = new KZUtils(TracePlayerBBox, GetLegacyGameEventListener, SnapViewAngles, EmitSound, SwitchTeam, SetPawn, CreateEntityByName,
+							 DispatchSpawn, RemoveEntity, DebugDrawMesh);
 
 	utils::UnlockConVars();
 	utils::UnlockConCommands();
@@ -644,7 +646,7 @@ void utils::ResetMap()
 	char cmd[MAX_PATH + 12]; // "changelevel " takes 12 characters
 	if (g_pKZUtils->GetCurrentMapWorkshopID() == 0)
 	{
-		if (g_pKZUtils->GetGlobals()->mapname.ToCStr()[0] == 0)
+		if (!g_pKZUtils->GetGlobals() || !g_pKZUtils->GetGlobals()->mapname.ToCStr() || g_pKZUtils->GetGlobals()->mapname.ToCStr()[0] == 0)
 		{
 			META_CONPRINTF("[KZ] Warning: Map name is empty, cannot reload the current map! Defaulting to de_dust2...\n");
 			V_snprintf(cmd, sizeof(cmd), "changelevel de_dust2");

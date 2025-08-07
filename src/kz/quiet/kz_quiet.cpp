@@ -3,9 +3,12 @@
 #include "gameevents.pb.h"
 #include "cs_gameevents.pb.h"
 
+#include "sdk/entity/cparticlesystem.h"
 #include "sdk/services.h"
 
 #include "kz_quiet.h"
+#include "kz/beam/kz_beam.h"
+#include "kz/measure/kz_measure.h"
 #include "kz/option/kz_option.h"
 #include "utils/utils.h"
 
@@ -37,6 +40,29 @@ void KZ::quiet::OnCheckTransmit(CCheckTransmitInfo **pInfo, int infoCount)
 		targetPlayer->quietService->UpdateHideState();
 		CCSPlayerPawn *targetPlayerPawn = targetPlayer->GetPlayerPawn();
 
+		EntityInstanceByClassIter_t iterParticleSystem(NULL, "info_particle_system");
+
+		for (CParticleSystem *particleSystem = static_cast<CParticleSystem *>(iterParticleSystem.First()); particleSystem;
+			 particleSystem = static_cast<CParticleSystem *>(iterParticleSystem.Next()))
+		{
+			if (particleSystem->m_iTeamNum() != CUSTOM_PARTICLE_SYSTEM_TEAM)
+			{
+				continue; // Only hide custom particle systems created by the plugin.
+			}
+			if (targetPlayer->beamService->playerBeam == particleSystem->GetRefEHandle()
+				|| targetPlayer->beamService->playerBeamNew == particleSystem->GetRefEHandle())
+			{
+				// Don't hide the beam for the owner.
+				continue;
+			}
+			if (targetPlayer->measureService->measurerHandle == particleSystem->GetRefEHandle())
+			{
+				// Don't hide the measure beam for the owner.
+				continue;
+			}
+			pTransmitInfo->m_pTransmitEdict->Clear(particleSystem->GetEntityIndex().Get());
+		}
+
 		EntityInstanceByClassIter_t iter(NULL, "player");
 		// clang-format off
 		for (CCSPlayerPawn *pawn = static_cast<CCSPlayerPawn *>(iter.First());
@@ -44,22 +70,6 @@ void KZ::quiet::OnCheckTransmit(CCheckTransmitInfo **pInfo, int infoCount)
 			 pawn = pawn->m_pEntity->m_pNextByClass ? static_cast<CCSPlayerPawn *>(pawn->m_pEntity->m_pNextByClass->m_pInstance) : nullptr)
 		// clang-format on
 		{
-			if (targetPlayerPawn == pawn)
-			{
-				for (u32 j = 0; j < 3; j++)
-				{
-					if (!pawn->m_pViewModelServices->m_hViewModel[j].IsValid())
-					{
-						continue;
-					}
-					// Hide weapon stuff.
-					if (targetPlayer->quietService->ShouldHideWeapon(j))
-					{
-						pTransmitInfo->m_pTransmitEdict->Clear(pawn->m_pViewModelServices->m_hViewModel[j].GetEntryIndex());
-					}
-				}
-				continue;
-			}
 			// Bit is not even set, don't bother.
 			if (!pTransmitInfo->m_pTransmitEdict->IsBitSet(pawn->entindex()))
 			{
@@ -194,7 +204,6 @@ void KZQuietService::Reset()
 {
 	this->hideOtherPlayers = this->player->optionService->GetPreferenceBool("hideOtherPlayers", false);
 	this->hideWeapon = this->player->optionService->GetPreferenceBool("hideWeapon", false);
-	this->ResetHideWeapon();
 }
 
 void KZQuietService::SendFullUpdate()
@@ -241,6 +250,8 @@ void KZQuietService::ToggleHideWeapon()
 	this->hideWeapon = !this->hideWeapon;
 	this->player->optionService->SetPreferenceBool("hideWeapon", this->hideWeapon);
 }
+
+void KZQuietService::OnPhysicsSimulatePost() {}
 
 void KZQuietService::OnPlayerPreferencesLoaded()
 {

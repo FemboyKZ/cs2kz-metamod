@@ -2,11 +2,13 @@
 #include "utils/utils.h"
 #include "utils/ctimer.h"
 #include "anticheat/kz_anticheat.h"
+#include "beam/kz_beam.h"
 #include "checkpoint/kz_checkpoint.h"
 #include "db/kz_db.h"
 #include "hud/kz_hud.h"
 #include "jumpstats/kz_jumpstats.h"
 #include "language/kz_language.h"
+#include "measure/kz_measure.h"
 #include "mode/kz_mode.h"
 #include "noclip/kz_noclip.h"
 #include "option/kz_option.h"
@@ -35,6 +37,7 @@ void KZPlayer::Init()
 
 	// TODO: initialize every service.
 	delete this->anticheatService;
+	delete this->beamService;
 	delete this->checkpointService;
 	delete this->jumpstatsService;
 	delete this->languageService;
@@ -49,8 +52,10 @@ void KZPlayer::Init()
 	delete this->telemetryService;
 	delete this->triggerService;
 	delete this->globalService;
+	delete this->measureService;
 
 	this->anticheatService = new KZAnticheatService(this);
+	this->beamService = new KZBeamService(this);
 	this->checkpointService = new KZCheckpointService(this);
 	this->jumpstatsService = new KZJumpstatsService(this);
 	this->databaseService = new KZDatabaseService(this);
@@ -66,6 +71,7 @@ void KZPlayer::Init()
 	this->telemetryService = new KZTelemetryService(this);
 	this->triggerService = new KZTriggerService(this);
 	this->globalService = new KZGlobalService(this);
+	this->measureService = new KZMeasureService(this);
 
 	KZ::mode::InitModeService(this);
 }
@@ -87,6 +93,8 @@ void KZPlayer::Reset()
 	this->timerService->Reset();
 	this->specService->Reset();
 	this->triggerService->Reset();
+	this->measureService->Reset();
+	this->beamService->Reset();
 
 	g_pKZModeManager->SwitchToMode(this, KZOptionService::GetOptionStr("defaultMode", KZ_DEFAULT_MODE), true, true);
 	g_pKZStyleManager->ClearStyles(this, true);
@@ -97,9 +105,9 @@ void KZPlayer::Reset()
 	}
 }
 
-void KZPlayer::OnPlayerConnect()
+void KZPlayer::OnPlayerConnect(u64 steamID64)
 {
-	this->languageService->OnPlayerConnect();
+	this->languageService->OnPlayerConnect(steamID64);
 }
 
 void KZPlayer::OnPlayerActive()
@@ -123,12 +131,6 @@ void KZPlayer::OnAuthorized()
 	MovementPlayer::OnAuthorized();
 	this->databaseService->SetupClient();
 	this->globalService->OnPlayerAuthorized();
-}
-
-META_RES KZPlayer::GetPlayerMaxSpeed(f32 &maxSpeed)
-{
-	VPROF_BUDGET(__func__, "CS2KZ");
-	return this->modeService->GetPlayerMaxSpeed(maxSpeed);
 }
 
 void KZPlayer::OnPhysicsSimulate()
@@ -166,6 +168,8 @@ void KZPlayer::OnPhysicsSimulatePost()
 	{
 		KZHUDService::DrawPanels(this, this);
 	}
+	this->measureService->OnPhysicsSimulatePost();
+	this->quietService->OnPhysicsSimulatePost();
 }
 
 void KZPlayer::OnProcessUsercmds(void *cmds, int numcmds)
@@ -212,16 +216,17 @@ void KZPlayer::OnProcessMovement()
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
 	MovementPlayer::OnProcessMovement();
+
 	KZ::mode::ApplyModeSettings(this);
 
 	this->DisableTurnbinds();
+	this->triggerService->OnProcessMovement();
 	this->modeService->OnProcessMovement();
 	FOR_EACH_VEC(this->styleServices, i)
 	{
 		this->styleServices[i]->OnProcessMovement();
 	}
 
-	this->triggerService->OnProcessMovement();
 	this->jumpstatsService->OnProcessMovement();
 	this->checkpointService->TpHoldPlayerStill();
 }
@@ -229,7 +234,6 @@ void KZPlayer::OnProcessMovement()
 void KZPlayer::OnProcessMovementPost()
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
-	this->triggerService->OnProcessMovementPost();
 
 	this->jumpstatsService->UpdateJump();
 	this->modeService->OnProcessMovementPost();
@@ -238,6 +242,7 @@ void KZPlayer::OnProcessMovementPost()
 		this->styleServices[i]->OnProcessMovementPost();
 	}
 	this->jumpstatsService->OnProcessMovementPost();
+	this->triggerService->OnProcessMovementPost();
 	MovementPlayer::OnProcessMovementPost();
 }
 
@@ -469,6 +474,7 @@ void KZPlayer::OnCheckJumpButton()
 	{
 		this->styleServices[i]->OnCheckJumpButton();
 	}
+	this->triggerService->OnCheckJumpButton();
 }
 
 void KZPlayer::OnCheckJumpButtonPost()
@@ -563,24 +569,24 @@ void KZPlayer::OnWalkMovePost()
 	}
 }
 
-void KZPlayer::OnTryPlayerMove(Vector *pFirstDest, trace_t *pFirstTrace)
+void KZPlayer::OnTryPlayerMove(Vector *pFirstDest, trace_t *pFirstTrace, bool *bIsSurfing)
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
-	this->modeService->OnTryPlayerMove(pFirstDest, pFirstTrace);
+	this->modeService->OnTryPlayerMove(pFirstDest, pFirstTrace, bIsSurfing);
 	FOR_EACH_VEC(this->styleServices, i)
 	{
-		this->styleServices[i]->OnTryPlayerMove(pFirstDest, pFirstTrace);
+		this->styleServices[i]->OnTryPlayerMove(pFirstDest, pFirstTrace, bIsSurfing);
 	}
 	this->jumpstatsService->OnTryPlayerMove();
 }
 
-void KZPlayer::OnTryPlayerMovePost(Vector *pFirstDest, trace_t *pFirstTrace)
+void KZPlayer::OnTryPlayerMovePost(Vector *pFirstDest, trace_t *pFirstTrace, bool *bIsSurfing)
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
-	this->modeService->OnTryPlayerMovePost(pFirstDest, pFirstTrace);
+	this->modeService->OnTryPlayerMovePost(pFirstDest, pFirstTrace, bIsSurfing);
 	FOR_EACH_VEC(this->styleServices, i)
 	{
-		this->styleServices[i]->OnTryPlayerMovePost(pFirstDest, pFirstTrace);
+		this->styleServices[i]->OnTryPlayerMovePost(pFirstDest, pFirstTrace, bIsSurfing);
 	}
 	this->jumpstatsService->OnTryPlayerMovePost();
 }
@@ -701,7 +707,6 @@ void KZPlayer::OnStartTouchGround()
 void KZPlayer::OnStopTouchGround()
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
-	this->triggerService->OnStopTouchGround();
 	this->timerService->OnStopTouchGround();
 	this->modeService->OnStopTouchGround();
 	FOR_EACH_VEC(this->styleServices, i)
@@ -709,6 +714,7 @@ void KZPlayer::OnStopTouchGround()
 		this->styleServices[i]->OnStopTouchGround();
 	}
 	this->jumpstatsService->AddJump();
+	this->triggerService->OnStopTouchGround();
 }
 
 void KZPlayer::OnChangeMoveType(MoveType_t oldMoveType)
@@ -730,6 +736,11 @@ void KZPlayer::OnTeleport(const Vector *origin, const QAngle *angles, const Vect
 	this->jumpstatsService->InvalidateJumpstats("Teleported");
 	this->modeService->OnTeleport(origin, angles, velocity);
 	this->timerService->OnTeleport(origin, angles, velocity);
+	if (origin)
+	{
+		this->beamService->OnTeleport();
+	}
+	this->triggerService->OnTeleport();
 }
 
 void KZPlayer::DisableTurnbinds()
@@ -792,9 +803,9 @@ void KZPlayer::UpdatePlayerModelAlpha()
 	}
 }
 
-bool KZPlayer::JustTeleported()
+bool KZPlayer::JustTeleported(f32 threshold)
 {
-	return g_pKZUtils->GetServerGlobals()->curtime - this->lastTeleportTime < KZ_RECENT_TELEPORT_THRESHOLD;
+	return g_pKZUtils->GetServerGlobals()->curtime - this->lastTeleportTime < threshold;
 }
 
 void KZPlayer::ToggleHideLegs()

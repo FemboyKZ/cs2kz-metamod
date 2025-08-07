@@ -2,6 +2,7 @@
 #include "common.h"
 #include "kz/kz.h"
 #include "kz/option/kz_option.h"
+#include "sdk/gamerules.h"
 // Make sure that the server can't run for too long.
 
 // Original value
@@ -23,7 +24,7 @@ CConVarRef<float> mp_roundtime_defuse("mp_roundtime_defuse");
 CConVarRef<float> mp_roundtime_hostage("mp_roundtime_hostage");
 ConVarRefAbstract *convars[] = {&mp_timelimit, &mp_roundtime, &mp_roundtime_defuse, &mp_roundtime_hostage};
 
-static_global void OnCvarChanged(ConVarRefAbstract *ref, CSplitScreenSlot nSlot, const char *pNewValue, const char *pOldValue)
+static_global void OnCvarChanged(ConVarRefAbstract *ref, CSplitScreenSlot nSlot, const char *pNewValue, const char *pOldValue, void *__unk01)
 {
 	assert(mp_timelimit.IsValidRef() && mp_timelimit.IsConVarDataAvailable());
 	assert(mp_roundtime.IsValidRef() && mp_roundtime.IsConVarDataAvailable());
@@ -51,6 +52,14 @@ static_global void OnCvarChanged(ConVarRefAbstract *ref, CSplitScreenSlot nSlot,
 		{
 			cvar->SetString(pNewValue);
 		}
+	}
+
+	// Reflect the change in value to the HUD as well.
+	CCSGameRules *gameRules = g_pKZUtils->GetGameRules();
+	i32 newRoundTime = int(atof(pNewValue) * 60.0f);
+	if (gameRules && gameRules->m_iRoundTime() != newRoundTime)
+	{
+		gameRules->m_iRoundTime(newRoundTime);
 	}
 }
 

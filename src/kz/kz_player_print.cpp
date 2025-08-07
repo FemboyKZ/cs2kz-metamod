@@ -38,8 +38,8 @@ static_function CRecipientFilter *CreateRecipientFilter(KZPlayer *targetPlayer, 
 	{
 		return filter;
 	}
-	CCSPlayerPawn *tarGetPlayerPawn = targetPlayer->GetPlayerPawn();
-	if (!tarGetPlayerPawn)
+	CCSPlayerPawn *targetPlayerPawn = targetPlayer->GetPlayerPawn();
+	if (!targetPlayerPawn)
 	{
 		return nullptr;
 	}
@@ -59,7 +59,7 @@ static_function CRecipientFilter *CreateRecipientFilter(KZPlayer *targetPlayer, 
 		{
 			continue;
 		}
-		if (obsService->m_hObserverTarget().IsValid() && obsService->m_hObserverTarget().GetEntryIndex() == tarGetPlayerPawn->GetEntityIndex().Get())
+		if (obsService->m_hObserverTarget().IsValid() && obsService->m_hObserverTarget().GetEntryIndex() == targetPlayerPawn->GetEntityIndex().Get())
 		{
 			filter->AddRecipient(player->GetPlayerSlot());
 		}
@@ -161,10 +161,15 @@ void KZPlayer::PrintHTMLCentre(bool addPrefix, bool includeSpectators, const cha
 	event->SetInt("duration", 1);
 	event->SetInt("userid", -1);
 
-	for (int i = 0; i < filter->GetRecipientCount(); i++)
+	auto recipients = filter->GetRecipients();
+	int index = recipients.FindNextSetBit(0);
+
+	while (index > -1)
 	{
-		IGameEventListener2 *listener = g_pKZUtils->GetLegacyGameEventListener(filter->GetRecipientIndex(i));
+		IGameEventListener2 *listener = g_pKZUtils->GetLegacyGameEventListener(index);
 		listener->FireGameEvent(event);
+
+		index = recipients.FindNextSetBit(index + 1);
 	}
 	interfaces::pGameEventManager->FreeEvent(event);
 	delete filter;

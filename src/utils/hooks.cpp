@@ -12,6 +12,7 @@
 #include "cs2kz.h"
 #include "ctimer.h"
 #include "kz/kz.h"
+#include "kz/beam/kz_beam.h"
 #include "kz/jumpstats/kz_jumpstats.h"
 #include "kz/option/kz_option.h"
 #include "kz/quiet/kz_quiet.h"
@@ -62,10 +63,10 @@ SH_DECL_MANUALHOOK1_void(ChangeTeam, 0, 0, 0, int);
 static_function void Hook_OnChangeTeamPost(i32 team);
 
 // ISource2GameEntities
-SH_DECL_HOOK7_void(ISource2GameEntities, CheckTransmit, SH_NOATTRIB, false, CCheckTransmitInfo **, int, CBitVec<16384> &,
-				   const Entity2Networkable_t **, const uint16 *, int, bool);
-static_function void Hook_CheckTransmit(CCheckTransmitInfo **pInfo, int, CBitVec<16384> &, const Entity2Networkable_t **pNetworkables,
-										const uint16 *pEntityIndicies, int nEntities, bool bEnablePVSBits);
+SH_DECL_HOOK7_void(ISource2GameEntities, CheckTransmit, SH_NOATTRIB, false, CCheckTransmitInfo **, int, CBitVec<16384> &, CBitVec<16384> &,
+				   const Entity2Networkable_t **, const uint16 *, int);
+static_function void Hook_CheckTransmit(CCheckTransmitInfo **pInfo, int, CBitVec<16384> &, CBitVec<16384> &,
+										const Entity2Networkable_t **pNetworkables, const uint16 *pEntityIndicies, int nEntities);
 
 // ISource2Server
 SH_DECL_HOOK3_void(ISource2Server, GameFrame, SH_NOATTRIB, false, bool, bool, bool);
@@ -460,10 +461,10 @@ static_function void Hook_OnChangeTeamPost(i32 team)
 }
 
 // ISource2GameEntities
-static_function void Hook_CheckTransmit(CCheckTransmitInfo **pInfo, int infoCount, CBitVec<16384> &, const Entity2Networkable_t **pNetworkables,
-										const uint16 *pEntityIndicies, int nEntities, bool bEnablePVSBits)
+static_function void Hook_CheckTransmit(CCheckTransmitInfo **pInfos, int infoCount, CBitVec<16384> &unk1, CBitVec<16384> &,
+										const Entity2Networkable_t **pNetworkables, const uint16 *pEntityIndicies, int nEntities)
 {
-	KZ::quiet::OnCheckTransmit(pInfo, infoCount);
+	KZ::quiet::OnCheckTransmit(pInfos, infoCount);
 	RETURN_META(MRES_IGNORED);
 }
 
@@ -475,6 +476,7 @@ static_function void Hook_GameFrame(bool simulating, bool bFirstTick, bool bLast
 	RecordAnnounce::Check();
 	BaseRequest::CheckRequests();
 	KZTelemetryService::ActiveCheck();
+	KZBeamService::UpdateBeams();
 	RETURN_META(MRES_IGNORED);
 }
 
@@ -669,15 +671,19 @@ static_function bool Hook_ActivateServer()
 	}
 	u64 id = g_pKZUtils->GetCurrentMapWorkshopID();
 	u64 size = g_pKZUtils->GetCurrentMapSize();
-	char md5[33];
-	g_pKZUtils->GetCurrentMapMD5(md5, sizeof(md5));
-	META_CONPRINTF("[KZ] Loading map %s, workshop ID %llu, size %llu, md5 %s\n", g_pKZUtils->GetCurrentMapVPK().Get(), id, size, md5);
+
+	META_CONPRINTF("[KZ] Loading map %s, workshop ID %llu, size %llu\n", g_pKZUtils->GetCurrentMapVPK().Get(), id, size);
 
 	KZJumpstatsService::OnServerActivate();
 	RecordAnnounce::Clear();
 	KZ::misc::OnServerActivate();
 	KZDatabaseService::SetupMap();
 	KZGlobalService::OnActivateServer();
+
+	char md5[33];
+	g_pKZUtils->GetCurrentMapMD5(md5, sizeof(md5));
+	META_CONPRINTF("[KZ] Map file md5: %s\n", md5);
+
 	RETURN_META_VALUE(MRES_IGNORED, 1);
 }
 
@@ -715,6 +721,8 @@ static_function void Hook_BuildGameSessionManifest(const EventBuildGameSessionMa
 		Warning("[CS2KZ] Precache kz soundevents \n");
 		pResourceManifest->AddResource(KZ_WORKSHOP_ADDON_SNDEVENT_FILE);
 	}
+	pResourceManifest->AddResource("particles/ui/hud/ui_map_def_utility_trail.vpcf");
+	pResourceManifest->AddResource("particles/ui/annotation/ui_annotation_line_segment.vpcf");
 }
 
 static_function ILoadingSpawnGroup *Hook_OnCreateLoadingSpawnGroupHook(SpawnGroupHandle_t hSpawnGroup, bool bSynchronouslySpawnEntities,

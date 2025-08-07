@@ -95,7 +95,7 @@ void PlayerManager::OnConnectClient(const char *pszName, ns_address *pAddr, void
 void PlayerManager::OnClientConnect(CPlayerSlot slot, const char *pszName, uint64 xuid, const char *pszNetworkID, bool unk1,
 									CBufferString *pRejectReason)
 {
-	this->ToPlayer(slot)->OnPlayerConnect();
+	this->ToPlayer(slot)->OnPlayerConnect(xuid);
 }
 
 void PlayerManager::OnConnectClientPost(const char *pszName, ns_address *pAddr, void *pNetInfo, C2S_CONNECT_Message *pConnectMsg,
@@ -175,7 +175,7 @@ void PlayerManager::OnValidateAuthTicket(ValidateAuthTicketResponse_t *pResponse
 	for (Player *player : players)
 	{
 		CServerSideClient *cl = player->GetClient();
-		if (cl && *cl->GetClientSteamID() == pResponse->m_SteamID)
+		if (cl && cl->GetClientSteamID() == pResponse->m_SteamID)
 		{
 			player->OnAuthorized();
 			return;

@@ -93,7 +93,7 @@ namespace utils
 			return false;
 		}
 
-		return str[strspn(str, "0123456789")] == 0;
+		return str[strspn(str, "-0123456789.")] == 0;
 	}
 
 	bool ParseSteamID2(std::string_view steamID, u64 &out);
@@ -101,5 +101,25 @@ namespace utils
 	inline u32 GetPaddingForWideString(const char *string)
 	{
 		return MAX(0, strlen(string) - mbstowcs(NULL, string, 0));
+	}
+
+	inline Vector TransformPoint(const CTransform &tm, const Vector &p)
+	{
+		return Vector(tm.m_vPosition.x
+						  + (1.0f - 2.0f * tm.m_orientation.y * tm.m_orientation.y - 2.0f * tm.m_orientation.z * tm.m_orientation.z) * p.x
+						  + (2.0f * tm.m_orientation.x * tm.m_orientation.y - 2.0f * tm.m_orientation.w * tm.m_orientation.z) * p.y
+						  + (2.0f * tm.m_orientation.x * tm.m_orientation.z + 2.0f * tm.m_orientation.w * tm.m_orientation.y) * p.z,
+					  tm.m_vPosition.y + (2.0f * tm.m_orientation.x * tm.m_orientation.y + 2.0f * tm.m_orientation.w * tm.m_orientation.z) * p.x
+						  + (1.0f - 2.0f * tm.m_orientation.x * tm.m_orientation.x - 2.0f * tm.m_orientation.z * tm.m_orientation.z) * p.y
+						  + (2.0f * tm.m_orientation.y * tm.m_orientation.z - 2.0f * tm.m_orientation.w * tm.m_orientation.x) * p.z,
+					  tm.m_vPosition.z + (2.0f * tm.m_orientation.x * tm.m_orientation.z - 2.0f * tm.m_orientation.w * tm.m_orientation.y) * p.x
+						  + (2.0f * tm.m_orientation.y * tm.m_orientation.z + 2.0f * tm.m_orientation.w * tm.m_orientation.x) * p.y
+						  + (1.0f - 2.0f * tm.m_orientation.x * tm.m_orientation.x - 2.0f * tm.m_orientation.y * tm.m_orientation.y) * p.z);
+	}
+
+	template<typename T = CBaseEntity>
+	T *CreateEntityByName(const char *className)
+	{
+		return reinterpret_cast<T *>(g_pKZUtils->CreateEntityByName(className, -1));
 	}
 } // namespace utils

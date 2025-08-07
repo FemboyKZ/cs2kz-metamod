@@ -1,6 +1,7 @@
 #include "movement.h"
 #include "utils/utils.h"
 #include "utils/detours.h"
+#include "sdk/tracefilter.h"
 #include "tier0/memdbgon.h"
 
 void MovementPlayer::OnProcessMovement()
@@ -52,6 +53,11 @@ CCSPlayer_MovementServices *MovementPlayer::GetMoveServices()
 	return static_cast<CCSPlayer_MovementServices *>(this->GetPlayerPawn()->m_pMovementServices());
 };
 
+void MovementPlayer::GetEyeOrigin(Vector *origin)
+{
+	g_pSource2GameClients->ClientEarPosition(this->GetPlayerSlot(), origin);
+}
+
 void MovementPlayer::GetOrigin(Vector *origin)
 {
 	if (this->processingMovement && this->currentMoveData)
@@ -96,8 +102,6 @@ void MovementPlayer::SetOrigin(const Vector &origin)
 		}
 		pawn->Teleport(&origin, NULL, NULL);
 	}
-	// Origin teleported, remove all errors.
-	this->GetMoveServices()->m_flAccumulatedJumpError() = 0;
 }
 
 void MovementPlayer::GetVelocity(Vector *velocity)
@@ -131,6 +135,22 @@ void MovementPlayer::SetVelocity(const Vector &velocity)
 			return;
 		}
 		pawn->Teleport(NULL, NULL, &velocity);
+	}
+}
+
+void MovementPlayer::GetBaseVelocity(Vector *velocity)
+{
+	if (this->GetPlayerPawn())
+	{
+		*velocity = this->GetPlayerPawn()->m_vecBaseVelocity();
+	}
+}
+
+void MovementPlayer::SetBaseVelocity(const Vector &velocity)
+{
+	if (this->GetPlayerPawn())
+	{
+		this->GetPlayerPawn()->m_vecBaseVelocity(velocity);
 	}
 }
 
@@ -195,6 +215,16 @@ bool MovementPlayer::IsButtonPressed(InputBitMask_t button, bool onlyDown)
 	return ms->m_nButtons()->IsButtonPressed(button, onlyDown);
 }
 
+bool MovementPlayer::IsButtonNewlyPressed(InputBitMask_t button)
+{
+	CCSPlayer_MovementServices *ms = this->GetMoveServices();
+	if (!ms)
+	{
+		return false;
+	}
+	return ms->m_nButtons()->IsButtonNewlyPressed(button);
+}
+
 f32 MovementPlayer::GetGroundPosition()
 {
 	CMoveData *mv = this->currentMoveData;
@@ -203,10 +233,7 @@ f32 MovementPlayer::GetGroundPosition()
 		mv = &this->moveDataPost;
 	}
 
-	CTraceFilterPlayerMovementCS filter;
-	g_pKZUtils->InitPlayerMovementTraceFilter(filter, this->GetPlayerPawn(),
-											  this->GetPlayerPawn()->m_Collision().m_collisionAttribute().m_nInteractsWith(),
-											  COLLISION_GROUP_PLAYER_MOVEMENT);
+	CTraceFilterPlayerMovementCS filter(this->GetPlayerPawn());
 
 	Vector ground = mv->m_vecAbsOrigin;
 	ground.z -= 2;
@@ -229,7 +256,6 @@ f32 MovementPlayer::GetGroundPosition()
 	}
 
 	trace_t trace;
-	g_pKZUtils->InitGameTrace(&trace);
 
 	g_pKZUtils->TracePlayerBBox(mv->m_vecAbsOrigin, ground, bounds, &filter, trace);
 
@@ -382,11 +408,6 @@ void MovementPlayer::Reset()
 	this->ignoreNextCategorizePosition = false;
 	this->collidingWithWorld = false;
 	this->previousOnGround = false;
-}
-
-META_RES MovementPlayer::GetPlayerMaxSpeed(f32 &maxSpeed)
-{
-	return MRES_IGNORED;
 }
 
 void MovementPlayer::GetBBoxBounds(bbox_t *bounds)

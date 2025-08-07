@@ -5,6 +5,7 @@
 #include "kz/mode/kz_mode.h"
 #include "kz/style/kz_style.h"
 #include "kz/timer/kz_timer.h"
+#include "kz/noclip/kz_noclip.h"
 
 void KZTriggerService::Reset()
 {
@@ -16,6 +17,7 @@ void KZTriggerService::Reset()
 	this->lastTouchedSingleBhop = {};
 	this->bhopTouchCount = {};
 	this->lastTouchedSequentialBhops = {};
+	this->pushEvents.RemoveAll();
 }
 
 void KZTriggerService::OnPhysicsSimulate()
@@ -43,11 +45,12 @@ void KZTriggerService::OnPhysicsSimulate()
 
 void KZTriggerService::OnPhysicsSimulatePost()
 {
+	this->player->UpdateTriggerTouchList();
 	this->TouchAll();
 	/*
 		NOTE:
 		1. To prevent multiplayer bugs, make sure that all of these cvars are part of the mode convars.
-		2. The apply part is here mostly just to replicate the values to the client.
+		2. The apply part is here mostly just to replicate the values to the client, with the exception of push triggers.
 	*/
 
 	if (this->modifiers.enableSlideCount > 0)
@@ -61,6 +64,7 @@ void KZTriggerService::OnPhysicsSimulatePost()
 
 	if (this->antiBhopActive)
 	{
+		this->modifiers.jumpFactor = 0.0f;
 		this->ApplyAntiBhop(!this->lastAntiBhopActive);
 	}
 	else if (this->lastAntiBhopActive)
@@ -68,8 +72,18 @@ void KZTriggerService::OnPhysicsSimulatePost()
 		this->CancelAntiBhop(true);
 	}
 
+	this->ApplyJumpFactor(this->modifiers.jumpFactor != this->lastModifiers.jumpFactor);
+	// Try to apply pushes one last time on this tick, to catch all the buttons that were not set during movement processing (attack+attack2).
+	this->ApplyPushes();
+	this->CleanupPushEvents();
+
 	this->lastModifiers = this->modifiers;
 	this->lastAntiBhopActive = this->antiBhopActive;
+}
+
+void KZTriggerService::OnCheckJumpButton()
+{
+	this->ApplyJumpFactor(false);
 }
 
 void KZTriggerService::OnProcessMovement() {}
@@ -84,6 +98,9 @@ void KZTriggerService::OnProcessMovementPost()
 	}
 
 	this->antiBhopActive = false;
+	this->modifiers.jumpFactor = 1.0f;
+	this->ApplyPushes();
+	this->CleanupPushEvents();
 }
 
 void KZTriggerService::OnStopTouchGround()
@@ -108,6 +125,22 @@ void KZTriggerService::OnStopTouchGround()
 			//  otherwise jumping back and forth between a multibhop and a singlebhop wouldn't work.
 			// We only care about the most recently touched trigger!
 			this->lastTouchedSingleBhop = tracker.kzTrigger->entity;
+		}
+		if (this->player->jumped && KZ::mapapi::IsPushTrigger(tracker.kzTrigger->type)
+			&& tracker.kzTrigger->push.pushConditions & KzMapPush::KZ_PUSH_JUMP_EVENT)
+		{
+			this->AddPushEvent(tracker.kzTrigger);
+		}
+	}
+}
+
+void KZTriggerService::OnTeleport()
+{
+	FOR_EACH_VEC_BACK(this->pushEvents, i)
+	{
+		if (this->pushEvents[i].source->push.cancelOnTeleport)
+		{
+			this->pushEvents.Remove(i);
 		}
 	}
 }
@@ -142,14 +175,14 @@ void KZTriggerService::UpdateTriggerTouchList()
 	if (this->player->timerService->GetPaused())
 	{
 		// No gravity while paused.
-		this->player->GetPlayerPawn()->m_flGravityScale(0);
+		this->player->GetPlayerPawn()->SetGravityScale(0);
 	}
 	else
 	{
-		this->player->GetPlayerPawn()->m_flGravityScale(1);
+		this->player->GetPlayerPawn()->SetGravityScale(1);
 	}
 
-	if (!this->player->IsAlive() || this->player->GetCollisionGroup() != KZ_COLLISION_GROUP_STANDARD)
+	if (!this->player->IsAlive() || this->player->noclipService->IsNoclipping())
 	{
 		this->EndTouchAll();
 		return;
@@ -206,7 +239,7 @@ void KZTriggerService::UpdateTriggerTouchList()
 		}
 	}
 
-	UpdateModifiersInternal();
+	this->UpdateModifiersInternal();
 }
 
 void KZTriggerService::EndTouchAll()
@@ -295,7 +328,7 @@ bool KZTriggerService::IsManagedByTriggerService(CBaseEntity *toucher, CBaseEnti
 		player = g_pKZPlayerManager->ToPlayer(static_cast<CCSPlayerPawn *>(touched));
 		trigger = static_cast<CBaseTrigger *>(toucher);
 	}
-	if (player && player->IsAlive() && player->GetMoveType() != MOVETYPE_NOCLIP)
+	if (player && player->IsAlive())
 	{
 		return true;
 	}
