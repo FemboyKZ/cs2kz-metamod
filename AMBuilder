@@ -223,6 +223,86 @@ def configure_ckz(sdk, cxx):
     os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_ckz.cpp'),
   ]
   return ckz_binary
+
+def configure_ckzb(sdk, cxx):
+  ckzb_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.metadata['name']}-mode-ckz-bind", sdk)
+
+  if ckzb_binary.compiler.family == 'gcc' or ckzb_binary.compiler.family == 'clang':
+    ckzb_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
+
+  if ckzb_binary.compiler.family == 'clang':
+    ckzb_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
+
+  ckzb_binary.compiler.cxxincludes += [
+      os.path.join(builder.sourcePath, 'src'),
+      os.path.join(builder.sourcePath, 'hl2sdk-cs2'),
+      os.path.join(builder.sourcePath, 'hl2sdk-cs2', 'public', 'entity2'),
+      os.path.join(builder.sourcePath, 'hl2sdk-cs2', 'game', 'server'),
+  ]
+
+  if ckzb_binary.compiler.target.platform == 'linux':
+    ckzb_binary.compiler.postlink += [
+      os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
+    ] 
+    ckzb_binary.sources += [
+      'src/utils/plat_linux.cpp'
+      ]
+  elif ckzb_binary.compiler.target.platform == 'windows':
+    ckzb_binary.compiler.postlink += [
+      os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
+    ]
+    ckzb_binary.sources += [
+      'src/utils/plat_win.cpp'
+      ]
+
+  ckzb_binary.sources += [
+    os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
+    os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_ckz-bind.cpp'),
+  ]
+  return ckzb_binary
+
+def configure_vnl128(sdk, cxx):
+  vnl128_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.metadata['name']}-mode-vnl-128", sdk)
+
+  if vnl128_binary.compiler.family == 'gcc' or vnl128_binary.compiler.family == 'clang':
+    vnl128_binary.compiler.defines += ['_GLIBCXX_USE_CXX11_ABI=0']
+
+  if vnl128_binary.compiler.family == 'clang':
+    vnl128_binary.compiler.cxxflags += ['-Wno-register', '-frtti', '-Wno-invalid-offsetof', '-Wno-parentheses']
+
+  vnl128_binary.compiler.cxxincludes += [
+      os.path.join(builder.sourcePath, 'src'),
+      os.path.join(builder.sourcePath, 'hl2sdk-cs2'),
+      os.path.join(builder.sourcePath, 'hl2sdk-cs2', 'public', 'entity2'),
+      os.path.join(builder.sourcePath, 'hl2sdk-cs2', 'game', 'server'),
+  ]
+
+  if vnl128_binary.compiler.target.platform == 'linux':
+    vnl128_binary.compiler.postlink += [
+      os.path.join(sdk['path'], 'lib', 'linux64', 'mathlib.a'),
+    ] 
+    vnl128_binary.sources += [
+      'src/utils/plat_linux.cpp'
+      ]
+  elif vnl128_binary.compiler.target.platform == 'windows':
+    vnl128_binary.compiler.postlink += [
+      os.path.join(sdk['path'], 'lib', 'public', 'win64', 'mathlib.lib'),
+    ]
+    vnl128_binary.sources += [
+      'src/utils/plat_win.cpp'
+      ]
+
+  vnl128_binary.sources += [
+    os.path.join(sdk['path'], 'entity2', 'entityidentity.cpp'),
+    os.path.join(sdk['path'], 'entity2', 'entitysystem.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'utils', 'schema.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'utils', 'gameconfig.cpp'),
+    os.path.join(builder.sourcePath, 'src', 'kz', 'mode', 'kz_mode_vnl-128.cpp'),
+  ]
+  return vnl128_binary
   
 def configure_abh(sdk, cxx):
   abh_binary = MMSPlugin.HL2Library(builder, cxx, f"{MMSPlugin.metadata['name']}-style-autobhop", sdk)
@@ -273,6 +353,8 @@ cxx = MMSPlugin.sdk_target.cxx
 binary = configure_main(sdk_target, sdk, cxx)
 # Mode binaries
 ckz_binary = configure_ckz(sdk, cxx)
+ckzb_binary = configure_ckzb(sdk, cxx)
+vnl128_binary = configure_vnl128(sdk, cxx)
 # Style binaries
 abh_binary = configure_abh(sdk, cxx)
 
@@ -280,16 +362,22 @@ protoc_builder = get_proto_builder(builder, sdk_target, sdk)
 
 binary.custom = [protoc_builder]
 ckz_binary.custom = [protoc_builder]
+ckzb_binary.custom = [protoc_builder]
+vnl128_binary.custom = [protoc_builder]
 abh_binary.custom = [protoc_builder]
 
 # We have to split nodes here because they will be put into different folders.
 nodes = builder.Add(binary)
 mode_nodes = builder.Add(ckz_binary)
+mode_nodes = builder.Add(ckzb_binary)
+mode_nodes = builder.Add(vnl128_binary)
 style_nodes = builder.Add(abh_binary)
 
 # If we are generating a VS project, make sure to add the modes in, and the build folder for linter.
 if builder.options.generator == 'vs':
   binary.sources += ckz_binary.sources
+  binary.sources += ckzb_binary.sources
+  binary.sources += vnl128_binary.sources
   binary.sources += abh_binary.sources
   binary.compiler.cxxincludes += [os.path.join(builder.buildPath, MMSPlugin.plugin_name, f'{binary.compiler.target.platform}-{cxx.target.arch}')]
 
