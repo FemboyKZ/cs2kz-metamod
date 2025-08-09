@@ -368,9 +368,9 @@ abh_binary.custom = [protoc_builder]
 
 # We have to split nodes here because they will be put into different folders.
 nodes = builder.Add(binary)
-mode_nodes = builder.Add(ckz_binary)
-mode_nodes = builder.Add(ckzb_binary)
-mode_nodes = builder.Add(vnl128_binary)
+ckz_nodes = builder.Add(ckz_binary)
+ckzb_nodes = builder.Add(ckzb_binary)
+vnl128_nodes = builder.Add(vnl128_binary)
 style_nodes = builder.Add(abh_binary)
 
 # If we are generating a VS project, make sure to add the modes in, and the build folder for linter.
@@ -383,7 +383,7 @@ if builder.options.generator == 'vs':
 
 
 MMSPlugin.binaries += [nodes]
-MMSPlugin.mode_binaries += [mode_nodes]
+MMSPlugin.mode_binaries += [ckz_nodes, ckzb_nodes, vnl128_nodes]
 MMSPlugin.style_binaries += [style_nodes]
 
 # vim: filetype=python expandtab shiftwidth=2 tabstop=8 textwidth=99
