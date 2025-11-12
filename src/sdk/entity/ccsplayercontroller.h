@@ -1,5 +1,6 @@
 #pragma once
 #include "cbaseplayercontroller.h"
+#include "sdk/services.h"
 #include "random.h"
 
 enum OverlapState : uint8
@@ -21,17 +22,30 @@ struct CStrafeStats
 	uint32 overlaps[16];
 	uint32 underlaps[16];
 };
-
+#ifndef IDA_IGNORE
 class CCSPlayerController : public CBasePlayerController
 {
 public:
-	DECLARE_SCHEMA_CLASS(CCSPlayerController);
+	DECLARE_SCHEMA_CLASS_ENTITY(CCSPlayerController);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawn>, m_hPlayerPawn);
 	SCHEMA_FIELD(CHandle<CCSPlayerPawnBase>, m_hObserverPawn);
 	SCHEMA_FIELD_POINTER_OFFSET(CStrafeStats, m_nNonSuspiciousHitStreak, 4)
 	SCHEMA_FIELD(GameTime_t, m_LastTimePlayerWasDisconnectedForPawnsRemove)
 	SCHEMA_FIELD(int32, m_DesiredObserverMode)
 	SCHEMA_FIELD(CHandle<CCSPlayerPawn>, m_hDesiredObserverTarget)
+	SCHEMA_FIELD(CUtlSymbolLarge, m_szClan)
+	SCHEMA_FIELD(int32, m_iCompetitiveRanking)
+	SCHEMA_FIELD(int8, m_iCompetitiveRankType)
+	SCHEMA_FIELD(CCSPlayerController_InventoryServices *, m_pInventoryServices)
+
+	void SetClan(const char *clan)
+	{
+		if (!clan)
+		{
+			return;
+		}
+		this->m_szClan(clan);
+	}
 
 	CStrafeStats *GetCStrafeStats()
 	{
@@ -87,3 +101,4 @@ public:
 		CALL_VIRTUAL(void, g_pGameConfig->GetOffset("ControllerRespawn"), this);
 	}
 };
+#endif

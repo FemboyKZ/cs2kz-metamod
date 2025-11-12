@@ -157,7 +157,25 @@
 		"sv"		"{grey}Ban Poäng: {purple}{points}{grey} {yellow}Allmän{grey} (+{purple}{points_gained}{grey}) / {purple}{points}{grey} {blue}PRO{grey} (+{purple}{points_gained}{grey}) | Spelar Gradering: {purple}{player_rating}{grey}"
 		"lv"		"{grey}Trases punkti: {purple}{points}{grey} {yellow}Kopvērtējums{grey} (+{purple}{points_gained}{grey}) / {purple}{points_pro}{grey} {blue}PRO{grey} (+{purple}{points_gained_pro}{grey}) | Spēlētāja reitings: {purple}{player_rating}{grey}"
 	}
-	
+	"Beat Course Info - New World Record"
+	{
+		// Bill set a new GLOBAL RECORD [Mode]
+		"#format"	"player_name:s,mode:s"
+		"en"		"{lime}{player_name}{grey} set a new {red}GLOBAL RECORD {grey}[{purple}{mode}{grey}]"
+		"chi"		"{lime}{player_name}{grey} 取得了新的 {red}世界记录 {grey}[{purple}{mode}{grey}]"
+		"ua"		"{lime}{player_name}{grey} встановив новий {red}GLOBAL RECORD {grey}[{purple}{mode}{grey}]"
+		"sv"		"{lime}{player_name}{grey} satte ett {red}GLOBALT REKORD {grey}[{purple}{mode}{grey}]"
+	}
+	"Beat Course Info - New World Record (PRO)"
+	{
+		// Bill set a new GLOBAL PRO RECORD [Mode]
+		"#format"	"player_name:s,mode:s"
+		"en"		"{lime}{player_name}{grey} set a new {darkred}GLOBAL PRO RECORD{grey}[{purple}{mode}{grey}]"
+		"chi"		"{lime}{player_name}{grey} 取得了新的 {darkred}裸跳世界记录{grey}[{purple}{mode}{grey}]"
+		"ua"		"{lime}{player_name}{grey} встановив новий {darkred}GLOBAL PRO RECORD{grey}[{purple}{mode}{grey}]"
+		"sv"		"{lime}{player_name}{grey} satte ett {darkred}GLOBALT PRO REKORD{grey}[{purple}{mode}{grey}]"
+	}
+
 	"Can't Pause (Generic)"
 	{
 		"en"		"{darkred}You can't pause right now."
@@ -709,4 +727,18 @@
 		"lv"		"{darkred}Neizdevās apstrādāt pašreizējo pieprasījumu. (Kartē {map_name} nav neviena trases)"
 	}
 
+	"Timer Stop Sound Enabled"
+	{
+		"en"		"{grey}You have enabled the timer stop sound."
+		"chi"		"{grey}你已启用计时器停止音效."
+		"ua"		"{grey}Ви увімкнули звук зупинки таймера."
+		"sv"		"{grey}Du har aktiverat timerstoppljud."
+	}
+	"Timer Stop Sound Disabled"
+	{
+		"en"		"{grey}You have disabled the timer stop sound."
+		"chi"		"{grey}你已禁用计时器停止音效."
+		"ua"		"{grey}Ви вимкнули звук зупинки таймера."
+		"sv"		"{grey}Du har inaktiverat timerstoppljud."
+	}
 }

@@ -32,10 +32,6 @@ public:
 
 	bool ShouldHideWeapon()
 	{
-		if (!this->player->IsAlive())
-		{
-			return false;
-		}
 		return this->hideWeapon;
 	}
 

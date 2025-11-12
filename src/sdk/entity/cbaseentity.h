@@ -8,7 +8,7 @@
 extern CGameConfig *g_pGameConfig;
 
 class CCollisionProperty;
-
+#ifndef IDA_IGNORE
 class CNetworkedQuantizedFloat
 {
 public:
@@ -20,7 +20,7 @@ public:
 class CNetworkOriginCellCoordQuantizedVector
 {
 public:
-	DECLARE_SCHEMA_CLASS_INLINE(CNetworkOriginCellCoordQuantizedVector)
+	DECLARE_SCHEMA_CLASS_BASE(CNetworkOriginCellCoordQuantizedVector, 1)
 
 	SCHEMA_FIELD(uint16, m_cellX)
 	SCHEMA_FIELD(uint16, m_cellY)
@@ -35,7 +35,7 @@ public:
 class CNetworkVelocityVector
 {
 public:
-	DECLARE_SCHEMA_CLASS_INLINE(CNetworkVelocityVector)
+	DECLARE_SCHEMA_CLASS_BASE(CNetworkVelocityVector, 1)
 
 	SCHEMA_FIELD(CNetworkedQuantizedFloat, m_vecX)
 	SCHEMA_FIELD(CNetworkedQuantizedFloat, m_vecY)
@@ -45,7 +45,7 @@ public:
 class CGameSceneNode
 {
 public:
-	DECLARE_SCHEMA_CLASS(CGameSceneNode)
+	DECLARE_SCHEMA_CLASS_ENTITY(CGameSceneNode)
 
 	SCHEMA_FIELD(CEntityInstance *, m_pOwner)
 	SCHEMA_FIELD(CGameSceneNode *, m_pParent)
@@ -62,7 +62,7 @@ public:
 class CBodyComponent
 {
 public:
-	DECLARE_SCHEMA_CLASS(CBodyComponent)
+	DECLARE_SCHEMA_CLASS_ENTITY(CBodyComponent)
 
 	SCHEMA_FIELD(CGameSceneNode *, m_pSceneNode)
 };
@@ -70,63 +70,13 @@ public:
 class CNetworkTransmitComponent
 {
 public:
-	DECLARE_SCHEMA_CLASS(CNetworkTransmitComponent)
-
-	class m_nStateFlags_prop
-	{
-	public:
-		std::add_lvalue_reference_t<int> Get()
-		{
-			static constexpr auto datatable_hash = hash_32_fnv1a_const(ThisClassName);
-			static constexpr auto prop_hash = hash_32_fnv1a_const("m_nTransmitStateOwnedCounter");
-			static const auto m_key = schema::GetOffset(ThisClassName, datatable_hash, "m_nTransmitStateOwnedCounter", prop_hash);
-			static const size_t offset = ((::size_t)&reinterpret_cast<char const volatile &>((((ThisClass *)0)->m_nStateFlags)));
-			ThisClass *pThisClass = (ThisClass *)((byte *)this - offset);
-			return *reinterpret_cast<std::add_pointer_t<int>>((uintptr_t)(pThisClass) + m_key.offset + -4);
-		}
-
-		void Set(int val)
-		{
-			static constexpr auto datatable_hash = hash_32_fnv1a_const(ThisClassName);
-			static constexpr auto prop_hash = hash_32_fnv1a_const("m_nTransmitStateOwnedCounter");
-			static const auto m_key = schema::GetOffset(ThisClassName, datatable_hash, "m_nTransmitStateOwnedCounter", prop_hash);
-			static const auto m_chain = schema::FindChainOffset(ThisClassName);
-			static const size_t offset = ((::size_t)&reinterpret_cast<char const volatile &>((((ThisClass *)0)->m_nStateFlags)));
-			ThisClass *pThisClass = (ThisClass *)((byte *)this - offset);
-			*reinterpret_cast<std::add_pointer_t<int>>((uintptr_t)(pThisClass) + m_key.offset + -4) = val;
-		}
-
-		operator std::add_lvalue_reference_t<int>()
-		{
-			return Get();
-		}
-
-		std::add_lvalue_reference_t<int> operator()()
-		{
-			return Get();
-		}
-
-		std::add_lvalue_reference_t<int> operator->()
-		{
-			return Get();
-		}
-
-		void operator()(int val)
-		{
-			Set(val);
-		}
-
-		void operator=(int val)
-		{
-			Set(val);
-		}
-	} m_nStateFlags;
+	DECLARE_SCHEMA_CLASS_ENTITY(CNetworkTransmitComponent)
 };
 
 class CBaseEntity : public CEntityInstance
 {
 public:
-	DECLARE_SCHEMA_CLASS(CBaseEntity)
+	DECLARE_SCHEMA_CLASS_ENTITY(CBaseEntity)
 
 	SCHEMA_FIELD(CBodyComponent *, m_CBodyComponent)
 	SCHEMA_FIELD(CBitVec<64>, m_isSteadyState)
@@ -218,3 +168,4 @@ public:
 		this->m_flGravityScale(scale);
 	}
 };
+#endif

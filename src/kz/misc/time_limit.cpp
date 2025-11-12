@@ -22,6 +22,7 @@ CConVarRef<float> mp_timelimit("mp_timelimit");
 CConVarRef<float> mp_roundtime("mp_roundtime");
 CConVarRef<float> mp_roundtime_defuse("mp_roundtime_defuse");
 CConVarRef<float> mp_roundtime_hostage("mp_roundtime_hostage");
+CConVarRef<CUtlString> nextlevel("nextlevel");
 ConVarRefAbstract *convars[] = {&mp_timelimit, &mp_roundtime, &mp_roundtime_defuse, &mp_roundtime_hostage};
 
 static_global void OnCvarChanged(ConVarRefAbstract *ref, CSplitScreenSlot nSlot, const char *pNewValue, const char *pOldValue, void *__unk01)
@@ -30,9 +31,15 @@ static_global void OnCvarChanged(ConVarRefAbstract *ref, CSplitScreenSlot nSlot,
 	assert(mp_roundtime.IsValidRef() && mp_roundtime.IsConVarDataAvailable());
 	assert(mp_roundtime_defuse.IsValidRef() && mp_roundtime_defuse.IsConVarDataAvailable());
 	assert(mp_roundtime_hostage.IsValidRef() && mp_roundtime_hostage.IsConVarDataAvailable());
-
+	assert(nextlevel.IsValidRef() && nextlevel.IsConVarDataAvailable());
 	u16 refIndex = ref->GetAccessIndex();
 	bool replicate = false;
+
+	if (nextlevel.GetAccessIndex() == ref->GetAccessIndex() && nextlevel.Get().IsEmpty() && !g_pKZUtils->GetCurrentMapName().IsEmpty())
+	{
+		nextlevel.Set(g_pKZUtils->GetCurrentMapName());
+		return;
+	}
 
 	for (ConVarRefAbstract *cvar : convars)
 	{
@@ -65,6 +72,11 @@ static_global void OnCvarChanged(ConVarRefAbstract *ref, CSplitScreenSlot nSlot,
 
 void KZ::misc::EnforceTimeLimit()
 {
+	if (nextlevel.Get().IsEmpty() && !g_pKZUtils->GetCurrentMapName().IsEmpty())
+	{
+		nextlevel.Set(g_pKZUtils->GetCurrentMapName());
+	}
+
 	if (cvarLoaded || !mp_timelimit.IsValidRef() || !mp_roundtime.IsValidRef() || !mp_roundtime_defuse.IsValidRef()
 		|| !mp_roundtime_hostage.IsValidRef())
 	{

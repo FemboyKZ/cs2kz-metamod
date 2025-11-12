@@ -28,7 +28,6 @@ static_function CEntityHandle CreateMeasureBeam(const Vector &start, const Vecto
 	pKeyValues->SetBool("start_active", true);
 	measurer->m_iTeamNum(CUSTOM_PARTICLE_SYSTEM_TEAM);
 	measurer->DispatchSpawn(pKeyValues);
-	delete pKeyValues;
 	return measurer->GetRefEHandle();
 }
 
@@ -150,7 +149,7 @@ void KZMeasureService::MeasureBlock()
 KZMeasureService::MeasurePos KZMeasureService::GetLookAtPos(const Vector *overrideOrigin, const QAngle *overrideAngles)
 {
 	Vector origin;
-	CCSPlayerPawnBase *pawn = static_cast<CCSPlayerPawnBase *>(this->player->GetCurrentPawn());
+	CCSPlayerPawn *pawn = static_cast<CCSPlayerPawn *>(this->player->GetCurrentPawn());
 	if (overrideOrigin)
 	{
 		origin = *overrideOrigin;

@@ -11,6 +11,7 @@
 #include "../db/kz_db.h"
 #include "../option/kz_option.h"
 #include "../telemetry/kz_telemetry.h"
+#include "../profile/kz_profile.h"
 
 #include "utils/simplecmds.h"
 #include "utils/plat.h"
@@ -149,7 +150,10 @@ void KZ::mode::ApplyModeSettings(KZPlayer *player)
 
 bool KZModeManager::RegisterMode(PluginId id, const char *shortModeName, const char *longModeName, ModeServiceFactory factory)
 {
-	if (!shortModeName || V_strlen(shortModeName) == 0 || !longModeName || V_strlen(longModeName) == 0)
+	// clang-format off
+	if (!shortModeName || V_strlen(shortModeName) == 0 || V_strlen(shortModeName) > 64
+	 || !longModeName || V_strlen(longModeName) == 0 || V_strlen(longModeName) > 64)
+	// clang-format on
 	{
 		return false;
 	}
@@ -232,7 +236,7 @@ void KZModeManager::UnregisterMode(PluginId id)
 	}
 }
 
-bool KZModeManager::SwitchToMode(KZPlayer *player, const char *modeName, bool silent, bool force)
+bool KZModeManager::SwitchToMode(KZPlayer *player, const char *modeName, bool silent, bool force, bool updatePreference)
 {
 	// Don't change mode if it doesn't exist. Instead, print a list of modes to the client.
 	if (!modeName || !V_stricmp("", modeName))
@@ -297,7 +301,13 @@ bool KZModeManager::SwitchToMode(KZPlayer *player, const char *modeName, bool si
 	player->SetVelocity({0, 0, 0});
 	player->jumpstatsService->InvalidateJumpstats("Externally modified");
 
-	player->optionService->SetPreferenceStr("preferredMode", modeName);
+	player->profileService->currentRating = -1.0f;
+	player->profileService->RequestRating();
+	player->profileService->UpdateClantag();
+	if (updatePreference)
+	{
+		player->optionService->SetPreferenceStr("preferredMode", modeName);
+	}
 	return true;
 }
 

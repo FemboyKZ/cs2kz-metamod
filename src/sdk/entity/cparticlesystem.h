@@ -1,10 +1,10 @@
 #pragma once
 #include "cbasemodelentity.h"
-
+#ifndef IDA_IGNORE
 class CParticleSystem : public CBaseModelEntity
 {
 public:
-	DECLARE_SCHEMA_CLASS(CParticleSystem)
+	DECLARE_SCHEMA_CLASS_ENTITY(CParticleSystem)
 
 	SCHEMA_FIELD_POINTER(char, m_szSnapshotFileName)
 	SCHEMA_FIELD(bool, m_bActive)
@@ -30,3 +30,4 @@ public:
 };
 
 #define CUSTOM_PARTICLE_SYSTEM_TEAM 5
+#endif

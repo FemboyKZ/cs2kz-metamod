@@ -20,6 +20,8 @@
 #include "kz/timer/kz_timer.h"
 #include "kz/tip/kz_tip.h"
 #include "kz/global/kz_global.h"
+#include "kz/profile/kz_profile.h"
+#include "kz/pistol/kz_pistol.h"
 
 #include "sdk/gamerules.h"
 #include "sdk/physicsgamesystem.h"
@@ -236,23 +238,6 @@ SCMD(kz_lj, SCFL_JUMPSTATS | SCFL_MAP)
 SCMD_LINK(kz_ljarea, kz_lj);
 SCMD_LINK(kz_jsarea, kz_lj);
 
-SCMD(kz_hideweapon, SCFL_PLAYER)
-{
-	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-
-	if (!player->GetPlayerPawn() || !player->GetPlayerPawn()->m_pWeaponServices())
-	{
-		return MRES_SUPERCEDE;
-	}
-	CBaseModelEntity *activeWeapon = player->GetPlayerPawn()->m_pWeaponServices()->m_hActiveWeapon().Get();
-	if (activeWeapon)
-	{
-		player->GetPlayerPawn()->m_pWeaponServices()->m_hActiveWeapon.Set(nullptr);
-		player->languageService->PrintChat(true, false, "Quiet Option - Show Weapon - Disable");
-	}
-	return MRES_SUPERCEDE;
-}
-
 SCMD(kz_playercheck, SCFL_PLAYER)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
@@ -358,7 +343,10 @@ void KZ::misc::JoinTeam(KZPlayer *player, int newTeam, bool restorePos)
 	}
 	else if (newTeam == CS_TEAM_CT && currentTeam != CS_TEAM_CT || newTeam == CS_TEAM_T && currentTeam != CS_TEAM_T)
 	{
-		player->GetPlayerPawn()->CommitSuicide(false, true);
+		if (player->GetPlayerPawn())
+		{
+			player->GetPlayerPawn()->CommitSuicide(false, true);
+		}
 		player->GetController()->SwitchTeam(newTeam);
 		player->GetController()->Respawn();
 		if (restorePos && player->specService->HasSavedPosition())
@@ -383,6 +371,12 @@ void KZ::misc::JoinTeam(KZPlayer *player, int newTeam, bool restorePos)
 			}
 		}
 		player->specService->ResetSavedPosition();
+	}
+
+	// The pistol service doesn't need to do anything if the player doesn't join a playing team.
+	if (newTeam >= CS_TEAM_T)
+	{
+		player->pistolService->OnPlayerJoinTeam();
 	}
 	player->tipService->OnPlayerJoinTeam(newTeam);
 }
@@ -463,17 +457,19 @@ void KZ::misc::ProcessConCommand(ConCommandRef cmd, const CCommandContext &ctx, 
 		auto name = player->GetName();
 		auto msg = message.Get();
 
+		std::string coloredPrefix = player->profileService->GetPrefix(true);
+		std::string prefix = player->profileService->GetPrefix(false);
 		if (player->IsAlive())
 		{
-			utils::SayChat(player->GetController(), "{lime}%s{default}: %s", name, msg);
-			utils::PrintConsoleAll("%s: %s", name, msg);
-			META_CONPRINTF("%s: %s\n", name, msg);
+			utils::SayChat(player->GetController(), "%s {lime}%s{default}: %s", coloredPrefix.c_str(), name, msg);
+			utils::PrintConsoleAll("%s %s: %s", prefix.c_str(), name, msg);
+			META_CONPRINTF("%s %s: %s\n", prefix.c_str(), name, msg);
 		}
 		else
 		{
-			utils::SayChat(player->GetController(), "{grey}* {lime}%s{default}: %s", name, msg);
-			utils::PrintConsoleAll("* %s: %s", name, msg);
-			META_CONPRINTF("* %s: %s\n", name, msg);
+			utils::SayChat(player->GetController(), "{grey}* %s {lime}%s{default}: %s", coloredPrefix.c_str(), name, msg);
+			utils::PrintConsoleAll("* %s %s: %s", prefix.c_str(), name, msg);
+			META_CONPRINTF("* %s %s: %s\n", prefix.c_str(), name, msg);
 		}
 	}
 

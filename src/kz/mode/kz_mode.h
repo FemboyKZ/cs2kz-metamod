@@ -16,6 +16,7 @@ enum KzModeCvars
 	MODECVAR_SV_AIRACCELERATE,
 	MODECVAR_SV_AIR_MAX_WISHSPEED,
 	MODECVAR_SV_AUTOBUNNYHOPPING,
+	MODECVAR_SV_BOUNCE,
 	MODECVAR_SV_ENABLEBUNNYHOPPING,
 	MODECVAR_SV_FRICTION,
 	MODECVAR_SV_GRAVITY,
@@ -70,9 +71,9 @@ public:
 
 	virtual void OnPhysicsSimulatePost() {}
 
-	virtual void OnProcessUsercmds(void *, int) {}
+	virtual void OnProcessUsercmds(PlayerCommand *, int) {}
 
-	virtual void OnProcessUsercmdsPost(void *, int) {}
+	virtual void OnProcessUsercmdsPost(PlayerCommand *, int) {}
 
 	virtual void OnSetupMove(PlayerCommand *) {}
 
@@ -138,6 +139,10 @@ public:
 	virtual void OnAirMove() {}
 
 	virtual void OnAirMovePost() {}
+
+	virtual void OnAirAccelerate(Vector &wishdir, f32 &wishspeed, f32 &accel) {}
+
+	virtual void OnAirAcceleratePost(Vector wishdir, f32 wishspeed, f32 accel) {}
 
 	virtual void OnFriction() {}
 
@@ -221,7 +226,7 @@ public:
 	// clang-format on
 
 	virtual void UnregisterMode(PluginId id);
-	bool SwitchToMode(KZPlayer *player, const char *modeName, bool silent = false, bool force = false);
+	bool SwitchToMode(KZPlayer *player, const char *modeName, bool silent = false, bool force = false, bool updatePreference = true);
 	void Cleanup();
 };
 
@@ -243,6 +248,7 @@ namespace KZ::mode
 		"sv_airaccelerate",
 		"sv_air_max_wishspeed",
 		"sv_autobunnyhopping",
+		"sv_bounce",
 		"sv_enablebunnyhopping",
 		"sv_friction",
 		"sv_gravity",
@@ -281,6 +287,7 @@ namespace KZ::mode
 		new CConVarRef<float>("sv_airaccelerate"),
 		new CConVarRef<float>("sv_air_max_wishspeed"),
 		new CConVarRef<bool>("sv_autobunnyhopping"),
+		new CConVarRef<float>("sv_bounce"),
 		new CConVarRef<bool>("sv_enablebunnyhopping"),
 		new CConVarRef<float>("sv_friction"),
 		new CConVarRef<float>("sv_gravity"),

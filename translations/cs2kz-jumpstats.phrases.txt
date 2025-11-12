@@ -458,6 +458,7 @@
 	"Player gravity scale changed"
 	{
 		"en"		"Player gravity scale changed"
+		"chi"		"玩家重力大小更改"
 		"sv"		"Spelarens gravitationsskala har ändrats"
 		"ua"		"Змінено шкалу гравітації гравця"
 		"ko"		"플레이어 중력 비율이 변경되었습니다."
@@ -527,6 +528,7 @@
 	"Disabled By Map"
 	{
 		"en"		"Disabled by map"
+		"chi"		"被地图禁用"
 		"sv"		"Inaktiverat av kartan"
 		"ua"		"Вимкнено налаштуваннями мапи."
 		"ko"		"맵에 의해 비활성화 됨"
@@ -598,6 +600,12 @@
 		"ko"		"{grey}항상 활성화된 점프 통계 기능을 비활성화했습니다."
 		"es"		"{grey}Has desactivado las estadísticas de salto siempre activas."
 		"lv"		"{grey}Tu esi atspējojis vienmēr ieslēgto lēcienu statistiku."
+	}
+	"Jumpstats Option - Tier Hint"
+	{
+		"en"		"{grey}Valid jumpstats tiers: {default}0-6, none, meh, impressive, perfect, godlike, ownage, wrecker{grey}."
+		"ua"		"{grey}Існуючі тіри стрибків: {default}0-6, none, meh, impressive, perfect, godlike, ownage, wrecker{grey}."
+		"sv"		"{grey}Giltiga jumpstats nivåer: {default}0-6, none, meh, impressive, perfect, godlike, ownage, wrecker{grey}."
 	}
 	"Jumpstats Option - Jumpstats Minimum Broadcast Tier - Hint"
 	{
@@ -726,7 +734,23 @@
 		"es"		"({reason})"
 		"lv"		"({reason})"
 	}
-	
+		
+	"Jumpstats Report - Chat Summary (Simple)"
+	{
+		// LJ: 258.1 | 6 Strafes | 79% Sync | 275.81 Pre | 346.98 Max
+		"#format"	"jump_color:s,jump_type_short:s,distance:.1f,strafe_count:i,strafe_text:s,sync:.0f,pre:.2f,max:.2f,bad_angles:.0f,overlap:.0f,dead_air:.0f,deviation:.1f,width:.1f,height:.2f"
+		"en"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Sync | {olive}{pre} {grey}Pre | {olive}{max} {grey}Max"
+		"chi"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}同步 | {olive}{pre} {grey}地速 | {olive}{max} {grey}空速"
+		"pl"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Sync | {olive}{pre} {grey}Pre | {olive}{max} {grey}Max"
+		"fi"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Synkki | {olive}{pre} {grey}Edeltävä | {olive}{max} {grey}Maks"
+		"sv"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Synk | {olive}{pre} {grey}Pre | {olive}{max} {grey}Max"
+		"ua"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Синхр. | {olive}{pre} {grey}Pre | {olive}{max} {grey}Макс."
+		"tr"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Sync | {olive}{pre} {grey}Pre | {olive}{max} {grey}Max"
+		"it"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Sync | {olive}{pre} {grey}Pre | {olive}{max} {grey}Max"
+		"ko"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}싱크 | {olive}{pre} {grey}프리 | {olive}{max} {grey}최대"
+		"es"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Sinc | {olive}{pre} {grey}Pre | {olive}{max} {grey}Máx"
+		"lv"		"{jump_color}{jump_type_short}{grey}: {jump_color}{distance} {grey}| {olive}{strafe_count} {grey}{strafe_text} | {olive}{sync}%%%% {grey}Sync | {olive}{pre} {grey}Pre | {olive}{max} {grey}Max"
+	}
 	"Jumpstats Report - Chat Summary"
 	{
 		// LJ: 258.1 | 6 Strafes | 79% Sync | 275.81 Pre | 346.98 Max
@@ -791,5 +815,72 @@
 		"ko"		"{gain_eff}%%%% GainEff | {air_path} Airpath | {deviation} Deviation | {width} Width | {air_time} Airtime | {offset} Offset | {duck_end_time}/{duck_total_time} Crouched"
 		"es"		"{gain_eff}%%%% GainEff | {air_path} Airpath | {deviation} Desviación | {width} Ancho | {air_time} Tiempo en el aire | {offset} Desplazamiento | {duck_end_time}/{duck_total_time} Agachado"
 		"lv"		"{gain_eff}%%%% GainEff | {air_path} Airpath | {deviation} Deviation | {width} Width | {air_time} Airtime | {offset} Offset | {duck_end_time}/{duck_total_time} Crouched"
+	}
+	"Jumpstats Option - Jumpstats Minimum Tier - Disabled"
+	{
+		"en"		"{grey}Jumpstats chat reporting disabled."
+		"chi"		"{grey}已关闭聊天框内的跳跃数据."
+		"ua"		"{grey}Відображення статистики стрибків у чаті вимкнено."
+		"sv"		"{grey}Jumpstats chatt rapportering inaktiverad."
+	}
+	"Jumpstats Option - Jumpstats Minimum Tier - Response"
+	{
+		"#format"	"tier:s"
+		"en"		"{grey}Jumpstats chat reporting threshold is now {default}{tier}."
+		"chi"		"{grey}显示聊天框内的跳跃数据的起始等级为 {default}{tier}."
+		"ua"		"{grey}Поріг відображення статистики стрибків встановлено на {default}{tier}."
+		"sv"		"{grey}Jumpstats chat rapporteringsgränsen är nu {default}{tier}."
+	}
+	"Jumpstats Option - Jumpstats Minimum Console Tier - Disabled"
+	{
+		"en"		"{grey}Jumpstats console reporting disabled."
+		"chi"		"{grey}已关闭控制台的跳跃数据显示."
+		"ua"		"{grey}Відображення статистики стрибків у консолі вимкнено."
+		"sv"		"{grey}Jumpstats konsol rapportering inaktiverad."
+	}
+	"Jumpstats Option - Jumpstats Minimum Console Tier - Response"
+	{
+		"#format"	"tier:s"
+		"en"		"{grey}Jumpstats console reporting threshold is now {default}{tier}."
+		"chi"		"{grey}显示控制台内的跳跃数据的起始等级为 {default}{tier}."
+		"ua"		"{grey}Поріг відображення статистики стрибків у консолі встановлено на {default}{tier}."
+		"sv"		"{grey}Jumpstats konsol rapporteringsgränsen är nu {default}{tier}."
+	}
+	"Jumpstats Option - Jumpstats Minimum Sound Broadcast Tier - Disabled"
+	{
+		"en"		"{grey}Jumpstats sound broadcast disabled."
+		"chi"		"{grey}已禁用广播跳跃数据音效."
+		"ua"		"{grey}Звукові ефекти для стрибків вимкнено."
+		"sv"		"{grey}Jumpstats ljudsändning inaktiverad."
+	}
+	"Jumpstats Option - Jumpstats Minimum Sound Broadcast Tier - Response"
+	{
+		"#format"	"tier:s"
+		"en"		"{grey}Jumpstats sound broadcast threshold is now {default}{tier}."
+		"chi"		"{grey}广播跳跃数据音效的起始等级为 {default}{tier}."
+		"ua"		"{grey}Поріг звукових ефектів для стрибків встановлено на {default}{tier}."
+		"sv"		"{grey}Jumpstats ljudsändnings gränsen är nu {default}{tier}."
+	}
+	"Jumpstats Option - Jumpstats Volume - Response"
+	{
+		"#format"	"volume:.1f"
+		"en"		"{grey}Jumpstats volume set to {default}{volume}."
+		"chi"		"{grey}跳跃数据音效的音量设置为 {default}{volume}."
+		"ua"		"{grey}Гучність звукових ефектів стрибків встановлено на {default}{volume}."
+		"sv"		"{grey}Jumpstats volymen är nu {default}{volume}."
+	}
+	"Jumpstats Option - Extended Chat Stats - Enable"
+	{
+		"en"		"{grey}Extended jumpstats chat reporting enabled."
+		"chi"		"{grey}已启用在聊天框展示详细跳跃数据."
+		"ua"		"{grey}Увімкнено розширену статистику стрибків."
+		"sv"		"{grey}Utökad jumpstats chattrapportering aktiverat."
+	}
+	"Jumpstats Option - Extended Chat Stats - Disable"
+	{
+		"en"		"{grey}Extended jumpstats chat reporting disabled."
+		"chi"		"{grey}已禁用在聊天框展示详细跳跃数据."
+		"ua"		"{grey}Розширену статистику стрибків вимкнуто."
+		"sv"		"{grey}Utökad jumpstats chattrapportering inaktiverat."
 	}
 }

@@ -4,17 +4,31 @@
 #include "kz/global/events.h"
 #include "kz/language/kz_language.h"
 #include "kz/mode/kz_mode.h"
+#include "kz/recording/kz_recording.h"
 #include "kz/style/kz_style.h"
 
 #include "vendor/sql_mm/src/public/sql_mm.h"
 
+CConVar<bool> kz_debug_announce_global("kz_debug_announce_global", FCVAR_NONE, "Print debug info for record announcements.", false);
+
 RecordAnnounce::RecordAnnounce(KZPlayer *player)
 	: uid(RecordAnnounce::idCount++), timestamp(g_pKZUtils->GetServerGlobals()->realtime), userID(player->GetClient()->GetUserID()),
-	  time(player->timerService->GetTime()), teleports(player->checkpointService->GetTeleportCount())
+	  time(player->timerService->GetTime()), runUUID(player->recordingService->GetCurrentRunUUID().ToString()),
+	  teleports(player->checkpointService->GetTeleportCount())
 {
 	this->local = KZDatabaseService::IsReady() && KZDatabaseService::IsMapSetUp();
 	this->global = player->hasPrime && KZGlobalService::IsAvailable();
-
+	if (kz_debug_announce_global.Get() && !this->global)
+	{
+		if (!player->hasPrime)
+		{
+			META_CONPRINTF("[KZ::Global - %u] Player %s does not have Prime, will not submit globally.\n", uid, player->GetName());
+		}
+		if (!KZGlobalService::IsAvailable())
+		{
+			META_CONPRINTF("[KZ::Global - %u] Global service is not available, will not submit globally.\n", uid);
+		}
+	}
 	// Setup player
 	this->player.name = player->GetName();
 	this->player.steamid64 = player->GetSteamId64();
@@ -24,6 +38,13 @@ RecordAnnounce::RecordAnnounce(KZPlayer *player)
 	this->mode.name = mode.shortModeName;
 	KZ::API::Mode apiMode;
 	this->global = KZ::API::DecodeModeString(this->mode.name, apiMode);
+	if (!this->global)
+	{
+		if (kz_debug_announce_global.Get())
+		{
+			META_CONPRINTF("[KZ::Global - %u] Mode '%s' is not a valid global mode, will not submit globally.\n", uid, this->mode.name.c_str());
+		}
+	}
 	this->mode.md5 = mode.md5;
 	if (mode.databaseID <= 0)
 	{
@@ -70,6 +91,16 @@ RecordAnnounce::RecordAnnounce(KZPlayer *player)
 
 		if (course == nullptr)
 		{
+			if (kz_debug_announce_global.Get())
+			{
+				META_CONPRINTF("[KZ::Global - %u] Course '%s' not found on global map '%s', will not submit globally.\n", uid, this->course.name.c_str(),
+							   currentMap->name.c_str());
+				META_CONPRINTF("[KZ::Global - %u] Available courses:\n", uid);
+				for (const KZ::API::Map::Course &c : currentMap->courses)
+				{
+					META_CONPRINTF(" - %s\n", c.name.c_str());
+				}
+			}
 			global = false;
 		}
 		else
@@ -124,7 +155,7 @@ void RecordAnnounce::SubmitGlobal()
 {
 	auto callback = [uid = this->uid](KZ::API::events::NewRecordAck &ack)
 	{
-		META_CONPRINTF("[KZ::Global] Record submitted under ID %d\n", ack.recordId);
+		META_CONPRINTF("[KZ::Global - %u] Record submitted under ID %d\n", uid, ack.recordId);
 
 		RecordAnnounce *rec = RecordAnnounce::Get(uid);
 		if (!rec)
@@ -133,7 +164,8 @@ void RecordAnnounce::SubmitGlobal()
 		}
 		rec->globalResponse.received = true;
 		rec->globalResponse.recordId = ack.recordId;
-		rec->globalResponse.playerRating = ack.playerRating;
+		// TODO: Remove this 0.1 when API sends the correct rating
+		rec->globalResponse.playerRating = ack.playerRating * 0.1f;
 		rec->globalResponse.overall.rank = ack.overallData.rank;
 		rec->globalResponse.overall.points = ack.overallData.points;
 		rec->globalResponse.overall.maxRank = ack.overallData.leaderboardSize;
@@ -154,6 +186,10 @@ void RecordAnnounce::SubmitGlobal()
 	KZGlobalService::SubmitRecordResult submissionResult = player->globalService->SubmitRecord(
 		this->globalFilterID, this->time, this->teleports, this->mode.md5, (void *)(&this->styles), this->metadata.c_str(), callback);
 
+	if (kz_debug_announce_global.Get())
+	{
+		META_CONPRINTF("[KZ::Global - %u] Global record submission result: %d\n", uid, static_cast<int>(submissionResult));
+	}
 	switch (submissionResult)
 	{
 		case KZGlobalService::SubmitRecordResult::PlayerNotAuthenticated: /* fallthrough */
@@ -274,8 +310,8 @@ void RecordAnnounce::SubmitLocal()
 		}
 		rec->UpdateLocalCache();
 	};
-	KZDatabaseService::SaveTime(this->player.steamid64, this->course.localID, this->mode.localID, this->time, this->teleports, this->styleIDs,
-								this->metadata, onSuccess, onFailure);
+	KZDatabaseService::SaveTime(this->runUUID.c_str(), this->player.steamid64, this->course.localID, this->mode.localID, this->time, this->teleports,
+								this->styleIDs, this->metadata, onSuccess, onFailure);
 }
 
 void RecordAnnounce::UpdateLocalCache()
@@ -291,7 +327,7 @@ void RecordAnnounce::UpdateLocalCache()
 void RecordAnnounce::AnnounceRun()
 {
 	char formattedTime[32];
-	KZTimerService::FormatTime(time, formattedTime, sizeof(formattedTime));
+	utils::FormatTime(time, formattedTime, sizeof(formattedTime));
 
 	CUtlString combinedModeStyleText;
 	combinedModeStyleText.Format("{purple}%s{grey}", this->mode.name.c_str());
@@ -386,7 +422,24 @@ void RecordAnnounce::AnnounceGlobal()
             ? player->languageService->PrepareMessage("Personal Best Difference", nubPbDiff < 0 ? "{green}" : "{red}", formattedDiffTime)
             : "";
 		// clang-format on
-
+		bool beatWR = false;
+		bool beatWRPro = false;
+		if (hasOldPB)
+		{
+			beatWR = this->time < this->oldGPB.overall.time && this->globalResponse.overall.rank == 1;
+		}
+		else if (this->globalResponse.overall.rank == 1)
+		{
+			beatWR = true;
+		}
+		if (hasOldPBPro)
+		{
+			beatWRPro = this->time < this->oldGPB.pro.time && this->globalResponse.pro.rank == 1;
+		}
+		else if (this->globalResponse.pro.rank == 1)
+		{
+			beatWRPro = true;
+		}
 		if (this->teleports)
 		{
 			player->languageService->PrintChat(true, false, "Beat Course Info - Global (TP)", this->globalResponse.overall.rank,
@@ -409,13 +462,30 @@ void RecordAnnounce::AnnounceGlobal()
                 ? player->languageService->PrepareMessage("Personal Best Difference", proPbDiff < 0 ? "{green}" : "{red}", formattedDiffTimePro)
                 : "";
 			// clang-format on
-
 			player->languageService->PrintChat(true, false, "Beat Course Info - Global (PRO)", this->globalResponse.overall.rank,
 											   this->globalResponse.overall.maxRank, diffText.c_str(), this->globalResponse.pro.rank,
 											   this->globalResponse.pro.maxRank, diffTextPro.c_str());
 
 			player->languageService->PrintChat(true, false, "Beat Course Info - Global Points (PRO)", this->globalResponse.overall.points,
 											   nubPointsDiff, this->globalResponse.pro.points, proPointsDiff, this->globalResponse.playerRating);
+		}
+
+		if (beatWR)
+		{
+			player->languageService->PrintChat(true, false, "Beat Course Info - New World Record", this->player.name.c_str(),
+											   this->mode.name.c_str());
+		}
+		if (beatWRPro)
+		{
+			player->languageService->PrintChat(true, false, "Beat Course Info - New World Record (PRO)", this->player.name.c_str(),
+											   this->mode.name.c_str());
+		}
+		if (beatWR || beatWRPro)
+		{
+			for (i32 i = 0; i < MAXPLAYERS + 1; i++)
+			{
+				utils::PlaySoundToClient(CPlayerSlot(i), "kz.holyshit");
+			}
 		}
 	}
 }

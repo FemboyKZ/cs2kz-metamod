@@ -42,6 +42,11 @@ public:
 		return m_Recipients;
 	}
 
+	virtual CPlayerSlot GetPredictedPlayerSlot() const override
+	{
+		return m_slotPlayerExcludedDueToPrediction;
+	}
+
 	void SetRecipients(uint64 nRecipients)
 	{
 		m_Recipients.Set(0UL, static_cast<uint32>(nRecipients & 0xFFFFFFFF));
@@ -128,8 +133,10 @@ public:
 
 protected:
 	CPlayerBitVec m_Recipients;
-	NetChannelBufType_t m_nBufType;
+	CPlayerSlot m_slotPlayerExcludedDueToPrediction = -1;
+	NetChannelBufType_t m_nBufType = BUF_DEFAULT;
 	bool m_bInitMessage;
+	bool m_bDoNotSuppressPrediction; // unused
 };
 
 class CBroadcastRecipientFilter : public CRecipientFilter

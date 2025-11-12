@@ -45,7 +45,7 @@ namespace movement
 
 	void FASTCALL Detour_PhysicsSimulate(CCSPlayerController *);
 	void FASTCALL Detour_SetupMove(CCSPlayer_MovementServices *, PlayerCommand *, CMoveData *);
-	i32 FASTCALL Detour_ProcessUsercmds(CCSPlayerController *, void *, int, bool, float);
+	i32 FASTCALL Detour_ProcessUsercmds(CCSPlayerController *, PlayerCommand *, int, bool, float);
 	void FASTCALL Detour_ProcessMovement(CCSPlayer_MovementServices *, CMoveData *);
 	bool FASTCALL Detour_PlayerMove(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_CheckParameters(CCSPlayer_MovementServices *, CMoveData *);
@@ -61,6 +61,7 @@ namespace movement
 	void FASTCALL Detour_CheckJumpButton(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_OnJump(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_AirMove(CCSPlayer_MovementServices *, CMoveData *);
+	void FASTCALL Detour_AirAccelerate(CCSPlayer_MovementServices *, CMoveData *, Vector &, f32, f32);
 	void FASTCALL Detour_Friction(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_WalkMove(CCSPlayer_MovementServices *, CMoveData *);
 	void FASTCALL Detour_TryPlayerMove(CCSPlayer_MovementServices *, CMoveData *, Vector *, trace_t *, bool *);
@@ -107,9 +108,9 @@ public:
 	virtual void OnPhysicsSimulate();
 	virtual void OnPhysicsSimulatePost();
 
-	virtual void OnProcessUsercmds(void *, int) {}
+	virtual void OnProcessUsercmds(PlayerCommand *, int) {}
 
-	virtual void OnProcessUsercmdsPost(void *, int) {}
+	virtual void OnProcessUsercmdsPost(PlayerCommand *, int) {}
 
 	virtual void OnSetupMove(PlayerCommand *) {}
 
@@ -174,6 +175,10 @@ public:
 	virtual void OnAirMove() {}
 
 	virtual void OnAirMovePost() {}
+
+	virtual void OnAirAccelerate(Vector &wishdir, f32 &wishspeed, f32 &accel) {}
+
+	virtual void OnAirAcceleratePost(Vector wishdir, f32 wishspeed, f32 accel) {}
 
 	virtual void OnFriction() {}
 

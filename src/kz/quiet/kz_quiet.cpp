@@ -10,7 +10,10 @@
 #include "kz/beam/kz_beam.h"
 #include "kz/measure/kz_measure.h"
 #include "kz/option/kz_option.h"
+#include "kz/language/kz_language.h"
+
 #include "utils/utils.h"
+#include "utils/simplecmds.h"
 
 static_global class KZOptionServiceEventListener_Quiet : public KZOptionServiceEventListener
 {
@@ -70,6 +73,20 @@ void KZ::quiet::OnCheckTransmit(CCheckTransmitInfo **pInfo, int infoCount)
 			 pawn = pawn->m_pEntity->m_pNextByClass ? static_cast<CCSPlayerPawn *>(pawn->m_pEntity->m_pNextByClass->m_pInstance) : nullptr)
 		// clang-format on
 		{
+			if (targetPlayerPawn == pawn && targetPlayer->quietService->ShouldHideWeapon())
+			{
+				auto pVecWeapons = pawn->m_pWeaponServices->m_hMyWeapons();
+
+				FOR_EACH_VEC(*pVecWeapons, i)
+				{
+					auto pWeapon = (*pVecWeapons)[i].Get();
+
+					if (pWeapon)
+					{
+						pTransmitInfo->m_pTransmitEdict->Clear(pWeapon->entindex());
+					}
+				}
+			}
 			// Bit is not even set, don't bother.
 			if (!pTransmitInfo->m_pTransmitEdict->IsBitSet(pawn->entindex()))
 			{
@@ -245,10 +262,20 @@ bool KZQuietService::ShouldHideIndex(u32 targetIndex)
 	return true;
 }
 
+SCMD(kz_hideweapon, SCFL_PLAYER)
+{
+	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
+	player->quietService->ToggleHideWeapon();
+	return MRES_SUPERCEDE;
+}
+
 void KZQuietService::ToggleHideWeapon()
 {
 	this->hideWeapon = !this->hideWeapon;
+	this->SendFullUpdate();
 	this->player->optionService->SetPreferenceBool("hideWeapon", this->hideWeapon);
+	this->player->languageService->PrintChat(true, false,
+											 this->hideWeapon ? "Quiet Option - Show Weapon - Enable" : "Quiet Option - Show Weapon - Disable");
 }
 
 void KZQuietService::OnPhysicsSimulatePost() {}
@@ -256,7 +283,10 @@ void KZQuietService::OnPhysicsSimulatePost() {}
 void KZQuietService::OnPlayerPreferencesLoaded()
 {
 	this->hideWeapon = this->player->optionService->GetPreferenceBool("hideWeapon", false);
-
+	if (this->hideWeapon)
+	{
+		this->SendFullUpdate();
+	}
 	bool newShouldHide = this->player->optionService->GetPreferenceBool("hideOtherPlayers", false);
 	if (!newShouldHide && this->hideOtherPlayers && this->player->IsInGame())
 	{

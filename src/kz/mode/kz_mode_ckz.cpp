@@ -121,9 +121,10 @@ void KZClassicModeService::Reset()
 
 void KZClassicModeService::Cleanup()
 {
-	if (this->player->GetPlayerPawn() && this->player->GetPlayerPawn()->m_flVelocityModifier() != 1.0f)
+	auto pawn = this->player->GetPlayerPawn();
+	if (pawn)
 	{
-		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
+		pawn->m_flVelocityModifier(1.0f);
 	}
 }
 
@@ -229,7 +230,7 @@ void KZClassicModeService::OnPhysicsSimulate()
 		}
 		if (subtickMoveTime > moveServices->m_arrForceSubtickMoveWhen[i])
 		{
-			moveServices->SetForcedSubtickMove(i, subtickMoveTime);
+			moveServices->SetForcedSubtickMove(i, subtickMoveTime, false);
 			return;
 		}
 	}
@@ -265,6 +266,10 @@ void KZClassicModeService::OnSetupMove(PlayerCommand *pc)
 	for (i32 j = 0; j < pc->mutable_base()->subtick_moves_size(); j++)
 	{
 		CSubtickMoveStep *subtickMove = pc->mutable_base()->mutable_subtick_moves(j);
+		if (subtickMove->button() == IN_ATTACK || subtickMove->button() == IN_ATTACK2 || subtickMove->button() == IN_RELOAD)
+		{
+			continue;
+		}
 		float when = subtickMove->when();
 		if (subtickMove->button() == IN_JUMP)
 		{

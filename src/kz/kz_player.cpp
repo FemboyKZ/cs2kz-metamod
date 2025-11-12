@@ -20,7 +20,11 @@
 #include "timer/kz_timer.h"
 #include "tip/kz_tip.h"
 #include "trigger/kz_trigger.h"
+#include "recording/kz_recording.h"
+#include "replays/kz_replaysystem.h"
 #include "global/kz_global.h"
+#include "profile/kz_profile.h"
+#include "pistol/kz_pistol.h"
 
 #include "sdk/datatypes.h"
 #include "sdk/entity/cbasetrigger.h"
@@ -51,8 +55,11 @@ void KZPlayer::Init()
 	delete this->tipService;
 	delete this->telemetryService;
 	delete this->triggerService;
+	delete this->recordingService;
 	delete this->globalService;
 	delete this->measureService;
+	delete this->profileService;
+	delete this->pistolService;
 
 	this->anticheatService = new KZAnticheatService(this);
 	this->beamService = new KZBeamService(this);
@@ -70,8 +77,11 @@ void KZPlayer::Init()
 	this->tipService = new KZTipService(this);
 	this->telemetryService = new KZTelemetryService(this);
 	this->triggerService = new KZTriggerService(this);
+	this->recordingService = new KZRecordingService(this);
 	this->globalService = new KZGlobalService(this);
 	this->measureService = new KZMeasureService(this);
+	this->profileService = new KZProfileService(this);
+	this->pistolService = new KZPistolService(this);
 
 	KZ::mode::InitModeService(this);
 }
@@ -95,6 +105,8 @@ void KZPlayer::Reset()
 	this->triggerService->Reset();
 	this->measureService->Reset();
 	this->beamService->Reset();
+	this->telemetryService->Reset();
+	this->recordingService->Reset();
 
 	g_pKZModeManager->SwitchToMode(this, KZOptionService::GetOptionStr("defaultMode", KZ_DEFAULT_MODE), true, true);
 	g_pKZStyleManager->ClearStyles(this, true);
@@ -114,8 +126,8 @@ void KZPlayer::OnPlayerActive()
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
 	// Mode/Styles stuff must be here for convars to be properly replicated.
-	g_pKZModeManager->SwitchToMode(this, this->modeService->GetModeName(), true, true);
-	g_pKZStyleManager->RefreshStyles(this);
+	g_pKZModeManager->SwitchToMode(this, this->modeService->GetModeName(), true, true, false);
+	g_pKZStyleManager->RefreshStyles(this, false);
 
 	this->optionService->OnPlayerActive();
 }
@@ -130,6 +142,7 @@ void KZPlayer::OnAuthorized()
 	VPROF_BUDGET(__func__, "CS2KZ");
 	MovementPlayer::OnAuthorized();
 	this->databaseService->SetupClient();
+	this->profileService->timeToNextRatingRefresh = 0.0f; // Force immediate refresh
 	this->globalService->OnPlayerAuthorized();
 }
 
@@ -137,6 +150,7 @@ void KZPlayer::OnPhysicsSimulate()
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
 	MovementPlayer::OnPhysicsSimulate();
+	this->recordingService->OnPhysicsSimulate();
 	this->triggerService->OnPhysicsSimulate();
 	this->modeService->OnPhysicsSimulate();
 	FOR_EACH_VEC(this->styleServices, i)
@@ -146,12 +160,14 @@ void KZPlayer::OnPhysicsSimulate()
 	this->noclipService->HandleMoveCollision();
 	this->EnableGodMode();
 	this->UpdatePlayerModelAlpha();
+	KZ::replaysystem::OnPhysicsSimulate(this);
 }
 
 void KZPlayer::OnPhysicsSimulatePost()
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
 	MovementPlayer::OnPhysicsSimulatePost();
+	this->recordingService->OnPhysicsSimulatePost();
 	this->triggerService->OnPhysicsSimulatePost();
 	this->telemetryService->OnPhysicsSimulatePost();
 	this->modeService->OnPhysicsSimulatePost();
@@ -160,6 +176,7 @@ void KZPlayer::OnPhysicsSimulatePost()
 		this->styleServices[i]->OnPhysicsSimulatePost();
 	}
 	this->timerService->OnPhysicsSimulatePost();
+	KZ::replaysystem::OnPhysicsSimulatePost(this);
 	if (this->specService->GetSpectatedPlayer())
 	{
 		KZHUDService::DrawPanels(this->specService->GetSpectatedPlayer(), this);
@@ -170,11 +187,13 @@ void KZPlayer::OnPhysicsSimulatePost()
 	}
 	this->measureService->OnPhysicsSimulatePost();
 	this->quietService->OnPhysicsSimulatePost();
+	this->profileService->OnPhysicsSimulatePost();
 }
 
-void KZPlayer::OnProcessUsercmds(void *cmds, int numcmds)
+void KZPlayer::OnProcessUsercmds(PlayerCommand *cmds, int numcmds)
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
+	this->recordingService->OnProcessUsercmds(cmds, numcmds);
 	this->modeService->OnProcessUsercmds(cmds, numcmds);
 	FOR_EACH_VEC(this->styleServices, i)
 	{
@@ -182,7 +201,7 @@ void KZPlayer::OnProcessUsercmds(void *cmds, int numcmds)
 	}
 }
 
-void KZPlayer::OnProcessUsercmdsPost(void *cmds, int numcmds)
+void KZPlayer::OnProcessUsercmdsPost(PlayerCommand *cmds, int numcmds)
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
 	this->modeService->OnProcessUsercmdsPost(cmds, numcmds);
@@ -195,6 +214,7 @@ void KZPlayer::OnProcessUsercmdsPost(void *cmds, int numcmds)
 void KZPlayer::OnSetupMove(PlayerCommand *pc)
 {
 	VPROF_BUDGET(__func__, "CS2KZ");
+	this->recordingService->OnSetupMove(pc);
 	this->modeService->OnSetupMove(pc);
 	FOR_EACH_VEC(this->styleServices, i)
 	{
@@ -218,6 +238,7 @@ void KZPlayer::OnProcessMovement()
 	MovementPlayer::OnProcessMovement();
 
 	KZ::mode::ApplyModeSettings(this);
+	KZ::replaysystem::OnProcessMovement(this);
 
 	this->DisableTurnbinds();
 	this->triggerService->OnProcessMovement();
@@ -243,6 +264,7 @@ void KZPlayer::OnProcessMovementPost()
 	}
 	this->jumpstatsService->OnProcessMovementPost();
 	this->triggerService->OnProcessMovementPost();
+	KZ::replaysystem::OnProcessMovementPost(this);
 	MovementPlayer::OnProcessMovementPost();
 }
 
@@ -515,7 +537,6 @@ void KZPlayer::OnAirMove()
 	{
 		this->styleServices[i]->OnAirMove();
 	}
-	this->jumpstatsService->OnAirMove();
 }
 
 void KZPlayer::OnAirMovePost()
@@ -526,7 +547,26 @@ void KZPlayer::OnAirMovePost()
 	{
 		this->styleServices[i]->OnAirMovePost();
 	}
-	this->jumpstatsService->OnAirMovePost();
+}
+
+void KZPlayer::OnAirAccelerate(Vector &wishdir, f32 &wishspeed, f32 &accel)
+{
+	this->modeService->OnAirAccelerate(wishdir, wishspeed, accel);
+	FOR_EACH_VEC(this->styleServices, i)
+	{
+		this->styleServices[i]->OnAirAccelerate(wishdir, wishspeed, accel);
+	}
+	this->jumpstatsService->OnAirAccelerate();
+}
+
+void KZPlayer::OnAirAcceleratePost(Vector wishdir, f32 wishspeed, f32 accel)
+{
+	this->modeService->OnAirAcceleratePost(wishdir, wishspeed, accel);
+	FOR_EACH_VEC(this->styleServices, i)
+	{
+		this->styleServices[i]->OnAirAcceleratePost(wishdir, wishspeed, accel);
+	}
+	this->jumpstatsService->OnAirAcceleratePost(wishdir, wishspeed, accel);
 }
 
 void KZPlayer::OnFriction()
@@ -736,6 +776,7 @@ void KZPlayer::OnTeleport(const Vector *origin, const QAngle *angles, const Vect
 	this->jumpstatsService->InvalidateJumpstats("Teleported");
 	this->modeService->OnTeleport(origin, angles, velocity);
 	this->timerService->OnTeleport(origin, angles, velocity);
+	this->recordingService->OnTeleport(origin, angles, velocity);
 	if (origin)
 	{
 		this->beamService->OnTeleport();

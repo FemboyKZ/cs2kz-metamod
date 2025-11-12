@@ -8,7 +8,8 @@
 #include "../option/kz_option.h"
 #include "../language/kz_language.h"
 #include "kz/trigger/kz_trigger.h"
-
+#include "kz/recording/kz_recording.h"
+#include "kz/replays/kz_replaysystem.h"
 #include "tier0/memdbgon.h"
 
 // clang-format off
@@ -522,6 +523,8 @@ void Jump::End()
 			}
 		}
 	}
+	this->serverTick = g_pKZUtils->GetServerGlobals()->tickcount;
+	this->airtime = this->player->landingTimeActual - this->player->takeoffTime;
 }
 
 Strafe *Jump::GetCurrentStrafe()
@@ -597,7 +600,7 @@ f32 Jump::GetDeviation()
 
 JumpType KZJumpstatsService::DetermineJumpType()
 {
-	if (this->jumps.Count() <= 0 || this->player->JustTeleported() || this->player->triggerService->ShouldDisableJumpstats())
+	if (this->jumps.Count() <= 1 || this->player->JustTeleported() || this->player->triggerService->ShouldDisableJumpstats())
 	{
 		return JumpType_Invalid;
 	}
@@ -633,45 +636,49 @@ JumpType KZJumpstatsService::DetermineJumpType()
 	{
 		return JumpType_Fall;
 	}
-	if (this->player->duckBugged)
+	if (this->jumps.Count() >= 2)
 	{
-		if (this->jumps.Tail().GetOffset() < JS_EPSILON && this->jumps.Tail().GetJumpType() == JumpType_LongJump)
+		Jump &previousJump = this->jumps[this->jumps.Count() - 2];
+		if (this->player->duckBugged)
 		{
-			return JumpType_Jumpbug;
-		}
-		else
-		{
-			return JumpType_Invalid;
-		}
-	}
-	if (this->HitBhop() && !this->HitDuckbugRecently())
-	{
-		// Check for no offset
-		if (this->jumps.Tail().DidHitHead() || !this->jumps.Tail().IsValid())
-		{
-			return JumpType_Invalid;
-		}
-		if (fabs(this->jumps.Tail().GetOffset()) < JS_EPSILON)
-		{
-			switch (this->jumps.Tail().GetJumpType())
+			if (previousJump.GetOffset() < JS_EPSILON && previousJump.GetJumpType() == JumpType_LongJump)
 			{
-				case JumpType_LongJump:
-					return JumpType_Bhop;
-				case JumpType_Bhop:
-					return JumpType_MultiBhop;
-				case JumpType_MultiBhop:
-					return JumpType_MultiBhop;
-				default:
-					return JumpType_Other;
+				return JumpType_Jumpbug;
+			}
+			else
+			{
+				return JumpType_Invalid;
 			}
 		}
-		// Check for weird jump
-		if (this->jumps.Tail().GetJumpType() == JumpType_Fall && this->ValidWeirdJumpDropDistance())
+		if (this->HitBhop() && !this->HitDuckbugRecently())
 		{
-			return JumpType_WeirdJump;
-		}
+			// Check for no offset
+			if (previousJump.DidHitHead() || !previousJump.IsValid())
+			{
+				return JumpType_Invalid;
+			}
+			if (fabs(previousJump.GetOffset()) < JS_EPSILON)
+			{
+				switch (previousJump.GetJumpType())
+				{
+					case JumpType_LongJump:
+						return JumpType_Bhop;
+					case JumpType_Bhop:
+						return JumpType_MultiBhop;
+					case JumpType_MultiBhop:
+						return JumpType_MultiBhop;
+					default:
+						return JumpType_Other;
+				}
+			}
+			// Check for weird jump
+			if (previousJump.GetJumpType() == JumpType_Fall && this->ValidWeirdJumpDropDistance())
+			{
+				return JumpType_WeirdJump;
+			}
 
-		return JumpType_Other;
+			return JumpType_Other;
+		}
 	}
 	if (this->HitDuckbugRecently() || !this->GroundSpeedCappedRecently())
 	{
@@ -682,20 +689,17 @@ JumpType KZJumpstatsService::DetermineJumpType()
 
 f32 KZJumpstatsService::GetLastJumpRelease()
 {
-	if (this->jumps.Count() == 0)
+	if (this->jumps.Count() <= 2)
 	{
 		return 0.0f;
 	}
-	return this->jumps.Tail().GetRelease();
+	Jump &previousJump = this->jumps[this->jumps.Count() - 2];
+	return previousJump.GetRelease();
 }
 
 void KZJumpstatsService::Reset()
 {
-	this->broadcastMinTier = static_cast<DistanceTier>(KZOptionService::GetOptionInt("defaultJSBroadcastMinTier", DistanceTier_Godlike));
-	this->soundMinTier = static_cast<DistanceTier>(KZOptionService::GetOptionInt("defaultJSSoundMinTier", DistanceTier_Godlike));
-	this->showJumpstats = KZOptionService::GetOptionInt("defaultShowJS", true);
 	this->jumps.Purge();
-	this->jsAlways = {};
 	this->lastJumpButtonTime = {};
 	this->lastNoclipTime = {};
 	this->lastDuckbugTime = {};
@@ -764,9 +768,13 @@ bool KZJumpstatsService::GroundSpeedCappedRecently()
 	return this->lastGroundSpeedCappedTime == this->lastMovementProcessedTime;
 }
 
-void KZJumpstatsService::OnAirMove()
+void KZJumpstatsService::OnAirAccelerate()
 {
 	if (g_pKZUtils->GetGlobals()->frametime == 0.0f)
+	{
+		return;
+	}
+	if (KZ::replaysystem::IsReplayBot(this->player))
 	{
 		return;
 	}
@@ -776,70 +784,43 @@ void KZJumpstatsService::OnAirMove()
 	// moveDataPost is still the movedata from last tick.
 	call.externalSpeedDiff = call.velocityPre.Length2D() - this->player->moveDataPost.m_vecVelocity.Length2D();
 	call.prevYaw = this->player->oldAngles.y;
-	call.curtime = g_pKZUtils->GetGlobals()->curtime;
-	call.tickcount = g_pKZUtils->GetGlobals()->tickcount;
 	Strafe *strafe = this->jumps.Tail().GetCurrentStrafe();
 	strafe->aaCalls.AddToTail(call);
 }
 
-void KZJumpstatsService::OnAirMovePost()
+void KZJumpstatsService::OnAirAcceleratePost(Vector wishdir, f32 wishspeed, f32 accel)
 {
 	if (g_pKZUtils->GetGlobals()->frametime == 0.0f)
 	{
 		return;
 	}
-	int i;
-	Vector wishvel;
-	float fmove, smove;
-	Vector wishdir;
-	float wishspeed;
-	Vector forward, right, up;
-
-	AngleVectors(this->player->currentMoveData->m_vecViewAngles, &forward, &right, &up); // Determine movement angles
-
-	// Copy movement amounts
-	fmove = this->player->currentMoveData->m_flForwardMove;
-	smove = -this->player->currentMoveData->m_flSideMove;
-
-	// Zero out z components of movement vectors
-	forward[2] = 0;
-	right[2] = 0;
-	VectorNormalize(forward); // Normalize remainder of vectors
-	VectorNormalize(right);   //
-
-	for (i = 0; i < 2; i++) // Determine x and y parts of velocity
+	if (KZ::replaysystem::IsReplayBot(this->player))
 	{
-		wishvel[i] = forward[i] * fmove + right[i] * smove;
+		return;
 	}
-	wishvel[2] = 0; // Zero out z part of velocity
-
-	VectorCopy(wishvel, wishdir); // Determine maginitude of speed of move
-	wishspeed = VectorNormalize(wishdir);
-
-	//
-	// clamp to server defined max speed
-	//
-	if (wishspeed != 0 && (wishspeed > this->player->currentMoveData->m_flMaxSpeed))
-	{
-		VectorScale(wishvel, this->player->currentMoveData->m_flMaxSpeed / wishspeed, wishvel);
-		wishspeed = this->player->currentMoveData->m_flMaxSpeed;
-	}
-	f32 accel = KZ::mode::modeCvarRefs[MODECVAR_SV_AIRACCELERATE]->GetFloat();
-
 	this->jumps.Tail().UpdateAACallPost(wishdir, wishspeed, accel);
 }
 
 void KZJumpstatsService::AddJump()
 {
+	if (KZ::replaysystem::IsReplayBot(this->player))
+	{
+		return;
+	}
 	if (ladderHopThisMove)
 	{
 		return;
 	}
 	this->jumps.AddToTail({this->player});
+	this->jumps.Tail().Init();
 }
 
 void KZJumpstatsService::UpdateJump()
 {
+	if (KZ::replaysystem::IsReplayBot(this->player))
+	{
+		return;
+	}
 	if (this->jumps.Count() > 0)
 	{
 		this->jumps.Tail().Update();
@@ -851,66 +832,28 @@ void KZJumpstatsService::UpdateJump()
 
 void KZJumpstatsService::EndJump()
 {
-	if (this->jumps.Count() > 0)
+	if (KZ::replaysystem::IsReplayBot(this->player))
 	{
-		Jump *jump = &this->jumps.Tail();
-
-		// Prevent stats being calculated twice.
-		if (jump->AlreadyEnded())
-		{
-			return;
-		}
-		jump->End();
-		if (jump->GetJumpType() == JumpType_FullInvalid)
-		{
-			return;
-		}
-		if ((jump->GetOffset() > -JS_EPSILON && jump->IsValid()) || this->jsAlways)
-		{
-			if (this->ShouldDisplayJumpstats())
-			{
-				KZJumpstatsService::PrintJumpToChat(this->player, jump);
-			}
-			DistanceTier tier = jump->GetJumpPlayer()->modeService->GetDistanceTier(jump->GetJumpType(), jump->GetDistance());
-			if (tier >= DistanceTier_Wrecker && !jump->GetJumpPlayer()->jumpstatsService->jsAlways)
-			{
-				KZJumpstatsService::StartDemoRecording(jump->GetJumpPlayer()->GetName());
-			}
-			KZJumpstatsService::BroadcastJumpToChat(jump);
-			for (u32 i = 1; i < MAXPLAYERS + 1; i++)
-			{
-				KZPlayer *pl = g_pKZPlayerManager->ToPlayer(i);
-				if (!pl || !pl->IsInGame())
-				{
-					continue;
-				}
-				if (pl != this->player && pl->IsAlive())
-				{
-					continue;
-				}
-				if (pl == this->player)
-				{
-					KZJumpstatsService::PlayJumpstatSound(pl, jump);
-					KZJumpstatsService::PrintJumpToConsole(pl, jump);
-					continue;
-				}
-				if (pl->IsFakeClient())
-				{
-					if (pl->IsCSTV())
-					{
-						KZJumpstatsService::PrintJumpToConsole(pl, jump);
-					}
-					continue;
-				}
-				if (pl->GetObserverPawn() && pl->GetObserverPawn()->m_pObserverServices()
-					&& pl->GetObserverPawn()->m_pObserverServices()->m_hObserverTarget().Get() == this->player->GetPlayerPawn())
-				{
-					KZJumpstatsService::PlayJumpstatSound(pl, jump);
-					KZJumpstatsService::PrintJumpToConsole(pl, jump);
-				}
-			}
-		}
+		return;
 	}
+	if (this->jumps.Count() <= 0)
+	{
+		return;
+	}
+	Jump *jump = &this->jumps.Tail();
+
+	// Prevent stats being calculated twice.
+	if (jump->AlreadyEnded())
+	{
+		return;
+	}
+	jump->End();
+	if (jump->GetJumpType() == JumpType_FullInvalid)
+	{
+		return;
+	}
+	KZJumpstatsService::AnnounceJump(jump);
+	this->player->recordingService->OnJumpFinish(jump);
 }
 
 void KZJumpstatsService::InvalidateJumpstats(const char *reason)
@@ -940,32 +883,6 @@ void KZJumpstatsService::TrackJumpstatsVariables()
 		this->lastGroundSpeedCappedTime = g_pKZUtils->GetGlobals()->curtime;
 	}
 	this->lastMovementProcessedTime = g_pKZUtils->GetGlobals()->curtime;
-}
-
-void KZJumpstatsService::ToggleJSAlways()
-{
-	this->jsAlways = !this->jsAlways;
-	if (this->jsAlways)
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Always - Enable");
-	}
-	else
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Always - Disable");
-	}
-}
-
-void KZJumpstatsService::ToggleJumpstatsReporting()
-{
-	this->showJumpstats = !this->showJumpstats;
-	if (this->showJumpstats)
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Master Switch - Enable");
-	}
-	else
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Master Switch - Disable");
-	}
 }
 
 void KZJumpstatsService::CheckValidMoveType()
@@ -1111,137 +1028,4 @@ void KZJumpstatsService::OnProcessMovementPost()
 	this->ladderHopThisMove = false;
 	this->TrackJumpstatsVariables();
 	this->DetectWater();
-}
-
-DistanceTier KZJumpstatsService::GetDistTierFromString(const char *tierString)
-{
-	if (V_stricmp("Meh", tierString) == 0)
-	{
-		return DistanceTier_Meh;
-	}
-	if (V_stricmp("Impressive", tierString) == 0)
-	{
-		return DistanceTier_Impressive;
-	}
-	if (V_stricmp("Perfect", tierString) == 0)
-	{
-		return DistanceTier_Perfect;
-	}
-	if (V_stricmp("Godlike", tierString) == 0)
-	{
-		return DistanceTier_Godlike;
-	}
-	if (V_stricmp("Ownage", tierString) == 0)
-	{
-		return DistanceTier_Ownage;
-	}
-	if (V_stricmp("Wrecker", tierString) == 0)
-	{
-		return DistanceTier_Wrecker;
-	}
-	return DistanceTier_None;
-}
-
-void KZJumpstatsService::SetBroadcastMinTier(const char *tierString)
-{
-	if (!tierString || !V_stricmp("", tierString))
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Broadcast Tier - Hint");
-		return;
-	}
-
-	DistanceTier tier = GetDistTierFromString(tierString);
-
-	if (tier == DistanceTier_None)
-	{
-		tier = static_cast<DistanceTier>(V_StringToInt32(tierString, -1));
-	}
-
-	if (tier > DistanceTier_Wrecker || tier < DistanceTier_None)
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Broadcast Tier - Hint");
-		return;
-	}
-
-	if (tier == this->GetBroadcastMinTier())
-	{
-		return;
-	}
-
-	this->broadcastMinTier = tier;
-	if (tier == 0)
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Broadcast Tier - Disabled");
-	}
-	else
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Broadcast Tier - Response", tierString);
-	}
-}
-
-void KZJumpstatsService::SetSoundMinTier(const char *tierString)
-{
-	if (!tierString || !V_stricmp("", tierString))
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Sound Tier - Hint");
-		return;
-	}
-
-	DistanceTier tier = GetDistTierFromString(tierString);
-
-	if (tier == DistanceTier_None)
-	{
-		tier = static_cast<DistanceTier>(V_StringToInt32(tierString, -1));
-	}
-
-	if (tier > DistanceTier_Wrecker || tier < DistanceTier_None)
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Sound Tier - Hint");
-		return;
-	}
-
-	if (tier == this->GetSoundMinTier())
-	{
-		return;
-	}
-
-	this->soundMinTier = tier;
-	if (tier == 0)
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Sound Tier - Disabled");
-	}
-	else
-	{
-		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Sound Tier - Response", tierString);
-	}
-}
-
-SCMD(kz_jsbroadcast, SCFL_JUMPSTATS | SCFL_PREFERENCE)
-{
-	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	player->jumpstatsService->SetBroadcastMinTier(args->Arg(1));
-	return MRES_SUPERCEDE;
-}
-
-SCMD(kz_jssound, SCFL_JUMPSTATS | SCFL_PREFERENCE)
-{
-	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	player->jumpstatsService->SetSoundMinTier(args->Arg(1));
-	return MRES_SUPERCEDE;
-}
-
-SCMD(kz_togglestats, SCFL_JUMPSTATS | SCFL_PREFERENCE)
-{
-	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	player->jumpstatsService->ToggleJumpstatsReporting();
-	return MRES_SUPERCEDE;
-}
-
-SCMD_LINK(kz_togglejs, kz_togglestats);
-
-SCMD(kz_jsalways, SCFL_JUMPSTATS | SCFL_PREFERENCE)
-{
-	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	player->jumpstatsService->ToggleJSAlways();
-	return MRES_SUPERCEDE;
 }

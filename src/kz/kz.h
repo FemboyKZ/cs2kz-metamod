@@ -22,6 +22,7 @@
 #define KZ_DEFAULT_LANGUAGE     "en"
 #define KZ_DEFAULT_STYLE        "Normal"
 #define KZ_DEFAULT_MODE         "Classic"
+#define KZ_BASE_ADDON_KEY       "default"
 
 #define KZ_RECENT_TELEPORT_THRESHOLD 0.05f
 
@@ -44,11 +45,14 @@ class KZRacingService;
 class KZSavelocService;
 class KZSpecService;
 class KZGotoService;
+class KZProfileService;
 class KZStyleService;
 class KZTelemetryService;
 class KZTimerService;
 class KZTipService;
 class KZTriggerService;
+class KZPistolService;
+class KZRecordingService;
 
 class KZPlayer : public MovementPlayer
 {
@@ -68,8 +72,8 @@ public:
 
 	virtual void OnPhysicsSimulate() override;
 	virtual void OnPhysicsSimulatePost() override;
-	virtual void OnProcessUsercmds(void *, int) override;
-	virtual void OnProcessUsercmdsPost(void *, int) override;
+	virtual void OnProcessUsercmds(PlayerCommand *, int) override;
+	virtual void OnProcessUsercmdsPost(PlayerCommand *, int) override;
 	virtual void OnSetupMove(PlayerCommand *) override;
 	virtual void OnSetupMovePost(PlayerCommand *) override;
 	virtual void OnProcessMovement() override;
@@ -103,6 +107,8 @@ public:
 	virtual void OnJumpPost() override;
 	virtual void OnAirMove() override;
 	virtual void OnAirMovePost() override;
+	virtual void OnAirAccelerate(Vector &wishdir, f32 &wishspeed, f32 &accel) override;
+	virtual void OnAirAcceleratePost(Vector wishdir, f32 wishspeed, f32 accel) override;
 	virtual void OnFriction() override;
 	virtual void OnFrictionPost() override;
 	virtual void OnWalkMove() override;
@@ -155,11 +161,14 @@ public:
 	KZSavelocService *savelocService {};
 	KZSpecService *specService {};
 	KZGotoService *gotoService {};
+	KZProfileService *profileService {};
 	CUtlVector<KZStyleService *> styleServices {};
 	KZTelemetryService *telemetryService {};
 	KZTimerService *timerService {};
 	KZTipService *tipService {};
 	KZTriggerService *triggerService {};
+	KZPistolService *pistolService {};
+	KZRecordingService *recordingService {};
 
 	void DisableTurnbinds();
 	void EnableGodMode();

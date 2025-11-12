@@ -8,7 +8,7 @@
 #define MODE_NAME       "Classic"
 // Rampbug fix related
 #define MAX_BUMPS                   4
-#define RAMP_PIERCE_DISTANCE        0.15f
+#define RAMP_PIERCE_DISTANCE        0.0625f
 #define RAMP_BUG_THRESHOLD          0.98f
 #define RAMP_BUG_VELOCITY_THRESHOLD 0.95f
 #define NEW_RAMP_THRESHOLD          0.95f
@@ -54,12 +54,12 @@ public:
 
 	const char *GetName()
 	{
-		return PLUGIN_DISPLAY_NAME;
+		return "CS2KZ-Mode-Classic";
 	}
 
 	const char *GetDescription()
 	{
-		return PLUGIN_DESCRIPTION;
+		return "Classic mode plugin for CS2KZ";
 	}
 
 	const char *GetURL()
@@ -109,6 +109,7 @@ class KZClassicModeService : public KZModeService
 		(float)100.0f,  // sv_airaccelerate
 		(float)30.0f,   // sv_air_max_wishspeed
 		(bool)false,    // sv_autobunnyhopping
+		(float)0.0f,    // sv_bounce
 		(bool)true,     // sv_enablebunnyhopping
 		(float)5.2f,    // sv_friction
 		(float)800.0f,  // sv_gravity
@@ -133,7 +134,7 @@ class KZClassicModeService : public KZModeService
 		(float)0.9f,    // sv_water_slow_amount
 		(int)0,         // mp_solid_teammates
 		(int)0,         // mp_solid_enemies
-		(bool)true,     // sv_subtick_movement_view_angles
+		(bool)false,    // sv_subtick_movement_view_angles
 	};
 	static_assert(KZ_ARRAYSIZE(modeCvarValues) == MODECVAR_COUNT, "Array modeCvarValues length is not the same as MODECVAR_COUNT!");
 

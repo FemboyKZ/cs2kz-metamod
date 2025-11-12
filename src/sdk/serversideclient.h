@@ -72,12 +72,6 @@ public:
 
 COMPILE_TIME_ASSERT(sizeof(CNetworkStatTrace) == 40);
 
-abstract_class INetworkChannelNotify
-{
-public:
-	virtual void OnShutdownChannel(INetChannel * pChannel) = 0;
-};
-
 class CServerSideClientBase : public CUtlSlot, public INetworkChannelNotify, public INetworkMessageProcessingPreFilter
 {
 public:
@@ -106,7 +100,7 @@ public:
 
 	const char *GetClientName() const
 	{
-		return m_Name;
+		return m_Name.Get();
 	}
 
 	INetChannel *GetNetChannel() const
@@ -131,11 +125,7 @@ public:
 	virtual void Reconnect() = 0;
 	virtual void Disconnect(ENetworkDisconnectionReason reason, const char *pszInternalReason) = 0;
 	virtual bool CheckConnect() = 0;
-
-private:
-	virtual void unk_10() = 0;
-
-public:
+	virtual void Create(CPlayerSlot &nSlot, CSteamID nSteamID, const char *pszName) = 0;
 	virtual void SetRate(int nRate) = 0;
 	virtual void SetUpdateRate(float fUpdateRate) = 0;
 	virtual int GetRate() = 0;
@@ -228,7 +218,6 @@ private:
 public:
 	virtual bool ProcessMove(const CNetMessagePB<CCLCMsg_Move> &msg) = 0;
 	virtual bool ProcessVoiceData(const CNetMessagePB<CCLCMsg_VoiceData> &msg) = 0;
-	virtual bool ProcessFileCRCCheck(const CNetMessagePB<CCLCMsg_FileCRCCheck> &msg) = 0;
 	virtual bool ProcessRespondCvarValue(const CNetMessagePB<CCLCMsg_RespondCvarValue> &msg) = 0;
 
 	virtual bool ProcessPacketStart(const CNetMessagePB<NetMessagePacketStart> &msg) = 0;
@@ -258,7 +247,7 @@ public:
 
 	void ForceFullUpdate()
 	{
-		UpdateAcknowledgedFramecount(-1);
+		m_nDeltaTick = -1;
 	}
 
 	virtual bool ShouldSendMessages() = 0;
@@ -338,7 +327,7 @@ public:
 	CEntityIndex m_nEntityIndex;
 	CNetworkGameServerBase *m_Server;
 	INetChannel *m_NetChannel;
-	uint8 m_nUnkVariable;
+	uint16 m_nConnectionTypeFlags;
 	bool m_bMarkedToKick;
 	SignonState_t m_nSignonState;
 	bool m_bSplitScreenUser;
@@ -358,7 +347,7 @@ public:
 	CPlayerUserId m_UserID = -1;
 	bool m_bReceivedPacket; // true, if client received a packet after the last send packet
 	CSteamID m_SteamID;
-	CSteamID m_UnkSteamID;
+	CSteamID m_DisconnectedSteamID;
 	CSteamID m_AuthTicketSteamID; // Auth ticket
 	CSteamID m_nFriendsID;
 	ns_address m_nAddr;
@@ -479,8 +468,4 @@ public:
 	CUtlVector<INetMessage *> m_HltvQueuedMessages;
 	HltvReplayStats_t m_HltvReplayStats;
 };
-#ifdef __linux__
-COMPILE_TIME_ASSERT(sizeof(CServerSideClient) == 4064);
-#endif
-
 #endif // SERVERSIDECLIENT_H
