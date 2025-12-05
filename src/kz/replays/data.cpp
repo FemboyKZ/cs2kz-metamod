@@ -36,10 +36,10 @@ namespace KZ::replaysystem::data
 			delete[] replay->weapons;
 			replay->weapons = nullptr;
 		}
-		if (replay->weaponTable)
+		if (replay->weaponIndices)
 		{
-			delete[] replay->weaponTable;
-			replay->weaponTable = nullptr;
+			delete[] replay->weaponIndices;
+			replay->weaponIndices = nullptr;
 		}
 		if (replay->jumps)
 		{
@@ -57,7 +57,6 @@ namespace KZ::replaysystem::data
 	void ResetReplayState(ReplayPlayback *replay)
 	{
 		// Reset all tracking indices
-		replay->currentWeapon = 0;
 		replay->currentJump = 0;
 		replay->currentEvent = 0;
 
@@ -176,7 +175,7 @@ namespace KZ::replaysystem::data
 		// Get file size for progress calculation
 		size_t fileSize = g_pFullFileSystem->Size(file);
 
-		// Read header
+		// Read length-prefixed protobuf header
 		if (shouldCancel)
 		{
 			g_pFullFileSystem->Close(file);
@@ -184,46 +183,34 @@ namespace KZ::replaysystem::data
 		}
 		if (kz_replay_playback_debug.Get())
 		{
-			META_CONPRINTF("Loading replay header...\n");
+			META_CONPRINTF("Loading replay protobuf header...\n");
 		}
-		g_pFullFileSystem->Read(&result.header, sizeof(result.header), file);
-		switch (result.header.type)
-		{
-			case RP_CHEATER:
-			{
-				g_pFullFileSystem->Read(&result.cheaterHeader, sizeof(result.cheaterHeader), file);
-				break;
-			}
-			case RP_RUN:
-			{
-				g_pFullFileSystem->Read(&result.runHeader, sizeof(result.runHeader), file);
-				// Just to advance the reader.
-				for (i32 i = 0; i < result.runHeader.styleCount; i++)
-				{
-					RpModeStyleInfo style = {};
-					g_pFullFileSystem->Read(&style, sizeof(style), file);
-				}
-				break;
-			}
-			case RP_JUMPSTATS:
-			{
-				g_pFullFileSystem->Read(&result.jumpHeader, sizeof(result.jumpHeader), file);
-				break;
-			}
-			case RP_MANUAL:
-			{
-				g_pFullFileSystem->Read(&result.manualHeader, sizeof(result.manualHeader), file);
-				break;
-			}
-		}
-		UpdateProgress(file, fileSize, progress);
-
-		if (result.header.magicNumber != KZ_REPLAY_MAGIC)
+		u32 headerSize = 0;
+		if (g_pFullFileSystem->Read(&headerSize, sizeof(headerSize), file) != sizeof(headerSize))
 		{
 			g_pFullFileSystem->Close(file);
 			return result;
 		}
-		if (result.header.version != KZ_REPLAY_VERSION)
+		if (headerSize == 0 || headerSize > 5 * 1024 * 1024) // sanity limit 5MB
+		{
+			g_pFullFileSystem->Close(file);
+			return result;
+		}
+		std::string serialized;
+		serialized.resize(headerSize);
+		if (g_pFullFileSystem->Read(serialized.data(), headerSize, file) != headerSize)
+		{
+			g_pFullFileSystem->Close(file);
+			return result;
+		}
+		if (!result.header.ParseFromString(serialized))
+		{
+			g_pFullFileSystem->Close(file);
+			return result;
+		}
+		UpdateProgress(file, fileSize, progress);
+
+		if (result.header.version() != KZ_REPLAY_VERSION)
 		{
 			g_pFullFileSystem->Close(file);
 			return result;
@@ -275,13 +262,12 @@ namespace KZ::replaysystem::data
 		}
 		if (kz_replay_playback_debug.Get())
 		{
-			META_CONPRINTF("Loading compressed weapon change events...\n");
+			META_CONPRINTF("Loading weapons...\n");
 		}
 
-		std::vector<WeaponSwitchEvent> weaponEventsVec;
-		std::vector<EconInfo> weaponTableVec;
+		std::vector<std::pair<i32, EconInfo>> weaponTableVec;
 
-		if (!KZ::replaysystem::compression::ReadWeaponChangesCompressed(file, weaponEventsVec, weaponTableVec))
+		if (!KZ::replaysystem::compression::ReadWeaponsCompressed(file, weaponTableVec))
 		{
 			delete[] result.tickData;
 			delete[] result.subtickData;
@@ -290,31 +276,14 @@ namespace KZ::replaysystem::data
 		}
 
 		// Store weapon table
-		result.weaponTableSize = static_cast<u32>(weaponTableVec.size());
-		weaponTableVec.shrink_to_fit();
-		result.weaponTable = weaponTableVec.data();
-		new (&weaponTableVec) std::vector<EconInfo>();
-
-		// Store weapon events, adding initial weapon at index 0
-		result.numWeapons = static_cast<i32>(weaponEventsVec.size());
-		result.weapons = new WeaponSwitchEvent[result.numWeapons + 1];
-
-		// Find the weapon index for firstWeapon in the weapon table
-		u16 firstWeaponIndex = 0;
-		for (u32 i = 0; i < result.weaponTableSize; i++)
+		result.weaponTableSize = weaponTableVec.size();
+		assert(result.weaponTableSize > 0);
+		result.weaponIndices = new i32[result.weaponTableSize];
+		result.weapons = new EconInfo[result.weaponTableSize];
+		for (size_t i = 0; i < weaponTableVec.size(); i++)
 		{
-			if (result.weaponTable[i] == result.header.firstWeapon)
-			{
-				firstWeaponIndex = i;
-				break;
-			}
-		}
-		result.weapons[0] = {0, firstWeaponIndex};
-
-		// Copy the rest of the weapon events
-		for (i32 i = 0; i < result.numWeapons; i++)
-		{
-			result.weapons[i + 1] = weaponEventsVec[i];
+			result.weaponIndices[i] = weaponTableVec[i].first;
+			result.weapons[i] = weaponTableVec[i].second;
 		}
 
 		UpdateProgress(file, fileSize, progress);
@@ -324,7 +293,7 @@ namespace KZ::replaysystem::data
 		{
 			delete[] result.tickData;
 			delete[] result.subtickData;
-			delete[] result.weaponTable;
+			delete[] result.weaponIndices;
 			delete[] result.weapons;
 			g_pFullFileSystem->Close(file);
 			return {};
@@ -340,7 +309,7 @@ namespace KZ::replaysystem::data
 		{
 			delete[] result.tickData;
 			delete[] result.subtickData;
-			delete[] result.weaponTable;
+			delete[] result.weaponIndices;
 			delete[] result.weapons;
 			g_pFullFileSystem->Close(file);
 			return {};
@@ -369,7 +338,7 @@ namespace KZ::replaysystem::data
 		{
 			delete[] result.tickData;
 			delete[] result.subtickData;
-			delete[] result.weaponTable;
+			delete[] result.weaponIndices;
 			delete[] result.weapons;
 			delete[] result.jumps;
 			g_pFullFileSystem->Close(file);
@@ -386,7 +355,7 @@ namespace KZ::replaysystem::data
 		{
 			delete[] result.tickData;
 			delete[] result.subtickData;
-			delete[] result.weaponTable;
+			delete[] result.weaponIndices;
 			delete[] result.weapons;
 			delete[] result.jumps;
 			g_pFullFileSystem->Close(file);

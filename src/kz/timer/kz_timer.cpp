@@ -220,7 +220,7 @@ bool KZTimerService::TimerStart(const KZCourseDescriptor *courseDesc, bool playS
 	f64 invalidTime = -1;
 	this->splitZoneTimes.SetSize(courseDesc->splitCount);
 	this->cpZoneTimes.SetSize(courseDesc->checkpointCount);
-	this->stageZoneTimes.SetSize(courseDesc->checkpointCount);
+	this->stageZoneTimes.SetSize(courseDesc->stageCount);
 
 	this->splitZoneTimes.FillWithValue(invalidTime);
 	this->cpZoneTimes.FillWithValue(invalidTime);
@@ -975,6 +975,14 @@ void KZTimerService::ClearRecordCache()
 {
 	KZTimerService::srCache.clear();
 	KZTimerService::wrCache.clear();
+	for (i32 i = 0; i < MAXPLAYERS + 1; i++)
+	{
+		KZPlayer *player = g_pKZPlayerManager->ToPlayer(i);
+		if (player && player->timerService)
+		{
+			player->timerService->ClearPBCache();
+		}
+	}
 }
 
 void KZTimerService::UpdateLocalRecordCache()
@@ -1088,6 +1096,7 @@ void KZTimerService::InsertRecordToCache(f64 time, const KZCourseDescriptor *cou
 void KZTimerService::ClearPBCache()
 {
 	this->localPBCache.clear();
+	this->globalPBCache.clear();
 }
 
 const PBData *KZTimerService::GetGlobalCachedPB(const KZCourseDescriptor *course, PluginId modeID)
@@ -1498,4 +1507,13 @@ void KZDatabaseServiceEventListener_Timer::OnClientSetup(Player *player, u64 ste
 {
 	KZPlayer *kzPlayer = g_pKZPlayerManager->ToKZPlayer(player);
 	kzPlayer->timerService->UpdateLocalPBCache();
+}
+
+SCMD(kz_recordvolume, SCFL_TIMER | SCFL_GLOBAL | SCFL_PREFERENCE)
+{
+	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
+	f32 volume = Clamp((f32)utils::StringToFloat(args->Arg(1)), 0.0f, 2.0f);
+	player->optionService->SetPreferenceFloat("recordVolume", volume);
+	player->languageService->PrintChat(true, false, "Timer Preference - Record Volume Set", volume);
+	return MRES_SUPERCEDE;
 }

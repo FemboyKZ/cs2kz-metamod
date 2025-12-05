@@ -6,6 +6,7 @@
 #include "kz/mode/kz_mode.h"
 #include "kz/recording/kz_recording.h"
 #include "kz/style/kz_style.h"
+#include "kz/option/kz_option.h"
 
 #include "vendor/sql_mm/src/public/sql_mm.h"
 
@@ -217,15 +218,12 @@ void RecordAnnounce::UpdateGlobalCache()
 		auto mode = KZ::mode::GetModeInfo(this->mode.name.c_str());
 		if (mode.id > -2)
 		{
-			META_CONPRINTF("this->time=%f this->oldGPB.overall.time=%f, this->oldGPB.pro.time=%f", this->time, this->oldGPB.overall.time,
-						   this->oldGPB.pro.time);
-
-			if (this->time < this->oldGPB.overall.time)
+			if (this->time < this->oldGPB.overall.time || this->oldGPB.overall.time == 0)
 			{
 				player->timerService->InsertPBToCache(this->time, course, mode.id, true, true, this->metadata.c_str(),
 													  this->globalResponse.overall.points);
 			}
-			if (this->time < this->oldGPB.pro.time)
+			if (this->time < this->oldGPB.pro.time || this->oldGPB.pro.time == 0)
 			{
 				player->timerService->InsertPBToCache(this->time, course, mode.id, false, true, this->metadata.c_str(),
 													  this->globalResponse.pro.points);
@@ -484,7 +482,8 @@ void RecordAnnounce::AnnounceGlobal()
 		{
 			for (i32 i = 0; i < MAXPLAYERS + 1; i++)
 			{
-				utils::PlaySoundToClient(CPlayerSlot(i), "kz.holyshit");
+				KZPlayer *player = g_pKZPlayerManager->ToPlayer(i);
+				utils::PlaySoundToClient(player->GetPlayerSlot(), "kz.holyshit", player->optionService->GetPreferenceFloat("recordVolume", 1.0f));
 			}
 		}
 	}

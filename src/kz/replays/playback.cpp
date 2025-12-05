@@ -8,6 +8,8 @@
 #include "events.h"
 #include "sdk/usercmd.h"
 
+extern CConVar<bool> kz_replay_playback_debug;
+
 namespace KZ::replaysystem::playback
 {
 
@@ -298,17 +300,24 @@ namespace KZ::replaysystem::playback
 		}
 
 		TickData *tickData = &replay->tickData[replay->currentTick];
-		TickData *finalTickData = &replay->tickData[replay->tickCount - 1];
 
 		// Check what the current weapon should be.
-		EconInfo desiredWeapon;
-		if (replay->currentWeapon < replay->numWeapons && replay->weapons[replay->currentWeapon + 1].serverTick <= tickData->serverTick)
+		i32 weaponIndex = tickData->weapon;
+		i32 found = -1;
+		for (i32 i = 0; i < replay->weaponTableSize; i++)
 		{
-			replay->currentWeapon++;
+			if (replay->weaponIndices[i] == weaponIndex)
+			{
+				found = i;
+				break;
+			}
 		}
-		u16 weaponIndex = replay->weapons[replay->currentWeapon].weaponIndex;
-		desiredWeapon = replay->weaponTable[weaponIndex];
-
+		if (found == -1)
+		{
+			player.GetPlayerPawn()->m_pWeaponServices()->m_hActiveWeapon(nullptr);
+			return;
+		}
+		EconInfo desiredWeapon = replay->weapons[found];
 		EconInfo activeWeapon = player.GetPlayerPawn()->m_pWeaponServices()->m_hActiveWeapon().Get();
 
 		if (desiredWeapon != activeWeapon)
@@ -368,21 +377,6 @@ namespace KZ::replaysystem::playback
 
 		CCSPlayerPawn *pawn = bot->GetPlayerPawn();
 		pawn->m_pItemServices()->RemoveAllItems(false);
-		u16 weaponIndex = replay->weapons[0].weaponIndex;
-		u16 itemDef = replay->weaponTable[weaponIndex].mainInfo.itemDef;
-		if (itemDef == 0)
-		{
-			return;
-		}
-
-		std::string weaponName = KZ::replaysystem::item::GetWeaponName(itemDef);
-		CBasePlayerWeapon *weapon = pawn->m_pItemServices()->GiveNamedItem(weaponName.c_str());
-		if (!weapon)
-		{
-			assert(false);
-		}
-
-		KZ::replaysystem::item::ApplyItemAttributesToWeapon(*weapon, replay->weaponTable[weaponIndex]);
 	}
 
 	void StartReplay()

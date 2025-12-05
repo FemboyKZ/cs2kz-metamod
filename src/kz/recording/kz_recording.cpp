@@ -14,6 +14,8 @@
 #include "filesystem.h"
 #include "vprof.h"
 
+#include <set>
+
 CConVar<bool> kz_replay_recording_debug("kz_replay_recording_debug", FCVAR_NONE, "Debug replay recording", false);
 CConVar<i32> kz_replay_recording_min_jump_tier("kz_replay_recording_min_jump_tier", FCVAR_CHEAT, "Minimum jump tier to record for jumpstat replays",
 											   DistanceTier_Wrecker, true, DistanceTier_Meh, true, DistanceTier_Wrecker);
@@ -39,50 +41,55 @@ void SubtickData::RpSubtickMove::FromMove(const CSubtickMoveStep &move)
 	}
 }
 
-void GeneralReplayHeader::Init(KZPlayer *player)
+void Recorder::Init(ReplayHeader &hdr, KZPlayer *player, ReplayType type)
 {
-	// Non-player-specific fields
-	this->magicNumber = KZ_REPLAY_MAGIC;
-	this->version = KZ_REPLAY_VERSION;
+	hdr.set_version(KZ_REPLAY_VERSION);
+	hdr.set_type(static_cast<cs2kz::replay::ReplayType>(type));
 
-	V_snprintf(this->map.name, sizeof(this->map.name), "%s", g_pKZUtils->GetCurrentMapName().Get());
-	g_pKZUtils->GetCurrentMapMD5(this->map.md5, sizeof(this->map.md5));
-	V_snprintf(this->pluginVersion, sizeof(this->pluginVersion), "%s", g_KZPlugin.GetVersion());
-	this->serverVersion = utils::GetServerVersion();
+	// Map info
+	hdr.mutable_map()->set_name(g_pKZUtils->GetCurrentMapName().Get());
+	char md5[33] = {};
+	g_pKZUtils->GetCurrentMapMD5(md5, sizeof(md5));
+	hdr.mutable_map()->set_md5(md5);
+
+	hdr.set_plugin_version(g_KZPlugin.GetVersion());
+	hdr.set_server_version(utils::GetServerVersion());
 
 	time_t unixTime = 0;
 	time(&unixTime);
-	this->timestamp = (u64)unixTime;
+	hdr.set_timestamp((u64)unixTime);
 
-	this->serverIP = g_steamAPI.SteamGameServer() ? g_steamAPI.SteamGameServer()->GetPublicIP().m_unIPv4 : 0;
+	hdr.set_server_ip(g_steamAPI.SteamGameServer() ? g_steamAPI.SteamGameServer()->GetPublicIP().m_unIPv4 : 0);
 
-	// Player-specific fields
-	V_snprintf(this->player.name, sizeof(this->player.name), "%s", player->GetController()->GetPlayerName());
-	this->player.steamid64 = player->GetSteamId64();
+	// Player info
+	auto *playerMsg = hdr.mutable_player();
+	playerMsg->set_name(player->GetController()->GetPlayerName());
+	playerMsg->set_steamid64(player->GetSteamId64());
 
-	this->firstWeapon = player->recordingService->circularRecording.earliestWeapon.value();
-
-	this->gloves = player->GetPlayerPawn()->m_EconGloves();
+	// Model name
 	CSkeletonInstance *pSkeleton = static_cast<CSkeletonInstance *>(player->GetPlayerPawn()->m_CBodyComponent()->m_pSceneNode());
-	V_snprintf(this->modelName, sizeof(this->modelName), "%s", pSkeleton->m_modelState().m_ModelName().String());
+	hdr.set_model_name(pSkeleton->m_modelState().m_ModelName().String());
 
-	this->sensitivity = utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "sensitivity"));
-	this->yaw = utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "m_yaw"));
-	this->pitch = utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "m_pitch"));
-
-	// Initialize archival timestamp to 0 (not archived)
-	this->archivedTimestamp = 0;
+	hdr.set_sensitivity(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "sensitivity")));
+	hdr.set_yaw(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "m_yaw")));
+	hdr.set_pitch(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "m_pitch")));
+	hdr.set_viewmodel_offset_x(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "viewmodel_offset_x")));
+	hdr.set_viewmodel_offset_y(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "viewmodel_offset_y")));
+	hdr.set_viewmodel_offset_z(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "viewmodel_offset_z")));
+	hdr.set_viewmodel_fov(utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(player->GetPlayerSlot(), "viewmodel_fov")));
 }
 
 void KZRecordingService::Reset()
 {
-	this->circularRecording.tickData->Advance(this->circularRecording.tickData->GetReadAvailable());
-	this->circularRecording.subtickData->Advance(this->circularRecording.subtickData->GetReadAvailable());
-	this->circularRecording.cmdData->Advance(this->circularRecording.cmdData->GetReadAvailable());
-	this->circularRecording.cmdSubtickData->Advance(this->circularRecording.cmdSubtickData->GetReadAvailable());
-	this->circularRecording.weaponChangeEvents->Advance(this->circularRecording.weaponChangeEvents->GetReadAvailable());
-	this->circularRecording.rpEvents->Advance(this->circularRecording.rpEvents->GetReadAvailable());
-	this->circularRecording.jumps->Advance(this->circularRecording.jumps->GetReadAvailable());
+	if (this->circularRecording)
+	{
+		this->circularRecording->tickData->Advance(this->circularRecording->tickData->GetReadAvailable());
+		this->circularRecording->subtickData->Advance(this->circularRecording->subtickData->GetReadAvailable());
+		this->circularRecording->cmdData->Advance(this->circularRecording->cmdData->GetReadAvailable());
+		this->circularRecording->cmdSubtickData->Advance(this->circularRecording->cmdSubtickData->GetReadAvailable());
+		this->circularRecording->rpEvents->Advance(this->circularRecording->rpEvents->GetReadAvailable());
+		this->circularRecording->jumps.clear();
+	}
 	this->runRecorders.clear();
 	this->lastCmdNumReceived = 0;
 	this->currentRunUUID = UUID_t(false);
@@ -140,6 +147,8 @@ void KZRecordingService::RecordTickData_SetupMove(PlayerCommand *pc)
 
 void KZRecordingService::RecordTickData_PhysicsSimulatePost()
 {
+	this->EnsureCircularRecorderInitialized();
+
 	this->player->GetOrigin(&this->currentTickData.post.origin);
 	this->player->GetVelocity(&this->currentTickData.post.velocity);
 	this->player->GetAngles(&this->currentTickData.post.angles);
@@ -158,22 +167,23 @@ void KZRecordingService::RecordTickData_PhysicsSimulatePost()
 
 	this->currentTickData.post.entityFlags = this->player->GetPlayerPawn()->m_fFlags();
 	this->currentTickData.post.moveType = this->player->GetPlayerPawn()->m_nActualMoveType;
-
+	this->currentTickData.weapon = this->currentWeaponID;
 	// Push the tick data to the circular buffer and recorders.
-	this->circularRecording.tickData->Write(this->currentTickData);
+	this->circularRecording->tickData->Write(this->currentTickData);
 	this->PushToRecorders(this->currentTickData, RecorderType::Both);
 
-	this->circularRecording.subtickData->Write(this->currentSubtickData);
+	this->circularRecording->subtickData->Write(this->currentSubtickData);
 	this->PushToRecorders<Recorder::Vec::Tick>(this->currentSubtickData, RecorderType::Both);
 }
 
 void KZRecordingService::RecordCommand(PlayerCommand *cmds, i32 numCmds)
 {
+	this->EnsureCircularRecorderInitialized();
+
 	i32 currentTick = g_pKZUtils->GetServerGlobals()->tickcount;
 	for (i32 i = 0; i < numCmds; i++)
 	{
 		auto &pc = cmds[i];
-
 		if (pc.cmdNum <= this->lastCmdNumReceived)
 		{
 			continue;
@@ -206,7 +216,7 @@ void KZRecordingService::RecordCommand(PlayerCommand *cmds, i32 numCmds)
 		data.m_yaw = utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(this->player->GetPlayerSlot(), "m_yaw"));
 		data.m_pitch = utils::StringToFloat(interfaces::pEngine->GetClientConVarValue(this->player->GetPlayerSlot(), "m_pitch"));
 
-		this->circularRecording.cmdData->Write(data);
+		this->circularRecording->cmdData->Write(data);
 		this->PushToRecorders(data, RecorderType::Both);
 
 		SubtickData subtickData;
@@ -215,7 +225,7 @@ void KZRecordingService::RecordCommand(PlayerCommand *cmds, i32 numCmds)
 		{
 			subtickData.subtickMoves[j].FromMove(pc.base().subtick_moves(j));
 		}
-		this->circularRecording.cmdSubtickData->Write(subtickData);
+		this->circularRecording->cmdSubtickData->Write(subtickData);
 		this->PushToRecorders<Recorder::Vec::Cmd>(subtickData, RecorderType::Both);
 		this->lastCmdNumReceived = pc.cmdNum;
 	}
@@ -236,8 +246,10 @@ void KZRecordingService::CheckRecorders()
 			if (s_fileWriter)
 			{
 				CPlayerUserId userID = this->player->GetClient()->GetUserID();
+				auto recorderPtr = std::make_unique<RunRecorder>(std::move(recorder));
+				this->CopyWeaponsToRecorder(recorderPtr.get());
 				s_fileWriter->QueueWrite(
-					std::make_unique<RunRecorder>(std::move(recorder)),
+					std::move(recorderPtr),
 					// Success callback
 					[userID](const UUID_t &uuid, f32 replayDuration)
 					{
@@ -245,6 +257,8 @@ void KZRecordingService::CheckRecorders()
 						if (callbackPlayer)
 						{
 							callbackPlayer->languageService->PrintChat(true, false, "Replay - Run Replay Saved", uuid.ToString().c_str());
+							callbackPlayer->languageService->PrintConsole(false, false, "Replay - Run Replay Saved (Console)",
+																		  uuid.ToString().c_str());
 						}
 					},
 					// Failure callback
@@ -276,7 +290,9 @@ void KZRecordingService::CheckRecorders()
 			}
 			if (s_fileWriter)
 			{
-				s_fileWriter->QueueWrite(std::make_unique<JumpRecorder>(std::move(recorder)));
+				auto recorderPtr = std::make_unique<JumpRecorder>(std::move(recorder));
+				this->CopyWeaponsToRecorder(recorderPtr.get());
+				s_fileWriter->QueueWrite(std::move(recorderPtr));
 			}
 			it = this->jumpRecorders.erase(it);
 		}
@@ -289,42 +305,31 @@ void KZRecordingService::CheckRecorders()
 
 void KZRecordingService::CheckWeapons()
 {
+	this->EnsureCircularRecorderInitialized();
+	this->currentWeaponID = -1;
 	auto weapon = this->player->GetPlayerPawn()->m_pWeaponServices()->m_hActiveWeapon().Get();
+	if (!weapon)
+	{
+		return;
+	}
 	auto weaponEconInfo = EconInfo(weapon);
-	if (this->currentWeaponEconInfo != weaponEconInfo)
+	for (i32 i = 0; i < this->weapons.size(); i++)
 	{
-		this->currentWeaponEconInfo = weaponEconInfo;
-
-		// Find or add weapon to the table
-		u16 weaponIndex = 0;
-		auto it = this->circularRecording.weaponIndexMap.find(weaponEconInfo);
-		if (it != this->circularRecording.weaponIndexMap.end())
+		if (weaponEconInfo == this->weapons[i])
 		{
-			// Weapon already in table, use existing index
-			weaponIndex = it->second;
+			this->currentWeaponID = i;
+			return;
 		}
-		else
-		{
-			// New weapon, add to table
-			weaponIndex = static_cast<u16>(this->circularRecording.weaponTable.size());
-			this->circularRecording.weaponTable.push_back(weaponEconInfo);
-			this->circularRecording.weaponIndexMap[weaponEconInfo] = weaponIndex;
-		}
-
-		WeaponSwitchEvent event;
-		event.serverTick = this->currentTickData.serverTick;
-		event.weaponIndex = weaponIndex;
-		this->circularRecording.weaponChangeEvents->Write(event);
-		this->PushToRecorders(event, RecorderType::Both);
 	}
-	if (!this->circularRecording.earliestWeapon.has_value())
-	{
-		this->circularRecording.earliestWeapon = this->currentWeaponEconInfo;
-	}
+	// New weapon, record it
+	this->weapons.push_back(weaponEconInfo);
+	this->currentWeaponID = static_cast<i16>(this->weapons.size() - 1);
 }
 
 void KZRecordingService::CheckModeStyles()
 {
+	this->EnsureCircularRecorderInitialized();
+
 	auto currentModeInfo = KZ::mode::GetModeInfo(this->player->modeService);
 	if (this->lastKnownMode.shortModeName != currentModeInfo.shortModeName || !KZ_STREQI(this->lastKnownMode.md5, currentModeInfo.md5))
 	{
@@ -381,16 +386,16 @@ void KZRecordingService::CheckModeStyles()
 		}
 	}
 
-	if (!this->circularRecording.earliestMode.has_value())
+	if (!this->circularRecording->earliestMode.has_value())
 	{
 		auto modeInfo = KZ::mode::GetModeInfo(this->player->modeService);
-		this->circularRecording.earliestMode = RpModeStyleInfo();
-		V_strncpy(this->circularRecording.earliestMode->name, modeInfo.longModeName.Get(), sizeof(this->circularRecording.earliestMode->name));
-		V_strncpy(this->circularRecording.earliestMode->md5, modeInfo.md5, sizeof(this->circularRecording.earliestMode->md5));
+		this->circularRecording->earliestMode = RpModeStyleInfo();
+		V_strncpy(this->circularRecording->earliestMode->name, modeInfo.longModeName.Get(), sizeof(this->circularRecording->earliestMode->name));
+		V_strncpy(this->circularRecording->earliestMode->md5, modeInfo.md5, sizeof(this->circularRecording->earliestMode->md5));
 	}
-	if (!this->circularRecording.earliestStyles.has_value())
+	if (!this->circularRecording->earliestStyles.has_value())
 	{
-		this->circularRecording.earliestStyles = std::vector<RpModeStyleInfo>();
+		this->circularRecording->earliestStyles = std::vector<RpModeStyleInfo>();
 
 		FOR_EACH_VEC(this->player->styleServices, i)
 		{
@@ -399,7 +404,7 @@ void KZRecordingService::CheckModeStyles()
 			RpModeStyleInfo style = {};
 			V_strncpy(style.name, styleInfo.longName, sizeof(style.name));
 			V_strncpy(style.md5, styleInfo.md5, sizeof(style.md5));
-			this->circularRecording.earliestStyles->push_back(style);
+			this->circularRecording->earliestStyles->push_back(style);
 		}
 	}
 }
@@ -411,9 +416,19 @@ void KZRecordingService::CheckCheckpoints()
 	this->currentTickData.checkpoint.teleportCount = this->player->checkpointService->GetTeleportCount();
 }
 
+void KZRecordingService::EnsureCircularRecorderInitialized()
+{
+	if (!this->circularRecording)
+	{
+		this->circularRecording = new CircularRecorder();
+		META_CONPRINTF("[KZ] Initialized circular recorder for player %s\n", this->player->GetController()->GetPlayerName());
+	}
+}
+
 void KZRecordingService::InsertEvent(const RpEvent &event)
 {
-	this->circularRecording.rpEvents->Write(event);
+	this->EnsureCircularRecorderInitialized();
+	this->circularRecording->rpEvents->Write(event);
 	this->PushToRecorders(event, RecorderType::Run);
 	if (event.type != RpEventType::RPEVENT_TIMER_EVENT)
 	{
@@ -485,6 +500,36 @@ void KZRecordingService::InsertStyleChangeEvent(const char *name, const char *md
 	this->InsertEvent(event);
 }
 
+void KZRecordingService::CopyWeaponsToRecorder(Recorder *recorder)
+{
+	if (!recorder)
+	{
+		return;
+	}
+
+	// Copy weapons that are referenced in the tick data
+	std::set<i32> referencedWeaponIndices;
+	for (const auto &tick : recorder->tickData)
+	{
+		if (tick.weapon >= 0)
+		{
+			referencedWeaponIndices.insert(tick.weapon);
+		}
+	}
+
+	if (kz_replay_recording_debug.Get())
+	{
+		META_CONPRINTF("kz_replay_recording_debug: Copying %u referenced weapons to recorder\n", referencedWeaponIndices.size());
+	}
+
+	for (i32 weaponIndex : referencedWeaponIndices)
+	{
+		META_CONPRINTF("Pushing weapon index %d to recorder\n", weaponIndex);
+		auto weapon = this->weapons[weaponIndex];
+		recorder->weaponTable.push_back({weaponIndex, weapon});
+	}
+}
+
 SCMD(kz_rpsave, SCFL_REPLAY)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
@@ -512,6 +557,8 @@ SCMD(kz_rpsave, SCFL_REPLAY)
 			if (callbackPlayer)
 			{
 				callbackPlayer->languageService->PrintChat(true, false, "Replay - Manual Replay Saved", uuid.ToString().c_str(), replayDuration);
+				callbackPlayer->languageService->PrintConsole(false, false, "Replay - Manual Replay Saved (Console)", uuid.ToString().c_str(),
+															  replayDuration);
 			}
 		},
 		// Failure callback

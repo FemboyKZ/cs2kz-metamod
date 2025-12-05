@@ -86,6 +86,31 @@ void KZJumpstatsService::SetBroadcastMinTier(const char *tierString)
 	}
 }
 
+void KZJumpstatsService::SetBroadcastMinTierConsole(const char *tierString)
+{
+	DistanceTier tier;
+	bool success = GetDistTierFromString(tierString, tier);
+	if (!success)
+	{
+		return;
+	}
+
+	if (tier == this->player->optionService->GetPreferenceInt("jsBroadcastMinTierConsole", DistanceTier_Godlike))
+	{
+		return;
+	}
+
+	this->player->optionService->SetPreferenceInt("jsBroadcastMinTierConsole", tier);
+	if (tier == 0)
+	{
+		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Console Broadcast Tier - Disabled");
+	}
+	else
+	{
+		this->player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Minimum Console Broadcast Tier - Response", tierString);
+	}
+}
+
 void KZJumpstatsService::SetBroadcastSoundMinTier(const char *tierString)
 {
 	DistanceTier tier;
@@ -247,6 +272,13 @@ SCMD(kz_jsbroadcast, SCFL_JUMPSTATS | SCFL_PREFERENCE)
 	return MRES_SUPERCEDE;
 }
 
+SCMD(kz_jsbroadcastconsole, SCFL_JUMPSTATS | SCFL_PREFERENCE)
+{
+	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
+	player->jumpstatsService->SetBroadcastMinTierConsole(args->Arg(1));
+	return MRES_SUPERCEDE;
+}
+
 SCMD(kz_jsbroadcastsound, SCFL_JUMPSTATS | SCFL_PREFERENCE)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
@@ -271,7 +303,13 @@ SCMD(kz_jsextend, SCFL_JUMPSTATS | SCFL_PREFERENCE)
 SCMD(kz_jsvolume, SCFL_JUMPSTATS | SCFL_PREFERENCE)
 {
 	KZPlayer *player = g_pKZPlayerManager->ToPlayer(controller);
-	f32 volume = Clamp(static_cast<f32>(V_atof(args->Arg(1))), 0.0f, 1.0f);
+	if (args->ArgC() < 2)
+	{
+		player->languageService->PrintChat(true, false, "Jumpstats Option - Jumpstats Volume - Current",
+										   player->optionService->GetPreferenceFloat("jsVolume", 0.75f));
+		return MRES_SUPERCEDE;
+	}
+	f32 volume = Clamp(static_cast<f32>(V_atof(args->Arg(1))), 0.0f, 2.0f);
 
 	player->jumpstatsService->SetJumpstatsVolume(volume);
 	return MRES_SUPERCEDE;

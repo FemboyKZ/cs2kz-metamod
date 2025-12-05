@@ -28,8 +28,6 @@ namespace KZ::replaysystem
 
 	void OnGameFrame()
 	{
-		bot::CheckBots();
-		// Process any completed async loads on the main thread
 		data::ProcessAsyncLoadCompletion();
 	}
 
@@ -83,7 +81,7 @@ namespace KZ::replaysystem
 			return true;
 		}
 
-		if (KZ::mapapi::IsTimerTrigger(kzTrigger->type))
+		if (KZ::mapapi::IsTimerTrigger(kzTrigger->type) || KZ::mapapi::IsTeleportTrigger(kzTrigger->type))
 		{
 			return false;
 		}

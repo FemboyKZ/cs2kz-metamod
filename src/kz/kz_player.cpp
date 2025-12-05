@@ -37,7 +37,6 @@ extern CSteamGameServerAPIContext g_steamAPI;
 void KZPlayer::Init()
 {
 	MovementPlayer::Init();
-	this->hideLegs = false;
 
 	// TODO: initialize every service.
 	delete this->anticheatService;
@@ -108,8 +107,8 @@ void KZPlayer::Reset()
 	this->telemetryService->Reset();
 	this->recordingService->Reset();
 
-	g_pKZModeManager->SwitchToMode(this, KZOptionService::GetOptionStr("defaultMode", KZ_DEFAULT_MODE), true, true);
-	g_pKZStyleManager->ClearStyles(this, true);
+	g_pKZModeManager->SwitchToMode(this, KZOptionService::GetOptionStr("defaultMode", KZ_DEFAULT_MODE), true, true, false);
+	g_pKZStyleManager->ClearStyles(this, true, false);
 	CSplitString styles(KZOptionService::GetOptionStr("defaultStyles"), ",");
 	FOR_EACH_VEC(styles, i)
 	{
@@ -130,6 +129,7 @@ void KZPlayer::OnPlayerActive()
 	g_pKZStyleManager->RefreshStyles(this, false);
 
 	this->optionService->OnPlayerActive();
+	this->recordingService->EnsureCircularRecorderInitialized();
 }
 
 void KZPlayer::OnPlayerFullyConnect()
@@ -157,6 +157,7 @@ void KZPlayer::OnPhysicsSimulate()
 	{
 		this->styleServices[i]->OnPhysicsSimulate();
 	}
+	this->hudService->OnPhysicsSimulate();
 	this->noclipService->HandleMoveCollision();
 	this->EnableGodMode();
 	this->UpdatePlayerModelAlpha();
@@ -517,6 +518,7 @@ void KZPlayer::OnJump()
 	{
 		this->styleServices[i]->OnJump();
 	}
+	this->hudService->OnJump();
 }
 
 void KZPlayer::OnJumpPost()
@@ -834,11 +836,12 @@ void KZPlayer::UpdatePlayerModelAlpha()
 		return;
 	}
 	Color ogColor = pawn->m_clrRender();
-	if (this->hideLegs && pawn->m_clrRender().a() == 255)
+	bool hideLegs = this->optionService->GetPreferenceBool("hideLegs");
+	if (hideLegs && pawn->m_clrRender().a() == 255)
 	{
 		pawn->m_clrRender(Color(255, 255, 255, 254));
 	}
-	else if (!this->hideLegs && pawn->m_clrRender().a() != 255)
+	else if (!hideLegs && pawn->m_clrRender().a() != 255)
 	{
 		pawn->m_clrRender(Color(255, 255, 255, 255));
 	}
@@ -851,8 +854,7 @@ bool KZPlayer::JustTeleported(f32 threshold)
 
 void KZPlayer::ToggleHideLegs()
 {
-	this->hideLegs = !this->hideLegs;
-	this->optionService->SetPreferenceBool("hideLegs", this->hideLegs);
+	this->optionService->SetPreferenceBool("hideLegs", !this->optionService->GetPreferenceBool("hideLegs", false));
 }
 
 void KZPlayer::PlayErrorSound()

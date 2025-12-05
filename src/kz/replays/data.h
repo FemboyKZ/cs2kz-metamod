@@ -16,22 +16,14 @@ namespace KZ::replaysystem::data
 	{
 		UUID_t uuid;
 		bool valid;
-		GeneralReplayHeader header;
-		// Can't union this because the type will become non trivial.
-		CheaterReplayHeader cheaterHeader;
-		RunReplayHeader runHeader;
-		JumpReplayHeader jumpHeader;
-		ManualReplayHeader manualHeader;
+		ReplayHeader header;
 
 		u32 tickCount;
 		TickData *tickData;
 		SubtickData *subtickData;
-		i32 currentWeapon = -1;
-		i32 numWeapons;
-		WeaponSwitchEvent *weapons;
-		// Weapon table mapping indices to actual weapon info
-		u32 weaponTableSize;
-		EconInfo *weaponTable;
+		i32 weaponTableSize;
+		i32 *weaponIndices;
+		EconInfo *weapons;
 		u32 currentJump;
 		u32 numJumps;
 		RpJumpStats *jumps;

@@ -12,106 +12,107 @@
 
 extern CConVar<bool> kz_replay_recording_debug;
 
-ManualRecorder::ManualRecorder(KZPlayer *player, f32 duration, KZPlayer *savedBy) : Recorder(player, duration, true, DistanceTier_None)
+ManualRecorder::ManualRecorder(KZPlayer *player, f32 duration, KZPlayer *savedBy) : Recorder(player, duration, RP_MANUAL, true, DistanceTier_None)
 {
-	this->baseHeader.type = RP_MANUAL;
 	if (savedBy)
 	{
-		V_strncpy(this->header.savedBy.name, savedBy->GetName(), sizeof(this->header.savedBy.name));
-		this->header.savedBy.steamid64 = savedBy->GetSteamId64();
+		auto *manual = replayHeader.mutable_manual();
+		auto *savedByMsg = manual->mutable_saved_by();
+		savedByMsg->set_name(savedBy->GetName());
+		savedByMsg->set_steamid64(savedBy->GetSteamId64());
 	}
 }
 
 i32 ManualRecorder::WriteHeader(FileHandle_t file)
 {
-	i32 bytesWritten = Recorder::WriteHeader(file);
-	return bytesWritten + g_pFullFileSystem->Write(&this->header, sizeof(this->header), file);
+	return Recorder::WriteHeader(file);
 }
 
-CheaterRecorder::CheaterRecorder(KZPlayer *player, const char *reason, KZPlayer *savedBy) : Recorder(player, 120.0f, true, DistanceTier_None)
+CheaterRecorder::CheaterRecorder(KZPlayer *player, const char *reason, KZPlayer *savedBy)
+	: Recorder(player, 120.0f, RP_CHEATER, true, DistanceTier_None)
 {
-	this->baseHeader.type = RP_CHEATER;
-	V_strncpy(this->header.reason, reason, sizeof(this->header.reason));
+	auto *cheater = replayHeader.mutable_cheater();
+	cheater->set_reason(reason);
 	if (savedBy)
 	{
-		V_strncpy(this->header.reporter.name, savedBy->GetName(), sizeof(this->header.reporter.name));
-		this->header.reporter.steamid64 = savedBy->GetSteamId64();
+		auto *reporter = cheater->mutable_reporter();
+		reporter->set_name(savedBy->GetName());
+		reporter->set_steamid64(savedBy->GetSteamId64());
 	}
 }
 
 i32 CheaterRecorder::WriteHeader(FileHandle_t file)
 {
-	i32 bytesWritten = Recorder::WriteHeader(file);
-	return bytesWritten + g_pFullFileSystem->Write(&this->header, sizeof(this->header), file);
+	return Recorder::WriteHeader(file);
 }
 
 // JumpRecorder Implementation
-JumpRecorder::JumpRecorder(Jump *jump) : Recorder(jump->player, 5.0f, false, DistanceTier_None)
+JumpRecorder::JumpRecorder(Jump *jump) : Recorder(jump->player, 5.0f, RP_JUMPSTATS, false, DistanceTier_None)
 {
 	this->desiredStopTime = g_pKZUtils->GetServerGlobals()->curtime + 2.0f;
-	this->baseHeader.type = RP_JUMPSTATS;
-	V_strncpy(this->header.mode.name, KZ::mode::GetModeInfo(jump->player->modeService).longModeName.Get(), sizeof(this->header.mode.name));
-	V_strncpy(this->header.mode.shortName, KZ::mode::GetModeInfo(jump->player->modeService).shortModeName.Get(), sizeof(this->header.mode.shortName));
-	V_strncpy(this->header.mode.md5, KZ::mode::GetModeInfo(jump->player->modeService).md5, sizeof(this->header.mode.md5));
-	this->header.jumpType = jump->jumpType;
-	this->header.distance = jump->GetDistance();
-	this->header.blockDistance = -1;
-	this->header.numStrafes = jump->strafes.Count();
-	this->header.airTime = jump->airtime;
-	this->header.pre = jump->GetTakeoffSpeed();
-	this->header.max = jump->GetMaxSpeed();
-	this->header.sync = jump->GetSync();
+	auto *jumpProto = replayHeader.mutable_jump();
+	auto modeInfo = KZ::mode::GetModeInfo(jump->player->modeService);
+	jumpProto->mutable_mode()->set_name(modeInfo.longModeName.Get());
+	jumpProto->mutable_mode()->set_short_name(modeInfo.shortModeName.Get());
+	jumpProto->mutable_mode()->set_md5(modeInfo.md5);
+	jumpProto->set_jump_type(jump->jumpType);
+	jumpProto->set_distance(jump->GetDistance());
+	jumpProto->set_block_distance(-1);
+	jumpProto->set_num_strafes(jump->strafes.Count());
+	jumpProto->set_air_time(jump->airtime);
+	jumpProto->set_pre(jump->GetTakeoffSpeed());
+	jumpProto->set_max(jump->GetMaxSpeed());
+	jumpProto->set_sync(jump->GetSync());
 }
 
 i32 JumpRecorder::WriteHeader(FileHandle_t file)
 {
-	i32 bytesWritten = Recorder::WriteHeader(file);
-	return bytesWritten + g_pFullFileSystem->Write(&this->header, sizeof(this->header), file);
+	return Recorder::WriteHeader(file);
 }
 
 // RunRecorder Implementation
-RunRecorder::RunRecorder(KZPlayer *player) : Recorder(player, 5.0f, true, DistanceTier_Ownage)
+RunRecorder::RunRecorder(KZPlayer *player) : Recorder(player, 5.0f, RP_RUN, true, DistanceTier_Ownage)
 {
-	this->baseHeader.type = RP_RUN;
-	V_strncpy(this->header.courseName, player->timerService->GetCourse()->GetName().Get(), sizeof(this->header.courseName));
-	V_strncpy(this->header.mode.name, KZ::mode::GetModeInfo(player->modeService).longModeName.Get(), sizeof(this->header.mode.name));
-	V_strncpy(this->header.mode.shortName, KZ::mode::GetModeInfo(player->modeService).shortModeName.Get(), sizeof(this->header.mode.shortName));
-	V_strncpy(this->header.mode.md5, KZ::mode::GetModeInfo(player->modeService).md5, sizeof(this->header.mode.md5));
+	auto *runProto = replayHeader.mutable_run();
+	runProto->set_course_name(player->timerService->GetCourse()->GetName().Get());
+	auto modeInfo = KZ::mode::GetModeInfo(player->modeService);
+	runProto->mutable_mode()->set_name(modeInfo.longModeName.Get());
+	runProto->mutable_mode()->set_short_name(modeInfo.shortModeName.Get());
+	runProto->mutable_mode()->set_md5(modeInfo.md5);
 	FOR_EACH_VEC(player->styleServices, i)
 	{
 		auto styleInfo = KZ::style::GetStyleInfo(player->styleServices[i]);
-		RpModeStyleInfo style = {};
-		V_strncpy(style.name, styleInfo.longName, sizeof(style.name));
-		V_strncpy(style.shortName, styleInfo.shortName, sizeof(style.shortName));
-		V_strncpy(style.md5, styleInfo.md5, sizeof(style.md5));
-		this->styles.push_back(style);
+		auto *styleMsg = runProto->add_styles();
+		styleMsg->set_name(styleInfo.longName);
+		styleMsg->set_short_name(styleInfo.shortName);
+		styleMsg->set_md5(styleInfo.md5);
 	}
-	this->header.styleCount = player->styleServices.Count();
 }
 
 void RunRecorder::End(f32 time, i32 numTeleports)
 {
-	this->header.time = time;
-	this->header.numTeleports = numTeleports;
+	auto *runProto = replayHeader.mutable_run();
+	runProto->set_time(time);
+	runProto->set_num_teleports(numTeleports);
 	this->desiredStopTime = g_pKZUtils->GetServerGlobals()->curtime + 4.0f;
 }
 
 i32 RunRecorder::WriteHeader(FileHandle_t file)
 {
-	i32 bytesWritten = Recorder::WriteHeader(file);
-	for (auto &style : styles)
-	{
-		bytesWritten += g_pFullFileSystem->Write(&style, sizeof(style), file);
-	}
-	return bytesWritten + g_pFullFileSystem->Write(&this->header, sizeof(this->header), file);
+	return Recorder::WriteHeader(file);
 }
 
 // Recorder Implementation
-Recorder::Recorder(KZPlayer *player, f32 numSeconds, bool copyTimerEvents, DistanceTier copyJumps)
+Recorder::Recorder(KZPlayer *player, f32 numSeconds, ReplayType type, bool copyTimerEvents, DistanceTier copyJumps)
 {
-	baseHeader.Init(player);
+	Recorder::Init(replayHeader, player, type);
 
-	CircularRecorder &circular = player->recordingService->circularRecording;
+	CircularRecorder *circular = player->recordingService->circularRecording;
+	if (!circular)
+	{
+		// No circular recorder initialized, nothing to copy
+		return;
+	}
 	// Go through the events and fetch the first events within the time frame.
 	// Iterate backwards to find the earliest event that is still within the time frame.
 	i32 earliestWeaponIndex = -1;
@@ -119,28 +120,28 @@ Recorder::Recorder(KZPlayer *player, f32 numSeconds, bool copyTimerEvents, Dista
 	i32 earliestStyleEventIndex = -1;
 	i32 earliestCheckpointEventIndex = -1;
 
-	if (circular.tickData->GetReadAvailable() == 0)
+	if (circular->tickData->GetReadAvailable() == 0)
 	{
 		return;
 	}
-	i32 numTickData = MIN(circular.tickData->GetReadAvailable(), (i32)(numSeconds * ENGINE_FIXED_TICK_RATE));
-	u32 earliestTick = circular.tickData->PeekSingle(circular.tickData->GetReadAvailable() - numTickData)->serverTick;
-	for (i32 i = circular.tickData->GetReadAvailable() - numTickData; i < circular.tickData->GetReadAvailable(); i++)
+	i32 numTickData = MIN(circular->tickData->GetReadAvailable(), (i32)(numSeconds * ENGINE_FIXED_TICK_RATE));
+	u32 earliestTick = circular->tickData->PeekSingle(circular->tickData->GetReadAvailable() - numTickData)->serverTick;
+	for (i32 i = circular->tickData->GetReadAvailable() - numTickData; i < circular->tickData->GetReadAvailable(); i++)
 	{
-		TickData *tickData = circular.tickData->PeekSingle(i);
+		TickData *tickData = circular->tickData->PeekSingle(i);
 		if (!tickData)
 		{
 			break;
 		}
 		this->tickData.push_back(*tickData);
-		this->subtickData.push_back(*circular.subtickData->PeekSingle(i));
+		this->subtickData.push_back(*circular->subtickData->PeekSingle(i));
 	}
 	i32 first = 0;
 	bool shouldCopy = false;
-	for (; first < circular.rpEvents->GetReadAvailable(); first++)
+	for (; first < circular->rpEvents->GetReadAvailable(); first++)
 	{
 		shouldCopy = true;
-		RpEvent *event = circular.rpEvents->PeekSingle(first);
+		RpEvent *event = circular->rpEvents->PeekSingle(first);
 		if (event->serverTick >= earliestTick)
 		{
 			break;
@@ -160,20 +161,20 @@ Recorder::Recorder(KZPlayer *player, f32 numSeconds, bool copyTimerEvents, Dista
 		RpEvent baseModeEvent = {};
 		baseModeEvent.serverTick = 0;
 		baseModeEvent.type = RPEVENT_MODE_CHANGE;
-		V_strncpy(baseModeEvent.data.modeChange.name, circular.earliestMode.value().name, sizeof(baseModeEvent.data.modeChange.name));
-		V_strncpy(baseModeEvent.data.modeChange.md5, circular.earliestMode.value().md5, sizeof(baseModeEvent.data.modeChange.md5));
+		V_strncpy(baseModeEvent.data.modeChange.name, circular->earliestMode.value().name, sizeof(baseModeEvent.data.modeChange.name));
+		V_strncpy(baseModeEvent.data.modeChange.md5, circular->earliestMode.value().md5, sizeof(baseModeEvent.data.modeChange.md5));
 		this->rpEvents.push_back(baseModeEvent);
 	}
 	else
 	{
-		RpEvent baseModeEvent = *circular.rpEvents->PeekSingle(earliestModeEventIndex);
+		RpEvent baseModeEvent = *circular->rpEvents->PeekSingle(earliestModeEventIndex);
 		baseModeEvent.serverTick = 0;
 		this->rpEvents.push_back(baseModeEvent);
 	}
 	if (earliestStyleEventIndex == -1)
 	{
 		bool firstStyle = true;
-		for (auto &style : circular.earliestStyles.value_or(std::vector<RpModeStyleInfo>()))
+		for (auto &style : circular->earliestStyles.value_or(std::vector<RpModeStyleInfo>()))
 		{
 			RpEvent baseStyleEvent = {};
 			baseStyleEvent.serverTick = 0;
@@ -187,14 +188,14 @@ Recorder::Recorder(KZPlayer *player, f32 numSeconds, bool copyTimerEvents, Dista
 	}
 	else
 	{
-		RpEvent baseStyleEvent = *circular.rpEvents->PeekSingle(earliestStyleEventIndex);
+		RpEvent baseStyleEvent = *circular->rpEvents->PeekSingle(earliestStyleEventIndex);
 		i32 eventServerTick = baseStyleEvent.serverTick;
 		baseStyleEvent.serverTick = 0;
 		this->rpEvents.push_back(baseStyleEvent);
 		// Copy all style change events with the same server tick (they were part of the same batch)
-		for (i32 i = earliestStyleEventIndex + 1; i < circular.rpEvents->GetReadAvailable(); i++)
+		for (i32 i = earliestStyleEventIndex + 1; i < circular->rpEvents->GetReadAvailable(); i++)
 		{
-			RpEvent *event = circular.rpEvents->PeekSingle(i);
+			RpEvent *event = circular->rpEvents->PeekSingle(i);
 			if (!event || event->type != RPEVENT_STYLE_CHANGE || event->serverTick != eventServerTick)
 			{
 				break;
@@ -204,79 +205,44 @@ Recorder::Recorder(KZPlayer *player, f32 numSeconds, bool copyTimerEvents, Dista
 	}
 	if (shouldCopy)
 	{
-		for (i32 i = first; i < circular.rpEvents->GetReadAvailable(); i++)
+		for (i32 i = first; i < circular->rpEvents->GetReadAvailable(); i++)
 		{
-			if (!copyTimerEvents && circular.rpEvents->PeekSingle(i)->type == RPEVENT_TIMER_EVENT)
+			if (!copyTimerEvents && circular->rpEvents->PeekSingle(i)->type == RPEVENT_TIMER_EVENT)
 			{
 				continue;
 			}
-			this->rpEvents.push_back(*circular.rpEvents->PeekSingle(i));
+			this->rpEvents.push_back(*circular->rpEvents->PeekSingle(i));
 		}
 	}
+
 	shouldCopy = false;
-	for (first = 0; first < circular.weaponChangeEvents->GetReadAvailable(); first++)
+	for (first = 0; first < circular->jumps.size(); first++)
 	{
+		const RpJumpStats &jump = circular->jumps[first];
 		shouldCopy = true;
-		WeaponSwitchEvent *event = circular.weaponChangeEvents->PeekSingle(first);
-
-		if (event->serverTick >= earliestTick)
-		{
-			break;
-		}
-		earliestWeaponIndex = first;
-	}
-
-	// Copy the weapon table from circular recorder
-	this->weaponTable = circular.weaponTable;
-
-	if (earliestWeaponIndex != -1)
-	{
-		u16 weaponIndex = circular.weaponChangeEvents->PeekSingle(earliestWeaponIndex)->weaponIndex;
-		this->baseHeader.firstWeapon = circular.weaponTable[weaponIndex];
-	}
-	else
-	{
-		this->baseHeader.firstWeapon = circular.earliestWeapon.value();
-	}
-	if (shouldCopy)
-	{
-		for (i32 i = first; i < circular.weaponChangeEvents->GetReadAvailable(); i++)
-		{
-			this->weaponChangeEvents.push_back(*circular.weaponChangeEvents->PeekSingle(i));
-		}
-	}
-	shouldCopy = false;
-	for (first = 0; first < circular.jumps->GetReadAvailable(); first++)
-	{
-		RpJumpStats *jump = circular.jumps->PeekSingle(first);
-		if (!jump)
-		{
-			break;
-		}
-		shouldCopy = true;
-		if (jump->overall.serverTick >= earliestTick)
+		if (jump.overall.serverTick >= earliestTick)
 		{
 			break;
 		}
 	}
 	if (shouldCopy)
 	{
-		for (i32 i = first; i < circular.jumps->GetReadAvailable(); i++)
+		for (i32 i = first; i < circular->jumps.size(); i++)
 		{
-			RpJumpStats *jump = circular.jumps->PeekSingle(i);
+			const RpJumpStats &jump = circular->jumps[i];
 
-			if (jump->overall.distanceTier < copyJumps)
+			if (jump.overall.distanceTier < copyJumps)
 			{
 				continue;
 			}
-			this->jumps.push_back(*jump);
+			this->jumps.push_back(jump);
 		}
 	}
 
 	shouldCopy = false;
-	for (first = 0; first < circular.cmdData->GetReadAvailable(); first++)
+	for (first = 0; first < circular->cmdData->GetReadAvailable(); first++)
 	{
-		CmdData *cmdData = circular.cmdData->PeekSingle(first);
+		CmdData *cmdData = circular->cmdData->PeekSingle(first);
 		if (!cmdData)
 		{
 			break;
@@ -289,10 +255,10 @@ Recorder::Recorder(KZPlayer *player, f32 numSeconds, bool copyTimerEvents, Dista
 	}
 	if (shouldCopy)
 	{
-		for (i32 i = first; i < circular.cmdData->GetReadAvailable(); i++)
+		for (i32 i = first; i < circular->cmdData->GetReadAvailable(); i++)
 		{
-			this->cmdData.push_back(*circular.cmdData->PeekSingle(i));
-			this->cmdSubtickData.push_back(*circular.cmdSubtickData->PeekSingle(i));
+			this->cmdData.push_back(*circular->cmdData->PeekSingle(i));
+			this->cmdSubtickData.push_back(*circular->cmdSubtickData->PeekSingle(i));
 		}
 	}
 }
@@ -302,7 +268,7 @@ bool Recorder::WriteToFile()
 	// Update the replay timestamp before writing.
 	time_t unixTime = 0;
 	time(&unixTime);
-	this->baseHeader.timestamp = (u64)unixTime;
+	replayHeader.set_timestamp((u64)unixTime);
 
 	char filename[512];
 	std::string uuidStr = this->uuid.ToString();
@@ -320,7 +286,7 @@ bool Recorder::WriteToFile()
 
 	bytesWritten += KZ::replaysystem::compression::WriteTickDataCompressed(file, this->tickData, this->subtickData);
 
-	bytesWritten += KZ::replaysystem::compression::WriteWeaponChangesCompressed(file, this->weaponChangeEvents, this->weaponTable);
+	bytesWritten += KZ::replaysystem::compression::WriteWeaponsCompressed(file, this->weaponTable);
 
 	bytesWritten += KZ::replaysystem::compression::WriteJumpsCompressed(file, this->jumps);
 
@@ -337,8 +303,18 @@ bool Recorder::WriteToFile()
 
 i32 Recorder::WriteHeader(FileHandle_t file)
 {
-	// Write the base header
-	return g_pFullFileSystem->Write(&this->baseHeader, sizeof(this->baseHeader), file);
+	// Serialize unified protobuf header with length prefix
+	std::string serialized;
+	if (!this->replayHeader.SerializeToString(&serialized))
+	{
+		META_CONPRINTF("[KZ] Failed to serialize replay header protobuf\n");
+		return 0;
+	}
+	u32 size = static_cast<u32>(serialized.size());
+	i32 written = 0;
+	written += g_pFullFileSystem->Write(&size, sizeof(size), file);
+	written += g_pFullFileSystem->Write(serialized.data(), size, file);
+	return written;
 }
 
 i32 Recorder::WriteTickData(FileHandle_t file)
@@ -346,9 +322,9 @@ i32 Recorder::WriteTickData(FileHandle_t file)
 	return KZ::replaysystem::compression::WriteTickDataCompressed(file, this->tickData, this->subtickData);
 }
 
-i32 Recorder::WriteWeaponChanges(FileHandle_t file)
+i32 Recorder::WriteWeapons(FileHandle_t file)
 {
-	return KZ::replaysystem::compression::WriteWeaponChangesCompressed(file, this->weaponChangeEvents, this->weaponTable);
+	return KZ::replaysystem::compression::WriteWeaponsCompressed(file, this->weaponTable);
 }
 
 i32 Recorder::WriteJumps(FileHandle_t file)

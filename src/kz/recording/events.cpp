@@ -276,8 +276,11 @@ void KZRecordingService::OnJumpFinish(Jump *jump)
 	{
 		META_CONPRINTF("kz_replay_recording_debug: Jump finish\n");
 	}
-	RpJumpStats &rpJump = this->circularRecording.jumps->GetNextWriteRef();
+	this->EnsureCircularRecorderInitialized();
+	RpJumpStats rpJump;
 	RpJumpStats::FromJump(rpJump, jump);
+	this->circularRecording->jumps.push_back(rpJump);
+
 	// Only write the jump if it's ownage or better to save storage for run replays.
 	if (jump->IsValid() && jump->GetJumpPlayer()->modeService->GetDistanceTier(jump->jumpType, jump->GetDistance()) >= DistanceTier_Ownage)
 	{
@@ -286,7 +289,7 @@ void KZRecordingService::OnJumpFinish(Jump *jump)
 	// Add to all active jump recorders.
 	this->PushToRecorders(rpJump, RecorderType::Jump);
 	// Create a new jump recorder if the jump is good enough.
-	if (jump->IsValid()
+	if (jump->IsValid() && jump->GetOffset() >= -JS_EPSILON
 		&& jump->GetJumpPlayer()->modeService->GetDistanceTier(jump->jumpType, jump->GetDistance()) >= kz_replay_recording_min_jump_tier.Get())
 	{
 		this->jumpRecorders.push_back(JumpRecorder(jump));
@@ -300,7 +303,9 @@ void KZRecordingService::OnClientDisconnect()
 	{
 		if (recorder.desiredStopTime > 0.0f && s_fileWriter)
 		{
-			s_fileWriter->QueueWrite(std::make_unique<RunRecorder>(std::move(recorder)));
+			auto recorderPtr = std::make_unique<RunRecorder>(std::move(recorder));
+			this->CopyWeaponsToRecorder(recorderPtr.get());
+			s_fileWriter->QueueWrite(std::move(recorderPtr));
 		}
 	}
 	this->runRecorders.clear();
@@ -308,10 +313,16 @@ void KZRecordingService::OnClientDisconnect()
 	{
 		if (s_fileWriter)
 		{
-			s_fileWriter->QueueWrite(std::make_unique<JumpRecorder>(std::move(recorder)));
+			auto recorderPtr = std::make_unique<JumpRecorder>(std::move(recorder));
+			this->CopyWeaponsToRecorder(recorderPtr.get());
+			s_fileWriter->QueueWrite(std::move(recorderPtr));
 		}
 	}
 	this->jumpRecorders.clear();
+
+	// Clean up circular recorder when player disconnects
+	delete this->circularRecording;
+	this->circularRecording = nullptr;
 }
 
 void KZRecordingService::OnPhysicsSimulate()
@@ -357,12 +368,15 @@ void KZRecordingService::OnPhysicsSimulatePost()
 	{
 		return;
 	}
-	this->RecordTickData_PhysicsSimulatePost();
 	this->CheckWeapons();
-	this->CheckModeStyles();
 	this->CheckCheckpoints();
+	this->RecordTickData_PhysicsSimulatePost();
+	this->CheckModeStyles();
 
 	// Remove old events from circular buffer (keep 2 minutes)
 	u32 currentTick = g_pKZUtils->GetServerGlobals()->tickcount;
-	this->circularRecording.TrimOldData(currentTick);
+	if (this->circularRecording)
+	{
+		this->circularRecording->TrimOldData(currentTick);
+	}
 }
