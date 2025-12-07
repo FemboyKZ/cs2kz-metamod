@@ -6,8 +6,7 @@ Automated translation linter reports for cs2kz-metamod.
 
 | Metric | Value |
 |--------|-------|
-| **Linter Errors** | 0
-0 |
+| **Linter Errors** | 0 |
 | **Linter Warnings** | 48 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 498 |
@@ -42,9 +41,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`ee21f17`](https://github.com/FemboyKZ/cs2kz-metamod/commit/ee21f175483f3a451d45b81628b1d59d6fd7f885)
-- **Time:** 2025-12-07 18:18:37 UTC
-- **Message:** fix overwrite err
+- **Commit:** [`bdd8bc6`](https://github.com/FemboyKZ/cs2kz-metamod/commit/bdd8bc63f8eb6ed275de60c479138c48cf8e02ee)
+- **Time:** 2025-12-07 18:22:14 UTC
+- **Message:** Improve error and warning counting in lint workflow
 
 ---
 
