@@ -17,7 +17,19 @@ Automated translation linter reports for cs2kz-metamod.
 ## Language Coverage
 
 ```
-  No coverage data available
+  chi (schinese)       [███████████████████░]  99.6% (496/498)
+  de (german)          [████████████████████] 100.0% (498/498)
+  en (english)         [████████████████████] 100.0% (498/498)
+  es (spanish)         [███████████░░░░░░░░░]  58.0% (289/498)
+  fi (finnish)         [█████████░░░░░░░░░░░]  48.0% (239/498)
+  it (italian)         [█████████░░░░░░░░░░░]  46.4% (231/498)
+  ko (koreana)         [███████████░░░░░░░░░]  58.6% (292/498)
+  lv (latvian)         [█████████████░░░░░░░]  67.1% (334/498)
+  pl (polish)          [████████░░░░░░░░░░░░]  43.2% (215/498)
+  ru (russian)         [███░░░░░░░░░░░░░░░░░]  18.5% (92/498)
+  sv (swedish)         [███████████████░░░░░]  79.9% (398/498)
+  tr (turkish)         [██████████░░░░░░░░░░]  53.8% (268/498)
+  ua (ukrainian)       [████████████████████] 100.0% (498/498)
 ```
 
 ## Reports
@@ -30,9 +42,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`878dde6`](https://github.com/FemboyKZ/cs2kz-metamod/commit/878dde696ab6ccc0c32f708a0589dcc0c54bdd1f)
-- **Time:** 2025-12-07 18:11:04 UTC
-- **Message:** fix sed err
+- **Commit:** [`ee21f17`](https://github.com/FemboyKZ/cs2kz-metamod/commit/ee21f175483f3a451d45b81628b1d59d6fd7f885)
+- **Time:** 2025-12-07 18:18:37 UTC
+- **Message:** fix overwrite err
 
 ---
 
