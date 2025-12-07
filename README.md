@@ -41,9 +41,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`bdd8bc6`](https://github.com/FemboyKZ/cs2kz-metamod/commit/bdd8bc63f8eb6ed275de60c479138c48cf8e02ee)
-- **Time:** 2025-12-07 18:22:14 UTC
-- **Message:** Improve error and warning counting in lint workflow
+- **Commit:** [`14e5ea0`](https://github.com/FemboyKZ/cs2kz-metamod/commit/14e5ea0ec1825f6281cbd4f05e8df5a0650dd0ec)
+- **Time:** 2025-12-07 18:25:30 UTC
+- **Message:** fix commit tag
 
 ---
 
