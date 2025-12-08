@@ -7,11 +7,11 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 48 |
-| **Total Languages** | 13 |
-| **Total Phrases** | 498 |
-| **Phrases Missing Translations** | 432 |
-| **Total Missing Entries** | 2126 |
+| **Linter Warnings** | 0 |
+| **Total Languages** | 0 |
+| **Total Phrases** | 0 |
+| **Phrases Missing Translations** | 0 |
+| **Total Missing Entries** | 0 |
 | **Menu Files** | 9 |
 
 ## Language Coverage (Phrases)
@@ -36,9 +36,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`65ef3fd`](https://github.com/FemboyKZ/cs2kz-metamod/commit/65ef3fdd5da3c0e2918c99d611ec818b95d8edee)
-- **Time:** 2025-12-08 01:22:07 UTC
-- **Message:** fix path
+- **Commit:** [`1395e73`](https://github.com/FemboyKZ/cs2kz-metamod/commit/1395e73368105414b08526577d36114706ba8807)
+- **Time:** 2025-12-08 01:33:19 UTC
+- **Message:** update linter
 
 ---
 

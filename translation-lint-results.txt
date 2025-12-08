@@ -1,90 +1,10 @@
-Loaded 32 language codes from config.txt
-Checking 29 translation files in 'translations'...
+config.txt not found in /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/translations, using default language list
+Base directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations
+Translations directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/translations
+Menu directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/menu
 
-Languages found across all files: ['chi', 'de', 'en', 'es', 'fi', 'it', 'ko', 'lv', 'pl', 'ru', 'sv', 'tr', 'ua']
-
-======================================================================
-SUMMARY: 0 error(s), 48 warning(s)
-======================================================================
-
-📄 cs2kz-beam.phrases.txt (0 errors, 1 warnings)
---------------------------------------------------
-  cs2kz-beam.phrases.txt:49: [WARNING] Placeholder: Missing placeholder(s) {z} in 'sv' translation for 'Current Beam Offset' (present in 'en')
-
-📄 cs2kz-commands.phrases.txt (0 errors, 21 warnings)
---------------------------------------------------
-  cs2kz-commands.phrases.txt:42: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:354: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:369: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:384: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:399: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:430: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:445: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:460: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:475: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:490: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:505: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:567: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:582: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:597: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:612: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:746: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:761: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:776: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:791: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:806: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-commands.phrases.txt:821: [WARNING] Formatting: Line has trailing whitespace
-
-📄 cs2kz-hud.phrases.txt (0 errors, 13 warnings)
---------------------------------------------------
-  cs2kz-hud.phrases.txt:158: [WARNING] Empty: Empty translation for language 'en' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:159: [WARNING] Empty: Empty translation for language 'chi' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:160: [WARNING] Empty: Empty translation for language 'pl' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:161: [WARNING] Empty: Empty translation for language 'fi' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:162: [WARNING] Empty: Empty translation for language 'sv' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:163: [WARNING] Empty: Empty translation for language 'ua' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:164: [WARNING] Empty: Empty translation for language 'tr' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:165: [WARNING] Empty: Empty translation for language 'it' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:166: [WARNING] Empty: Empty translation for language 'es' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:167: [WARNING] Empty: Empty translation for language 'de' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:168: [WARNING] Empty: Empty translation for language 'ko' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:169: [WARNING] Empty: Empty translation for language 'lv' in phrase 'HUD - Alert Text'
-  cs2kz-hud.phrases.txt:189: [WARNING] Formatting: Line has trailing whitespace
-
-📄 cs2kz-jumpstats.phrases.txt (0 errors, 3 warnings)
---------------------------------------------------
-  cs2kz-jumpstats.phrases.txt:348: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-jumpstats.phrases.txt:739: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-jumpstats.phrases.txt:757: [WARNING] Formatting: Line has trailing whitespace
-
-📄 cs2kz-language.phrases.txt (0 errors, 1 warnings)
---------------------------------------------------
-  cs2kz-language.phrases.txt:20: [WARNING] Formatting: Line has trailing whitespace
-
-📄 cs2kz-replays.phrases.txt (0 errors, 2 warnings)
---------------------------------------------------
-  cs2kz-replays.phrases.txt:78: [WARNING] Format: Unknown format tag: {tick}
-    Context: "chi"		"{grey}时间 {lime}{tick}{grey} 超出范围. 最大时间值: {lime}{maxTime}."
-  cs2kz-replays.phrases.txt:78: [WARNING] Placeholder: Missing placeholder(s) {time} in 'chi' translation for 'Replay - Time Out Of Range' (present in 'en')
-
-📄 cs2kz-timer-personalbest.phrases.txt (0 errors, 1 warnings)
---------------------------------------------------
-  cs2kz-timer-personalbest.phrases.txt:203: [WARNING] Formatting: Line has trailing whitespace
-
-📄 cs2kz-timer-toprecord.phrases.txt (0 errors, 1 warnings)
---------------------------------------------------
-  cs2kz-timer-toprecord.phrases.txt:102: [WARNING] Formatting: Line has trailing whitespace
-
-📄 cs2kz-timer.phrases.txt (0 errors, 5 warnings)
---------------------------------------------------
-  cs2kz-timer.phrases.txt:34: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-timer.phrases.txt:71: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-timer.phrases.txt:106: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-timer.phrases.txt:233: [WARNING] Formatting: Line has trailing whitespace
-  cs2kz-timer.phrases.txt:379: [WARNING] Formatting: Line has trailing whitespace
-
-======================================================================
-TOTAL: 0 error(s), 48 warning(s) in 9 file(s)
-======================================================================
+Error: Translations directory '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/translations' does not exist.
+Warning: Menu directory '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/menu' does not exist.
+No issues found!
 Missing translations report written to: missing-translations.txt
 Missing translations JSON written to: missing-translations.json
