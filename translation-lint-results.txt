@@ -1,10 +1,163 @@
-config.txt not found in /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/translations, using default language list
-Base directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations
-Translations directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/translations
-Menu directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/menu
+Loaded 32 language codes from config.txt
+Base directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod
+Translations directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/translations
+Menu directory: /home/runner/work/cs2kz-metamod/cs2kz-metamod/menu
 
-Error: Translations directory '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/translations' does not exist.
-Warning: Menu directory '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations/menu' does not exist.
-No issues found!
+Checking 29 translation files in '/home/runner/work/cs2kz-metamod/cs2kz-metamod/translations'...
+
+Languages found across all files: ['chi', 'de', 'en', 'es', 'fi', 'it', 'ko', 'lv', 'pl', 'ru', 'sv', 'tr', 'ua']
+
+Checking 9 menu files in '/home/runner/work/cs2kz-metamod/cs2kz-metamod/menu'...
+
+======================================================================
+SUMMARY: 2 error(s), 89 warning(s)
+======================================================================
+
+cs2kz-beam.phrases.txt (1 errors, 0 warnings)
+--------------------------------------------------
+  cs2kz-beam.phrases.txt:49: [ERROR] Placeholder: Missing placeholder(s) {z} in 'sv' translation for 'Current Beam Offset' (present in 'en')
+
+cs2kz-commands.phrases.txt (0 errors, 21 warnings)
+--------------------------------------------------
+  cs2kz-commands.phrases.txt:42: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:354: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:369: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:384: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:399: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:430: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:445: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:460: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:475: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:490: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:505: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:567: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:582: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:597: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:612: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:746: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:761: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:776: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:791: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:806: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-commands.phrases.txt:821: [WARNING] Formatting: Line has trailing whitespace
+
+cs2kz-hud.phrases.txt (0 errors, 13 warnings)
+--------------------------------------------------
+  cs2kz-hud.phrases.txt:158: [WARNING] Empty: Empty translation for language 'en' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:159: [WARNING] Empty: Empty translation for language 'chi' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:160: [WARNING] Empty: Empty translation for language 'pl' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:161: [WARNING] Empty: Empty translation for language 'fi' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:162: [WARNING] Empty: Empty translation for language 'sv' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:163: [WARNING] Empty: Empty translation for language 'ua' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:164: [WARNING] Empty: Empty translation for language 'tr' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:165: [WARNING] Empty: Empty translation for language 'it' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:166: [WARNING] Empty: Empty translation for language 'es' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:167: [WARNING] Empty: Empty translation for language 'de' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:168: [WARNING] Empty: Empty translation for language 'ko' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:169: [WARNING] Empty: Empty translation for language 'lv' in phrase 'HUD - Alert Text'
+  cs2kz-hud.phrases.txt:189: [WARNING] Formatting: Line has trailing whitespace
+
+cs2kz-jumpstats.phrases.txt (0 errors, 3 warnings)
+--------------------------------------------------
+  cs2kz-jumpstats.phrases.txt:348: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-jumpstats.phrases.txt:739: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-jumpstats.phrases.txt:757: [WARNING] Formatting: Line has trailing whitespace
+
+cs2kz-language.phrases.txt (0 errors, 1 warnings)
+--------------------------------------------------
+  cs2kz-language.phrases.txt:20: [WARNING] Formatting: Line has trailing whitespace
+
+cs2kz-replays.phrases.txt (1 errors, 1 warnings)
+--------------------------------------------------
+  cs2kz-replays.phrases.txt:78: [WARNING] Format: Unknown format tag: {tick}
+    Context: "chi"		"{grey}时间 {lime}{tick}{grey} 超出范围. 最大时间值: {lime}{maxTime}."
+  cs2kz-replays.phrases.txt:78: [ERROR] Placeholder: Missing placeholder(s) {time} in 'chi' translation for 'Replay - Time Out Of Range' (present in 'en')
+
+cs2kz-timer-personalbest.phrases.txt (0 errors, 1 warnings)
+--------------------------------------------------
+  cs2kz-timer-personalbest.phrases.txt:203: [WARNING] Formatting: Line has trailing whitespace
+
+cs2kz-timer-toprecord.phrases.txt (0 errors, 1 warnings)
+--------------------------------------------------
+  cs2kz-timer-toprecord.phrases.txt:102: [WARNING] Formatting: Line has trailing whitespace
+
+cs2kz-timer.phrases.txt (0 errors, 5 warnings)
+--------------------------------------------------
+  cs2kz-timer.phrases.txt:34: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-timer.phrases.txt:71: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-timer.phrases.txt:106: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-timer.phrases.txt:233: [WARNING] Formatting: Line has trailing whitespace
+  cs2kz-timer.phrases.txt:379: [WARNING] Formatting: Line has trailing whitespace
+
+menu/ (0 errors, 24 warnings)
+--------------------------------------------------
+  menu/:0: [WARNING] Missing: Missing menu translation file: lithuanian.txt (for language code 'lt')
+  menu/:0: [WARNING] Missing: Missing menu translation file: japanese.txt (for language code 'jp')
+  menu/:0: [WARNING] Missing: Missing menu translation file: bulgarian.txt (for language code 'bg')
+  menu/:0: [WARNING] Missing: Missing menu translation file: thai.txt (for language code 'th')
+  menu/:0: [WARNING] Missing: Missing menu translation file: schinese.txt (for language code 'chi')
+  menu/:0: [WARNING] Missing: Missing menu translation file: vietnamese.txt (for language code 'vi')
+  menu/:0: [WARNING] Missing: Missing menu translation file: finnish.txt (for language code 'fi')
+  menu/:0: [WARNING] Missing: Missing menu translation file: brazilian.txt (for language code 'pt')
+  menu/:0: [WARNING] Missing: Missing menu translation file: spanish.txt (for language code 'es')
+  menu/:0: [WARNING] Missing: Missing menu translation file: turkish.txt (for language code 'tr')
+  menu/:0: [WARNING] Missing: Missing menu translation file: portuguese.txt (for language code 'pt_p')
+  menu/:0: [WARNING] Missing: Missing menu translation file: hungarian.txt (for language code 'hu')
+  menu/:0: [WARNING] Missing: Missing menu translation file: greek.txt (for language code 'el')
+  menu/:0: [WARNING] Missing: Missing menu translation file: arabic.txt (for language code 'ar')
+  menu/:0: [WARNING] Missing: Missing menu translation file: norwegian.txt (for language code 'no')
+  menu/:0: [WARNING] Missing: Missing menu translation file: russian.txt (for language code 'ru')
+  menu/:0: [WARNING] Missing: Missing menu translation file: italian.txt (for language code 'it')
+  menu/:0: [WARNING] Missing: Missing menu translation file: tchinese.txt (for language code 'zho')
+  menu/:0: [WARNING] Missing: Missing menu translation file: romanian.txt (for language code 'ro')
+  menu/:0: [WARNING] Missing: Missing menu translation file: slovak.txt (for language code 'sk')
+  menu/:0: [WARNING] Missing: Missing menu translation file: danish.txt (for language code 'da')
+  menu/:0: [WARNING] Missing: Missing menu translation file: czech.txt (for language code 'cze')
+  menu/:0: [WARNING] Missing: Missing menu translation file: french.txt (for language code 'fr')
+  menu/:0: [WARNING] Missing: Missing menu translation file: hebrew.txt (for language code 'he')
+
+menu/chinese.txt (0 errors, 2 warnings)
+--------------------------------------------------
+  menu/chinese.txt:64: [WARNING] Formatting: Line has trailing whitespace
+  menu/chinese.txt:123: [WARNING] Formatting: Line has trailing whitespace
+
+menu/english.txt (0 errors, 2 warnings)
+--------------------------------------------------
+  menu/english.txt:66: [WARNING] Formatting: Line has trailing whitespace
+  menu/english.txt:125: [WARNING] Formatting: Line has trailing whitespace
+
+menu/german.txt (0 errors, 7 warnings)
+--------------------------------------------------
+  menu/german.txt:64: [WARNING] Formatting: Line has trailing whitespace
+  menu/german.txt:123: [WARNING] Formatting: Line has trailing whitespace
+  menu/german.txt:130: [WARNING] Formatting: Line has trailing whitespace
+  menu/german.txt:137: [WARNING] Formatting: Line has trailing whitespace
+  menu/german.txt:144: [WARNING] Formatting: Line has trailing whitespace
+  menu/german.txt:151: [WARNING] Formatting: Line has trailing whitespace
+  menu/german.txt:158: [WARNING] Formatting: Line has trailing whitespace
+
+menu/korean.txt (0 errors, 2 warnings)
+--------------------------------------------------
+  menu/korean.txt:65: [WARNING] Formatting: Line has trailing whitespace
+  menu/korean.txt:124: [WARNING] Formatting: Line has trailing whitespace
+
+menu/latvian.txt (0 errors, 2 warnings)
+--------------------------------------------------
+  menu/latvian.txt:64: [WARNING] Formatting: Line has trailing whitespace
+  menu/latvian.txt:123: [WARNING] Formatting: Line has trailing whitespace
+
+menu/swedish.txt (0 errors, 2 warnings)
+--------------------------------------------------
+  menu/swedish.txt:66: [WARNING] Formatting: Line has trailing whitespace
+  menu/swedish.txt:125: [WARNING] Formatting: Line has trailing whitespace
+
+menu/ukrainian.txt (0 errors, 2 warnings)
+--------------------------------------------------
+  menu/ukrainian.txt:66: [WARNING] Formatting: Line has trailing whitespace
+  menu/ukrainian.txt:125: [WARNING] Formatting: Line has trailing whitespace
+
+======================================================================
+TOTAL: 2 error(s), 89 warning(s) in 17 file(s)
+======================================================================
 Missing translations report written to: missing-translations.txt
 Missing translations JSON written to: missing-translations.json
