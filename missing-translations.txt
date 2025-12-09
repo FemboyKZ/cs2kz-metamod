@@ -6,26 +6,26 @@ Generated for: /home/runner/work/cs2kz-metamod/cs2kz-metamod
 SUMMARY
 ----------------------------------------------------------------------
 Total languages: 13
-Total phrases: 498
-Phrases with missing translations: 432
-Total missing translation entries: 2126
+Total phrases: 497
+Phrases with missing translations: 431
+Total missing translation entries: 2125
 
 LANGUAGE COVERAGE (Phrases)
 ----------------------------------------------------------------------
 
-  chi (schinese)       [███████████████████░]  99.6% (496/498)
-  de (german)          [████████████████████] 100.0% (498/498)
-  en (english)         [████████████████████] 100.0% (498/498)
-  es (spanish)         [███████████░░░░░░░░░]  58.0% (289/498)
-  fi (finnish)         [█████████░░░░░░░░░░░]  48.0% (239/498)
-  it (italian)         [█████████░░░░░░░░░░░]  46.4% (231/498)
-  ko (koreana)         [███████████░░░░░░░░░]  58.6% (292/498)
-  lv (latvian)         [█████████████░░░░░░░]  67.1% (334/498)
-  pl (polish)          [████████░░░░░░░░░░░░]  43.2% (215/498)
-  ru (russian)         [███░░░░░░░░░░░░░░░░░]  18.5% (92/498)
-  sv (swedish)         [███████████████░░░░░]  79.9% (398/498)
-  tr (turkish)         [██████████░░░░░░░░░░]  53.8% (268/498)
-  ua (ukrainian)       [████████████████████] 100.0% (498/498)
+  chi (schinese)       [███████████████████░]  99.6% (495/497)
+  de (german)          [████████████████████] 100.0% (497/497)
+  en (english)         [████████████████████] 100.0% (497/497)
+  es (spanish)         [███████████░░░░░░░░░]  57.9% (288/497)
+  fi (finnish)         [█████████░░░░░░░░░░░]  47.9% (238/497)
+  it (italian)         [█████████░░░░░░░░░░░]  46.3% (230/497)
+  ko (koreana)         [███████████░░░░░░░░░]  58.6% (291/497)
+  lv (latvian)         [█████████████░░░░░░░]  67.0% (333/497)
+  pl (polish)          [████████░░░░░░░░░░░░]  43.1% (214/497)
+  ru (russian)         [███░░░░░░░░░░░░░░░░░]  18.5% (92/497)
+  sv (swedish)         [███████████████░░░░░]  79.9% (397/497)
+  tr (turkish)         [██████████░░░░░░░░░░]  53.7% (267/497)
+  ua (ukrainian)       [████████████████████] 100.0% (497/497)
 
 Global languages (13): chi, de, en, es, fi, it, ko, lv, pl, ru, sv, tr, ua
 
@@ -389,9 +389,7 @@ cs2kz-hud.phrases.txt
     Missing (1): ru
   Line 135: "HUD - Center Text"
     Missing (1): ru
-  Line 154: "HUD - Alert Text"
-    Missing (1): ru
-  Line 171: "HUD - HTML Center Text"
+  Line 173: "HUD - HTML Center Text"
     Missing (1): ru
 
 cs2kz-jumpstats.phrases.txt

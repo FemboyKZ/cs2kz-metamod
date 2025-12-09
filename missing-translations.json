@@ -1,9 +1,9 @@
 {
   "summary": {
     "total_languages": 13,
-    "total_phrases": 498,
-    "phrases_with_missing": 432,
-    "total_missing_entries": 2126,
+    "total_phrases": 497,
+    "phrases_with_missing": 431,
+    "total_missing_entries": 2125,
     "all_languages": [
       "chi",
       "de",
@@ -58,7 +58,7 @@
     "chi": {
       "name": "schinese",
       "coverage_percent": 99.6,
-      "translated": 496,
+      "translated": 495,
       "missing": 2,
       "missing_phrases": [
         {
@@ -86,7 +86,7 @@
     "de": {
       "name": "german",
       "coverage_percent": 100.0,
-      "translated": 498,
+      "translated": 497,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -98,7 +98,7 @@
     "en": {
       "name": "english",
       "coverage_percent": 100.0,
-      "translated": 498,
+      "translated": 497,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -109,8 +109,8 @@
     },
     "es": {
       "name": "spanish",
-      "coverage_percent": 58.03,
-      "translated": 289,
+      "coverage_percent": 57.95,
+      "translated": 288,
       "missing": 209,
       "missing_phrases": [
         {
@@ -1379,8 +1379,8 @@
     },
     "fi": {
       "name": "finnish",
-      "coverage_percent": 47.99,
-      "translated": 239,
+      "coverage_percent": 47.89,
+      "translated": 238,
       "missing": 259,
       "missing_phrases": [
         {
@@ -2949,8 +2949,8 @@
     },
     "it": {
       "name": "italian",
-      "coverage_percent": 46.39,
-      "translated": 231,
+      "coverage_percent": 46.28,
+      "translated": 230,
       "missing": 267,
       "missing_phrases": [
         {
@@ -4567,8 +4567,8 @@
     },
     "ko": {
       "name": "koreana",
-      "coverage_percent": 58.63,
-      "translated": 292,
+      "coverage_percent": 58.55,
+      "translated": 291,
       "missing": 206,
       "missing_phrases": [
         {
@@ -5816,8 +5816,8 @@
     },
     "lv": {
       "name": "latvian",
-      "coverage_percent": 67.07,
-      "translated": 334,
+      "coverage_percent": 67.0,
+      "translated": 333,
       "missing": 164,
       "missing_phrases": [
         {
@@ -6813,8 +6813,8 @@
     },
     "pl": {
       "name": "polish",
-      "coverage_percent": 43.17,
-      "translated": 215,
+      "coverage_percent": 43.06,
+      "translated": 214,
       "missing": 283,
       "missing_phrases": [
         {
@@ -8524,9 +8524,9 @@
     },
     "ru": {
       "name": "russian",
-      "coverage_percent": 18.47,
+      "coverage_percent": 18.51,
       "translated": 92,
-      "missing": 406,
+      "missing": 405,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -9412,14 +9412,8 @@
         },
         {
           "file": "cs2kz-hud.phrases.txt",
-          "phrase": "HUD - Alert Text",
-          "line": 154,
-          "english_text": ""
-        },
-        {
-          "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD - HTML Center Text",
-          "line": 171,
+          "line": 173,
           "english_text": "{speed_text}<br>{key_text}"
         },
         {
@@ -10976,8 +10970,8 @@
     },
     "sv": {
       "name": "swedish",
-      "coverage_percent": 79.92,
-      "translated": 398,
+      "coverage_percent": 79.88,
+      "translated": 397,
       "missing": 100,
       "missing_phrases": [
         {
@@ -11589,8 +11583,8 @@
     },
     "tr": {
       "name": "turkish",
-      "coverage_percent": 53.82,
-      "translated": 268,
+      "coverage_percent": 53.72,
+      "translated": 267,
       "missing": 230,
       "missing_phrases": [
         {
@@ -12986,7 +12980,7 @@
     "ua": {
       "name": "ukrainian",
       "coverage_percent": 100.0,
-      "translated": 498,
+      "translated": 497,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -16091,7 +16085,7 @@
       ]
     },
     "cs2kz-hud.phrases.txt": {
-      "phrases_with_missing": 11,
+      "phrases_with_missing": 10,
       "phrases": [
         {
           "name": "Speed",
@@ -16292,30 +16286,8 @@
           ]
         },
         {
-          "name": "HUD - Alert Text",
-          "line": 154,
-          "english_text": "",
-          "existing_languages": [
-            "chi",
-            "de",
-            "en",
-            "es",
-            "fi",
-            "it",
-            "ko",
-            "lv",
-            "pl",
-            "sv",
-            "tr",
-            "ua"
-          ],
-          "missing_languages": [
-            "ru"
-          ]
-        },
-        {
           "name": "HUD - HTML Center Text",
-          "line": 171,
+          "line": 173,
           "english_text": "{speed_text}<br>{key_text}",
           "existing_languages": [
             "chi",
