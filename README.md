@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`abc495e`](https://github.com/FemboyKZ/cs2kz-metamod/commit/abc495e9ad2ad510a17c6fc405668a68c2194945)
-- **Time:** 2025-12-13 22:09:11 UTC
-- **Message:** sort resutls, remove unused import, format file
+- **Commit:** [`d5bd252`](https://github.com/FemboyKZ/cs2kz-metamod/commit/d5bd252130cd4f68057eb7a625d43a3333f48d72)
+- **Time:** 2025-12-13 22:12:58 UTC
+- **Message:** undo sort keys
 
 ---
 
