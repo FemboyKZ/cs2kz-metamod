@@ -7,7 +7,7 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 28 |
+| **Linter Warnings** | 24 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 554 |
 | **Phrases Missing Translations** | 474 |
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`ebd4ff8`](https://github.com/FemboyKZ/cs2kz-metamod/commit/ebd4ff8f0892c7b143b939807b71b2866efe64d5)
-- **Time:** 2026-01-22 16:19:42 UTC
-- **Message:** Merge branch KZGlobalTeam:master into master
+- **Commit:** [`104102c`](https://github.com/FemboyKZ/cs2kz-metamod/commit/104102c4b36b0febccdb28da21710619e6608a02)
+- **Time:** 2026-01-24 21:43:13 UTC
+- **Message:** Update sdk
 
 ---
 
