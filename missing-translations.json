@@ -12401,8 +12401,11 @@
         }
       ],
       "menu": {
-        "file_exists": true,
-        "missing_groups": [],
+        "name": "russian",
+        "file_exists": false,
+        "missing_groups": [
+          "menu_simple"
+        ],
         "missing_commands": []
       }
     },
@@ -26208,7 +26211,6 @@
       "korean",
       "latvian",
       "polish",
-      "russian",
       "swedish",
       "ukrainian"
     ],
@@ -26351,6 +26353,14 @@
       },
       "ro": {
         "name": "romanian",
+        "file_exists": false,
+        "missing_groups": [
+          "menu_simple"
+        ],
+        "missing_commands": []
+      },
+      "ru": {
+        "name": "russian",
         "file_exists": false,
         "missing_groups": [
           "menu_simple"
