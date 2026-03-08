@@ -84,6 +84,8 @@
         "name": "schinese",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -2099,6 +2101,8 @@
         "name": "spanish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -4095,6 +4099,8 @@
         "name": "finnish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -6139,6 +6145,8 @@
         "name": "italian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -12401,8 +12409,13 @@
         }
       ],
       "menu": {
-        "file_exists": true,
-        "missing_groups": [],
+        "name": "russian",
+        "file_exists": false,
+        "missing_groups": [
+          "menu_advanced",
+          "menu_option",
+          "menu_simple"
+        ],
         "missing_commands": []
       }
     },
@@ -15262,6 +15275,8 @@
         "name": "turkish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26208,7 +26223,6 @@
       "korean",
       "latvian",
       "polish",
-      "russian",
       "swedish",
       "ukrainian"
     ],
@@ -26217,6 +26231,8 @@
         "name": "arabic",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26225,6 +26241,8 @@
         "name": "bulgarian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26233,6 +26251,8 @@
         "name": "schinese",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26241,6 +26261,8 @@
         "name": "czech",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26249,6 +26271,8 @@
         "name": "danish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26257,6 +26281,8 @@
         "name": "greek",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26265,6 +26291,8 @@
         "name": "spanish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26273,6 +26301,8 @@
         "name": "finnish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26281,6 +26311,8 @@
         "name": "french",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26289,6 +26321,8 @@
         "name": "hebrew",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26297,6 +26331,8 @@
         "name": "hungarian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26305,6 +26341,8 @@
         "name": "italian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26313,6 +26351,8 @@
         "name": "japanese",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26321,6 +26361,8 @@
         "name": "lithuanian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26329,6 +26371,8 @@
         "name": "norwegian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26337,6 +26381,8 @@
         "name": "brazilian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26345,6 +26391,8 @@
         "name": "portuguese",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26353,6 +26401,18 @@
         "name": "romanian",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
+          "menu_simple"
+        ],
+        "missing_commands": []
+      },
+      "ru": {
+        "name": "russian",
+        "file_exists": false,
+        "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26361,6 +26421,8 @@
         "name": "slovak",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26369,6 +26431,8 @@
         "name": "thai",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26377,6 +26441,8 @@
         "name": "turkish",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26385,6 +26451,8 @@
         "name": "vietnamese",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
@@ -26393,6 +26461,8 @@
         "name": "tchinese",
         "file_exists": false,
         "missing_groups": [
+          "menu_advanced",
+          "menu_option",
           "menu_simple"
         ],
         "missing_commands": []
