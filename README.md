@@ -7,12 +7,12 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 24 |
+| **Linter Warnings** | 23 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 568 |
 | **Phrases Missing Translations** | 488 |
 | **Total Missing Entries** | 2512 |
-| **Menu Files** | 9 |
+| **Menu Files** | 10 |
 
 ## Language Coverage (Phrases)
 
@@ -59,7 +59,7 @@ Automated translation linter reports for cs2kz-metamod.
   pt    (brazilian   ): File missing
   pt_p  (portuguese  ): File missing
   ro    (romanian    ): File missing
-  ru    (russian     ): File missing
+  ru    (russian     ): Complete
   sk    (slovak      ): File missing
   sv    (swedish     ): Complete
   th    (thai        ): File missing
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`6c3d9dd`](https://github.com/KZGlobalTeam/cs2kz-metamod/commit/6c3d9ddfb13b21d18f796aeca404a18ee483b2f0)
-- **Time:** 2026-02-28 06:04:16 UTC
-- **Message:** update chinese translation (#512)
+- **Commit:** [`448d513`](https://github.com/FemboyKZ/cs2kz-metamod/commit/448d5132f29bed95346f773424cdefaa78b55a62)
+- **Time:** 2026-03-08 18:48:21 UTC
+- **Message:** ru menu test
 
 ---
 
