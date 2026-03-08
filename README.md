@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`64f750f`](https://github.com/FemboyKZ/cs2kz-metamod/commit/64f750f4420836b1e7d3ede02925d0ed6306e264)
-- **Time:** 2026-03-08 19:28:54 UTC
-- **Message:** update linter to catch more issues and more consistently
+- **Commit:** [`2713c9a`](https://github.com/FemboyKZ/cs2kz-metamod/commit/2713c9a261a0e616b0ce1e63191b752dbcd60e4b)
+- **Time:** 2026-03-08 19:46:50 UTC
+- **Message:** cleanup dupe/dead code
 
 ---
 
