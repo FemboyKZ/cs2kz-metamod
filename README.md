@@ -7,7 +7,7 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 24 |
+| **Linter Warnings** | 25 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 568 |
 | **Phrases Missing Translations** | 488 |
@@ -23,7 +23,7 @@ Automated translation linter reports for cs2kz-metamod.
   es (spanish)         [██████████░░░░░░░░░░]  50.7% (288/568)
   fi (finnish)         [████████░░░░░░░░░░░░]  41.9% (238/568)
   it (italian)         [████████░░░░░░░░░░░░]  40.5% (230/568)
-  ko (koreana)         [██████████░░░░░░░░░░]  51.2% (291/568)
+  ko (korean)          [██████████░░░░░░░░░░]  51.2% (291/568)
   lv (latvian)         [███████████░░░░░░░░░]  58.6% (333/568)
   pl (polish)          [██████████████████░░]  91.7% (521/568)
   ru (russian)         [███░░░░░░░░░░░░░░░░░]  16.2% (92/568)
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`2713c9a`](https://github.com/FemboyKZ/cs2kz-metamod/commit/2713c9a261a0e616b0ce1e63191b752dbcd60e4b)
-- **Time:** 2026-03-08 19:46:50 UTC
-- **Message:** cleanup dupe/dead code
+- **Commit:** [`8f8636f`](https://github.com/FemboyKZ/cs2kz-metamod/commit/8f8636f5fb97f0b6ee0f45fbe3a9ffd735f2801a)
+- **Time:** 2026-03-09 20:08:55 UTC
+- **Message:** reduce redundancy, fix known colors
 
 ---
 
