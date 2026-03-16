@@ -7,12 +7,12 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 25 |
+| **Linter Warnings** | 24 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 568 |
-| **Phrases Missing Translations** | 488 |
-| **Total Missing Entries** | 2512 |
-| **Menu Files** | 9 |
+| **Phrases Missing Translations** | 348 |
+| **Total Missing Entries** | 2036 |
+| **Menu Files** | 10 |
 
 ## Language Coverage (Phrases)
 
@@ -26,7 +26,7 @@ Automated translation linter reports for cs2kz-metamod.
   ko (korean)          [██████████░░░░░░░░░░]  51.2% (291/568)
   lv (latvian)         [███████████░░░░░░░░░]  58.6% (333/568)
   pl (polish)          [██████████████████░░]  91.7% (521/568)
-  ru (russian)         [███░░░░░░░░░░░░░░░░░]  16.2% (92/568)
+  ru (russian)         [████████████████████] 100.0% (568/568)
   sv (swedish)         [█████████████░░░░░░░]  69.9% (397/568)
   tr (turkish)         [█████████░░░░░░░░░░░]  47.0% (267/568)
   ua (ukrainian)       [███████████████████░]  99.1% (563/568)
@@ -59,7 +59,7 @@ Automated translation linter reports for cs2kz-metamod.
   pt    (brazilian   ): File missing
   pt_p  (portuguese  ): File missing
   ro    (romanian    ): File missing
-  ru    (russian     ): File missing
+  ru    (russian     ): Complete
   sk    (slovak      ): File missing
   sv    (swedish     ): Complete
   th    (thai        ): File missing
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`01ca91b`](https://github.com/FemboyKZ/cs2kz-metamod/commit/01ca91b56307fd8b901a48e8b88e762412478310)
-- **Time:** 2026-03-09 20:15:40 UTC
-- **Message:** rename script for consistency
+- **Commit:** [`2b88cb7`](https://github.com/FemboyKZ/cs2kz-metamod/commit/2b88cb7b7245db11c0dcda02a210efbf4df62976)
+- **Time:** 2026-03-16 14:52:16 UTC
+- **Message:** Russian translation updates (#524)
 
 ---
 
