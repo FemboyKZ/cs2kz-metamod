@@ -28,6 +28,7 @@
 #include "kz/recording/kz_recording.h"
 #include "kz/replays/kz_replaysystem.h"
 #include "kz/racing/kz_racing.h"
+#include "kz/status/kz_status.h"
 
 #include <vendor/MultiAddonManager/public/imultiaddonmanager.h>
 #include <vendor/ClientCvarValue/public/iclientcvarvalue.h>
@@ -66,6 +67,7 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 	KZ::misc::Init();
 	KZQuietService::Init();
 	KZRecordingService::Init();
+	KZ::status::Init();
 	if (!KZ::mode::CheckModeCvars())
 	{
 		return false;
@@ -100,6 +102,7 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 bool KZPlugin::Unload(char *error, size_t maxlen)
 {
 	this->unloading = true;
+	KZ::status::Cleanup();
 	KZ::misc::UnrestrictTimeLimit();
 	KZRecordingService::Shutdown();
 	KZRacingService::Cleanup();
@@ -184,6 +187,11 @@ void *KZPlugin::OnMetamodQuery(const char *iface, int *ret)
 	{
 		*ret = META_IFACE_OK;
 		return g_pMappingApi;
+	}
+	else if (strcmp(iface, KZ_STATUS_INTERFACE) == 0)
+	{
+		*ret = META_IFACE_OK;
+		return g_pKZStatus;
 	}
 	*ret = META_IFACE_FAILED;
 
