@@ -45,9 +45,11 @@ public:
 	virtual ~KZStatusEventListener() = default;
 
 	virtual void OnTimerStart(i32 playerSlot, const char *courseName, i32 courseId) {}
+
 	virtual void OnTimerStartPost(i32 playerSlot, const char *courseName, i32 courseId) {}
 
 	virtual void OnTimerEnd(i32 playerSlot, const char *courseName, i32 courseId, f64 time, u32 teleportsUsed) {}
+
 	virtual void OnTimerEndPost(i32 playerSlot, const char *courseName, i32 courseId, f64 time, u32 teleportsUsed) {}
 
 	virtual void OnTimerStopped(i32 playerSlot, const char *courseName, i32 courseId) {}
@@ -55,28 +57,25 @@ public:
 	virtual void OnTimerInvalidated(i32 playerSlot) {}
 
 	virtual void OnPause(i32 playerSlot) {}
+
 	virtual void OnPausePost(i32 playerSlot) {}
 
 	virtual void OnResume(i32 playerSlot) {}
-	virtual void OnResumePost(i32 playerSlot) {}
 
+	virtual void OnResumePost(i32 playerSlot) {}
 };
 
 class KZStatusInterface
 {
 public:
-	virtual bool GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out) = 0;
+	bool GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out);
+	i32 GetAllPlayerStatus(KZPlayerStatus *out, i32 maxCount);
 
-	virtual i32 GetAllPlayerStatus(KZPlayerStatus *out, i32 maxCount) = 0;
+	bool RegisterEventListener(KZStatusEventListener *listener);
+	bool UnregisterEventListener(KZStatusEventListener *listener);
 
-	virtual bool RegisterEventListener(KZStatusEventListener *listener) = 0;
-	virtual bool UnregisterEventListener(KZStatusEventListener *listener) = 0;
+	void Init();
+	void Cleanup();
 };
 
 extern KZStatusInterface *g_pKZStatus;
-
-namespace KZ::status
-{
-	void Init();
-	void Cleanup();
-} // namespace KZ::status

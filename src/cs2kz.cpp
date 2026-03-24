@@ -67,7 +67,7 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 	KZ::misc::Init();
 	KZQuietService::Init();
 	KZRecordingService::Init();
-	KZ::status::Init();
+	g_pKZStatus->Init();
 	if (!KZ::mode::CheckModeCvars())
 	{
 		return false;
@@ -102,7 +102,7 @@ bool KZPlugin::Load(PluginId id, ISmmAPI *ismm, char *error, size_t maxlen, bool
 bool KZPlugin::Unload(char *error, size_t maxlen)
 {
 	this->unloading = true;
-	KZ::status::Cleanup();
+	g_pKZStatus->Cleanup();
 	KZ::misc::UnrestrictTimeLimit();
 	KZRecordingService::Shutdown();
 	KZRacingService::Cleanup();

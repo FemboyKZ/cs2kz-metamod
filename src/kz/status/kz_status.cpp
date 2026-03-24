@@ -6,19 +6,10 @@
 #include "kz/mappingapi/kz_mappingapi.h"
 #include "utils/utils.h"
 
+static_global KZStatusInterface g_kzStatus;
+KZStatusInterface *g_pKZStatus = &g_kzStatus;
+
 static_global CUtlVector<KZStatusEventListener *> g_statusEventListeners;
-
-class KZStatusInterfaceImpl : public KZStatusInterface
-{
-public:
-	bool GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out) override;
-	i32 GetAllPlayerStatus(KZPlayerStatus *out, i32 maxCount) override;
-	bool RegisterEventListener(KZStatusEventListener *listener) override;
-	bool UnregisterEventListener(KZStatusEventListener *listener) override;
-};
-
-static_global KZStatusInterfaceImpl g_kzStatusImpl;
-KZStatusInterface *g_pKZStatus = &g_kzStatusImpl;
 
 static void FillPlayerStatus(KZPlayer *kzPlayer, KZPlayerStatus &out)
 {
@@ -84,7 +75,6 @@ static void FillPlayerStatus(KZPlayer *kzPlayer, KZPlayerStatus &out)
 		}
 	}
 
-	// Position / velocity / angles
 	Vector origin, velocity;
 	QAngle angles;
 	kzPlayer->GetOrigin(&origin);
@@ -102,7 +92,7 @@ static void FillPlayerStatus(KZPlayer *kzPlayer, KZPlayerStatus &out)
 	out.angles[2] = angles.z;
 }
 
-bool KZStatusInterfaceImpl::GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out)
+bool KZStatusInterface::GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out)
 {
 	if (playerSlot < 0 || playerSlot >= MAXPLAYERS)
 	{
@@ -110,7 +100,6 @@ bool KZStatusInterfaceImpl::GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out)
 		return false;
 	}
 
-	// Player manager uses entity indices (slot + 1)
 	KZPlayer *kzPlayer = g_pKZPlayerManager->ToKZPlayer(static_cast<Player *>(g_pKZPlayerManager->ToPlayer(CPlayerSlot(playerSlot))));
 	if (!kzPlayer || !kzPlayer->IsConnected())
 	{
@@ -122,7 +111,7 @@ bool KZStatusInterfaceImpl::GetPlayerStatus(i32 playerSlot, KZPlayerStatus &out)
 	return true;
 }
 
-i32 KZStatusInterfaceImpl::GetAllPlayerStatus(KZPlayerStatus *out, i32 maxCount)
+i32 KZStatusInterface::GetAllPlayerStatus(KZPlayerStatus *out, i32 maxCount)
 {
 	i32 written = 0;
 	i32 limit = (maxCount < MAXPLAYERS) ? maxCount : MAXPLAYERS;
@@ -142,7 +131,7 @@ i32 KZStatusInterfaceImpl::GetAllPlayerStatus(KZPlayerStatus *out, i32 maxCount)
 	return written;
 }
 
-bool KZStatusInterfaceImpl::RegisterEventListener(KZStatusEventListener *listener)
+bool KZStatusInterface::RegisterEventListener(KZStatusEventListener *listener)
 {
 	if (g_statusEventListeners.Find(listener) >= 0)
 	{
@@ -152,7 +141,7 @@ bool KZStatusInterfaceImpl::RegisterEventListener(KZStatusEventListener *listene
 	return true;
 }
 
-bool KZStatusInterfaceImpl::UnregisterEventListener(KZStatusEventListener *listener)
+bool KZStatusInterface::UnregisterEventListener(KZStatusEventListener *listener)
 {
 	return g_statusEventListeners.FindAndRemove(listener);
 }
@@ -249,15 +238,12 @@ public:
 
 static_global KZStatusTimerBridge g_statusTimerBridge;
 
-namespace KZ::status
+void KZStatusInterface::Init()
 {
-	void Init()
-	{
-		KZTimerService::RegisterEventListener(&g_statusTimerBridge);
-	}
+	KZTimerService::RegisterEventListener(&g_statusTimerBridge);
+}
 
-	void Cleanup()
-	{
-		KZTimerService::UnregisterEventListener(&g_statusTimerBridge);
-	}
-} // namespace KZ::status
+void KZStatusInterface::Cleanup()
+{
+	KZTimerService::UnregisterEventListener(&g_statusTimerBridge);
+}
