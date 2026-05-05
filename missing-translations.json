@@ -1,9 +1,9 @@
 {
   "summary": {
     "total_languages": 13,
-    "total_phrases": 602,
-    "phrases_with_missing": 386,
-    "total_missing_entries": 2390,
+    "total_phrases": 606,
+    "phrases_with_missing": 390,
+    "total_missing_entries": 2434,
     "all_languages": [
       "chi",
       "de",
@@ -57,9 +57,9 @@
   "languages": {
     "chi": {
       "name": "schinese",
-      "coverage_percent": 96.68,
+      "coverage_percent": 96.04,
       "translated": 582,
-      "missing": 20,
+      "missing": 24,
       "missing_phrases": [
         {
           "file": "cs2kz-commands.phrases.txt",
@@ -108,6 +108,30 @@
           "phrase": "Command Description - kz_replays",
           "line": 1519,
           "english_text": "List saved replays."
+        },
+        {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-paint.phrases.txt",
@@ -195,9 +219,9 @@
     },
     "de": {
       "name": "german",
-      "coverage_percent": 85.55,
+      "coverage_percent": 84.98,
       "translated": 515,
-      "missing": 87,
+      "missing": 91,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -312,6 +336,12 @@
           "phrase": "Command Description - kz_fov",
           "line": 1659,
           "english_text": "Change your FOV."
+        },
+        {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
         },
         {
           "file": "cs2kz-course.phrases.txt",
@@ -474,6 +504,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -731,7 +779,7 @@
     "en": {
       "name": "english",
       "coverage_percent": 100.0,
-      "translated": 602,
+      "translated": 606,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -742,9 +790,9 @@
     },
     "es": {
       "name": "spanish",
-      "coverage_percent": 47.18,
+      "coverage_percent": 46.86,
       "translated": 284,
-      "missing": 318,
+      "missing": 322,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -1305,6 +1353,12 @@
           "english_text": "{grey}Please wait before using that command again."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "Map Info - No API Connection (Short)",
           "line": 50,
@@ -1465,6 +1519,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -2668,9 +2740,9 @@
     },
     "fi": {
       "name": "finnish",
-      "coverage_percent": 38.87,
+      "coverage_percent": 38.61,
       "translated": 234,
-      "missing": 368,
+      "missing": 372,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -3309,6 +3381,12 @@
           "english_text": "{grey}Please wait before using that command again."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "Map Info - No API Connection (Short)",
           "line": 50,
@@ -3469,6 +3547,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -4894,9 +4990,9 @@
     },
     "it": {
       "name": "italian",
-      "coverage_percent": 37.54,
+      "coverage_percent": 37.29,
       "translated": 226,
-      "missing": 376,
+      "missing": 380,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -5535,6 +5631,12 @@
           "english_text": "{grey}Please wait before using that command again."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "No Current Course",
           "line": 3,
@@ -5713,6 +5815,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -7168,9 +7288,9 @@
     },
     "ko": {
       "name": "korean",
-      "coverage_percent": 47.67,
+      "coverage_percent": 47.36,
       "translated": 287,
-      "missing": 315,
+      "missing": 319,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -7707,6 +7827,12 @@
           "english_text": "{grey}Please wait before using that command again."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "Map Info - No API Connection (Short)",
           "line": 50,
@@ -7867,6 +7993,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -9071,9 +9215,9 @@
     },
     "lv": {
       "name": "latvian",
-      "coverage_percent": 54.65,
+      "coverage_percent": 54.29,
       "translated": 329,
-      "missing": 273,
+      "missing": 277,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -9460,6 +9604,12 @@
           "english_text": "{grey}Please wait before using that command again."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "Map Info - No API Connection (Short)",
           "line": 50,
@@ -9620,6 +9770,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -10722,9 +10890,9 @@
     },
     "pl": {
       "name": "polish",
-      "coverage_percent": 85.88,
+      "coverage_percent": 85.31,
       "translated": 517,
-      "missing": 85,
+      "missing": 89,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -10827,6 +10995,12 @@
           "phrase": "Command Description - kz_fov",
           "line": 1659,
           "english_text": "Change your FOV."
+        },
+        {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
         },
         {
           "file": "cs2kz-course.phrases.txt",
@@ -10989,6 +11163,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -11246,7 +11438,7 @@
     "ru": {
       "name": "russian",
       "coverage_percent": 100.0,
-      "translated": 602,
+      "translated": 606,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -11257,9 +11449,9 @@
     },
     "sv": {
       "name": "swedish",
-      "coverage_percent": 65.28,
+      "coverage_percent": 64.85,
       "translated": 393,
-      "missing": 209,
+      "missing": 213,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -11478,6 +11670,12 @@
           "english_text": "Change your FOV."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "Map Info - No API Connection (Short)",
           "line": 50,
@@ -11638,6 +11836,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -12524,9 +12740,9 @@
     },
     "tr": {
       "name": "turkish",
-      "coverage_percent": 43.69,
+      "coverage_percent": 43.4,
       "translated": 263,
-      "missing": 339,
+      "missing": 343,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -13123,6 +13339,12 @@
           "english_text": "{grey}Please wait before using that command again."
         },
         {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
           "file": "cs2kz-course.phrases.txt",
           "phrase": "Map Info - No API Connection (Short)",
           "line": 50,
@@ -13283,6 +13505,24 @@
           "phrase": "Error Message (Invalid FOV)",
           "line": 11,
           "english_text": "{darkred}Invalid FOV \\\"{fov}\\\" (allowed {min} - {max})."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
           "file": "cs2kz-jumpstats.phrases.txt",
@@ -14576,10 +14816,35 @@
     },
     "ua": {
       "name": "ukrainian",
-      "coverage_percent": 100.0,
+      "coverage_percent": 99.34,
       "translated": 602,
-      "missing": 0,
-      "missing_phrases": [],
+      "missing": 4,
+      "missing_phrases": [
+        {
+          "file": "cs2kz-common.phrases.txt",
+          "phrase": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled."
+        },
+        {
+          "file": "cs2kz-hud.phrases.txt",
+          "phrase": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
+        }
+      ],
       "menu": {
         "file_exists": true,
         "missing_groups": [],
@@ -17056,7 +17321,7 @@
       ]
     },
     "cs2kz-common.phrases.txt": {
-      "phrases_with_missing": 5,
+      "phrases_with_missing": 6,
       "phrases": [
         {
           "name": "No Steam Authentication Warning",
@@ -17166,6 +17431,28 @@
             "ko",
             "lv",
             "tr"
+          ]
+        },
+        {
+          "name": "Beta Join Warning",
+          "line": 91,
+          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta.",
+          "existing_languages": [
+            "en",
+            "ru"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr",
+            "ua"
           ]
         }
       ]
@@ -17836,6 +18123,77 @@
             "pl",
             "sv",
             "tr"
+          ]
+        }
+      ]
+    },
+    "cs2kz-hud.phrases.txt": {
+      "phrases_with_missing": 3,
+      "phrases": [
+        {
+          "name": "HUD Option - Compact Panel - Enable",
+          "line": 252,
+          "english_text": "{grey}Compact panel enabled.",
+          "existing_languages": [
+            "en",
+            "ru"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr",
+            "ua"
+          ]
+        },
+        {
+          "name": "HUD Option - Compact Panel - Disable",
+          "line": 257,
+          "english_text": "{grey}Compact panel disabled.",
+          "existing_languages": [
+            "en",
+            "ru"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr",
+            "ua"
+          ]
+        },
+        {
+          "name": "Panel Command Usage",
+          "line": 262,
+          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}.",
+          "existing_languages": [
+            "en",
+            "ru"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr",
+            "ua"
           ]
         }
       ]
