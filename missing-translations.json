@@ -1,9 +1,9 @@
 {
   "summary": {
     "total_languages": 13,
-    "total_phrases": 606,
-    "phrases_with_missing": 390,
-    "total_missing_entries": 2434,
+    "total_phrases": 625,
+    "phrases_with_missing": 409,
+    "total_missing_entries": 2626,
     "all_languages": [
       "chi",
       "de",
@@ -57,9 +57,9 @@
   "languages": {
     "chi": {
       "name": "schinese",
-      "coverage_percent": 96.04,
-      "translated": 582,
-      "missing": 24,
+      "coverage_percent": 92.8,
+      "translated": 580,
+      "missing": 45,
       "missing_phrases": [
         {
           "file": "cs2kz-commands.phrases.txt",
@@ -105,8 +105,14 @@
         },
         {
           "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_replay",
+          "line": 1510,
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
@@ -124,13 +130,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -204,6 +210,126 @@
           "phrase": "Replay - Multiple Matches",
           "line": 277,
           "english_text": "{darkred}Multiple replays match UUID substring {grey}'{default}{uuid}{grey}'."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Usage Command",
+          "line": 330,
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
         }
       ],
       "menu": {
@@ -219,9 +345,9 @@
     },
     "de": {
       "name": "german",
-      "coverage_percent": 84.98,
-      "translated": 515,
-      "missing": 91,
+      "coverage_percent": 82.08,
+      "translated": 513,
+      "missing": 112,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -291,50 +417,56 @@
         },
         {
           "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_replay",
+          "line": 1510,
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -514,13 +646,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -710,6 +842,96 @@
           "english_text": "{darkred}Multiple replays match UUID substring {grey}'{default}{uuid}{grey}'."
         },
         {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Usage Command",
+          "line": 330,
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
+        },
+        {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
@@ -752,6 +974,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-jumpstats.phrases.txt",
           "phrase": "Tip - kz_jsfailstats",
           "line": 35,
@@ -779,7 +1031,7 @@
     "en": {
       "name": "english",
       "coverage_percent": 100.0,
-      "translated": 606,
+      "translated": 625,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -790,9 +1042,9 @@
     },
     "es": {
       "name": "spanish",
-      "coverage_percent": 46.86,
+      "coverage_percent": 45.44,
       "translated": 284,
-      "missing": 322,
+      "missing": 341,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -1236,114 +1488,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -1529,13 +1781,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -2208,211 +2460,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-spec.phrases.txt",
@@ -2619,6 +2955,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-general.phrases.txt",
           "phrase": "Tip - website",
           "line": 147,
@@ -2740,9 +3106,9 @@
     },
     "fi": {
       "name": "finnish",
-      "coverage_percent": 38.61,
+      "coverage_percent": 37.44,
       "translated": 234,
-      "missing": 372,
+      "missing": 391,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -3264,114 +3630,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -3557,13 +3923,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -4248,211 +4614,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-spec.phrases.txt",
@@ -4863,6 +5313,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-general.phrases.txt",
           "phrase": "Tip - website",
           "line": 147,
@@ -4990,9 +5470,9 @@
     },
     "it": {
       "name": "italian",
-      "coverage_percent": 37.29,
+      "coverage_percent": 36.16,
       "translated": 226,
-      "missing": 380,
+      "missing": 399,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -5490,114 +5970,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -5825,13 +6305,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -6516,211 +6996,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-spec.phrases.txt",
@@ -7161,6 +7725,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-general.phrases.txt",
           "phrase": "Tip - website",
           "line": 147,
@@ -7288,9 +7882,9 @@
     },
     "ko": {
       "name": "korean",
-      "coverage_percent": 47.36,
+      "coverage_percent": 45.92,
       "translated": 287,
-      "missing": 319,
+      "missing": 338,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -7710,114 +8304,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -8003,13 +8597,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -8670,211 +9264,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -9099,6 +9777,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-general.phrases.txt",
           "phrase": "Tip - website",
           "line": 147,
@@ -9215,9 +9923,9 @@
     },
     "lv": {
       "name": "latvian",
-      "coverage_percent": 54.29,
+      "coverage_percent": 52.64,
       "translated": 329,
-      "missing": 277,
+      "missing": 296,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -9487,114 +10195,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -9780,13 +10488,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -10447,211 +11155,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-spec.phrases.txt",
@@ -10774,6 +11566,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-general.phrases.txt",
           "phrase": "Tip - website",
           "line": 147,
@@ -10890,9 +11712,9 @@
     },
     "pl": {
       "name": "polish",
-      "coverage_percent": 85.31,
-      "translated": 517,
-      "missing": 89,
+      "coverage_percent": 82.4,
+      "translated": 515,
+      "missing": 110,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -10962,38 +11784,44 @@
         },
         {
           "file": "cs2kz-commands.phrases.txt",
+          "phrase": "Command Description - kz_replay",
+          "line": 1510,
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
+        },
+        {
+          "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -11173,13 +12001,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -11369,6 +12197,96 @@
           "english_text": "{darkred}Multiple replays match UUID substring {grey}'{default}{uuid}{grey}'."
         },
         {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Usage Command",
+          "line": 330,
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
+        },
+        {
           "file": "cs2kz-telemetry.phrases.txt",
           "phrase": "Telemetry - Modern Bhop Stats",
           "line": 3,
@@ -11411,6 +12329,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-jumpstats.phrases.txt",
           "phrase": "Tip - kz_jsfailstats",
           "line": 35,
@@ -11438,7 +12386,7 @@
     "ru": {
       "name": "russian",
       "coverage_percent": 100.0,
-      "translated": 606,
+      "translated": 625,
       "missing": 0,
       "missing_phrases": [],
       "menu": {
@@ -11449,9 +12397,9 @@
     },
     "sv": {
       "name": "swedish",
-      "coverage_percent": 64.85,
+      "coverage_percent": 62.88,
       "translated": 393,
-      "missing": 213,
+      "missing": 232,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -11559,114 +12507,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -11846,13 +12794,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -12375,211 +13323,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-telemetry.phrases.txt",
@@ -12628,6 +13660,36 @@
           "phrase": "Started Run on Non Ranked Course",
           "line": 926,
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
         },
         {
           "file": "cs2kz-tips-jumpstats.phrases.txt",
@@ -12740,9 +13802,9 @@
     },
     "tr": {
       "name": "turkish",
-      "coverage_percent": 43.4,
+      "coverage_percent": 42.08,
       "translated": 263,
-      "missing": 343,
+      "missing": 362,
       "missing_phrases": [
         {
           "file": "cs2kz-anticheat.phrases.txt",
@@ -13216,114 +14278,114 @@
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay."
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.)."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)"
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping."
         },
         {
           "file": "cs2kz-commands.phrases.txt",
           "phrase": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV."
         },
         {
@@ -13515,13 +14577,13 @@
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled."
         },
         {
           "file": "cs2kz-hud.phrases.txt",
           "phrase": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
         },
         {
@@ -14206,211 +15268,295 @@
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>"
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found."
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes"
         },
         {
           "file": "cs2kz-replays.phrases.txt",
           "phrase": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By"
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API..."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey})."
+        },
+        {
+          "file": "cs2kz-replays.phrases.txt",
+          "phrase": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay."
         },
         {
           "file": "cs2kz-spec.phrases.txt",
@@ -14695,6 +15841,36 @@
           "english_text": "{yellow}Warning: {grey} Course {default}{course_name}{grey} is not ranked. Runs on this course will not affect your global player rating."
         },
         {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled."
+        },
+        {
+          "file": "cs2kz-timer.phrases.txt",
+          "phrase": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again."
+        },
+        {
           "file": "cs2kz-tips-general.phrases.txt",
           "phrase": "Tip - website",
           "line": 147,
@@ -14816,35 +15992,10 @@
     },
     "ua": {
       "name": "ukrainian",
-      "coverage_percent": 99.34,
-      "translated": 602,
-      "missing": 4,
-      "missing_phrases": [
-        {
-          "file": "cs2kz-common.phrases.txt",
-          "phrase": "Beta Join Warning",
-          "line": 91,
-          "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta."
-        },
-        {
-          "file": "cs2kz-hud.phrases.txt",
-          "phrase": "HUD Option - Compact Panel - Enable",
-          "line": 252,
-          "english_text": "{grey}Compact panel enabled."
-        },
-        {
-          "file": "cs2kz-hud.phrases.txt",
-          "phrase": "HUD Option - Compact Panel - Disable",
-          "line": 257,
-          "english_text": "{grey}Compact panel disabled."
-        },
-        {
-          "file": "cs2kz-hud.phrases.txt",
-          "phrase": "Panel Command Usage",
-          "line": 262,
-          "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}."
-        }
-      ],
+      "coverage_percent": 100.0,
+      "translated": 625,
+      "missing": 0,
+      "missing_phrases": [],
       "menu": {
         "file_exists": true,
         "missing_groups": [],
@@ -16903,28 +18054,28 @@
         {
           "name": "Command Description - kz_replay",
           "line": 1510,
-          "english_text": "Play a previously saved replay.",
+          "english_text": "Play a previously saved replay, or look up a record replay by type (wr, sr, pb, etc.).",
           "existing_languages": [
-            "chi",
-            "de",
             "en",
-            "pl",
             "ru",
             "ua"
           ],
           "missing_languages": [
+            "chi",
+            "de",
             "es",
             "fi",
             "it",
             "ko",
             "lv",
+            "pl",
             "sv",
             "tr"
           ]
         },
         {
           "name": "Command Description - kz_replays",
-          "line": 1519,
+          "line": 1516,
           "english_text": "List saved replays.",
           "existing_languages": [
             "de",
@@ -16946,7 +18097,7 @@
         },
         {
           "name": "Command Description - kz_rpgoto",
-          "line": 1527,
+          "line": 1524,
           "english_text": "Go to a specific time in the replay. (hh:mm:ss)",
           "existing_languages": [
             "chi",
@@ -16968,7 +18119,7 @@
         },
         {
           "name": "Command Description - kz_rpgototick",
-          "line": 1536,
+          "line": 1533,
           "english_text": "Go to a specific tick in the replay.",
           "existing_languages": [
             "chi",
@@ -16990,7 +18141,7 @@
         },
         {
           "name": "Command Description - kz_rpinfo",
-          "line": 1545,
+          "line": 1542,
           "english_text": "Display information about the current replay.",
           "existing_languages": [
             "chi",
@@ -17012,7 +18163,7 @@
         },
         {
           "name": "Command Description - kz_rppause",
-          "line": 1554,
+          "line": 1551,
           "english_text": "Pause or resume the current replay.",
           "existing_languages": [
             "chi",
@@ -17034,7 +18185,7 @@
         },
         {
           "name": "Command Description - kz_rploadprogress",
-          "line": 1563,
+          "line": 1560,
           "english_text": "Display the loading progress of the replay.",
           "existing_languages": [
             "chi",
@@ -17056,7 +18207,7 @@
         },
         {
           "name": "Command Description - kz_rpcancelload",
-          "line": 1572,
+          "line": 1569,
           "english_text": "Cancel the loading of the replay.",
           "existing_languages": [
             "chi",
@@ -17078,7 +18229,7 @@
         },
         {
           "name": "Command Description - kz_recordvolume",
-          "line": 1581,
+          "line": 1578,
           "english_text": "Set the volume of the world record sound effect.",
           "existing_languages": [
             "chi",
@@ -17100,7 +18251,7 @@
         },
         {
           "name": "Command Description - kz_cpmessage",
-          "line": 1590,
+          "line": 1587,
           "english_text": "Toggle checkpoint messages.",
           "existing_languages": [
             "chi",
@@ -17122,7 +18273,7 @@
         },
         {
           "name": "Command Description - kz_rphidelegs",
-          "line": 1599,
+          "line": 1596,
           "english_text": "Toggle replay bot's first person legs visibility.",
           "existing_languages": [
             "chi",
@@ -17144,7 +18295,7 @@
         },
         {
           "name": "Command Description - kz_accept",
-          "line": 1608,
+          "line": 1605,
           "english_text": "Accept an incoming race.",
           "existing_languages": [
             "chi",
@@ -17166,7 +18317,7 @@
         },
         {
           "name": "Command Description - kz_surrender",
-          "line": 1616,
+          "line": 1613,
           "english_text": "Surrender an ongoing race.",
           "existing_languages": [
             "chi",
@@ -17188,7 +18339,7 @@
         },
         {
           "name": "Command Description - kz_mapinfo",
-          "line": 1624,
+          "line": 1621,
           "english_text": "Display information about the current map.",
           "existing_languages": [
             "chi",
@@ -17210,7 +18361,7 @@
         },
         {
           "name": "Command Description - kz_tier",
-          "line": 1631,
+          "line": 1628,
           "english_text": "Display the tier of the current course or a specified course.",
           "existing_languages": [
             "chi",
@@ -17232,7 +18383,7 @@
         },
         {
           "name": "Command Description - kz_modernperfstats",
-          "line": 1638,
+          "line": 1635,
           "english_text": "Retrieve bhop statistics for modern jumping.",
           "existing_languages": [
             "chi",
@@ -17254,7 +18405,7 @@
         },
         {
           "name": "Command Description - kz_legacyperfstats",
-          "line": 1645,
+          "line": 1642,
           "english_text": "Retrieve bhop statistics for legacy jumping.",
           "existing_languages": [
             "chi",
@@ -17276,7 +18427,7 @@
         },
         {
           "name": "Command Description - kz_resetperfstats",
-          "line": 1652,
+          "line": 1649,
           "english_text": "Reset bhop statistics for modern and legacy jumping.",
           "existing_languages": [
             "chi",
@@ -17298,7 +18449,7 @@
         },
         {
           "name": "Command Description - kz_fov",
-          "line": 1659,
+          "line": 1656,
           "english_text": "Change your FOV.",
           "existing_languages": [
             "chi",
@@ -17439,7 +18590,8 @@
           "english_text": "CS2KZ is currently in the testing phase. Please be aware that all records and data will be wiped when CS2KZ is out of beta.",
           "existing_languages": [
             "en",
-            "ru"
+            "ru",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -17451,8 +18603,7 @@
             "lv",
             "pl",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         }
       ]
@@ -18136,7 +19287,8 @@
           "english_text": "{grey}Compact panel enabled.",
           "existing_languages": [
             "en",
-            "ru"
+            "ru",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -18148,17 +19300,17 @@
             "lv",
             "pl",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         },
         {
           "name": "HUD Option - Compact Panel - Disable",
-          "line": 257,
+          "line": 258,
           "english_text": "{grey}Compact panel disabled.",
           "existing_languages": [
             "en",
-            "ru"
+            "ru",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -18170,17 +19322,17 @@
             "lv",
             "pl",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         },
         {
           "name": "Panel Command Usage",
-          "line": 262,
+          "line": 264,
           "english_text": "{grey}Usage: {default}kz_panel <compact>{grey}.",
           "existing_languages": [
             "en",
-            "ru"
+            "ru",
+            "ua"
           ],
           "missing_languages": [
             "chi",
@@ -18192,8 +19344,7 @@
             "lv",
             "pl",
             "sv",
-            "tr",
-            "ua"
+            "tr"
           ]
         }
       ]
@@ -19994,7 +21145,7 @@
       ]
     },
     "cs2kz-replays.phrases.txt": {
-      "phrases_with_missing": 68,
+      "phrases_with_missing": 82,
       "phrases": [
         {
           "name": "Replay - No Replay Playing",
@@ -20725,28 +21876,28 @@
         {
           "name": "Replay - Usage Command",
           "line": 330,
-          "english_text": "{grey}Usage: kz_replay <ID>",
+          "english_text": "{grey}Usage: kz_replay <ID> or kz_replay <wr/sr/pb/gpb/spb[pro]> [<course> [<mode>]]",
           "existing_languages": [
-            "chi",
-            "de",
             "en",
-            "pl",
             "ru",
             "ua"
           ],
           "missing_languages": [
+            "chi",
+            "de",
             "es",
             "fi",
             "it",
             "ko",
             "lv",
+            "pl",
             "sv",
             "tr"
           ]
         },
         {
           "name": "Replay - Load Cancelled",
-          "line": 339,
+          "line": 336,
           "english_text": "{darkred}Load cancelled by user",
           "existing_languages": [
             "chi",
@@ -20768,7 +21919,7 @@
         },
         {
           "name": "Replay - Invalid File Format",
-          "line": 348,
+          "line": 345,
           "english_text": "{darkred}Invalid replay file format",
           "existing_languages": [
             "chi",
@@ -20790,7 +21941,7 @@
         },
         {
           "name": "Replay - Manual Replay Failed",
-          "line": 357,
+          "line": 354,
           "english_text": "{darkred}Failed to save manual replay.",
           "existing_languages": [
             "chi",
@@ -20812,7 +21963,7 @@
         },
         {
           "name": "Replay - Manual Replay Saved",
-          "line": 366,
+          "line": 363,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey} ({lime}{duration}{grey}s)",
           "existing_languages": [
             "chi",
@@ -20834,7 +21985,7 @@
         },
         {
           "name": "Replay - Manual Replay Saved (Console)",
-          "line": 376,
+          "line": 373,
           "english_text": "Replay saved: {uuid} ({duration}s)",
           "existing_languages": [
             "chi",
@@ -20856,7 +22007,7 @@
         },
         {
           "name": "Replay - Run Replay Failed",
-          "line": 386,
+          "line": 383,
           "english_text": "{darkred}Failed to save run replay.",
           "existing_languages": [
             "chi",
@@ -20878,7 +22029,7 @@
         },
         {
           "name": "Replay - Run Replay Saved",
-          "line": 395,
+          "line": 392,
           "english_text": "{grey}Replay saved: {lime}{uuid}{grey}",
           "existing_languages": [
             "chi",
@@ -20900,7 +22051,7 @@
         },
         {
           "name": "Replay - Run Replay Saved (Console)",
-          "line": 405,
+          "line": 402,
           "english_text": "Replay saved: {uuid}",
           "existing_languages": [
             "chi",
@@ -20922,7 +22073,7 @@
         },
         {
           "name": "Replay - Wrong Map",
-          "line": 415,
+          "line": 412,
           "english_text": "{darkred}Replay map does not match current map.{grey} (Replay: {default}{replayMap}{grey}, Current: {default}{currentMap}{grey})",
           "existing_languages": [
             "chi",
@@ -20944,7 +22095,7 @@
         },
         {
           "name": "Replay - Unknown Mode",
-          "line": 425,
+          "line": 422,
           "english_text": "{darkred}Mode {default}{modeName}{darkred} is not available. Playback might be inaccurate.",
           "existing_languages": [
             "chi",
@@ -20966,7 +22117,7 @@
         },
         {
           "name": "Replay - Unknown Style",
-          "line": 435,
+          "line": 432,
           "english_text": "{darkred}Style {default}{styleName}{darkred} is not available. Playback might be inaccurate.",
           "existing_languages": [
             "chi",
@@ -20988,7 +22139,7 @@
         },
         {
           "name": "Replay List - Check Console",
-          "line": 445,
+          "line": 442,
           "english_text": "{grey}Check console for info!",
           "existing_languages": [
             "chi",
@@ -21010,7 +22161,7 @@
         },
         {
           "name": "Replay List - Usage Title",
-          "line": 454,
+          "line": 451,
           "english_text": "Usage: !replays [type=run/r/jump/j/manual/m] [options...]",
           "existing_languages": [
             "chi",
@@ -21032,7 +22183,7 @@
         },
         {
           "name": "Replay List - Usage General Options",
-          "line": 464,
+          "line": 461,
           "english_text": "\\nGeneral Options:\\n\\tplayer=<name> - Filter by player name\\n\\tsteamid=<id> - Filter by Steam ID\\n\\tmap=<name> - Filter by map name (default: current map)\\n\\toffset=<num> - Skip first N results\\n\\tlimit=<num> - Limit results (max 20)",
           "existing_languages": [
             "chi",
@@ -21054,7 +22205,7 @@
         },
         {
           "name": "Replay List - Usage Type Options",
-          "line": 479,
+          "line": 476,
           "english_text": "\\nType Options:\\n\\tRun: mode=<mode> course=<name> maxtime=<sec> maxteleports=<num> numstyles=<num>\\n\\tJump: jumptype=<type> mindistance=<dist>\\n\\tManual: saver=<name> ssid=<steamid>",
           "existing_languages": [
             "chi",
@@ -21076,7 +22227,7 @@
         },
         {
           "name": "Replay List - No Matching Replays",
-          "line": 492,
+          "line": 489,
           "english_text": "{grey}No matching replays found.",
           "existing_languages": [
             "chi",
@@ -21098,7 +22249,7 @@
         },
         {
           "name": "Cheater Replays - Table Name",
-          "line": 501,
+          "line": 498,
           "english_text": "Cheater Replays",
           "existing_languages": [
             "chi",
@@ -21120,7 +22271,7 @@
         },
         {
           "name": "Run Replays - Table Name",
-          "line": 510,
+          "line": 507,
           "english_text": "Run Replays",
           "existing_languages": [
             "chi",
@@ -21142,7 +22293,7 @@
         },
         {
           "name": "Jump Replays - Table Name",
-          "line": 519,
+          "line": 516,
           "english_text": "Jump Replays",
           "existing_languages": [
             "chi",
@@ -21164,7 +22315,7 @@
         },
         {
           "name": "Manual Replays - Table Name",
-          "line": 528,
+          "line": 525,
           "english_text": "Manual Replays",
           "existing_languages": [
             "chi",
@@ -21186,7 +22337,7 @@
         },
         {
           "name": "Replay Table Header - Player",
-          "line": 537,
+          "line": 534,
           "english_text": "Player",
           "existing_languages": [
             "chi",
@@ -21208,7 +22359,7 @@
         },
         {
           "name": "Replay Table Header - Map",
-          "line": 546,
+          "line": 543,
           "english_text": "Map",
           "existing_languages": [
             "chi",
@@ -21230,7 +22381,7 @@
         },
         {
           "name": "Replay Table Header - Reason",
-          "line": 555,
+          "line": 552,
           "english_text": "Reason",
           "existing_languages": [
             "chi",
@@ -21252,7 +22403,7 @@
         },
         {
           "name": "Replay Table Header - SteamID",
-          "line": 564,
+          "line": 561,
           "english_text": "SteamID",
           "existing_languages": [
             "chi",
@@ -21274,7 +22425,7 @@
         },
         {
           "name": "Replay Table Header - UUID",
-          "line": 573,
+          "line": 570,
           "english_text": "UUID",
           "existing_languages": [
             "chi",
@@ -21296,7 +22447,7 @@
         },
         {
           "name": "Replay Table Header - Course",
-          "line": 582,
+          "line": 579,
           "english_text": "Course",
           "existing_languages": [
             "chi",
@@ -21318,7 +22469,7 @@
         },
         {
           "name": "Replay Table Header - Mode",
-          "line": 591,
+          "line": 588,
           "english_text": "Mode",
           "existing_languages": [
             "chi",
@@ -21340,7 +22491,7 @@
         },
         {
           "name": "Replay Table Header - Time",
-          "line": 600,
+          "line": 597,
           "english_text": "Time",
           "existing_languages": [
             "chi",
@@ -21362,7 +22513,7 @@
         },
         {
           "name": "Replay Table Header - Teleports",
-          "line": 609,
+          "line": 606,
           "english_text": "Teleports",
           "existing_languages": [
             "chi",
@@ -21384,7 +22535,7 @@
         },
         {
           "name": "Replay Table Header - Jump Type",
-          "line": 618,
+          "line": 615,
           "english_text": "Jump Type",
           "existing_languages": [
             "chi",
@@ -21406,7 +22557,7 @@
         },
         {
           "name": "Replay Table Header - Distance",
-          "line": 627,
+          "line": 624,
           "english_text": "Distance",
           "existing_languages": [
             "chi",
@@ -21428,7 +22579,7 @@
         },
         {
           "name": "Replay Table Header - Block",
-          "line": 636,
+          "line": 633,
           "english_text": "Block",
           "existing_languages": [
             "chi",
@@ -21450,7 +22601,7 @@
         },
         {
           "name": "Replay Table Header - Strafes",
-          "line": 645,
+          "line": 642,
           "english_text": "Strafes",
           "existing_languages": [
             "chi",
@@ -21472,7 +22623,7 @@
         },
         {
           "name": "Replay Table Header - Saved By",
-          "line": 654,
+          "line": 651,
           "english_text": "Saved By",
           "existing_languages": [
             "chi",
@@ -21488,6 +22639,314 @@
             "it",
             "ko",
             "lv",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - Not Found",
+          "line": 660,
+          "english_text": "{darkred}Replay not found.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - No Course",
+          "line": 666,
+          "english_text": "{darkred}No course found on this map.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - Invalid Mode Arg",
+          "line": 672,
+          "english_text": "{darkred}Unknown mode.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - SR Not Found",
+          "line": 678,
+          "english_text": "{grey}No server record replay found for this filter.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - SPB Not Found",
+          "line": 684,
+          "english_text": "{grey}No server personal best replay found.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - Global Mode Only",
+          "line": 690,
+          "english_text": "{darkred}Global records are only available for global modes.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - API Not Available",
+          "line": 696,
+          "english_text": "{darkred}The global API is not available.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - Querying WR",
+          "line": 702,
+          "english_text": "{grey}Querying world record replay...",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - WR Not Found",
+          "line": 708,
+          "english_text": "{grey}No world record replay found for this filter.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - Querying GPB",
+          "line": 714,
+          "english_text": "{grey}Querying personal best replay...",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay - GPB Not Found",
+          "line": 720,
+          "english_text": "{grey}No global personal best replay found.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay Request - Sending",
+          "line": 726,
+          "english_text": "{grey}Requesting replay {default}{uuid}{grey} from the API...",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay Request - Already Requested",
+          "line": 733,
+          "english_text": "{grey}A replay download is already in progress ({default}{uuid}{grey}).",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Replay Request - Error",
+          "line": 740,
+          "english_text": "{darkred}Failed to download replay.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
             "sv",
             "tr"
           ]
@@ -22026,7 +23485,7 @@
       ]
     },
     "cs2kz-timer.phrases.txt": {
-      "phrases_with_missing": 50,
+      "phrases_with_missing": 55,
       "phrases": [
         {
           "name": "Beat Course Info - Global Points (TP)",
@@ -23117,6 +24576,116 @@
             "ua"
           ],
           "missing_languages": [
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Safeguard - Disable",
+          "line": 935,
+          "english_text": "{grey}Safeguard disabled.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Safeguard - Enable",
+          "line": 941,
+          "english_text": "{grey}Safeguard enabled. You can no longer issue any command that would stop your timer during a valid run.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Safeguard - Enable (PRO)",
+          "line": 947,
+          "english_text": "{grey}Safeguard for {blue}PRO {grey}runs enabled. You can no longer use teleports or issue any command that would stop your timer during a valid run.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Safeguard - Blocked",
+          "line": 953,
+          "english_text": "{darkred}You can't perform this action because safeguard is enabled.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
+            "de",
+            "es",
+            "fi",
+            "it",
+            "ko",
+            "lv",
+            "pl",
+            "sv",
+            "tr"
+          ]
+        },
+        {
+          "name": "Safeguard - Blocked (Restart)",
+          "line": 959,
+          "english_text": "{grey}Action is blocked by safeguard. Please wait {default}{cooldown} {grey}seconds then reissue the command again.",
+          "existing_languages": [
+            "en",
+            "ru",
+            "ua"
+          ],
+          "missing_languages": [
+            "chi",
             "de",
             "es",
             "fi",
