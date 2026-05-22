@@ -11,13 +11,13 @@ Automated translation linter reports for cs2kz-metamod.
 | **Total Languages** | 13 |
 | **Total Phrases** | 625 |
 | **Phrases Missing Translations** | 409 |
-| **Total Missing Entries** | 2626 |
+| **Total Missing Entries** | 2581 |
 | **Menu Files** | 10 |
 
 ## Language Coverage (Phrases)
 
 ```
-  chi (schinese)       [██████████████████░░]  92.8% (580/625)
+  chi (schinese)       [████████████████████] 100.0% (625/625)
   de (german)          [████████████████░░░░]  82.1% (513/625)
   en (english)         [████████████████████] 100.0% (625/625)
   es (spanish)         [█████████░░░░░░░░░░░]  45.4% (284/625)
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`e4b714b`](https://github.com/FemboyKZ/cs2kz-metamod/commit/e4b714b833c2d4176dac769cdf9d831d7cfe5900)
-- **Time:** 2026-05-15 15:47:21 UTC
-- **Message:** Overhaul CS2KZ logging, update sdk (#544)
+- **Commit:** [`944a591`](https://github.com/FemboyKZ/cs2kz-metamod/commit/944a591e0ebf92304404edc42519dbd51ff4b8ad)
+- **Time:** 2026-05-22 18:15:11 UTC
+- **Message:** Refactor GetCvarValueFromModeStyles to use direct cvar access
 
 ---
 
