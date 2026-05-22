@@ -301,7 +301,7 @@ void KZVanilla128ModeService::OnProcessMovement()
 		this->player->GetPlayerPawn()->m_flVelocityModifier(1.0f);
 	}
 	this->CheckVelocityQuantization();
-	//this->RemoveCrouchJumpBind();
+	// this->RemoveCrouchJumpBind();
 	this->ReduceDuckSlowdown();
 	this->InterpolateViewAngles();
 	this->UpdateAngleHistory();
@@ -997,23 +997,23 @@ void KZVanilla128ModeService::OnDuckPost()
 void KZVanilla128ModeService::OnAirMove()
 {
 	this->airMoving = true;
-	//this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
+	// this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
 }
 
 void KZVanilla128ModeService::OnAirMovePost()
 {
 	this->airMoving = false;
-	//this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	// this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
 }
 
 void KZVanilla128ModeService::OnWaterMove()
 {
-	//this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
+	// this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL;
 }
 
 void KZVanilla128ModeService::OnWaterMovePost()
 {
-	//this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
+	// this->player->currentMoveData->m_flMaxSpeed = SPEED_NORMAL + this->GetPrestrafeGain();
 }
 
 void KZVanilla128ModeService::OnTeleport(const Vector *newPosition, const QAngle *newAngles, const Vector *newVelocity)
