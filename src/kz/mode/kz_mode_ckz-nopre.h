@@ -216,7 +216,7 @@ public:
 	f32 GetPrestrafeGain();
 
 	void CheckVelocityQuantization();
-	// void RemoveCrouchJumpBind();
+	void RemoveCrouchJumpBind();
 	/*
 		Ported from DanZay's SimpleKZ:
 		Duck speed is reduced by the game upon ducking or unducking.
