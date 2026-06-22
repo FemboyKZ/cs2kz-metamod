@@ -93,7 +93,7 @@ class KZClassicNopreModeService : public KZModeService
 	using KZModeService::KZModeService;
 
 	f32 distanceTiers[JUMPTYPE_COUNT - 3][DISTANCETIER_COUNT] = {
-		{217.0f, 265.0f, 270.0f, 275.0f, 280.0f, 284.0f}, // LJ
+		{217.0f, 260.0f, 265.0f, 267.0f, 270.0f, 274.0f}, // LJ
 		{217.0f, 275.0f, 280.0f, 287.0f, 292.0f, 295.0f}, // BH
 		{217.0f, 275.0f, 280.0f, 287.0f, 292.0f, 295.0f}, // MBH
 		{217.0f, 275.0f, 280.0f, 287.0f, 292.0f, 295.0f}, // WJ
