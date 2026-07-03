@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`cec6ff0`](https://github.com/FemboyKZ/cs2kz-metamod/commit/cec6ff0b96b9ba4ce00556fac7ea355127b61340)
-- **Time:** 2026-06-22 21:39:14 UTC
-- **Message:** Add spanish addon
+- **Commit:** [`5afd584`](https://github.com/FemboyKZ/cs2kz-metamod/commit/5afd584596b0cc0dc7852060bc5a9172301ec950)
+- **Time:** 2026-07-03 21:34:48 UTC
+- **Message:** LTCG for mbedtls
 
 ---
 
