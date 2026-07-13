@@ -1,6 +1,6 @@
-FROM registry.gitlab.steamos.cloud/steamrt/sniper/sdk
+FROM registry.gitlab.steamos.cloud/steamrt/steamrt4/sdk
 
-ENV AR=llvm-ar-11
+ENV AR=llvm-ar-19
 
 WORKDIR /app
 VOLUME /app/build
@@ -11,7 +11,7 @@ RUN apt update \
 	&& apt clean \
 	&& rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/alliedmodders/ambuild
-RUN pip install ./ambuild
+RUN pip install ./ambuild --break-system-packages
 RUN git config --global --add safe.directory /app
 
 COPY . .
