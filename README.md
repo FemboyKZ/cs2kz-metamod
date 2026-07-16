@@ -7,11 +7,11 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 27 |
+| **Linter Warnings** | 22 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 724 |
-| **Phrases Missing Translations** | 508 |
-| **Total Missing Entries** | 3271 |
+| **Phrases Missing Translations** | 507 |
+| **Total Missing Entries** | 2834 |
 | **Menu Files** | 11 |
 
 ## Language Coverage (Phrases)
@@ -23,7 +23,7 @@ Automated translation linter reports for cs2kz-metamod.
   es (spanish)         [█████████████░░░░░░░]  67.8% (491/724)
   fi (finnish)         [██████░░░░░░░░░░░░░░]  32.3% (234/724)
   it (italian)         [██████░░░░░░░░░░░░░░]  31.2% (226/724)
-  ko (korean)          [███████░░░░░░░░░░░░░]  39.6% (287/724)
+  ko (korean)          [████████████████████] 100.0% (724/724)
   lv (latvian)         [█████████░░░░░░░░░░░]  45.4% (329/724)
   pl (polish)          [██████████████░░░░░░]  71.3% (516/724)
   ru (russian)         [███████████████████░]  99.7% (722/724)
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`5afd584`](https://github.com/FemboyKZ/cs2kz-metamod/commit/5afd584596b0cc0dc7852060bc5a9172301ec950)
-- **Time:** 2026-07-03 21:34:48 UTC
-- **Message:** LTCG for mbedtls
+- **Commit:** [`a8e99af`](https://github.com/FemboyKZ/cs2kz-metamod/commit/a8e99af7fb510b1776a489192d053e3d5553c020)
+- **Time:** 2026-07-16 23:59:35 UTC
+- **Message:** Fix CKZ prekeep persisting after speed reset through teleports and max pre persi
 
 ---
 
