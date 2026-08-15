@@ -10,26 +10,26 @@ Automated translation linter reports for cs2kz-metamod.
 | **Linter Warnings** | 22 |
 | **Total Languages** | 13 |
 | **Total Phrases** | 724 |
-| **Phrases Missing Translations** | 507 |
-| **Total Missing Entries** | 2834 |
+| **Phrases Missing Translations** | 508 |
+| **Total Missing Entries** | 2846 |
 | **Menu Files** | 11 |
 
 ## Language Coverage (Phrases)
 
 ```
-  chi (schinese)       [███████████████████░]  99.2% (718/724)
-  de (german)          [██████████████░░░░░░]  71.0% (514/724)
+  chi (schinese)       [███████████████████░]  99.0% (717/724)
+  de (german)          [██████████████░░░░░░]  70.9% (513/724)
   en (english)         [████████████████████] 100.0% (724/724)
-  es (spanish)         [█████████████░░░░░░░]  67.8% (491/724)
-  fi (finnish)         [██████░░░░░░░░░░░░░░]  32.3% (234/724)
-  it (italian)         [██████░░░░░░░░░░░░░░]  31.2% (226/724)
-  ko (korean)          [████████████████████] 100.0% (724/724)
-  lv (latvian)         [█████████░░░░░░░░░░░]  45.4% (329/724)
-  pl (polish)          [██████████████░░░░░░]  71.3% (516/724)
-  ru (russian)         [███████████████████░]  99.7% (722/724)
-  sv (swedish)         [██████████░░░░░░░░░░]  54.3% (393/724)
-  tr (turkish)         [███████░░░░░░░░░░░░░]  36.3% (263/724)
-  ua (ukrainian)       [████████████████████] 100.0% (724/724)
+  es (spanish)         [█████████████░░░░░░░]  67.7% (490/724)
+  fi (finnish)         [██████░░░░░░░░░░░░░░]  32.2% (233/724)
+  it (italian)         [██████░░░░░░░░░░░░░░]  31.1% (225/724)
+  ko (korean)          [███████████████████░]  99.9% (723/724)
+  lv (latvian)         [█████████░░░░░░░░░░░]  45.3% (328/724)
+  pl (polish)          [██████████████░░░░░░]  71.1% (515/724)
+  ru (russian)         [███████████████████░]  99.6% (721/724)
+  sv (swedish)         [██████████░░░░░░░░░░]  54.1% (392/724)
+  tr (turkish)         [███████░░░░░░░░░░░░░]  36.2% (262/724)
+  ua (ukrainian)       [███████████████████░]  99.9% (723/724)
 ```
 
 ## Menu Translation Status
@@ -79,9 +79,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`a8e99af`](https://github.com/FemboyKZ/cs2kz-metamod/commit/a8e99af7fb510b1776a489192d053e3d5553c020)
-- **Time:** 2026-07-16 23:59:35 UTC
-- **Message:** Fix CKZ prekeep persisting after speed reset through teleports and max pre persi
+- **Commit:** [`547dd92`](https://github.com/FemboyKZ/cs2kz-metamod/commit/547dd9209c309e4c4a60bdabc5fbd6f9bf396b94)
+- **Time:** 2026-08-15 22:21:43 UTC
+- **Message:** Revamp anticheat logging, fix kicks sometimes not being handled if the database 
 
 ---
 
