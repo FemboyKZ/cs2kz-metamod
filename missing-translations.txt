@@ -6,26 +6,26 @@ Generated for: /home/runner/work/cs2kz-metamod/cs2kz-metamod
 SUMMARY
 ----------------------------------------------------------------------
 Total languages: 13
-Total phrases: 725
-Phrases with missing translations: 509
-Total missing translation entries: 2858
+Total phrases: 826
+Phrases with missing translations: 610
+Total missing translation entries: 4028
 
 LANGUAGE COVERAGE (Phrases)
 ----------------------------------------------------------------------
 
-  chi (schinese)       [███████████████████░]  98.9% (717/725)
-  de (german)          [██████████████░░░░░░]  70.8% (513/725)
-  en (english)         [████████████████████] 100.0% (725/725)
-  es (spanish)         [█████████████░░░░░░░]  67.6% (490/725)
-  fi (finnish)         [██████░░░░░░░░░░░░░░]  32.1% (233/725)
-  it (italian)         [██████░░░░░░░░░░░░░░]  31.0% (225/725)
-  ko (korean)          [███████████████████░]  99.7% (723/725)
-  lv (latvian)         [█████████░░░░░░░░░░░]  45.2% (328/725)
-  pl (polish)          [██████████████░░░░░░]  71.0% (515/725)
-  ru (russian)         [███████████████████░]  99.4% (721/725)
-  sv (swedish)         [██████████░░░░░░░░░░]  54.1% (392/725)
-  tr (turkish)         [███████░░░░░░░░░░░░░]  36.1% (262/725)
-  ua (ukrainian)       [███████████████████░]  99.7% (723/725)
+  chi (schinese)       [███████████████████░]  96.5% (797/826)
+  de (german)          [████████████░░░░░░░░]  62.1% (513/826)
+  en (english)         [████████████████████] 100.0% (826/826)
+  es (spanish)         [███████████░░░░░░░░░]  59.3% (490/826)
+  fi (finnish)         [█████░░░░░░░░░░░░░░░]  28.2% (233/826)
+  it (italian)         [█████░░░░░░░░░░░░░░░]  27.2% (225/826)
+  ko (korean)          [███████████████░░░░░]  79.7% (658/826)
+  lv (latvian)         [███████░░░░░░░░░░░░░]  39.7% (328/826)
+  pl (polish)          [████████████░░░░░░░░]  62.3% (515/826)
+  ru (russian)         [███████████████░░░░░]  79.4% (656/826)
+  sv (swedish)         [█████████░░░░░░░░░░░]  47.5% (392/826)
+  tr (turkish)         [██████░░░░░░░░░░░░░░]  31.7% (262/826)
+  ua (ukrainian)       [███████████████████░]  98.7% (815/826)
 
 Global languages (13): chi, de, en, es, fi, it, ko, lv, pl, ru, sv, tr, ua
 
@@ -172,142 +172,144 @@ cs2kz-commands.phrases.txt
     Missing (4): fi, it, lv, tr
   Line 518: "Command Description - kz_tpsound"
     Missing (4): fi, it, lv, tr
-  Line 626: "Command Description - kz_jsfailstats"
+  Line 530: "Command Description - kz_fonts"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 630: "Command Description - kz_jsfailstats"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 635: "Command Description - kz_jsfailstatsconsole"
+  Line 639: "Command Description - kz_jsfailstatsconsole"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 644: "Command Description - kz_jstier"
+  Line 648: "Command Description - kz_jstier"
     Missing (4): fi, it, lv, tr
-  Line 656: "Command Description - kz_jstierconsole"
+  Line 660: "Command Description - kz_jstierconsole"
     Missing (4): fi, it, lv, tr
-  Line 668: "Command Description - kz_jsbroadcastsound"
+  Line 672: "Command Description - kz_jsbroadcastsound"
     Missing (4): fi, it, lv, tr
-  Line 680: "Command Description - kz_jsbroadcastconsole"
+  Line 684: "Command Description - kz_jsbroadcastconsole"
     Missing (5): fi, it, lv, sv, tr
-  Line 691: "Command Description - kz_jsextend"
+  Line 695: "Command Description - kz_jsextend"
     Missing (4): fi, it, lv, tr
-  Line 703: "Command Description - kz_jsvolume"
+  Line 707: "Command Description - kz_jsvolume"
     Missing (4): fi, it, lv, tr
-  Line 795: "Command Description - kz_specs"
+  Line 799: "Command Description - kz_specs"
     Missing (4): fi, it, lv, tr
-  Line 1015: "Command Description - kz_lj"
+  Line 1019: "Command Description - kz_lj"
     Missing (3): fi, it, tr
-  Line 1028: "Command Description - kz_ljarea"
+  Line 1032: "Command Description - kz_ljarea"
     Missing (3): fi, it, tr
-  Line 1041: "Command Description - kz_jsarea"
+  Line 1045: "Command Description - kz_jsarea"
     Missing (3): fi, it, tr
-  Line 1054: "Command Description - kz_end"
+  Line 1058: "Command Description - kz_end"
     Missing (3): fi, it, tr
-  Line 1195: "Command Description - kz_ctop"
+  Line 1199: "Command Description - kz_ctop"
     Missing (1): fi
-  Line 1210: "Command Description - kz_coursetop"
+  Line 1214: "Command Description - kz_coursetop"
     Missing (1): fi
-  Line 1225: "Command Description - kz_maptop"
+  Line 1229: "Command Description - kz_maptop"
     Missing (1): fi
-  Line 1240: "Command Description - kz_gctop"
+  Line 1244: "Command Description - kz_gctop"
     Missing (1): fi
-  Line 1255: "Command Description - kz_gcoursetop"
+  Line 1259: "Command Description - kz_gcoursetop"
     Missing (1): fi
-  Line 1270: "Command Description - kz_gmaptop"
+  Line 1274: "Command Description - kz_gmaptop"
     Missing (1): fi
-  Line 1285: "Command Description - kz_sctop"
+  Line 1289: "Command Description - kz_sctop"
     Missing (1): fi
-  Line 1300: "Command Description - kz_scoursetop"
+  Line 1304: "Command Description - kz_scoursetop"
     Missing (1): fi
-  Line 1315: "Command Description - kz_smaptop"
+  Line 1319: "Command Description - kz_smaptop"
     Missing (1): fi
-  Line 1330: "Command Description - kz_comparelevel"
+  Line 1334: "Command Description - kz_comparelevel"
     Missing (3): fi, it, tr
-  Line 1343: "Command Description - kz_playercheck"
+  Line 1347: "Command Description - kz_playercheck"
     Missing (2): fi, it
-  Line 1357: "Command Description - kz_pc"
+  Line 1361: "Command Description - kz_pc"
     Missing (2): fi, it
-  Line 1371: "Command Description - kz_course"
+  Line 1375: "Command Description - kz_course"
     Missing (5): fi, it, lv, sv, tr
-  Line 1382: "Command Description - kz_courses"
+  Line 1386: "Command Description - kz_courses"
     Missing (2): fi, it
-  Line 1396: "Command Description - kz_spb"
+  Line 1400: "Command Description - kz_spb"
     Missing (3): fi, it, tr
-  Line 1409: "Command Description - kz_gpb"
+  Line 1413: "Command Description - kz_gpb"
     Missing (3): fi, it, tr
-  Line 1422: "Command Description - kz_globalcheck"
+  Line 1426: "Command Description - kz_globalcheck"
     Missing (3): fi, it, tr
-  Line 1435: "Command Description - kz_gc"
+  Line 1439: "Command Description - kz_gc"
     Missing (3): fi, it, tr
-  Line 1448: "Command Description - kz_beam"
+  Line 1452: "Command Description - kz_beam"
     Missing (4): fi, it, lv, tr
-  Line 1460: "Command Description - kz_beamoffset"
+  Line 1464: "Command Description - kz_beamoffset"
     Missing (4): fi, it, lv, tr
-  Line 1472: "Command Description - kz_measure"
+  Line 1476: "Command Description - kz_measure"
     Missing (4): fi, it, lv, tr
-  Line 1484: "Command Description - kz_measurestart"
+  Line 1488: "Command Description - kz_measurestart"
     Missing (4): fi, it, lv, tr
-  Line 1496: "Command Description - kz_measureend"
+  Line 1500: "Command Description - kz_measureend"
     Missing (4): fi, it, lv, tr
-  Line 1508: "Command Description - kz_ztopwatch"
+  Line 1512: "Command Description - kz_ztopwatch"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 1516: "Command Description - kz_measureblock"
+  Line 1520: "Command Description - kz_measureblock"
     Missing (4): fi, it, lv, tr
-  Line 1528: "Command Description - kz_paint"
+  Line 1532: "Command Description - kz_paint"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1537: "Command Description - kz_paintcolor"
+  Line 1541: "Command Description - kz_paintcolor"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1546: "Command Description - kz_paintsize"
+  Line 1550: "Command Description - kz_paintsize"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1555: "Command Description - kz_togglepaint"
+  Line 1559: "Command Description - kz_togglepaint"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1564: "Command Description - kz_showpaint"
+  Line 1568: "Command Description - kz_showpaint"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1573: "Command Description - kz_cleardecals"
+  Line 1577: "Command Description - kz_cleardecals"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1582: "Command Description - kz_timerstopsound"
+  Line 1586: "Command Description - kz_timerstopsound"
     Missing (4): fi, it, lv, tr
-  Line 1594: "Command Description - kz_autohideweapon"
+  Line 1598: "Command Description - kz_autohideweapon"
     Missing (4): fi, it, lv, tr
-  Line 1606: "Command Description - kz_pistol"
+  Line 1610: "Command Description - kz_pistol"
     Missing (4): fi, it, lv, tr
-  Line 1618: "Command Description - kz_rpsave"
+  Line 1622: "Command Description - kz_rpsave"
     Missing (5): fi, it, lv, sv, tr
-  Line 1629: "Command Description - kz_replay"
+  Line 1633: "Command Description - kz_replay"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1638: "Command Description - kz_replays"
+  Line 1642: "Command Description - kz_replays"
     Missing (5): fi, it, lv, sv, tr
-  Line 1649: "Command Description - kz_rpgoto"
+  Line 1653: "Command Description - kz_rpgoto"
     Missing (5): fi, it, lv, sv, tr
-  Line 1660: "Command Description - kz_rpgototick"
+  Line 1664: "Command Description - kz_rpgototick"
     Missing (5): fi, it, lv, sv, tr
-  Line 1671: "Command Description - kz_rpinfo"
+  Line 1675: "Command Description - kz_rpinfo"
     Missing (5): fi, it, lv, sv, tr
-  Line 1682: "Command Description - kz_rppause"
+  Line 1686: "Command Description - kz_rppause"
     Missing (5): fi, it, lv, sv, tr
-  Line 1693: "Command Description - kz_rploadprogress"
+  Line 1697: "Command Description - kz_rploadprogress"
     Missing (5): fi, it, lv, sv, tr
-  Line 1704: "Command Description - kz_rpcancelload"
+  Line 1708: "Command Description - kz_rpcancelload"
     Missing (5): fi, it, lv, sv, tr
-  Line 1715: "Command Description - kz_recordvolume"
+  Line 1719: "Command Description - kz_recordvolume"
     Missing (5): fi, it, lv, sv, tr
-  Line 1726: "Command Description - kz_cpmessage"
+  Line 1730: "Command Description - kz_cpmessage"
     Missing (5): fi, it, lv, sv, tr
-  Line 1737: "Command Description - kz_rphidelegs"
+  Line 1741: "Command Description - kz_rphidelegs"
     Missing (5): fi, it, lv, sv, tr
-  Line 1748: "Command Description - kz_accept"
+  Line 1752: "Command Description - kz_accept"
     Missing (6): de, fi, it, lv, sv, tr
-  Line 1758: "Command Description - kz_surrender"
+  Line 1762: "Command Description - kz_surrender"
     Missing (6): de, fi, it, lv, sv, tr
-  Line 1768: "Command Description - kz_mapinfo"
+  Line 1772: "Command Description - kz_mapinfo"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1777: "Command Description - kz_tier"
+  Line 1781: "Command Description - kz_tier"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1786: "Command Description - kz_modernperfstats"
+  Line 1790: "Command Description - kz_modernperfstats"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1795: "Command Description - kz_legacyperfstats"
+  Line 1799: "Command Description - kz_legacyperfstats"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1804: "Command Description - kz_resetperfstats"
+  Line 1808: "Command Description - kz_resetperfstats"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1813: "Command Description - kz_fov"
+  Line 1817: "Command Description - kz_fov"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1822: "Command Description - kz_mhud"
-    Missing (9): chi, de, es, fi, it, lv, pl, sv, tr
+  Line 1826: "Command Description - kz_mhud"
+    Missing (8): de, es, fi, it, lv, pl, sv, tr
 
 cs2kz-common.phrases.txt
 ----------------------------------------------------------------------
@@ -322,8 +324,8 @@ cs2kz-common.phrases.txt
   Line 81: "Command Cooldown"
     Missing (4): fi, it, lv, tr
   Line 93: "Command Cooldown (Time Remaining)"
-    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
-  Line 98: "Beta Join Warning"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 100: "Beta Join Warning"
     Missing (7): de, fi, it, lv, pl, sv, tr
 
 cs2kz-course.phrases.txt
@@ -400,136 +402,10 @@ cs2kz-hud.phrases.txt
     Missing (8): de, es, fi, it, lv, pl, sv, tr
   Line 268: "Panel Command Usage"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 277: "MHUD - Speed Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 285: "MHUD - Speed Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 293: "MHUD - Prespeed Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 301: "MHUD - Prespeed Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 309: "MHUD - Timer Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 317: "MHUD - Timer Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 325: "MHUD - Timer Detail Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 333: "MHUD - Timer Detail Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 341: "MHUD - Keys Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 349: "MHUD - Keys Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 357: "MHUD - Keys Overlap Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 365: "MHUD - Keys Overlap Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 373: "MHUD - Speed Offset Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 382: "MHUD - Speed Offset Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 391: "MHUD - Speed Scale Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 400: "MHUD - Speed Scale Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 409: "MHUD - Speed Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 418: "MHUD - Speed Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 426: "MHUD - Speed CJ Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 435: "MHUD - Speed CJ Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 443: "MHUD - Speed Reset"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 451: "MHUD - Prespeed Offset Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 460: "MHUD - Prespeed Offset Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 469: "MHUD - Prespeed Scale Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 478: "MHUD - Prespeed Scale Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 487: "MHUD - Prespeed Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 496: "MHUD - Prespeed Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 504: "MHUD - Prespeed Perf Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 513: "MHUD - Prespeed Perf Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 521: "MHUD - Prespeed Jumpbug Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 530: "MHUD - Prespeed Jumpbug Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 538: "MHUD - Prespeed Reset"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 546: "MHUD - Timer Offset Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 555: "MHUD - Timer Offset Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 564: "MHUD - Timer Scale Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 573: "MHUD - Timer Scale Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 582: "MHUD - Timer TP Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 591: "MHUD - Timer TP Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 599: "MHUD - Timer Pro Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 608: "MHUD - Timer Pro Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 616: "MHUD - Timer Paused Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 625: "MHUD - Timer Paused Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 633: "MHUD - Timer Stopped Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 642: "MHUD - Timer Stopped Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 650: "MHUD - Timer Reset"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 658: "MHUD - Keys Offset Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 667: "MHUD - Keys Offset Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 676: "MHUD - Keys Scale Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 685: "MHUD - Keys Scale Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 694: "MHUD - Keys Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 703: "MHUD - Keys Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 711: "MHUD - Keys Overlap Color Set"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 720: "MHUD - Keys Overlap Color Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 728: "MHUD - Keys Reset"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 736: "MHUD - Unavailable"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 744: "MHUD - Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 752: "MHUD - Speed Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 760: "MHUD - Prespeed Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 768: "MHUD - Timer Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 776: "MHUD - Keys Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 784: "MHUD - Font Usage"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 793: "MHUD - Font"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 802: "MHUD - Set Font"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 811: "MHUD - Outline Enabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 819: "MHUD - Outline Disabled"
-    Missing (8): de, es, fi, it, lv, pl, sv, tr
+  Line 276: "Fonts - Help (Chat)"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 280: "Fonts - Help"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
 
 cs2kz-jumpstats.phrases.txt
 ----------------------------------------------------------------------
@@ -560,56 +436,56 @@ cs2kz-jumpstats.phrases.txt
   Line 891: "Jumpstat Report - Console Segment - Miss"
     Missing (7): de, fi, it, lv, pl, sv, tr
   Line 901: "Jumpstat Report - Console Segment - Landing Edge"
-    Missing (9): chi, de, es, fi, it, lv, pl, sv, tr
-  Line 909: "Jumpstats Report - Chat Segment - Edge"
+    Missing (8): de, es, fi, it, lv, pl, sv, tr
+  Line 910: "Jumpstats Report - Chat Segment - Edge"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 919: "Jumpstats Report - Chat Segment - Deviation"
+  Line 920: "Jumpstats Report - Chat Segment - Deviation"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 929: "Jumpstats Report - Chat Segment - Offset"
+  Line 930: "Jumpstats Report - Chat Segment - Offset"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 939: "Jumpstats Report - Chat Segment - Miss"
+  Line 940: "Jumpstats Report - Chat Segment - Miss"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 949: "Jumpstat Report - Console Details 2"
+  Line 950: "Jumpstat Report - Console Details 2"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 960: "Jumpstat Report - Console Graph - Strafe Keys"
-    Missing (9): chi, de, es, fi, it, lv, pl, sv, tr
-  Line 967: "Jumpstat Report - Console Graph - Mouse Movement"
-    Missing (9): chi, de, es, fi, it, lv, pl, sv, tr
-  Line 974: "Jumpstat Report - Console Graph - Left"
-    Missing (9): chi, de, es, fi, it, lv, pl, sv, tr
-  Line 982: "Jumpstat Report - Console Graph - Right"
-    Missing (9): chi, de, es, fi, it, lv, pl, sv, tr
-  Line 990: "Jumpstats Option - Jumpstats Minimum Tier - Disabled"
+  Line 961: "Jumpstat Report - Console Graph - Strafe Keys"
+    Missing (8): de, es, fi, it, lv, pl, sv, tr
+  Line 969: "Jumpstat Report - Console Graph - Mouse Movement"
+    Missing (8): de, es, fi, it, lv, pl, sv, tr
+  Line 977: "Jumpstat Report - Console Graph - Left"
+    Missing (8): de, es, fi, it, lv, pl, sv, tr
+  Line 986: "Jumpstat Report - Console Graph - Right"
+    Missing (8): de, es, fi, it, lv, pl, sv, tr
+  Line 995: "Jumpstats Option - Jumpstats Minimum Tier - Disabled"
     Missing (4): fi, it, lv, tr
-  Line 1002: "Jumpstats Option - Jumpstats Minimum Tier - Response"
+  Line 1007: "Jumpstats Option - Jumpstats Minimum Tier - Response"
     Missing (4): fi, it, lv, tr
-  Line 1015: "Jumpstats Option - Jumpstats Minimum Console Tier - Disabled"
+  Line 1020: "Jumpstats Option - Jumpstats Minimum Console Tier - Disabled"
     Missing (4): fi, it, lv, tr
-  Line 1027: "Jumpstats Option - Jumpstats Minimum Console Tier - Response"
+  Line 1032: "Jumpstats Option - Jumpstats Minimum Console Tier - Response"
     Missing (4): fi, it, lv, tr
-  Line 1040: "Jumpstats Option - Jumpstats Minimum Sound Broadcast Tier - Disabled"
+  Line 1045: "Jumpstats Option - Jumpstats Minimum Sound Broadcast Tier - Disabled"
     Missing (4): fi, it, lv, tr
-  Line 1052: "Jumpstats Option - Jumpstats Minimum Sound Broadcast Tier - Response"
+  Line 1057: "Jumpstats Option - Jumpstats Minimum Sound Broadcast Tier - Response"
     Missing (4): fi, it, lv, tr
-  Line 1065: "Jumpstats Option - Jumpstats Volume - Current"
+  Line 1070: "Jumpstats Option - Jumpstats Volume - Current"
     Missing (5): fi, it, lv, sv, tr
-  Line 1077: "Jumpstats Option - Jumpstats Volume - Response"
+  Line 1082: "Jumpstats Option - Jumpstats Volume - Response"
     Missing (4): fi, it, lv, tr
-  Line 1090: "Jumpstats Option - Extended Chat Stats - Enable"
+  Line 1095: "Jumpstats Option - Extended Chat Stats - Enable"
     Missing (4): fi, it, lv, tr
-  Line 1102: "Jumpstats Option - Extended Chat Stats - Disable"
+  Line 1107: "Jumpstats Option - Extended Chat Stats - Disable"
     Missing (4): fi, it, lv, tr
-  Line 1114: "Jumpstats Option - Jumpstats Reporting - Enable"
+  Line 1119: "Jumpstats Option - Jumpstats Reporting - Enable"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1123: "Jumpstats Option - Jumpstats Reporting - Disable"
+  Line 1128: "Jumpstats Option - Jumpstats Reporting - Disable"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1132: "Jumpstats Option - Failstats Chat Reporting - Enable"
+  Line 1137: "Jumpstats Option - Failstats Chat Reporting - Enable"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1141: "Jumpstats Option - Failstats Chat Reporting - Disable"
+  Line 1146: "Jumpstats Option - Failstats Chat Reporting - Disable"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1150: "Jumpstats Option - Failstats Console Reporting - Enable"
+  Line 1155: "Jumpstats Option - Failstats Console Reporting - Enable"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 1159: "Jumpstats Option - Failstats Console Reporting - Disable"
+  Line 1164: "Jumpstats Option - Failstats Console Reporting - Disable"
     Missing (7): de, fi, it, lv, pl, sv, tr
 
 cs2kz-language.phrases.txt
@@ -635,6 +511,331 @@ cs2kz-measure.phrases.txt
     Missing (4): fi, it, lv, tr
   Line 77: "Measure - Block Result"
     Missing (4): fi, it, lv, tr
+
+cs2kz-menu.phrases.txt
+----------------------------------------------------------------------
+  Line 4: "Menu - Title Options"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 10: "Menu - HUD"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 16: "Menu - On"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 22: "Menu - Off"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 28: "Menu - Panel"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 34: "Menu - Compact"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 40: "Menu - Crosshair"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 46: "Menu - Mimic Spec"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 50: "Menu - Mimic Spec Sub"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 54: "Menu - Compact Sub"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 60: "Menu - Outline"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 66: "Menu - Font"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 72: "Menu - Font Local Note"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 76: "Menu - Enabled"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 82: "Menu - Position"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 88: "Menu - Size"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 94: "Menu - Reset"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 100: "Menu - Timer"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 106: "Menu - Prespeed"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 112: "Menu - Keys"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 118: "Menu - Timer Detail"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 124: "Menu - Affect Legacy Sub"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 129: "Menu - Crosshair Scale"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 134: "Menu - Crosshair Scale Sub"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 139: "Menu - Decimal"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 144: "Menu - Prespeed Brackets"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 149: "Menu - Prespeed Hide Walk Off"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 154: "Menu - Prespeed Hide Walk Off Sub"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 159: "Menu - Keys Overlap"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 165: "Menu - Keys Overlap Axis"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 169: "Menu - Keys Overlap Axis Sub"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 173: "Menu - Color Base"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 179: "Menu - Color CJ"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 185: "Menu - Color Perf"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 191: "Menu - Color Jumpbug"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 197: "Menu - Color Pro"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 203: "Menu - Color TP"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 209: "Menu - Color Paused"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 215: "Menu - Color Stopped"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 221: "Menu - Misc"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 227: "Menu - General"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 233: "Menu - Menu"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 239: "Menu - Style"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 245: "Menu - Style Layout"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 251: "Menu - Style Legacy"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 257: "Menu - Checkpoint"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 263: "Menu - Reset All"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 269: "Menu - Keys Unpressed"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 274: "Menu - Keys Unpressed Show"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 279: "Menu - Keys Unpressed Hide"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 284: "Menu - Keys Unpressed Underscore"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 289: "Menu - Keys Letters"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 295: "Menu - Keys Square"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 301: "Menu - Keys Border"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 306: "Menu - Keys Fill"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 311: "Menu - Opacity"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 316: "Menu - Keys Glow"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 321: "Menu - Sounds"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 326: "Menu - Popup Shift"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 331: "Menu - Color"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 337: "Menu - Color Overlap"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 343: "Menu - Color Pressed"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 347: "Menu - Color Overlap Glow"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 351: "Menu - Mode"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 357: "Menu - Pistol"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 363: "Menu - Beam Offset"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 369: "Menu - Beam Offset Sub"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 375: "Menu - Styles"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 381: "Menu - Lang en"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 387: "Menu - Lang ar"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 393: "Menu - Lang pt"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 399: "Menu - Lang bg"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 405: "Menu - Lang cze"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 411: "Menu - Lang da"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 417: "Menu - Lang nl"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 423: "Menu - Lang fi"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 429: "Menu - Lang fr"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 435: "Menu - Lang de"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 441: "Menu - Lang el"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 447: "Menu - Lang he"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 453: "Menu - Lang hu"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 459: "Menu - Lang it"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 465: "Menu - Lang jp"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 471: "Menu - Lang ko"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 477: "Menu - Lang lv"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 483: "Menu - Lang lt"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 489: "Menu - Lang no"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 495: "Menu - Lang pl"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 501: "Menu - Lang pt_p"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 507: "Menu - Lang ro"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 513: "Menu - Lang ru"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 519: "Menu - Lang chi"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 525: "Menu - Lang sk"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 531: "Menu - Lang es"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 537: "Menu - Lang sv"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 543: "Menu - Lang zho"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 549: "Menu - Lang th"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 555: "Menu - Lang tr"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 561: "Menu - Lang ua"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 567: "Menu - Lang vi"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 573: "Menu - Language"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 579: "Menu - Beam"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 585: "Menu - Beam None"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 591: "Menu - Beam Ground"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 597: "Menu - Beam Feet"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 603: "Menu - FOV"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 609: "Menu - Record Volume Sub"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 615: "Menu - JS Volume Sub"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 621: "Menu - Record Volume"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 627: "Menu - JS Volume"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 633: "Menu - Timer Category"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 639: "Menu - Map Overlay"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 645: "Menu - Timer Stop Sound"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 651: "Menu - Safeguard"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 657: "Menu - Safeguard Off"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 663: "Menu - Safeguard Nub"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 669: "Menu - Safeguard Pro"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 675: "Menu - Compare"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 681: "Menu - Compare None"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 687: "Menu - Compare Local PB"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 693: "Menu - Compare Global PB"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 699: "Menu - Compare Server Record"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 705: "Menu - Compare World Record"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 711: "Menu - Jumpstats"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 717: "Menu - JS Reporting"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 723: "Menu - JS Always"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 729: "Menu - JS Extended Stats"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 735: "Menu - JS Failstats"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 741: "Menu - JS Failstats Console"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 747: "Menu - JS Min Tier"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 753: "Menu - JS Min Tier Console"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 759: "Menu - JS Sound Min Tier"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 765: "Menu - JS Broadcast Min Tier"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 771: "Menu - JS Broadcast Min Tier Console"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 777: "Menu - JS Broadcast Sound Min Tier"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 783: "Menu - Tier None"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 789: "Menu - Tier Meh"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 795: "Menu - Tier Impressive"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 801: "Menu - Tier Perfect"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 807: "Menu - Tier Godlike"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 813: "Menu - Tier Ownage"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 819: "Menu - Tier Wrecker"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 825: "Menu - Checkpoints"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 831: "Menu - Checkpoint Message"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 837: "Menu - Checkpoint Sound"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 843: "Menu - Teleport Sound"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 849: "Menu - Paint"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 855: "Menu - Paint Color Sub"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 861: "Menu - Show All Paint"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 867: "Menu - Hide Other Players"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 873: "Menu - Hide Weapon"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 879: "Menu - Hide Legs"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 885: "Menu - Show Tips"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 891: "Menu - Export Prefs"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 897: "Prefs - Export Header"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 903: "Prefs - Export Launch Option"
+    Missing (11): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 908: "Prefs - Export Stamp Note"
+    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
+  Line 912: "Prefs - Export Footer"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 918: "Prefs - Exported"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 925: "Prefs - Imported"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 932: "Menu - Unavailable"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
 
 cs2kz-paint.phrases.txt
 ----------------------------------------------------------------------
@@ -798,97 +999,99 @@ cs2kz-replays.phrases.txt
     Missing (6): es, fi, it, lv, sv, tr
   Line 392: "Replay - Manual Replay Failed"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 402: "Replay - Manual Replay Saved"
+  Line 402: "Replay - Invalid Manual Replay Duration"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 408: "Replay - Manual Replay Saved"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 413: "Replay - Manual Replay Saved (Console)"
+  Line 419: "Replay - Manual Replay Saved (Console)"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 424: "Replay - Run Replay Failed"
+  Line 430: "Replay - Run Replay Failed"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 434: "Replay - Run Replay Saved"
+  Line 440: "Replay - Run Replay Saved"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 445: "Replay - Run Replay Saved (Console)"
+  Line 451: "Replay - Run Replay Saved (Console)"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 456: "Replay - Wrong Map"
+  Line 462: "Replay - Wrong Map"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 467: "Replay - Unknown Mode"
+  Line 473: "Replay - Unknown Mode"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 478: "Replay - Unknown Style"
+  Line 484: "Replay - Unknown Style"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 489: "Replay List - Check Console"
+  Line 495: "Replay List - Check Console"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 499: "Replay List - Usage Title"
+  Line 505: "Replay List - Usage Title"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 510: "Replay List - Usage General Options"
+  Line 516: "Replay List - Usage General Options"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 526: "Replay List - Usage Type Options"
+  Line 532: "Replay List - Usage Type Options"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 540: "Replay List - No Matching Replays"
+  Line 546: "Replay List - No Matching Replays"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 550: "Cheater Replays - Table Name"
+  Line 556: "Cheater Replays - Table Name"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 560: "Run Replays - Table Name"
+  Line 566: "Run Replays - Table Name"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 570: "Jump Replays - Table Name"
+  Line 576: "Jump Replays - Table Name"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 580: "Manual Replays - Table Name"
+  Line 586: "Manual Replays - Table Name"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 590: "Replay Table Header - Player"
+  Line 596: "Replay Table Header - Player"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 600: "Replay Table Header - Map"
+  Line 606: "Replay Table Header - Map"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 610: "Replay Table Header - Reason"
+  Line 616: "Replay Table Header - Reason"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 620: "Replay Table Header - SteamID"
+  Line 626: "Replay Table Header - SteamID"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 630: "Replay Table Header - UUID"
+  Line 636: "Replay Table Header - UUID"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 640: "Replay Table Header - Course"
+  Line 646: "Replay Table Header - Course"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 650: "Replay Table Header - Mode"
+  Line 656: "Replay Table Header - Mode"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 660: "Replay Table Header - Styles"
+  Line 666: "Replay Table Header - Styles"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 670: "Replay Table Header - Time"
+  Line 676: "Replay Table Header - Time"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 680: "Replay Table Header - Teleports"
+  Line 686: "Replay Table Header - Teleports"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 690: "Replay Table Header - Jump Type"
+  Line 696: "Replay Table Header - Jump Type"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 700: "Replay Table Header - Distance"
+  Line 706: "Replay Table Header - Distance"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 710: "Replay Table Header - Block"
+  Line 716: "Replay Table Header - Block"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 720: "Replay Table Header - Strafes"
+  Line 726: "Replay Table Header - Strafes"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 730: "Replay Table Header - Saved By"
+  Line 736: "Replay Table Header - Saved By"
     Missing (6): es, fi, it, lv, sv, tr
-  Line 740: "Replay - Not Found"
+  Line 746: "Replay - Not Found"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 748: "Replay - No Course"
+  Line 754: "Replay - No Course"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 756: "Replay - Invalid Mode Arg"
+  Line 762: "Replay - Invalid Mode Arg"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 764: "Replay - SR Not Found"
+  Line 770: "Replay - SR Not Found"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 772: "Replay - SPB Not Found"
+  Line 778: "Replay - SPB Not Found"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 780: "Replay - Global Mode Only"
+  Line 786: "Replay - Global Mode Only"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 788: "Replay - API Not Available"
+  Line 794: "Replay - API Not Available"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 796: "Replay - Querying WR"
+  Line 802: "Replay - Querying WR"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 804: "Replay - WR Not Found"
+  Line 810: "Replay - WR Not Found"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 812: "Replay - Querying GPB"
+  Line 818: "Replay - Querying GPB"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 820: "Replay - GPB Not Found"
+  Line 826: "Replay - GPB Not Found"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 828: "Replay Request - Sending"
+  Line 834: "Replay Request - Sending"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 837: "Replay Request - Already Requested"
+  Line 843: "Replay Request - Already Requested"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 846: "Replay Request - Error"
+  Line 852: "Replay Request - Error"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
 
 cs2kz-spec.phrases.txt
@@ -955,120 +1158,122 @@ cs2kz-timer-toprecord.phrases.txt
 cs2kz-timer.phrases.txt
 ----------------------------------------------------------------------
   Line 57: "Beat Course Info - Basic"
-    Missing (12): chi, de, es, fi, it, ko, lv, pl, ru, sv, tr, ua
-  Line 138: "Beat Course Info - Global Points (TP)"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 140: "Beat Course Info - Global Points (TP)"
     Missing (3): fi, it, tr
-  Line 153: "Beat Course Info - Global Points (PRO)"
+  Line 155: "Beat Course Info - Global Points (PRO)"
     Missing (3): fi, it, tr
-  Line 168: "Beat Course Info - New World Record"
+  Line 170: "Beat Course Info - New World Record"
     Missing (4): fi, it, lv, tr
-  Line 182: "Beat Course Info - New World Record (PRO)"
+  Line 184: "Beat Course Info - New World Record (PRO)"
     Missing (4): fi, it, lv, tr
-  Line 309: "Can't Finish Run (Missed a Checkpoint Zone)"
+  Line 247: "Can't Pause (Too Fast)"
+    Missing (10): de, es, fi, it, ko, lv, pl, ru, sv, tr
+  Line 317: "Can't Finish Run (Missed a Checkpoint Zone)"
     Missing (2): fi, it
-  Line 323: "Can't Finish Run (Missed Checkpoint Zones)"
+  Line 331: "Can't Finish Run (Missed Checkpoint Zones)"
     Missing (2): fi, it
-  Line 338: "Can't Finish Run (Missed Stage)"
+  Line 346: "Can't Finish Run (Missed Stage)"
     Missing (2): fi, it
-  Line 353: "Touched too high stage number (Missed stage)"
+  Line 361: "Touched too high stage number (Missed stage)"
     Missing (2): fi, it
-  Line 368: "No Start Position For Course"
+  Line 376: "No Start Position For Course"
     Missing (2): fi, it
-  Line 383: "No End Position For Course"
+  Line 391: "No End Position For Course"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 393: "No Active Course"
+  Line 401: "No Active Course"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 402: "No Jumpstat Area Found"
+  Line 410: "No Jumpstat Area Found"
     Missing (2): fi, it
-  Line 416: "Turnbinds Disabled"
+  Line 424: "Turnbinds Disabled"
     Missing (3): fi, it, tr
-  Line 431: "Course Split Reached"
+  Line 439: "Course Split Reached"
     Missing (2): fi, it
-  Line 446: "Course Checkpoint Reached"
+  Line 454: "Course Checkpoint Reached"
     Missing (3): fi, it, tr
-  Line 460: "Course Stage Reached"
+  Line 468: "Course Stage Reached"
     Missing (2): fi, it
-  Line 477: "Server PB Diff (Overall)"
+  Line 485: "Server PB Diff (Overall)"
     Missing (3): fi, it, tr
-  Line 491: "Global PB Diff (Overall)"
+  Line 499: "Global PB Diff (Overall)"
     Missing (3): fi, it, tr
-  Line 505: "SR Diff (Overall)"
+  Line 513: "SR Diff (Overall)"
     Missing (3): fi, it, tr
-  Line 519: "WR Diff (Overall)"
+  Line 527: "WR Diff (Overall)"
     Missing (3): fi, it, tr
-  Line 533: "Server PB Diff (Pro)"
+  Line 541: "Server PB Diff (Pro)"
     Missing (3): fi, it, tr
-  Line 547: "Global PB Diff (Pro)"
+  Line 555: "Global PB Diff (Pro)"
     Missing (3): fi, it, tr
-  Line 561: "SR Diff (Pro)"
+  Line 569: "SR Diff (Pro)"
     Missing (3): fi, it, tr
-  Line 575: "WR Diff (Pro)"
+  Line 583: "WR Diff (Pro)"
     Missing (3): fi, it, tr
-  Line 591: "Missed Server PB (Overall)"
+  Line 599: "Missed Server PB (Overall)"
     Missing (2): fi, it
-  Line 606: "Missed Global PB (Overall)"
+  Line 614: "Missed Global PB (Overall)"
     Missing (2): fi, it
-  Line 621: "Missed SR (Overall)"
+  Line 629: "Missed SR (Overall)"
     Missing (2): fi, it
-  Line 636: "Missed WR (Overall)"
+  Line 644: "Missed WR (Overall)"
     Missing (2): fi, it
-  Line 651: "Missed Server PB (Pro)"
+  Line 659: "Missed Server PB (Pro)"
     Missing (2): fi, it
-  Line 666: "Missed Global PB (Pro)"
+  Line 674: "Missed Global PB (Pro)"
     Missing (2): fi, it
-  Line 681: "Missed SR (Pro)"
+  Line 689: "Missed SR (Pro)"
     Missing (2): fi, it
-  Line 696: "Missed WR (Pro)"
+  Line 704: "Missed WR (Pro)"
     Missing (2): fi, it
-  Line 711: "Missed Server PB (Overall+Pro)"
+  Line 719: "Missed Server PB (Overall+Pro)"
     Missing (2): fi, it
-  Line 726: "Missed Global PB (Overall+Pro)"
+  Line 734: "Missed Global PB (Overall+Pro)"
     Missing (2): fi, it
-  Line 741: "Missed SR (Overall+Pro)"
+  Line 749: "Missed SR (Overall+Pro)"
     Missing (2): fi, it
-  Line 756: "Missed WR (Overall+Pro)"
+  Line 764: "Missed WR (Overall+Pro)"
     Missing (2): fi, it
-  Line 772: "Compare Command Usage"
+  Line 780: "Compare Command Usage"
     Missing (2): fi, it
-  Line 786: "Compare Disabled"
+  Line 794: "Compare Disabled"
     Missing (2): fi, it
-  Line 800: "Compare Server PB"
+  Line 808: "Compare Server PB"
     Missing (2): fi, it
-  Line 814: "Compare Global PB"
+  Line 822: "Compare Global PB"
     Missing (2): fi, it
-  Line 828: "Compare Server Record"
+  Line 836: "Compare Server Record"
     Missing (2): fi, it
-  Line 842: "Compare World Record"
+  Line 850: "Compare World Record"
     Missing (2): fi, it
-  Line 857: "Request - Failed (Invalid Map)"
+  Line 865: "Request - Failed (Invalid Map)"
     Missing (3): fi, it, tr
-  Line 870: "Request - Failed (Generic)"
+  Line 878: "Request - Failed (Generic)"
     Missing (3): fi, it, tr
-  Line 883: "Request - Failed (No Course in Current Map)"
+  Line 891: "Request - Failed (No Course in Current Map)"
     Missing (3): fi, it, tr
-  Line 898: "Timer Stop Sound Enabled"
+  Line 906: "Timer Stop Sound Enabled"
     Missing (4): fi, it, lv, tr
-  Line 910: "Timer Stop Sound Disabled"
+  Line 918: "Timer Stop Sound Disabled"
     Missing (4): fi, it, lv, tr
-  Line 922: "Record Volume Set"
+  Line 930: "Record Volume Set"
     Missing (5): fi, it, lv, sv, tr
-  Line 934: "Map Overlay Enabled"
+  Line 942: "Map Overlay Enabled"
     Missing (9): de, es, fi, it, lv, pl, ru, sv, tr
-  Line 941: "Map Overlay Disabled"
+  Line 949: "Map Overlay Disabled"
     Missing (9): de, es, fi, it, lv, pl, ru, sv, tr
-  Line 948: "Started Run on Course"
+  Line 956: "Started Run on Course"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 959: "Started Run on Non Ranked Course"
+  Line 967: "Started Run on Non Ranked Course"
     Missing (7): de, fi, it, lv, pl, sv, tr
-  Line 970: "Safeguard - Disable"
+  Line 978: "Safeguard - Disable"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 978: "Safeguard - Enable"
+  Line 986: "Safeguard - Enable"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 986: "Safeguard - Enable (PRO)"
+  Line 994: "Safeguard - Enable (PRO)"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 994: "Safeguard - Blocked"
+  Line 1002: "Safeguard - Blocked"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
-  Line 1002: "Safeguard - Blocked (Restart)"
+  Line 1010: "Safeguard - Blocked (Restart)"
     Missing (8): de, es, fi, it, lv, pl, sv, tr
 
 cs2kz-tips-general.phrases.txt
