@@ -7,30 +7,31 @@ Automated translation linter reports for cs2kz-metamod.
 | Metric | Value |
 |--------|-------|
 | **Linter Errors** | 0 |
-| **Linter Warnings** | 23 |
-| **Total Languages** | 14 |
-| **Total Phrases** | 995 |
-| **Phrases Missing Translations** | 995 |
-| **Total Missing Entries** | 6804 |
+| **Linter Warnings** | 24 |
+| **Total Languages** | 15 |
+| **Total Phrases** | 1091 |
+| **Phrases Missing Translations** | 1091 |
+| **Total Missing Entries** | 7508 |
 | **Menu Files** | 11 |
 
 ## Language Coverage (Phrases)
 
 ```
-  chi (schinese)       [█████████████████░░░]  87.4% (870/995)
-  de (german)          [██████████░░░░░░░░░░]  52.1% (518/995)
-  en (english)         [████████████████████] 100.0% (995/995)
-  es (spanish)         [█████████░░░░░░░░░░░]  48.6% (484/995)
-  fi (finnish)         [████░░░░░░░░░░░░░░░░]  23.4% (233/995)
-  it (italian)         [████░░░░░░░░░░░░░░░░]  22.6% (225/995)
-  ko (korean)          [█████████████░░░░░░░]  65.5% (652/995)
-  lv (latvian)         [██████░░░░░░░░░░░░░░]  33.0% (328/995)
-  nl (dutch)           [░░░░░░░░░░░░░░░░░░░░]   0.5% (5/995)
-  pl (polish)          [██████████░░░░░░░░░░]  52.3% (520/995)
-  ru (russian)         [█████████████░░░░░░░]  65.3% (650/995)
-  sv (swedish)         [███████░░░░░░░░░░░░░]  39.4% (392/995)
-  tr (turkish)         [█████░░░░░░░░░░░░░░░]  26.3% (262/995)
-  ua (ukrainian)       [███████████████████░]  99.7% (992/995)
+  chi (schinese)       [██████████████████░░]  92.7% (1011/1091)
+  de (german)          [█████████░░░░░░░░░░░]  47.5% (518/1091)
+  en (english)         [████████████████████] 100.0% (1091/1091)
+  es (spanish)         [████████░░░░░░░░░░░░]  44.4% (484/1091)
+  fi (finnish)         [████░░░░░░░░░░░░░░░░]  21.4% (233/1091)
+  it (italian)         [████░░░░░░░░░░░░░░░░]  20.6% (225/1091)
+  ko (korean)          [███████████░░░░░░░░░]  59.8% (652/1091)
+  lv (latvian)         [██████░░░░░░░░░░░░░░]  30.1% (328/1091)
+  nl (dutch)           [░░░░░░░░░░░░░░░░░░░░]   0.5% (5/1091)
+  pl (polish)          [█████████░░░░░░░░░░░]  47.7% (520/1091)
+  ru (russian)         [██████████████████░░]  91.1% (994/1091)
+  sv (swedish)         [███████░░░░░░░░░░░░░]  35.9% (392/1091)
+  tr (turkish)         [████░░░░░░░░░░░░░░░░]  24.0% (262/1091)
+  ua (ukrainian)       [███████████████████░]  98.4% (1073/1091)
+  zho (tchinese)       [███████████████████░]  98.0% (1069/1091)
 ```
 
 ## Menu Translation Status
@@ -80,9 +81,9 @@ Automated translation linter reports for cs2kz-metamod.
 
 ## Last Updated
 
-- **Commit:** [`82d8c88`](https://github.com/FemboyKZ/cs2kz-metamod/commit/82d8c8871d3523a7c1d242a30fd817b9667a73ab)
-- **Time:** 2026-10-03 18:21:43 UTC
-- **Message:** Make blur scale with opacity
+- **Commit:** [`4c278a2`](https://github.com/FemboyKZ/cs2kz-metamod/commit/4c278a2d68c6e97130f71c29493ab8c64a51aae0)
+- **Time:** 2026-10-16 15:50:28 UTC
+- **Message:** clang-format
 
 ---
 
