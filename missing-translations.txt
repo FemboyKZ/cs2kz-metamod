@@ -6,28 +6,28 @@ Generated for: /home/runner/work/cs2kz-metamod/cs2kz-metamod
 SUMMARY
 ----------------------------------------------------------------------
 Total languages: 15
-Total phrases: 1092
-Phrases with missing translations: 1092
-Total missing translation entries: 7522
+Total phrases: 1094
+Phrases with missing translations: 1094
+Total missing translation entries: 7524
 
 LANGUAGE COVERAGE (Phrases)
 ----------------------------------------------------------------------
 
-  chi (schinese)       [██████████████████░░]  92.6% (1011/1092)
-  de (german)          [█████████░░░░░░░░░░░]  47.4% (518/1092)
-  en (english)         [████████████████████] 100.0% (1092/1092)
-  es (spanish)         [████████░░░░░░░░░░░░]  44.3% (484/1092)
-  fi (finnish)         [████░░░░░░░░░░░░░░░░]  21.3% (233/1092)
-  it (italian)         [████░░░░░░░░░░░░░░░░]  20.6% (225/1092)
-  ko (korean)          [███████████░░░░░░░░░]  59.7% (652/1092)
-  lv (latvian)         [██████░░░░░░░░░░░░░░]  30.0% (328/1092)
-  nl (dutch)           [░░░░░░░░░░░░░░░░░░░░]   0.5% (5/1092)
-  pl (polish)          [█████████░░░░░░░░░░░]  47.6% (520/1092)
-  ru (russian)         [██████████████████░░]  91.0% (994/1092)
-  sv (swedish)         [███████░░░░░░░░░░░░░]  35.9% (392/1092)
-  tr (turkish)         [████░░░░░░░░░░░░░░░░]  24.0% (262/1092)
-  ua (ukrainian)       [███████████████████░]  98.3% (1073/1092)
-  zho (tchinese)       [███████████████████░]  97.9% (1069/1092)
+  chi (schinese)       [██████████████████░░]  92.6% (1013/1094)
+  de (german)          [█████████░░░░░░░░░░░]  47.5% (520/1094)
+  en (english)         [████████████████████] 100.0% (1094/1094)
+  es (spanish)         [████████░░░░░░░░░░░░]  44.4% (486/1094)
+  fi (finnish)         [████░░░░░░░░░░░░░░░░]  21.5% (235/1094)
+  it (italian)         [████░░░░░░░░░░░░░░░░]  20.7% (227/1094)
+  ko (korean)          [███████████░░░░░░░░░]  59.8% (654/1094)
+  lv (latvian)         [██████░░░░░░░░░░░░░░]  30.2% (330/1094)
+  nl (dutch)           [░░░░░░░░░░░░░░░░░░░░]   0.5% (5/1094)
+  pl (polish)          [█████████░░░░░░░░░░░]  47.7% (522/1094)
+  ru (russian)         [██████████████████░░]  91.0% (996/1094)
+  sv (swedish)         [███████░░░░░░░░░░░░░]  36.0% (394/1094)
+  tr (turkish)         [████░░░░░░░░░░░░░░░░]  24.1% (264/1094)
+  ua (ukrainian)       [███████████████████░]  98.3% (1075/1094)
+  zho (tchinese)       [███████████████████░]  97.9% (1071/1094)
 
 Global languages (15): chi, de, en, es, fi, it, ko, lv, nl, pl, ru, sv, tr, ua, zho
 
@@ -72,7 +72,7 @@ MENU TRANSLATION STATUS
 DETAILED MISSING TRANSLATIONS (Phrases)
 ======================================================================
 
-cs2kz-anticheat.phrases.txt
+translations/cs2kz-anticheat.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Kick Player m_yaw"
     Missing (3): it, nl, tr
@@ -87,14 +87,14 @@ cs2kz-anticheat.phrases.txt
   Line 73: "Cheater Warning"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-api.phrases.txt
+translations/cs2kz-api.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Global Check"
     Missing (3): it, nl, tr
   Line 19: "Non Global Map Warning"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-beam.phrases.txt
+translations/cs2kz-beam.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Beam Changed (None)"
     Missing (5): fi, it, lv, nl, tr
@@ -109,7 +109,7 @@ cs2kz-beam.phrases.txt
   Line 68: "Current Beam Offset"
     Missing (5): fi, it, lv, nl, tr
 
-cs2kz-checkpoint.phrases.txt
+translations/cs2kz-checkpoint.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Make Checkpoint"
     Missing (1): nl
@@ -160,7 +160,7 @@ cs2kz-checkpoint.phrases.txt
   Line 368: "Checkpoint Options - Checkpoint Message - Disable"
     Missing (6): fi, it, lv, nl, sv, tr
 
-cs2kz-commands.phrases.txt
+translations/cs2kz-commands.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Command Help Response (Chat)"
     Missing (1): nl
@@ -553,7 +553,7 @@ cs2kz-commands.phrases.txt
   Line 2366: "Command Usage - kz_ztopwatch"
     Missing (11): de, es, fi, it, ko, lv, nl, pl, ru, sv, tr
 
-cs2kz-common.phrases.txt
+translations/cs2kz-common.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "No Steam Authentication Warning"
     Missing (2): it, nl
@@ -572,7 +572,7 @@ cs2kz-common.phrases.txt
   Line 108: "Beta Join Warning"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-course.phrases.txt
+translations/cs2kz-course.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "No Current Course"
     Missing (2): it, nl
@@ -631,14 +631,14 @@ cs2kz-course.phrases.txt
   Line 302: "Tier Info"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-fov.phrases.txt
+translations/cs2kz-fov.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "FOV - Show"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
   Line 14: "Error Message (Invalid FOV)"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-goto.phrases.txt
+translations/cs2kz-goto.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Goto - Error Message (Timer Running)"
     Missing (1): nl
@@ -649,7 +649,7 @@ cs2kz-goto.phrases.txt
   Line 56: "Goto - Command Usage"
     Missing (1): nl
 
-cs2kz-help.phrases.txt
+translations/cs2kz-help.phrases.txt
 ----------------------------------------------------------------------
   Line 4: "Help - Title"
     Missing (11): de, es, fi, it, ko, lv, nl, pl, ru, sv, tr
@@ -692,7 +692,7 @@ cs2kz-help.phrases.txt
   Line 138: "Help - Category - HUD"
     Missing (11): de, es, fi, it, ko, lv, nl, pl, ru, sv, tr
 
-cs2kz-hud.phrases.txt
+translations/cs2kz-hud.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Speed"
     Missing (1): nl
@@ -815,7 +815,7 @@ cs2kz-hud.phrases.txt
   Line 627: "HUD - Course Unranked"
     Missing (11): chi, de, es, fi, it, ko, lv, nl, pl, sv, tr
 
-cs2kz-jumpstats.phrases.txt
+translations/cs2kz-jumpstats.phrases.txt
 ----------------------------------------------------------------------
   Line 4: "Offset"
     Missing (1): nl
@@ -824,6 +824,10 @@ cs2kz-jumpstats.phrases.txt
   Line 38: "Pre"
     Missing (1): nl
   Line 55: "Max"
+    Missing (1): nl
+  Line 72: "Strafes"
+    Missing (1): nl
+  Line 89: "Strafe"
     Missing (1): nl
   Line 106: "Sync"
     Missing (1): nl
@@ -1014,7 +1018,7 @@ cs2kz-jumpstats.phrases.txt
   Line 1342: "Jumpstats Option - Failstats Console Reporting - Disable"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-language.phrases.txt
+translations/cs2kz-language.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Switch Language"
     Missing (1): nl
@@ -1025,7 +1029,7 @@ cs2kz-language.phrases.txt
   Line 47: "Language Change - Manual Menu Change Required"
     Missing (4): fi, it, nl, tr
 
-cs2kz-measure.phrases.txt
+translations/cs2kz-measure.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Measure - Non Solid Position"
     Missing (5): fi, it, lv, nl, tr
@@ -1042,7 +1046,7 @@ cs2kz-measure.phrases.txt
   Line 83: "Measure - Block Result"
     Missing (5): fi, it, lv, nl, tr
 
-cs2kz-menu.phrases.txt
+translations/cs2kz-menu.phrases.txt
 ----------------------------------------------------------------------
   Line 4: "Menu - Title Options"
     Missing (10): de, es, fi, it, ko, lv, nl, pl, sv, tr
@@ -1585,7 +1589,7 @@ cs2kz-menu.phrases.txt
   Line 2172: "Menu - Course Show Records Sub"
     Missing (10): de, es, fi, it, ko, lv, nl, pl, sv, tr
 
-cs2kz-modes.phrases.txt
+translations/cs2kz-modes.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Mode Command Usage"
     Missing (1): nl
@@ -1596,14 +1600,14 @@ cs2kz-modes.phrases.txt
   Line 57: "Switched Mode"
     Missing (1): nl
 
-cs2kz-noclip.phrases.txt
+translations/cs2kz-noclip.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Noclip - Enable"
     Missing (1): nl
   Line 20: "Noclip - Disable"
     Missing (1): nl
 
-cs2kz-paint.phrases.txt
+translations/cs2kz-paint.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Paint Color Command Usage"
     Missing (9): de, es, fi, it, lv, nl, pl, sv, tr
@@ -1628,7 +1632,7 @@ cs2kz-paint.phrases.txt
   Line 98: "Show Paint Disabled"
     Missing (9): de, es, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-pistol.phrases.txt
+translations/cs2kz-pistol.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Pistol Command Usage"
     Missing (5): fi, it, lv, nl, tr
@@ -1639,7 +1643,7 @@ cs2kz-pistol.phrases.txt
   Line 43: "Pistol Unknown"
     Missing (5): fi, it, lv, nl, tr
 
-cs2kz-quiet.phrases.txt
+translations/cs2kz-quiet.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Quiet Option - Hide Player Legs - Disable"
     Missing (1): nl
@@ -1658,7 +1662,7 @@ cs2kz-quiet.phrases.txt
   Line 118: "Quiet Option - Auto Hide Weapon - Disable"
     Missing (5): fi, it, lv, nl, tr
 
-cs2kz-racing.phrases.txt
+translations/cs2kz-racing.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Racing - Race Countdown"
     Missing (7): es, fi, it, lv, nl, sv, tr
@@ -1701,7 +1705,7 @@ cs2kz-racing.phrases.txt
   Line 236: "Racing - Player Unregistered"
     Missing (7): es, fi, it, lv, nl, sv, tr
 
-cs2kz-replays.phrases.txt
+translations/cs2kz-replays.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Replay - No Replay Playing"
     Missing (7): es, fi, it, lv, nl, sv, tr
@@ -1916,7 +1920,7 @@ cs2kz-replays.phrases.txt
   Line 1040: "Replay Controls - Hide Controls"
     Missing (14): chi, de, es, fi, it, ko, lv, nl, pl, ru, sv, tr, ua, zho
 
-cs2kz-spec.phrases.txt
+translations/cs2kz-spec.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Spec Command Usage"
     Missing (5): fi, it, lv, nl, tr
@@ -1935,7 +1939,7 @@ cs2kz-spec.phrases.txt
   Line 100: "Spectate Failure (Player Not Found)"
     Missing (5): fi, it, lv, nl, tr
 
-cs2kz-styles.phrases.txt
+translations/cs2kz-styles.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Style Command Usage"
     Missing (1): nl
@@ -1964,7 +1968,7 @@ cs2kz-styles.phrases.txt
   Line 215: "Style Conflict"
     Missing (1): nl
 
-cs2kz-telemetry.phrases.txt
+translations/cs2kz-telemetry.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Telemetry - Modern Bhop Stats"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
@@ -1973,7 +1977,7 @@ cs2kz-telemetry.phrases.txt
   Line 27: "Telemetry - Reset Bhop Stats"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-timer-coursetop.phrases.txt
+translations/cs2kz-timer-coursetop.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Course Top - Table Name (Server Overall)"
     Missing (3): it, nl, tr
@@ -2006,7 +2010,7 @@ cs2kz-timer-coursetop.phrases.txt
   Line 235: "Course Top Command Usage - Console"
     Missing (1): nl
 
-cs2kz-timer-personalbest.phrases.txt
+translations/cs2kz-timer-personalbest.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "PB Header"
     Missing (1): nl
@@ -2045,7 +2049,7 @@ cs2kz-timer-personalbest.phrases.txt
   Line 301: "PB Command Usage - Console"
     Missing (1): nl
 
-cs2kz-timer-toprecord.phrases.txt
+translations/cs2kz-timer-toprecord.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "SR Header"
     Missing (1): nl
@@ -2068,7 +2072,7 @@ cs2kz-timer-toprecord.phrases.txt
   Line 164: "WR/SR Command Usage - Console"
     Missing (1): nl
 
-cs2kz-timer.phrases.txt
+translations/cs2kz-timer.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "1 Teleport Text"
     Missing (1): nl
@@ -2217,7 +2221,7 @@ cs2kz-timer.phrases.txt
   Line 1086: "Safeguard - Blocked (Restart)"
     Missing (9): de, es, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-tips-general.phrases.txt
+translations/cs2kz-tips-general.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Tip - kz_help"
     Missing (1): nl
@@ -2246,7 +2250,7 @@ cs2kz-tips-general.phrases.txt
   Line 203: "Tip - kz_jsbroadcast"
     Missing (1): nl
 
-cs2kz-tips-jumpstats.phrases.txt
+translations/cs2kz-tips-jumpstats.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Tip - kz_js"
     Missing (1): nl
@@ -2261,7 +2265,7 @@ cs2kz-tips-jumpstats.phrases.txt
   Line 69: "Tip - kz_jsextend"
     Missing (6): fi, it, lv, nl, sv, tr
 
-cs2kz-tips-replays.phrases.txt
+translations/cs2kz-tips-replays.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Tip - kz_replay"
     Missing (7): es, fi, it, lv, nl, sv, tr
@@ -2288,12 +2292,12 @@ cs2kz-tips-replays.phrases.txt
   Line 124: "Tip - kz_rphidelegs"
     Missing (7): es, fi, it, lv, nl, sv, tr
 
-cs2kz-tips-timer.phrases.txt
+translations/cs2kz-tips-timer.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Tip - kz_comparelevel"
     Missing (3): fi, it, nl
 
-cs2kz-tips-visual.phrases.txt
+translations/cs2kz-tips-visual.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Tip - kz_panel"
     Missing (1): nl
@@ -2306,14 +2310,14 @@ cs2kz-tips-visual.phrases.txt
   Line 71: "Tip - kz_fov"
     Missing (8): de, fi, it, lv, nl, pl, sv, tr
 
-cs2kz-tips.phrases.txt
+translations/cs2kz-tips.phrases.txt
 ----------------------------------------------------------------------
   Line 4: "Option - Tips - Enable"
     Missing (1): nl
   Line 21: "Option - Tips - Disable"
     Missing (1): nl
 
-cs2kz-ztopwatch.phrases.txt
+translations/cs2kz-ztopwatch.phrases.txt
 ----------------------------------------------------------------------
   Line 3: "Zone Stopwatch - Point Set"
     Missing (9): de, es, fi, it, lv, nl, pl, sv, tr
